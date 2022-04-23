@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace RecipesApp.Data
+namespace RecipesApp.Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
