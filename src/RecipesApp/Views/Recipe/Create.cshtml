@@ -6,38 +6,33 @@
 }
 
 <form method="post">
-    <div>
+    
         <label asp-for="Name">Заглавие на рецептата*</label>
         <input asp-for="Name">
         <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div>
+    
         <label asp-for="Instructions">Начин на приготвяне*</label>
         <textarea asp-for="Instructions"></textarea>
         <span asp-validation-for="Instructions" class="text-danger"></span>
-    </div>
-    <div>
+    
         <label asp-for="PreparationTime">Време за приготвяне /минути/</label>
         <input asp-for="PreparationTime" />
         <span asp-validation-for="PreparationTime" class="text-danger"></span>
-    </div>
-    <div>
+    
         <label asp-for="CookingTime">Време за готвене /минути/</label>
         <input asp-for="CookingTime" />
         <span asp-validation-for="CookingTime" class="text-danger"></span>
-    </div>
-     <div>
+    
         <label asp-for="PortionsCount">Порции</label>
         <input asp-for="PortionsCount" />
         <span asp-validation-for="PortionsCount" class="text-danger"></span>
-    </div>
+    
     <button>Добави продукт и количество / Пример: пармезан - 50 гр. /*</button>
-    <div>
+    
         <select>
             <option value="1">TODO</option>
             <option value="2">Later</option>
         </select>
-    </div>
 
     <button type="submit">Изпрати</button>
 </form>
