@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Infrastructure.Data
 {
     public class Ingredient
     {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Ingredient()
+        {
+            this.Recipes = new HashSet<RecipeIngredient>();
+        }
+        public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [MinLength(2)]
+        [MaxLength(50)]
         public string Name { get; set; }
 
-        public virtual ICollection<RecipeIngredient> Recipes { get; set; } = new HashSet<RecipeIngredient>();
+        public virtual ICollection<RecipeIngredient> Recipes { get; set; }
     }
 }

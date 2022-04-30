@@ -4,21 +4,16 @@ namespace RecipesApp.Infrastructure.Data
 {
     public class RecipeIngredient
     {
-        [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        [Required]
-        public Guid RecipeId { get; set; }
+        public int RecipeId { get; set; }
 
         public virtual Recipe Recipe { get; set; }
 
-        [Required]
-        public Guid IngredientId { get; set; }
+        public int IngredientId { get; set; }
 
         public virtual Ingredient Ingredient { get; set; }
 
-        [Required]
-        [StringLength(50)]
         public string Quantity { get; set; }
     }
 }

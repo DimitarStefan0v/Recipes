@@ -1,27 +1,34 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipesApp.Infrastructure.Data
 {
     public class Recipe
     {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Recipe()
+        {
+            this.Ingredients = new HashSet<RecipeIngredient>();
+        }
+        public int Id { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [MinLength(3)]
+        [MaxLength(100)]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        [MinLength(10)]
         public string Instructions { get; set; }
 
-        [Required]
-        public Guid CaregoryId { get; set; }
+        public TimeSpan PreparationTime { get; set; }
 
-        [ForeignKey(nameof(CaregoryId))]
+        public TimeSpan CookingTime { get; set; }
+
+        public  int? PortionsCount { get; set; }
+
+        public int CaregoryId { get; set; }
+
         public virtual Category Category { get; set; }
 
-        public virtual ICollection<RecipeIngredient> Ingredients { get; set; } = new HashSet<RecipeIngredient>();
+        public virtual ICollection<RecipeIngredient> Ingredients { get; set; }
     }
 }

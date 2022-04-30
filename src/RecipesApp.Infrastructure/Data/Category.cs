@@ -4,13 +4,17 @@ namespace RecipesApp.Infrastructure.Data
 {
     public class Category
     {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Category()
+        {
+            this.Recipes = new HashSet<Recipe>();
+        }
+        public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [MinLength(3)]
+        [MaxLength(50)]
         public string Name { get; set; }
 
-        public virtual ICollection<Recipe> Recipes { get; set; } = new HashSet<Recipe>();
+        public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }
