@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RecipesApp.Infrastructure.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class AddBaseModelsAndApplicationUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -188,15 +188,21 @@ namespace RecipesApp.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Instructions = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PreparationTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    CookingTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    PreparationTime = table.Column<TimeSpan>(type: "time", nullable: true),
+                    CookingTime = table.Column<TimeSpan>(type: "time", nullable: true),
                     PortionsCount = table.Column<int>(type: "int", nullable: true),
-                    CaregoryId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CaregoryId = table.Column<int>(type: "int", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Recipes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Recipes_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Recipes_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -282,6 +288,11 @@ namespace RecipesApp.Infrastructure.Migrations
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Recipes_ApplicationUserId",
+                table: "Recipes",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Recipes_CategoryId",
                 table: "Recipes",
                 column: "CategoryId");
@@ -311,13 +322,13 @@ namespace RecipesApp.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Ingredients");
 
             migrationBuilder.DropTable(
                 name: "Recipes");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Categories");

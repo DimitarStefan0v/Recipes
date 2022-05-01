@@ -6,7 +6,7 @@ namespace RecipesApp.Infrastructure.Data
     {
         public Ingredient()
         {
-            this.Recipes = new HashSet<RecipeIngredient>();
+            Recipes = new HashSet<RecipeIngredient>();
         }
         public int Id { get; set; }
 
@@ -15,6 +15,6 @@ namespace RecipesApp.Infrastructure.Data
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public virtual ICollection<RecipeIngredient> Recipes { get; set; }
+        public ICollection<RecipeIngredient> Recipes { get; set; }
     }
 }

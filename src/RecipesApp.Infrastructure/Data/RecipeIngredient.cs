@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace RecipesApp.Infrastructure.Data
+﻿namespace RecipesApp.Infrastructure.Data
 {
     public class RecipeIngredient
     {
@@ -8,11 +6,11 @@ namespace RecipesApp.Infrastructure.Data
 
         public int RecipeId { get; set; }
 
-        public virtual Recipe Recipe { get; set; }
+        public Recipe Recipe { get; set; }
 
         public int IngredientId { get; set; }
 
-        public virtual Ingredient Ingredient { get; set; }
+        public Ingredient Ingredient { get; set; }
 
         public string Quantity { get; set; }
     }

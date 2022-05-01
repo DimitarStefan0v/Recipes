@@ -1,13 +1,15 @@
-using Microsoft.AspNetCore.Identity;
 using RecipesApp.Infrastructure.Data;
+using RecipesApp.Infrastructure.Data.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+//var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection");
+
+builder.Services.AddApplicationDbContexts(builder.Configuration);
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Add services to the container.
 
-builder.Services.AddApplicationDbContexts(builder.Configuration);
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedEmail = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews()
     .AddRazorRuntimeCompilation();
 builder.Services.AddApplicationServices();

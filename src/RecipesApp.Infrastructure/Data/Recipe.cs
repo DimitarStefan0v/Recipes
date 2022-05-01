@@ -6,7 +6,7 @@ namespace RecipesApp.Infrastructure.Data
     {
         public Recipe()
         {
-            this.Ingredients = new HashSet<RecipeIngredient>();
+            Ingredients = new HashSet<RecipeIngredient>();
         }
         public int Id { get; set; }
 
@@ -19,16 +19,16 @@ namespace RecipesApp.Infrastructure.Data
         [MinLength(10)]
         public string Instructions { get; set; }
 
-        public TimeSpan PreparationTime { get; set; }
+        public TimeSpan? PreparationTime { get; set; }
 
-        public TimeSpan CookingTime { get; set; }
+        public TimeSpan? CookingTime { get; set; }
 
         public  int? PortionsCount { get; set; }
 
-        public int CaregoryId { get; set; }
+        public int? CaregoryId { get; set; }
 
-        public virtual Category Category { get; set; }
+        public Category Category { get; set; }
 
-        public virtual ICollection<RecipeIngredient> Ingredients { get; set; }
+        public ICollection<RecipeIngredient> Ingredients { get; set; }
     }
 }
