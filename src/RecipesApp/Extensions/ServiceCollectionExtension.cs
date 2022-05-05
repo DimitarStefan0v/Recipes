@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RecipesApp.Core.Contracts;
+using RecipesApp.Core.Services;
 using RecipesApp.Infrastructure.Data;
 using RecipesApp.Infrastructure.Data.Repositories;
 
@@ -8,7 +10,9 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<IApplicatioDbRepository, ApplicatioDbRepository>();
+            services.AddScoped<IApplicationDbRepository, ApplicationDbRepository>();
+
+            services.AddTransient<IUserService, UserService>();
 
             return services;
         }

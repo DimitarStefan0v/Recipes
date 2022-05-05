@@ -1,11 +1,12 @@
+using Microsoft.AspNetCore.Identity;
 using RecipesApp.Infrastructure.Data;
 using RecipesApp.Infrastructure.Data.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
-//var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection");
 
 builder.Services.AddApplicationDbContexts(builder.Configuration);
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Add services to the container.
