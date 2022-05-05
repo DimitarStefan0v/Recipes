@@ -6,33 +6,35 @@
 }
 
 <form method="post">
-    
-        <label asp-for="Name">Заглавие на рецептата*</label>
-        <input asp-for="Name">
-        <span asp-validation-for="Name" class="text-danger"></span>
-    
-        <label asp-for="Instructions">Начин на приготвяне*</label>
-        <textarea asp-for="Instructions"></textarea>
-        <span asp-validation-for="Instructions" class="text-danger"></span>
-    
-        <label asp-for="PreparationTime">Време за приготвяне /минути/</label>
-        <input asp-for="PreparationTime" />
-        <span asp-validation-for="PreparationTime" class="text-danger"></span>
-    
-        <label asp-for="CookingTime">Време за готвене /минути/</label>
-        <input asp-for="CookingTime" />
-        <span asp-validation-for="CookingTime" class="text-danger"></span>
-    
-        <label asp-for="PortionsCount">Порции</label>
-        <input asp-for="PortionsCount" />
-        <span asp-validation-for="PortionsCount" class="text-danger"></span>
-    
-    <button>Добави продукт и количество / Пример: пармезан - 50 гр. /*</button>
-    
-        <select>
-            <option value="1">TODO</option>
-            <option value="2">Later</option>
-        </select>
 
-    <button type="submit">Изпрати</button>
+    <label asp-for="Name">Заглавие на рецептата*</label>
+    <input asp-for="Name">
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+    <label asp-for="Instructions">Начин на приготвяне*</label>
+    <textarea asp-for="Instructions"></textarea>
+    <span asp-validation-for="Instructions" class="text-danger"></span>
+
+    <label asp-for="PreparationTime">Време за приготвяне /минути/</label>
+    <input asp-for="PreparationTime" />
+    <span asp-validation-for="PreparationTime" class="text-danger"></span>
+
+    <label asp-for="CookingTime">Време за готвене /минути/</label>
+    <input asp-for="CookingTime" />
+    <span asp-validation-for="CookingTime" class="text-danger"></span>
+
+    <label asp-for="PortionsCount">Порции</label>
+    <input asp-for="PortionsCount" />
+    <span asp-validation-for="PortionsCount" class="text-danger"></span>
+    
+    <label asp-for="CategoryId">Категория</label>
+    <select asp-for="CategoryId">
+        @foreach (var category in Model.Categories)
+        {
+            <option value="@category.Id">@category.Name</option>
+        }
+    </select>
+    <span asp-validation-for="CategoryId" class="text-danger"></span>
+
+    <input type="submit" value="Изпрати" />
 </form>

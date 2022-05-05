@@ -1,24 +1,63 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using RecipesApp.Core.Contracts;
 using RecipesApp.Core.Models;
+using RecipesApp.Infrastructure.Data.Identity;
+using System.Security.Claims;
 
 namespace RecipesApp.Controllers
 {
     public class RecipeController : Controller
     {
-        public IActionResult Create()
+        private readonly IRecipesService recipesService;
+        private readonly ICategoriesService categoriesService;
+        private readonly UserManager<ApplicationUser> userManager;
+
+        public RecipeController(IRecipesService _recipesService,
+            ICategoriesService _categoriesService,
+            UserManager<ApplicationUser> _userManager)
         {
-            return View();
+            recipesService = _recipesService;
+            categoriesService = _categoriesService;
+            userManager = _userManager;
         }
 
+        [Authorize]
+        public IActionResult Create()
+        {
+            var viewModel = new RecipeInputModel();
+            viewModel.Categories = categoriesService.GetAllCategories();
+            
+            return View(viewModel);
+        }
+
+        [Authorize]
         [HttpPost]
-        public IActionResult Create(RecipeInputModel input)
+        public async Task<IActionResult> Create(RecipeInputModel input)
         {
             if (!ModelState.IsValid)
             {
+                // Here the is invalid model (categoryItems)
+                input.Categories = categoriesService.GetAllCategories();
                 return View(input);
             }
 
-            return Json(input);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            try
+            {
+                await recipesService.CreateAsync(input, userId);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError(string.Empty, e.Message);
+                input.Categories = categoriesService.GetAllCategories();
+                return View(input);
+            }
+
+            return Redirect("/");
         }
     }
 }

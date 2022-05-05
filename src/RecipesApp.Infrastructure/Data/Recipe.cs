@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RecipesApp.Infrastructure.Data.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Infrastructure.Data
 {
@@ -25,9 +26,13 @@ namespace RecipesApp.Infrastructure.Data
 
         public  int? PortionsCount { get; set; }
 
-        public int? CaregoryId { get; set; }
+        public int CaregoryId { get; set; }
 
         public Category Category { get; set; }
+
+        public string AddedByUserId { get; set; }
+
+        public ApplicationUser AddedByUser { get; set; }
 
         public ICollection<RecipeIngredient> Ingredients { get; set; }
     }

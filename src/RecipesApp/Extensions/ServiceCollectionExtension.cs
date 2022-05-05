@@ -12,7 +12,8 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddScoped<IApplicationDbRepository, ApplicationDbRepository>();
 
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRecipesService, RecipesService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
 
             return services;
         }
