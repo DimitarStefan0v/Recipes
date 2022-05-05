@@ -34,11 +34,12 @@ namespace RecipesApp.Core.Services
                 PreparationTime = TimeSpan.FromMinutes(input.PreparationTime),
                 CookingTime = TimeSpan.FromMinutes(input.CookingTime),
                 PortionsCount = input.PortionsCount,
+                CaregoryId = category.Id,
                 Category = category,
                 AddedByUserId = userId,
             };
 
-           
+            recipe.Category = category;
 
             foreach (var ingredientInput in input.Ingredients)
             {

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RecipesApp.Infrastructure.Migrations
 {
-    public partial class AddBaseModelsAndApplicationUser : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -191,18 +191,19 @@ namespace RecipesApp.Infrastructure.Migrations
                     PreparationTime = table.Column<TimeSpan>(type: "time", nullable: true),
                     CookingTime = table.Column<TimeSpan>(type: "time", nullable: true),
                     PortionsCount = table.Column<int>(type: "int", nullable: true),
-                    CaregoryId = table.Column<int>(type: "int", nullable: true),
+                    CaregoryId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    AddedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Recipes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Recipes_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
+                        name: "FK_Recipes_AspNetUsers_AddedByUserId",
+                        column: x => x.AddedByUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Recipes_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -288,9 +289,9 @@ namespace RecipesApp.Infrastructure.Migrations
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recipes_ApplicationUserId",
+                name: "IX_Recipes_AddedByUserId",
                 table: "Recipes",
-                column: "ApplicationUserId");
+                column: "AddedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Recipes_CategoryId",

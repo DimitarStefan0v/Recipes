@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using RecipesApp.Core.Constants;
 using RecipesApp.Infrastructure.Data.Identity;
 
 namespace RecipesApp.Controllers

@@ -12,8 +12,8 @@ using RecipesApp.Infrastructure.Data;
 namespace RecipesApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220505123043_AddColumnAddedByUserOnRecipeModel")]
-    partial class AddColumnAddedByUserOnRecipeModel
+    [Migration("20220505205425_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -274,7 +274,7 @@ namespace RecipesApp.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("CaregoryId")
+                    b.Property<int>("CaregoryId")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")

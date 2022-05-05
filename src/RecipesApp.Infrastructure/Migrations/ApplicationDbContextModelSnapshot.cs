@@ -272,7 +272,7 @@ namespace RecipesApp.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("CaregoryId")
+                    b.Property<int>("CaregoryId")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
