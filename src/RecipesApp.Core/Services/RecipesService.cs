@@ -39,8 +39,6 @@ namespace RecipesApp.Core.Services
                 AddedByUserId = userId,
             };
 
-            recipe.Category = category;
-
             foreach (var ingredientInput in input.Ingredients)
             {
                 var ingredient = repo

@@ -29,6 +29,7 @@
     
     <label asp-for="CategoryId">Категория</label>
     <select asp-for="CategoryId">
+        <option>Изберете категория</option>
         @foreach (var category in Model.Categories)
         {
             <option value="@category.Id">@category.Name</option>
