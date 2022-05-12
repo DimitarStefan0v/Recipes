@@ -19,23 +19,23 @@ namespace RecipesApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            DateTime dateTime = DateTime.Now;
-            var cachedData = await cache.GetStringAsync("cachedTime");
+            //DateTime dateTime = DateTime.Now;
+            //var cachedData = await cache.GetStringAsync("cachedTime");
 
-            if (cachedData == null)
-            {
-                cachedData = dateTime.ToString();
-                DistributedCacheEntryOptions cacheOptions = new DistributedCacheEntryOptions()
-                {
-                    SlidingExpiration = TimeSpan.FromSeconds(20),
-                    AbsoluteExpiration = DateTime.Now.AddSeconds(60)
-                };
+            //if (cachedData == null)
+            //{
+            //    cachedData = dateTime.ToString();
+            //    DistributedCacheEntryOptions cacheOptions = new DistributedCacheEntryOptions()
+            //    {
+            //        SlidingExpiration = TimeSpan.FromSeconds(20),
+            //        AbsoluteExpiration = DateTime.Now.AddSeconds(60)
+            //    };
 
-                await cache.SetStringAsync("cachedTime", cachedData, cacheOptions);
-            }
+            //    await cache.SetStringAsync("cachedTime", cachedData, cacheOptions);
+            //}
 
-            ViewBag.DateTime = cachedData;
-
+            //ViewBag.DateTime = cachedData;
+            
             return View();
         }
 
