@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using RecipesApp.Core.Contracts;
+using RecipesApp.Core.Models;
 using RecipesApp.Core.Services;
 using RecipesApp.Infrastructure.Data;
 using RecipesApp.Infrastructure.Data.Repositories;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RecipesApp.Test
@@ -32,12 +34,21 @@ namespace RecipesApp.Test
         }
 
         [Test]
-        public void TestServiceReturnCorrectNumberOfCategories()
+        public void TestServiceMethodGetAllCategoriesReturnCorrectNumberOfCategories()
         {
             var service = serviceProvider.GetService<ICategoriesService>();
             var categories = service.GetAllCategories();
 
             Assert.AreEqual(2, categories.Count);
+        }
+
+        [Test]
+        public void TestServiceMethodGetAllCategoriesReturnCollectionOfCategoryViewModel()
+        {
+            var service = serviceProvider.GetService<ICategoriesService>();
+            var categories = service.GetAllCategories();
+
+            Assert.IsInstanceOf<ICollection<CategoriesViewModel>>(categories);
         }
 
         [TearDown]
