@@ -26,8 +26,6 @@ namespace RecipesApp.Infrastructure.Data
 
         public  int? PortionsCount { get; set; }
 
-        public int CaregoryId { get; set; }
-
         public Category Category { get; set; }
 
         public string AddedByUserId { get; set; }

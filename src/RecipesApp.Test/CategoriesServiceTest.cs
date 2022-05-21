@@ -34,7 +34,7 @@ namespace RecipesApp.Test
         }
 
         [Test]
-        public void TestServiceMethodGetAllCategoriesReturnCorrectNumberOfCategories()
+        public void GetAllCategoriesShouldReturnCorrectNumberOfCategories()
         {
             var service = serviceProvider.GetService<ICategoriesService>();
             var categories = service.GetAllCategories();
@@ -43,7 +43,7 @@ namespace RecipesApp.Test
         }
 
         [Test]
-        public void TestServiceMethodGetAllCategoriesReturnCollectionOfCategoryViewModel()
+        public void GetAllCategoriesShouldReturnCollectionOfCategoryViewModel()
         {
             var service = serviceProvider.GetService<ICategoriesService>();
             var categories = service.GetAllCategories();

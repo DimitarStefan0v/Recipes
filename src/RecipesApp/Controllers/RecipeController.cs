@@ -39,7 +39,6 @@ namespace RecipesApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Here the is invalid model (categoryItems)
                 input.Categories = categoriesService.GetAllCategories();
                 return View(input);
             }

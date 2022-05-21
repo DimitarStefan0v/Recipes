@@ -24,7 +24,8 @@ namespace RecipesApp.Core.Services
             {
                 category = repo
                     .All<Category>()
-                    .First();
+                    .Where(c => c.Name == "Други")
+                    .FirstOrDefault();
             }
 
             var recipe = new Recipe
@@ -34,7 +35,6 @@ namespace RecipesApp.Core.Services
                 PreparationTime = TimeSpan.FromMinutes(input.PreparationTime),
                 CookingTime = TimeSpan.FromMinutes(input.CookingTime),
                 PortionsCount = input.PortionsCount,
-                CaregoryId = category.Id,
                 Category = category,
                 AddedByUserId = userId,
             };

@@ -21,6 +21,12 @@ namespace RecipesApp.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Category>()
+                .HasMany(c => c.Recipes)
+                .WithOne(r => r.Category)
+                .IsRequired();
+                //.OnDelete(DeleteBehavior.SetNull);
+
             base.OnModelCreating(builder);
         }
     }

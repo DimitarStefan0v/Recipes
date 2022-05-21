@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Рецепти";
+    var categoryItems = Model.Categories.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
 }
 
 <form method="post">
@@ -28,12 +29,8 @@
     <span asp-validation-for="PortionsCount" class="text-danger"></span>
     
     <label asp-for="CategoryId">Категория</label>
-    <select asp-for="CategoryId">
-        <option>Изберете категория</option>
-        @foreach (var category in Model.Categories)
-        {
-            <option value="@category.Id">@category.Name</option>
-        }
+    <select asp-for="CategoryId" asp-items="categoryItems">
+        <option value="0">Изберете категория</option>
     </select>
     <span asp-validation-for="CategoryId" class="text-danger"></span>
 
