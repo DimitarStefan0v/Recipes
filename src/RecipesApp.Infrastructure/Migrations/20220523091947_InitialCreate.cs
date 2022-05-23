@@ -191,7 +191,6 @@ namespace RecipesApp.Infrastructure.Migrations
                     PreparationTime = table.Column<TimeSpan>(type: "time", nullable: true),
                     CookingTime = table.Column<TimeSpan>(type: "time", nullable: true),
                     PortionsCount = table.Column<int>(type: "int", nullable: true),
-                    CaregoryId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     AddedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -237,6 +236,23 @@ namespace RecipesApp.Infrastructure.Migrations
                         principalTable: "Recipes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Основни ястия" },
+                    { 2, "Супи" },
+                    { 3, "Салати" },
+                    { 4, "Предястия" },
+                    { 5, "Десерти" },
+                    { 6, "Тестени" },
+                    { 7, "Сосове" },
+                    { 8, "Вегетариански и веган" },
+                    { 9, "Зимнина" },
+                    { 10, "Други" }
                 });
 
             migrationBuilder.CreateIndex(

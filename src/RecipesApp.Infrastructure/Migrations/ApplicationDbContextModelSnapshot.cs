@@ -175,6 +175,58 @@ namespace RecipesApp.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Основни ястия"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Супи"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Салати"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Предястия"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Десерти"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Тестени"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Сосове"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Вегетариански и веган"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Зимнина"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Други"
+                        });
                 });
 
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.Identity.ApplicationUser", b =>

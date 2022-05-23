@@ -18,14 +18,14 @@ namespace RecipesApp.Controllers
             userManager = _userManager;
         }
 
-        public async Task CreateRole()
-        {
-            //await roleManager.CreateAsync(new IdentityRole()
-            //{
-            //    Name = Roles.Administrator
-            //});
+        //public async Task CreateRole()
+        //{
+        //    await roleManager.CreateAsync(new IdentityRole()
+        //    {
+        //        Name = Roles.Administrator
+        //    });
 
-            await Task.CompletedTask;
-        }
+        //    await Task.CompletedTask;
+        //}
     }
 }

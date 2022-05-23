@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RecipesApp.Infrastructure.Data.Identity;
+using RecipesApp.Infrastructure.Seed;
 
 namespace RecipesApp.Infrastructure.Data
 {
@@ -25,7 +26,10 @@ namespace RecipesApp.Infrastructure.Data
                 .HasMany(c => c.Recipes)
                 .WithOne(r => r.Category)
                 .IsRequired();
-                //.OnDelete(DeleteBehavior.SetNull);
+            //.OnDelete(DeleteBehavior.SetNull);
+
+            // Initial Seed of categories
+            builder.Seed();
 
             base.OnModelCreating(builder);
         }
