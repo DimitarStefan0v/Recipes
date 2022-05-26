@@ -6,33 +6,55 @@
     var categoryItems = Model.Categories.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
 }
 
-<form method="post">
+<form method="post" id="recipeForm">
+    <div asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="Name">Заглавие на рецептата*</label>
+        <input asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
 
-    <label asp-for="Name">Заглавие на рецептата*</label>
-    <input asp-for="Name">
-    <span asp-validation-for="Name" class="text-danger"></span>
+    <div>
+        <label asp-for="Instructions">Начин на приготвяне*</label>
+        <textarea asp-for="Instructions"></textarea>
+        <span asp-validation-for="Instructions" class="text-danger"></span>
+    </div>
 
-    <label asp-for="Instructions">Начин на приготвяне*</label>
-    <textarea asp-for="Instructions"></textarea>
-    <span asp-validation-for="Instructions" class="text-danger"></span>
+    <div>
+        <label asp-for="PreparationTime">Време за приготвяне /минути/</label>
+        <input asp-for="PreparationTime" />
+        <span asp-validation-for="PreparationTime" class="text-danger"></span>
+    </div>
 
-    <label asp-for="PreparationTime">Време за приготвяне /минути/</label>
-    <input asp-for="PreparationTime" />
-    <span asp-validation-for="PreparationTime" class="text-danger"></span>
+    <div>
+        <label asp-for="CookingTime">Време за готвене /минути/</label>
+        <input asp-for="CookingTime" />
+        <span asp-validation-for="CookingTime" class="text-danger"></span>
+    </div>
 
-    <label asp-for="CookingTime">Време за готвене /минути/</label>
-    <input asp-for="CookingTime" />
-    <span asp-validation-for="CookingTime" class="text-danger"></span>
+    <div>
+        <label asp-for="PortionsCount">Порции</label>
+        <input asp-for="PortionsCount" />
+        <span asp-validation-for="PortionsCount" class="text-danger"></span>
+    </div>
 
-    <label asp-for="PortionsCount">Порции</label>
-    <input asp-for="PortionsCount" />
-    <span asp-validation-for="PortionsCount" class="text-danger"></span>
-    
-    <label asp-for="CategoryId">Категория</label>
-    <select asp-for="CategoryId" asp-items="categoryItems">
-        <option value="0">Изберете категория</option>
-    </select>
-    <span asp-validation-for="CategoryId" class="text-danger"></span>
+    <div>
+        <label asp-for="CategoryId">Категория</label>
+        <select asp-for="CategoryId" asp-items="categoryItems">
+            <option value="0">Изберете категория</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+     <div id="IngredientsContainer">
+    </div>
+
+    <button id="addIngredient">Добави съставка</button>
 
     <input type="submit" value="Изпрати" />
+
 </form>
+
+@section Scripts {
+    <script src="~/js/ingredients.js"></script>
+}

@@ -15,7 +15,7 @@ namespace RecipesApp.Core.Models
         [StringLength(100)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Начина на приготвяне трябва да е минимум 10 символа")]
         [MinLength(10)]
         public string Instructions { get; set; }
 

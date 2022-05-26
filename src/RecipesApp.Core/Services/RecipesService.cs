@@ -43,13 +43,13 @@ namespace RecipesApp.Core.Services
             {
                 var ingredient = repo
                     .All<Ingredient>()
-                    .FirstOrDefault(x => x.Name == ingredientInput.Name);
+                    .FirstOrDefault(x => x.Name == ingredientInput.IngredientName);
 
                 if (ingredient == null)
                 {
                     ingredient = new Ingredient()
                     {
-                        Name = ingredientInput.Name,
+                        Name = ingredientInput.IngredientName,
                     };
                 }
 
