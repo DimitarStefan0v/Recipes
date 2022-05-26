@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RecipesApp.Core.Constants;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Core.Models
 {
@@ -10,13 +11,13 @@ namespace RecipesApp.Core.Models
             this.Categories = new HashSet<CategoriesViewModel>();
         }
 
-        [Required]
-        [MinLength(3)]
-        [StringLength(100)]
+        [Required(ErrorMessage = RecipeErrorMessages.RecipeNameRequired)]
+        [MinLength(3, ErrorMessage = RecipeErrorMessages.RecipeNameLength)]
+        [MaxLength(15, ErrorMessage = RecipeErrorMessages.RecipeNameLength)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Начина на приготвяне трябва да е минимум 10 символа")]
-        [MinLength(10)]
+        [Required(ErrorMessage = RecipeErrorMessages.RecipeInstructionsRequired)]
+        [MinLength(10, ErrorMessage = RecipeErrorMessages.RecipeInstructionsLength)]
         public string Instructions { get; set; }
 
         public int PreparationTime { get; set; }
