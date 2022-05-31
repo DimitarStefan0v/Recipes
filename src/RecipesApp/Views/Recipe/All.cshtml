@@ -1,5 +1,26 @@
-﻿@{
+﻿@using RecipesApp.Core.Models
+@model RecipesListViewModel
+
+@{
     ViewData["Title"] = "Всички рецепти";
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<section>
+    <article>
+        @foreach (var recipe in Model.Recipes)
+        {
+            <article class="recipe-item">
+                <article class="recipe-item-image">
+                    <img src="@recipe.Image" alt="@recipe.Name">
+                </article>
+                <article class="recipe-item-title">
+                    <p>@recipe.Name</p>
+                </article>
+            </article>
+        }
+    </article>
+</section>
+
+<partial name="_PagingPartial" model="@Model"/>

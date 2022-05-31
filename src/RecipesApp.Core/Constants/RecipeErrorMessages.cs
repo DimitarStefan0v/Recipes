@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RecipesApp.Core.Constants
+﻿namespace RecipesApp.Core.Constants
 {
     public static class RecipeErrorMessages
     {
         public const string RecipeNameRequired = "Името на рецептата е задължително";
 
-        public const string RecipeNameLength = "Името на рецептата трябва да е с дължина между 3 и 15 символа";
+        public const string RecipeNameLength = "Името на рецептата трябва да е с дължина между 3 и 50 символа";
 
         public const string RecipeInstructionsRequired = "Начина на приготвяне е задължителен";
 
@@ -21,5 +15,7 @@ namespace RecipesApp.Core.Constants
         public const string IngredientNameLength = "Името на съставката трябва е с дължина между 2 и 20 символа";
 
         public const string QuantityNameRequired = "Количеството на съставката е задължително";
+
+        public const string ImageRequired = "Снимката към рецепта е задължителна";
     }
 }

@@ -59,9 +59,19 @@ namespace RecipesApp.Controllers
             return Redirect("/");
         }
 
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
-            return View();
+            int itemPerPage = 12;
+
+            var viewModel = new RecipesListViewModel
+            {
+                ItemsPerPage = itemPerPage,
+                PageNumber = id,
+                RecipesCount = recipesService.GetCount(),
+                Recipes = recipesService.GetAll(id, 12),
+            };
+
+            return View(viewModel);
         }
     }
 }

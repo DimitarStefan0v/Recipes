@@ -14,7 +14,7 @@ namespace RecipesApp.Core.Models
 
         [Required(ErrorMessage = RecipeErrorMessages.RecipeNameRequired)]
         [MinLength(3, ErrorMessage = RecipeErrorMessages.RecipeNameLength)]
-        [MaxLength(15, ErrorMessage = RecipeErrorMessages.RecipeNameLength)]
+        [MaxLength(50, ErrorMessage = RecipeErrorMessages.RecipeNameLength)]
         public string Name { get; set; }
 
         [Required(ErrorMessage = RecipeErrorMessages.RecipeInstructionsRequired)]
@@ -33,6 +33,7 @@ namespace RecipesApp.Core.Models
 
         public ICollection<IngredientInputModel> Ingredients { get; set; }
 
+        [Required(ErrorMessage = RecipeErrorMessages.ImageRequired)]
         public IFormFile Image { get; set; }
     }
 }

@@ -64,5 +64,27 @@ namespace RecipesApp.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        public IEnumerable<RecipeInListViewModel> GetAll(int page, int itemsPerPage = 12)
+        {
+            var recipes = repo.AllReadonly<Recipe>()
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new RecipeInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryId = x.Category.Id,
+                    CategoryName = x.Category.Name,
+                    Image = x.ImageUrl
+                }).ToList();
+
+            return recipes;
+        }
+
+        public int GetCount()
+        {
+            return repo.All<Recipe>().Count();
+        }
     }
 }
