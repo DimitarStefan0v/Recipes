@@ -4,14 +4,14 @@
 
     button.onclick = function (ev) {
         ev.preventDefault();
-        let num = ingredientsContainer.getElementsByTagName('input').length
+        let num = ingredientsContainer.getElementsByTagName('input').length;
         AddIngredientAndQuantity(ingredientsContainer, num);
     }
 }
 
 const AddIngredientAndQuantity = function (container, number) {
 
-    let count = 0 + number;
+    let count = Math.ceil(number / 2);
 
     let ingredientInput = CreateInput();
     ingredientInput.setAttribute('name', 'Ingredients[' + count + '].IngredientName');
@@ -23,7 +23,7 @@ const AddIngredientAndQuantity = function (container, number) {
     quantityInput.setAttribute('name', 'Ingredients[' + count + '].Quantity');
     let quantityLabel = CreateLabel();
     quantityLabel.setAttribute('for', 'Ingredients[' + count + '].Quantity');
-    quantityLabel.textContent = 'Количество';
+    quantityLabel.textContent = 'Количество на съставката';
 
     container.appendChild(ingredientLabel);
     container.appendChild(ingredientInput);
@@ -32,12 +32,12 @@ const AddIngredientAndQuantity = function (container, number) {
 } 
 
 const CreateInput = function () {
-    let input = document.createElement("input");
+    let input = document.createElement('input');
     return input;
 }
 
 const CreateLabel = function () {
-    let label = document.createElement("label");
+    let label = document.createElement('label');
     return label;
 }
 

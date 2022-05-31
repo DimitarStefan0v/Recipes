@@ -18,10 +18,8 @@ namespace RecipesApp.Core.Constants
 
         public const string IngredientNameRequired = "Името на съставката e задължително";
 
-        public const string IngredientNameLength = "Името на съставката трябва е с дължина между 2 и 10 символа";
+        public const string IngredientNameLength = "Името на съставката трябва е с дължина между 2 и 20 символа";
 
-        public const string IngredientQuantityRequired = "Количеството на съставката e задължително";
-
-        public const string IngredientQuantityLength = "Количеството на съставката трябва е с дължина между 1 и 15 символа";
+        public const string QuantityNameRequired = "Количеството на съставката е задължително";
     }
 }

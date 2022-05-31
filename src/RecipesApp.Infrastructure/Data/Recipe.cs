@@ -33,5 +33,7 @@ namespace RecipesApp.Infrastructure.Data
         public ApplicationUser AddedByUser { get; set; }
 
         public ICollection<RecipeIngredient> Ingredients { get; set; }
+
+        public string? ImageUrl { get; set; }
     }
 }

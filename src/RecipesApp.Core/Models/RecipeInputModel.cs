@@ -1,4 +1,5 @@
-﻿using RecipesApp.Core.Constants;
+﻿using Microsoft.AspNetCore.Http;
+using RecipesApp.Core.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Core.Models
@@ -31,5 +32,7 @@ namespace RecipesApp.Core.Models
         public ICollection<CategoriesViewModel> Categories { get; set; }
 
         public ICollection<IngredientInputModel> Ingredients { get; set; }
+
+        public IFormFile Image { get; set; }
     }
 }

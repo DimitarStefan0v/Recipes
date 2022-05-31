@@ -58,5 +58,10 @@ namespace RecipesApp.Controllers
 
             return Redirect("/");
         }
+
+        public IActionResult All(int id)
+        {
+            return View();
+        }
     }
 }
