@@ -3,6 +3,7 @@ using RecipesApp.Core.Contracts;
 using RecipesApp.Core.Services;
 using RecipesApp.Infrastructure.Data;
 using RecipesApp.Infrastructure.Data.Repositories;
+using RecipesApp.Models;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -14,6 +15,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddTransient<IRecipesService, RecipesService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<ICloudImageService, CloudImageService>();
+            services.AddTransient<IImageDbService, ImageDbService>();
 
             return services;
         }

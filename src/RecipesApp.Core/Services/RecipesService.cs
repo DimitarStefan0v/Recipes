@@ -8,10 +8,16 @@ namespace RecipesApp.Core.Services
     public class RecipesService : IRecipesService
     {
         private readonly IApplicationDbRepository repo;
+        private readonly IImageDbService imageDbService;
+        private readonly ICloudImageService cloudImageService;
 
-        public RecipesService(IApplicationDbRepository _repo)
+        public RecipesService(IApplicationDbRepository _repo, 
+            IImageDbService _imageDbService,
+            ICloudImageService _cloudImageService)
         {
             repo = _repo;
+            imageDbService = _imageDbService;
+            cloudImageService = _cloudImageService;
         }
 
         public async Task CreateAsync(RecipeInputModel input, string userId)
@@ -36,7 +42,7 @@ namespace RecipesApp.Core.Services
                 CookingTime = TimeSpan.FromMinutes(input.CookingTime),
                 PortionsCount = input.PortionsCount,
                 Category = category,
-                AddedByUserId = userId,
+                AddedByUserId = userId,          
             };
 
             foreach (var ingredientInput in input.Ingredients)
@@ -58,6 +64,23 @@ namespace RecipesApp.Core.Services
                     Ingredient = ingredient,
                     Quantity = ingredientInput.Quantity,
                 });
+            }
+            
+            foreach (var image in input.Images)
+            {
+                var imgResult = await cloudImageService
+                .UploadImageAsync(image);
+
+                string imgUrl = imgResult.SecureUri.AbsoluteUri;
+                string imgPubId = imgResult.PublicId;
+
+                var imageToWrite = new CloudImage
+                {
+                    PictureUrl = imgUrl,
+                    PicturePublicId = imgPubId,
+                };
+
+                recipe.Images.Add(imageToWrite);
             }
 
             await repo.AddAsync(recipe);

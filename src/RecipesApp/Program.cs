@@ -1,3 +1,5 @@
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Identity;
 using RecipesApp.Infrastructure.Data;
 using RecipesApp.Infrastructure.Data.Identity;
@@ -18,6 +20,17 @@ builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("Redis");
 });
+
+var myAccount = new Account
+(
+    builder.Configuration.GetConnectionString("CloudinarySettings:CloudName"),
+    builder.Configuration.GetConnectionString("CloudinarySettings:ApiKey"),
+    builder.Configuration.GetConnectionString("CloudinarySettings:ApiSecret")
+);
+
+var cloudUtility = new Cloudinary(myAccount);
+
+builder.Services.AddSingleton(cloudUtility);
 
 builder.Services.AddApplicationServices();
 
