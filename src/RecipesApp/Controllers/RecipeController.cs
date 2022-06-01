@@ -61,6 +61,11 @@ namespace RecipesApp.Controllers
 
         public IActionResult All(int id = 1)
         {
+            if (id <= 0)
+            {
+                return NotFound();
+            }
+
             int itemPerPage = 12;
 
             var viewModel = new RecipesListViewModel

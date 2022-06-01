@@ -76,7 +76,7 @@ namespace RecipesApp.Core.Services
                     Name = x.Name,
                     CategoryId = x.Category.Id,
                     CategoryName = x.Category.Name,
-                    Image = x.ImageUrl
+                    // TODO: Images
                 }).ToList();
 
             return recipes;

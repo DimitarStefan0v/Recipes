@@ -8,7 +8,9 @@ namespace RecipesApp.Infrastructure.Data
         public Recipe()
         {
             Ingredients = new HashSet<RecipeIngredient>();
+            Images = new HashSet<CloudImage>();
         }
+
         public int Id { get; set; }
 
         [Required]
@@ -34,6 +36,6 @@ namespace RecipesApp.Infrastructure.Data
 
         public ICollection<RecipeIngredient> Ingredients { get; set; }
 
-        public string? ImageUrl { get; set; }
+        public ICollection<CloudImage> Images { get; set; }
     }
 }

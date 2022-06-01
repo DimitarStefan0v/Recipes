@@ -20,6 +20,8 @@ namespace RecipesApp.Infrastructure.Data
 
         public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
 
+        public DbSet<CloudImage> CloudImages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Category>()
