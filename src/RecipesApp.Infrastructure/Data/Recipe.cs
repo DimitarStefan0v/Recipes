@@ -1,5 +1,6 @@
 ﻿using RecipesApp.Infrastructure.Data.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipesApp.Infrastructure.Data
 {
@@ -8,7 +9,6 @@ namespace RecipesApp.Infrastructure.Data
         public Recipe()
         {
             Ingredients = new HashSet<RecipeIngredient>();
-            Images = new HashSet<CloudImage>();
         }
 
         public int Id { get; set; }
@@ -36,6 +36,9 @@ namespace RecipesApp.Infrastructure.Data
 
         public ICollection<RecipeIngredient> Ingredients { get; set; }
 
-        public ICollection<CloudImage> Images { get; set; }
+        [ForeignKey(nameof(CloudImage))]
+        public int ImageId { get; set; }
+
+        public CloudImage Image { get; set; }
     }
 }

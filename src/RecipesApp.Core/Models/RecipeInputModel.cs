@@ -10,7 +10,6 @@ namespace RecipesApp.Core.Models
         {
             Ingredients = new HashSet<IngredientInputModel>();
             Categories = new HashSet<CategoriesViewModel>();
-            Images = new HashSet<IFormFile>();
         }
 
         [Required(ErrorMessage = RecipeErrorMessages.RecipeNameRequired)]
@@ -35,6 +34,6 @@ namespace RecipesApp.Core.Models
         public ICollection<IngredientInputModel> Ingredients { get; set; }
 
         [Required(ErrorMessage = RecipeErrorMessages.ImageRequired)]
-        public ICollection<IFormFile> Images { get; set; }
+        public IFormFile Image { get; set; }
     }
 }

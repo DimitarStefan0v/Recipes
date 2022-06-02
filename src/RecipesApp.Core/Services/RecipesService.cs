@@ -34,6 +34,18 @@ namespace RecipesApp.Core.Services
                     .FirstOrDefault();
             }
 
+            var imgResult = await cloudImageService
+                .UploadImageAsync(input.Image);
+
+            string imgUrl = imgResult.SecureUri.AbsoluteUri;
+            string imgPubId = imgResult.PublicId;
+
+            var imageToWrite = new CloudImage
+            {
+                PictureUrl = imgUrl,
+                PicturePublicId = imgPubId,
+            };
+
             var recipe = new Recipe
             {
                 Name = input.Name,
@@ -42,7 +54,8 @@ namespace RecipesApp.Core.Services
                 CookingTime = TimeSpan.FromMinutes(input.CookingTime),
                 PortionsCount = input.PortionsCount,
                 Category = category,
-                AddedByUserId = userId,          
+                AddedByUserId = userId,  
+                Image = imageToWrite
             };
 
             foreach (var ingredientInput in input.Ingredients)
@@ -65,23 +78,6 @@ namespace RecipesApp.Core.Services
                     Quantity = ingredientInput.Quantity,
                 });
             }
-            
-            foreach (var image in input.Images)
-            {
-                var imgResult = await cloudImageService
-                .UploadImageAsync(image);
-
-                string imgUrl = imgResult.SecureUri.AbsoluteUri;
-                string imgPubId = imgResult.PublicId;
-
-                var imageToWrite = new CloudImage
-                {
-                    PictureUrl = imgUrl,
-                    PicturePublicId = imgPubId,
-                };
-
-                recipe.Images.Add(imageToWrite);
-            }
 
             await repo.AddAsync(recipe);
             await repo.SaveChangesAsync();
@@ -99,7 +95,7 @@ namespace RecipesApp.Core.Services
                     Name = x.Name,
                     CategoryId = x.Category.Id,
                     CategoryName = x.Category.Name,
-                    // TODO: Images
+                    Image = x.Image.PictureUrl
                 }).ToList();
 
             return recipes;
