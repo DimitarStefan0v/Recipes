@@ -2,6 +2,10 @@
 {
     public class SingleRecipeViewModel
     {
+        public SingleRecipeViewModel()
+        {
+            Ingredients = new HashSet<IngredientsViewModel>();
+        }
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -16,11 +20,11 @@
 
         public string CategoryName { get; set; }
 
-        public string AddedByUserId { get; set; }
+        public string AddedByUser { get; set; }
 
         public ICollection<IngredientsViewModel> Ingredients { get; set; }
 
-        public int ImageId { get; set; }
+        public string ImageUrl { get; set; }
 
         public DateTime CreatedOn { get; set; }
     }

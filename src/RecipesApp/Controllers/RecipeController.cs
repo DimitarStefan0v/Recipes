@@ -81,7 +81,8 @@ namespace RecipesApp.Controllers
 
         public IActionResult ById(int id)
         {
-            return View();
+            var viewModel = recipesService.GetById(id);
+            return View(viewModel);
         }
     }
 }

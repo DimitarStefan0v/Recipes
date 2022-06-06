@@ -1,4 +1,6 @@
-﻿using RecipesApp.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using RecipesApp.Core.Constants;
+using RecipesApp.Core.Contracts;
 using RecipesApp.Core.Models;
 using RecipesApp.Infrastructure.Data;
 using RecipesApp.Infrastructure.Data.Repositories;
@@ -11,7 +13,7 @@ namespace RecipesApp.Core.Services
         private readonly IImageDbService imageDbService;
         private readonly ICloudImageService cloudImageService;
 
-        public RecipesService(IApplicationDbRepository _repo, 
+        public RecipesService(IApplicationDbRepository _repo,
             IImageDbService _imageDbService,
             ICloudImageService _cloudImageService)
         {
@@ -54,7 +56,7 @@ namespace RecipesApp.Core.Services
                 CookingTime = TimeSpan.FromMinutes(input.CookingTime),
                 PortionsCount = input.PortionsCount,
                 Category = category,
-                AddedByUserId = userId,  
+                AddedByUserId = userId,
                 Image = imageToWrite,
                 CreatedOn = DateTime.UtcNow
             };
@@ -97,10 +99,63 @@ namespace RecipesApp.Core.Services
                     Name = x.Name,
                     CategoryId = x.Category.Id,
                     CategoryName = x.Category.Name,
-                    Image = x.Image.PictureUrl
+                    Image = x.Image.PictureUrl ?? DefaultImage.DefaultImageUrl
                 }).ToList();
 
             return recipes;
+        }
+
+        public SingleRecipeViewModel GetById(int id)
+        {
+            var recipe = repo.All<Recipe>()
+                .Include(x => x.Category)
+                .Include(x => x.Image)
+                .Include(x => x.Ingredients)
+                .Include(x => x.AddedByUser)
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+
+            var viewModelrecipe = new SingleRecipeViewModel
+            {
+                Id = recipe.Id,
+                Name = recipe.Name,
+                Instructions = recipe.Instructions,
+                CategoryName = recipe.Category.Name,
+                CookingTime = recipe.CookingTime,
+                PreparationTime = recipe.PreparationTime,
+                CreatedOn = recipe.CreatedOn,
+                ImageUrl = recipe.Image?.PictureUrl ?? DefaultImage.DefaultImageUrl,
+                AddedByUser = recipe.AddedByUser.UserName,
+                PortionsCount = recipe.PortionsCount,
+            };
+
+            var ingredientsId = recipe.Ingredients.Select(x => x.IngredientId).ToList();
+
+            foreach (var item in ingredientsId)
+            {
+                var ingredientName = repo.All<Ingredient>()
+                    .Where(x => x.Id == item)
+                    .Select(x => x.Name)
+                    .FirstOrDefault();
+
+                var ingredientQuantity = recipe.Ingredients
+                    .Where(x => x.IngredientId == item)
+                    .Select(x => x.Quantity)
+                    .FirstOrDefault();
+
+                if (ingredientName != null && ingredientQuantity != null)
+                {
+                    var ingredient = new IngredientsViewModel
+                    {
+                        IngredientName = ingredientName,
+                        Quantity = ingredientQuantity,
+                    };
+
+                    viewModelrecipe.Ingredients.Add(ingredient);
+                }
+            }
+
+            return viewModelrecipe;
         }
 
         public int GetCount()

@@ -9,5 +9,7 @@ namespace RecipesApp.Core.Contracts
         IEnumerable<RecipeInListViewModel> GetAll(int page, int itemsPerPage = 12);
 
         int GetCount();
+
+        SingleRecipeViewModel GetById(int id);
     }
 }

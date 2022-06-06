@@ -1,1 +1,20 @@
-﻿
+﻿@using RecipesApp.Core.Models
+@model SingleRecipeViewModel
+
+<ol>
+    <li>Id -- @Model.Id</li>
+    <li>Name -- @Model.Name</li>
+    <li>Instructions -- @Model.Instructions</li>
+    <li>CreatedOn -- @Model.CreatedOn</li>
+    <li>AddedByUser -- @Model.AddedByUser</li>
+    <li>CategoryName -- @Model.CategoryName</li>
+    <li>PreparationTime -- @Model.PreparationTime</li>
+    <li>CookingTime -- @Model.CookingTime</li>
+    <li>PortionsCount -- @Model.PortionsCount</li>
+    <li>ImageUrl -- @Model.ImageUrl</li>
+    @foreach (var item in Model.Ingredients)
+    {
+        <li>IngredientName -- @item.IngredientName || Quantity -- @item.Quantity</li>
+    }
+</ol>
+<img src="@Model.ImageUrl" />
