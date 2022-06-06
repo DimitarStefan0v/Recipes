@@ -13,32 +13,37 @@ const AddIngredientAndQuantity = function (container, number) {
 
     let count = Math.ceil(number / 2);
 
-    let ingredientDiv = CreateDiv();
-    ingredientDiv.setAttribute('class', 'col')
+    let divRow = CreateDiv();
+    divRow.setAttribute('class', 'row');
+
+    let ingredientDivCol = CreateDiv();
+    ingredientDivCol.setAttribute('class', 'col');
 
     let ingredientInput = CreateInput();
     ingredientInput.setAttribute('name', 'Ingredients[' + count + '].IngredientName');
     ingredientInput.setAttribute('class', 'form-control');
     ingredientInput.setAttribute('placeholder', 'Съставка');
 
-    ingredientDiv.appendChild(ingredientInput);
+    ingredientDivCol.appendChild(ingredientInput);
 
     //let ingredientLabel = CreateLabel();
     //ingredientLabel.setAttribute('for', 'Ingredients[' + count + '].IngredientName');
     //ingredientLabel.textContent = 'Име на съставката';
 
-    let quantityDiv = CreateDiv();
-    quantityDiv.setAttribute('class', 'col')
+    let quantityDivCol = CreateDiv();
+    quantityDivCol.setAttribute('class', 'col')
     
     let quantityInput = CreateInput();
     quantityInput.setAttribute('name', 'Ingredients[' + count + '].Quantity');
     quantityInput.setAttribute('class', 'form-control');
     quantityInput.setAttribute('placeholder', 'Количество');
 
-    quantityDiv.appendChild(quantityInput);
+    quantityDivCol.appendChild(quantityInput);
 
-    container.appendChild(ingredientDiv);
-    container.appendChild(quantityDiv);
+    divRow.appendChild(ingredientDivCol);
+    divRow.appendChild(quantityDivCol);
+
+    container.appendChild(divRow);
 
     //let quantityLabel = CreateLabel();
     //quantityLabel.setAttribute('for', 'Ingredients[' + count + '].Quantity');

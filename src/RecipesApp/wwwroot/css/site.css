@@ -18,12 +18,3 @@ body {
     max-width: 1200px;
     margin: auto;
 }
-
-.form-group {
-    margin: 10px 0 10px 0;
-}
-
-#recipeForm {
-    max-width: 600px;
-    margin: auto;
-}
