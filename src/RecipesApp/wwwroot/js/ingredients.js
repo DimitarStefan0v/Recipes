@@ -13,23 +13,47 @@ const AddIngredientAndQuantity = function (container, number) {
 
     let count = Math.ceil(number / 2);
 
+    let ingredientDiv = CreateDiv();
+    ingredientDiv.setAttribute('class', 'col')
+
     let ingredientInput = CreateInput();
     ingredientInput.setAttribute('name', 'Ingredients[' + count + '].IngredientName');
-    let ingredientLabel = CreateLabel();
-    ingredientLabel.setAttribute('for', 'Ingredients[' + count + '].IngredientName');
-    ingredientLabel.textContent = 'Име на съставката';
+    ingredientInput.setAttribute('class', 'form-control');
+    ingredientInput.setAttribute('placeholder', 'Съставка');
+
+    ingredientDiv.appendChild(ingredientInput);
+
+    //let ingredientLabel = CreateLabel();
+    //ingredientLabel.setAttribute('for', 'Ingredients[' + count + '].IngredientName');
+    //ingredientLabel.textContent = 'Име на съставката';
+
+    let quantityDiv = CreateDiv();
+    quantityDiv.setAttribute('class', 'col')
     
     let quantityInput = CreateInput();
     quantityInput.setAttribute('name', 'Ingredients[' + count + '].Quantity');
-    let quantityLabel = CreateLabel();
-    quantityLabel.setAttribute('for', 'Ingredients[' + count + '].Quantity');
-    quantityLabel.textContent = 'Количество на съставката';
+    quantityInput.setAttribute('class', 'form-control');
+    quantityInput.setAttribute('placeholder', 'Количество');
 
-    container.appendChild(ingredientLabel);
-    container.appendChild(ingredientInput);
-    container.appendChild(quantityLabel);
-    container.appendChild(quantityInput);
+    quantityDiv.appendChild(quantityInput);
+
+    container.appendChild(ingredientDiv);
+    container.appendChild(quantityDiv);
+
+    //let quantityLabel = CreateLabel();
+    //quantityLabel.setAttribute('for', 'Ingredients[' + count + '].Quantity');
+    //quantityLabel.textContent = 'Количество на съставката';
+
+    //container.appendChild(ingredientLabel);
+    //container.appendChild(ingredientInput);
+    //container.appendChild(quantityLabel);
+    //container.appendChild(quantityInput);
 } 
+
+const CreateDiv = function () {
+    let div = document.createElement('div');
+    return div;
+}
 
 const CreateInput = function () {
     let input = document.createElement('input');
