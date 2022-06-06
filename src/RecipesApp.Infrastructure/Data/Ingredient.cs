@@ -8,6 +8,8 @@ namespace RecipesApp.Infrastructure.Data
         {
             Recipes = new HashSet<RecipeIngredient>();
         }
+
+        [Key]
         public int Id { get; set; }
 
         [Required]

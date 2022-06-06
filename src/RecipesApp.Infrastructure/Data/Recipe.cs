@@ -11,6 +11,7 @@ namespace RecipesApp.Infrastructure.Data
             Ingredients = new HashSet<RecipeIngredient>();
         }
 
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -40,5 +41,9 @@ namespace RecipesApp.Infrastructure.Data
         public int ImageId { get; set; }
 
         public CloudImage Image { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public bool IsChecked { get; set; }
     }
 }
