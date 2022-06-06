@@ -16,6 +16,11 @@
 
         public const string QuantityNameRequired = "Количеството на съставката е задължително";
 
-        public const string ImageRequired = "Снимката към рецепта е задължителна";
+        public const string ImageRequired = "Снимка към рецепта е задължителна";
+
+        public const int MaxImageSize = 3;
+
+        public const string AllowedImageExtensions = "jpg, png, gif";
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using RecipesApp.Core.Attributes;
 using RecipesApp.Core.Constants;
 using System.ComponentModel.DataAnnotations;
 
@@ -34,6 +35,8 @@ namespace RecipesApp.Core.Models
         public ICollection<IngredientInputModel> Ingredients { get; set; }
 
         [Required(ErrorMessage = RecipeErrorMessages.ImageRequired)]
+        [MaxFileSize(3 * 1024 * 1024)]
+        [AllowedExtensions(new string[] { ".jpg", ".png", ".gif" })]
         public IFormFile Image { get; set; }
     }
 }

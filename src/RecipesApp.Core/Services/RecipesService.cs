@@ -55,8 +55,10 @@ namespace RecipesApp.Core.Services
                 PortionsCount = input.PortionsCount,
                 Category = category,
                 AddedByUserId = userId,  
-                Image = imageToWrite
+                Image = imageToWrite,
+                CreatedOn = DateTime.UtcNow
             };
+
 
             foreach (var ingredientInput in input.Ingredients)
             {
