@@ -99,7 +99,7 @@ namespace RecipesApp.Core.Services
                     Name = x.Name,
                     CategoryId = x.Category.Id,
                     CategoryName = x.Category.Name,
-                    Image = x.Image.PictureUrl ?? DefaultImage.DefaultImageUrl
+                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
                 }).ToList();
 
             return recipes;
@@ -124,7 +124,7 @@ namespace RecipesApp.Core.Services
                 CookingTime = recipe.CookingTime,
                 PreparationTime = recipe.PreparationTime,
                 CreatedOn = recipe.CreatedOn,
-                ImageUrl = recipe.Image?.PictureUrl ?? DefaultImage.DefaultImageUrl,
+                ImageUrl = recipe.Image?.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl,
                 AddedByUser = recipe.AddedByUser.UserName,
                 PortionsCount = recipe.PortionsCount,
             };

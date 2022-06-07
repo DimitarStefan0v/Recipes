@@ -20,4 +20,21 @@
             </article>
         </article>
     </section>
+    <section class="instructions-and-ingredients-container">
+        <article class="ingredients-container">
+            <ol>
+                <p>Съставки:</p>
+                @foreach (var ingredient in Model.Ingredients)
+               {
+                   <li>@ingredient.IngredientName - @ingredient.Quantity</li>
+               }
+            </ol>
+        </article>
+        <article class="instructions-container">
+            <p class="instructions-container-title">Начин на приготвяне:</p>
+            <p>@Model.Instructions</p>
+        </article>
+    </section>
 </header>
+
+        @*TODO: Rating and Comments*@
