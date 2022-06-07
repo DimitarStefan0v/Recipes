@@ -6,16 +6,18 @@
         <article class="recipe-title">
             <p>@Model.Name.ToUpper()</p>
         </article>
-        <article class="recipe-img">
-            <img src="@Model.ImageUrl" class="img-fluid w-100" />
-        </article>
-        <article class="recipe-info">
-            <ul>
-                <li><i class="fa-regular fa-clock"></i> Приготвяне @Model.PreparationTime.Value.TotalMinutes мин.</li>
-                <li><i class="fa-regular fa-clock"></i> Готвене @Model.CookingTime.Value.TotalMinutes мин.</li>
-                <li><i class="fa-regular fa-clock"></i> Общо @(Model.TotalTime ?? 0) мин.</li>
-                <li><i class="fa-solid fa-list"></i> Порции @Model.PortionsCount</li>
-            </ul>
+        <article class="flex-recipe-container">
+            <article class="recipe-img">
+                <img src="@Model.ImageUrl" class="img-fluid w-100" />
+            </article>
+            <article class="recipe-info">
+                <ul>
+                    <li><i class="fa-regular fa-clock"></i> Приготвяне: @Model.PreparationTime.Value.TotalMinutes мин.</li>
+                    <li><i class="fa-regular fa-clock"></i> Готвене: @Model.CookingTime.Value.TotalMinutes мин.</li>
+                    <li><i class="fa-regular fa-clock"></i> Общо: @(Model.TotalTime ?? 0) мин.</li>
+                    <li><i class="fa-solid fa-list"></i> Порции: @(Model.PortionsCount ?? 0)</li>
+                </ul>
+            </article>
         </article>
     </section>
 </header>
