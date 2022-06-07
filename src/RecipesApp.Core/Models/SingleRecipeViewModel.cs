@@ -16,6 +16,8 @@
 
         public TimeSpan? CookingTime { get; set; }
 
+        public int? TotalTime => (int)(PreparationTime.Value.TotalMinutes + CookingTime.Value.TotalMinutes);
+
         public int? PortionsCount { get; set; }
 
         public string CategoryName { get; set; }
