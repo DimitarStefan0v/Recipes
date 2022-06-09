@@ -10,17 +10,20 @@
 <section id="recipes-container">
     @foreach (var recipe in Model.Recipes)
     {
-        <article id="recipe-container">
+        <article class="single-recipe-container">
             <a asp-area="" asp-controller="Recipe" asp-action="ById" asp-route-id="@recipe.Id">
-                <article id="recipe-container-img">
+                <article class="single-recipe-container-img">
                     <img src="@recipe.Image" class="img-fluid w-100">
                 </article>
-                <article id="recipe-container-name">
-                    <p>@recipe.Name</p>
+                <article class="single-recipe-container-name">
+                    <p class="single-recipe-container-name-paragraph">@recipe.Name</p>
+                </article>
+                <article class="singe-recipe-category">
+                    @recipe.CategoryId
                 </article>
             </a>
         </article>
     }
 </section>
 
-<partial name="_PagingPartial" model="@Model" />
+    <partial name="_PagingPartial" model="@Model" />

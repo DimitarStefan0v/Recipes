@@ -13,8 +13,8 @@
             <article class="recipe-info">
                 <ul>
                     <li><i class="fa-regular fa-clock"></i> Приготвяне: @Model.PreparationTime.Value.TotalMinutes мин.</li>
-                    <li><i class="fa-regular fa-clock"></i> Готвене: @Model.CookingTime.Value.TotalMinutes мин.</li>
-                    <li><i class="fa-regular fa-clock"></i> Общо: @(Model.TotalTime ?? 0) мин.</li>
+                    <li><i class="fa-solid fa-utensils"></i> Готвене: @Model.CookingTime.Value.TotalMinutes мин.</li>
+                    <li><i class="fa-solid fa-hourglass-end"></i> Общо: @(Model.TotalTime ?? 0) мин.</li>
                     <li><i class="fa-solid fa-list"></i> Порции: @(Model.PortionsCount ?? 0)</li>
                 </ul>
             </article>

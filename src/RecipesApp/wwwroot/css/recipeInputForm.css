@@ -14,3 +14,7 @@
 #submitRecipe {
     float: right;
 }
+
+#recipeForm {
+    font-size: 1.5em;
+}

@@ -1,8 +1,4 @@
-﻿.recipe-item {
-    margin: 0px 0px 15px 0px;
-}
-
-#allRecipesTitle {
+﻿#allRecipesTitle {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -15,20 +11,30 @@
     width: 100%;
 }
 
-#recipe-container-img img {
+.single-recipe-container a {
+    text-decoration: none;
+}
+
+.single-recipe-container-img img {
     width: 100vw;
     height: 250px;
 }
 
-#recipe-container {
+.single-recipe-container {
     margin: 10px auto;
-    width: 32%;
+    width: 31%;
 }
 
-#recipe-container-name {
+.single-recipe-container-name {
     border-left: 8px solid #FFCD00;
     height: 65px;
     padding: 5px 0 0 10px;
-    font-size: 1.1em;
+    font-size: 1.3em;
     margin-top: 10px;
+    color: black;
+    font-weight: 600;
+}
+
+.singe-recipe-category {
+    display: none;
 }

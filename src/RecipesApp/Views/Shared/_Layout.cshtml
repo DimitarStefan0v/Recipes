@@ -16,11 +16,11 @@
         <section id="section-nav">
             <nav>
                 <section id="flex-nav-container">
-                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        <a asp-area="" asp-controller="Recipe" asp-action="Create">Добави рецепта</a>
-                        <a asp-area="" asp-controller="Recipe" asp-action="All">Рецепти</a>
-                    
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <a asp-area="" asp-controller="Recipe" asp-action="Create">Добави рецепта</a>
+                    <a asp-area="" asp-controller="Recipe" asp-action="All">Рецепти</a>
+
                     <partial name="_LoginPartial" />
                 </section>
             </nav>
@@ -31,7 +31,7 @@
             @RenderBody()
         </main>
     </div>
-    <section id="footer-section">
+    <section>
         <footer>
             <div class="container">
                 &copy; 2022 - RecipesApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

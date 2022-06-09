@@ -37,8 +37,9 @@ h1 {
 }
 
 .recipe-info ul li i {
-    font-size: 1.5em;
-    padding-right: 5px; 
+    font-size: 1.1em;
+    padding-right: 5px;
+    padding-left: 7px;
 }
 
 .recipe-title p {
