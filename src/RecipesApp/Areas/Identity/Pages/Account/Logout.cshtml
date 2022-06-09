@@ -9,11 +9,9 @@
     @{
         if (User.Identity.IsAuthenticated)
         {
-            <li class="logOutContainer">
-                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                    <button type="submit">Click here to Logout</button>
-                </form>
-            </li>
+            <form class="logOutContainer" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit">Click here to Logout</button>
+            </form>
         }
         else
         {

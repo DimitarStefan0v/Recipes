@@ -15,21 +15,14 @@
     <header id="header">
         <section id="section-nav">
             <nav>
-                <ul id="flex-nav-container">
-                    <li>
+                <section id="flex-nav-container">
                         <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li>
                         <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                    <li>
                         <a asp-area="" asp-controller="Recipe" asp-action="Create">Добави рецепта</a>
-                    </li>
-                    <li>
                         <a asp-area="" asp-controller="Recipe" asp-action="All">Рецепти</a>
-                    </li>
+                    
                     <partial name="_LoginPartial" />
-                </ul>
+                </section>
             </nav>
         </section>
     </header>

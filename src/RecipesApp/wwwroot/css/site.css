@@ -25,11 +25,6 @@ body {
     margin: auto;
 }
 
-#section-nav li {
-    list-style-type: none;
-    display: inline-block;
-}
-
 #section-nav a {
     text-decoration: none;
     color: black;
@@ -46,45 +41,45 @@ body {
     position: relative;
 }
 
-#section-nav nav ul li a {
-    margin: 0 5px 0 5px;
-    padding: 7px 20px 7px 20px;
-    border-radius: 100px;
+#flex-nav-container a {
+    margin: 0 3px 0 3px;
+    height: 100%;
+    padding: 15px;
 }
 
-#section-nav nav ul li a:hover {
-    background-image: linear-gradient(to right top, #a2f529, #96f52d, #8af432, #7df436, #6ff33b, #65f33d, #5af23f, #4df241, #43f242, #36f342, #25f343, #00f344);
-    border-radius: 20px;
-}
-
-.logOutContainer form button {
-    padding: 7px 20px 7px 20px;
-}
-
-.logOutContainer form button:hover {
-    background-image: linear-gradient(to right top, #a2f529, #96f52d, #8af432, #7df436, #6ff33b, #65f33d, #5af23f, #4df241, #43f242, #36f342, #25f343, #00f344);
-    border-radius: 20px;
+#flex-nav-container a:hover {
+    background-color: #EFEFEF;
+    border-top: 4px solid #FF9900;
 }
 
 .userContainer {
-    border-radius: 20px;
-    background-image: linear-gradient(to right top, #9be6f3, #8cdef2, #7fd5f1, #73ccf0, #69c3ef, #54baf2, #40b0f5, #30a6f7, #0098fd, #0089ff, #1c77ff, #4663fc);
-    padding: 5px 0px;
-    position: absolute;
-    margin-right: 0;
+    width: 106px;
+    text-align: center;
     position: absolute;
     right: 0;
+    border-top: none;
+    margin-left: 10px;
+}
+
+.userContainer:hover {
+    border-top: none;
+}
+
+.logOutContainer button {
+    margin: 0 3px 0 3px;
+    height: 100%;
+    padding: 15px;
+}
+
+.logOutContainer button:hover {
+    background-color: #EFEFEF;
+    border-top: 4px solid #FF9900;
 }
 
 .logOutContainer {
     position: absolute;
-    right: 70px;
+    right: 100px;
     margin-right: 10px;
-}
-
-.userContainer:hover {
-    background-image: none;
-    background-color: none;
 }
 
 .logOutContainer button {
