@@ -46,6 +46,7 @@ namespace RecipesApp.Core.Services
             {
                 PictureUrl = imgUrl,
                 PicturePublicId = imgPubId,
+                AddedByUserId = userId
             };
 
             var recipe = new Recipe

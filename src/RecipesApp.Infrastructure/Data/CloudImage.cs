@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RecipesApp.Infrastructure.Data.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipesApp.Infrastructure.Data
@@ -16,5 +17,10 @@ namespace RecipesApp.Infrastructure.Data
         public int RecipeId { get; set; }
 
         public Recipe Recipe { get; set; }
+
+        [ForeignKey(nameof(AddedByUser))]
+        public string AddedByUserId { get; set; }
+
+        public ApplicationUser AddedByUser { get; set; }
     }
 }

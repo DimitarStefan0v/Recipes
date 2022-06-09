@@ -9,6 +9,7 @@ namespace RecipesApp.Infrastructure.Data
         public Recipe()
         {
             Ingredients = new HashSet<RecipeIngredient>();
+            Votes = new HashSet<Vote>();
         }
 
         [Key]
@@ -29,21 +30,27 @@ namespace RecipesApp.Infrastructure.Data
 
         public  int? PortionsCount { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
+        public bool IsChecked { get; set; }
+
+        [ForeignKey(nameof(Category))]
+        public int CategoryId { get; set; }
+
         public Category Category { get; set; }
 
+        [ForeignKey(nameof(AddedByUser))]
         public string AddedByUserId { get; set; }
 
         public ApplicationUser AddedByUser { get; set; }
-
-        public ICollection<RecipeIngredient> Ingredients { get; set; }
 
         [ForeignKey(nameof(CloudImage))]
         public int ImageId { get; set; }
 
         public CloudImage Image { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public ICollection<RecipeIngredient> Ingredients { get; set; }
 
-        public bool IsChecked { get; set; }
+        public ICollection<Vote> Votes { get; set; }
     }
 }

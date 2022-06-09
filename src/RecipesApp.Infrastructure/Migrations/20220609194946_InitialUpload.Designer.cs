@@ -12,14 +12,14 @@ using RecipesApp.Infrastructure.Data;
 namespace RecipesApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220601104135_AddCloudImageEntity")]
-    partial class AddCloudImageEntity
+    [Migration("20220609194946_InitialUpload")]
+    partial class InitialUpload
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -239,6 +239,10 @@ namespace RecipesApp.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("AddedByUserIs")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("PicturePublicId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -247,12 +251,15 @@ namespace RecipesApp.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RecipeId")
+                    b.Property<int>("RecipeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("AddedByUserIs");
+
+                    b.HasIndex("RecipeId")
+                        .IsUnique();
 
                     b.ToTable("CloudImages");
                 });
@@ -358,9 +365,18 @@ namespace RecipesApp.Infrastructure.Migrations
                     b.Property<TimeSpan?>("CookingTime")
                         .HasColumnType("time");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Instructions")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsChecked")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -407,6 +423,34 @@ namespace RecipesApp.Infrastructure.Migrations
                     b.HasIndex("RecipeId");
 
                     b.ToTable("RecipeIngredients");
+                });
+
+            modelBuilder.Entity("RecipesApp.Infrastructure.Data.Vote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("RecipeId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<byte>("Value")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Votes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -462,9 +506,21 @@ namespace RecipesApp.Infrastructure.Migrations
 
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.CloudImage", b =>
                 {
-                    b.HasOne("RecipesApp.Infrastructure.Data.Recipe", null)
+                    b.HasOne("RecipesApp.Infrastructure.Data.Identity.ApplicationUser", "AddedByUser")
                         .WithMany("Images")
-                        .HasForeignKey("RecipeId");
+                        .HasForeignKey("AddedByUserIs")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RecipesApp.Infrastructure.Data.Recipe", "Recipe")
+                        .WithOne("Image")
+                        .HasForeignKey("RecipesApp.Infrastructure.Data.CloudImage", "RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AddedByUser");
+
+                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.Recipe", b =>
@@ -505,6 +561,25 @@ namespace RecipesApp.Infrastructure.Migrations
                     b.Navigation("Recipe");
                 });
 
+            modelBuilder.Entity("RecipesApp.Infrastructure.Data.Vote", b =>
+                {
+                    b.HasOne("RecipesApp.Infrastructure.Data.Recipe", "Recipe")
+                        .WithMany("Votes")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RecipesApp.Infrastructure.Data.Identity.ApplicationUser", "User")
+                        .WithMany("Votes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Recipe");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.Category", b =>
                 {
                     b.Navigation("Recipes");
@@ -512,7 +587,11 @@ namespace RecipesApp.Infrastructure.Migrations
 
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.Identity.ApplicationUser", b =>
                 {
+                    b.Navigation("Images");
+
                     b.Navigation("Recipes");
+
+                    b.Navigation("Votes");
                 });
 
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.Ingredient", b =>
@@ -522,9 +601,12 @@ namespace RecipesApp.Infrastructure.Migrations
 
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.Recipe", b =>
                 {
-                    b.Navigation("Images");
+                    b.Navigation("Image")
+                        .IsRequired();
 
                     b.Navigation("Ingredients");
+
+                    b.Navigation("Votes");
                 });
 #pragma warning restore 612, 618
         }
