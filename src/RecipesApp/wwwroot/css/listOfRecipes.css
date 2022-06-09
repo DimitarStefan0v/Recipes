@@ -1,23 +1,34 @@
-﻿.card-text {
-    font-size: 1.3em;
-    text-align: center;
-}
-
-.card-body {
-    padding: 0px 5px 20px 5px;
-    height: 65px;
-    border-left: 8px solid #FDCE01;  
-}
-
-.recipe-item {
+﻿.recipe-item {
     margin: 0px 0px 15px 0px;
 }
 
-h1 {
+#allRecipesTitle {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.card {
-    border: none;
+#recipes-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    width: 100%;
+}
+
+#recipe-container-img img {
+    width: 100vw;
+    height: 250px;
+}
+
+#recipe-container {
+    margin: 10px auto;
+    width: 32%;
+}
+
+#recipe-container-name {
+    border-left: 8px solid #FFCD00;
+    height: 65px;
+    padding: 5px 0 0 10px;
+    font-size: 1.1em;
+    margin-top: 10px;
 }

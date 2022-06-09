@@ -5,22 +5,22 @@
     ViewData["Title"] = "Всички рецепти";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 id="allRecipesTitle">@ViewData["Title"]</h1>
 
-<div class="row">
-@foreach (var recipe in Model.Recipes)
-{
-        <div class="col-sm-4 recipe-item">
-             <a asp-area="" asp-controller="Recipe" asp-action="ById" asp-route-id="@recipe.Id">
-            <div class="card" style="width: 24rem;">
-                <img src="@recipe.Image" class="img-fluid w-100 card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">@recipe.Name</p>
-                </div>
-            </div>
+<section id="recipes-container">
+    @foreach (var recipe in Model.Recipes)
+    {
+        <article id="recipe-container">
+            <a asp-area="" asp-controller="Recipe" asp-action="ById" asp-route-id="@recipe.Id">
+                <article id="recipe-container-img">
+                    <img src="@recipe.Image" class="img-fluid w-100">
+                </article>
+                <article id="recipe-container-name">
+                    <p>@recipe.Name</p>
+                </article>
             </a>
-       </div>
-}
- </div>
+        </article>
+    }
+</section>
 
 <partial name="_PagingPartial" model="@Model" />
