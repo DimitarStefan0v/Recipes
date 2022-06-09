@@ -1,20 +1,104 @@
-html {
-    font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Raleway:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
 
 html {
-    position: relative;
-    min-height: 100%;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
 body {
     margin-bottom: 60px;
+    font-family: "Open Sans", Georgia, serif;
+}
+
+#header {
+    height: 70px;
+    font-size: 1.5em;
+    box-shadow: rgb(170, 170, 170) 0 0 30px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+}
+
+#section-nav {
+    max-width: 1200px;
+    margin: auto;
+}
+
+#section-nav li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+#section-nav a {
+    text-decoration: none;
+    color: black;
+}
+
+#flex-nav-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    height: 70px;
+    position: relative;
+}
+
+#section-nav nav ul li a {
+    margin: 0 5px 0 5px;
+    padding: 7px 20px 7px 20px;
+    border-radius: 100px;
+}
+
+#section-nav nav ul li a:hover {
+    background-image: linear-gradient(to right top, #a2f529, #96f52d, #8af432, #7df436, #6ff33b, #65f33d, #5af23f, #4df241, #43f242, #36f342, #25f343, #00f344);
+    border-radius: 20px;
+}
+
+.logOutContainer form button {
+    padding: 7px 20px 7px 20px;
+}
+
+.logOutContainer form button:hover {
+    background-image: linear-gradient(to right top, #a2f529, #96f52d, #8af432, #7df436, #6ff33b, #65f33d, #5af23f, #4df241, #43f242, #36f342, #25f343, #00f344);
+    border-radius: 20px;
+}
+
+.userContainer {
+    border-radius: 20px;
+    background-image: linear-gradient(to right top, #9be6f3, #8cdef2, #7fd5f1, #73ccf0, #69c3ef, #54baf2, #40b0f5, #30a6f7, #0098fd, #0089ff, #1c77ff, #4663fc);
+    padding: 5px 0px;
+    position: absolute;
+    margin-right: 0;
+    position: absolute;
+    right: 0;
+}
+
+.logOutContainer {
+    position: absolute;
+    right: 70px;
+    margin-right: 10px;
+}
+
+.userContainer:hover {
+    background-image: none;
+    background-color: none;
+}
+
+.logOutContainer button {
+    border: none;
+    background-color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 120px;
+}
+
+#footer-section {
     max-width: 1200px;
     margin: auto;
 }

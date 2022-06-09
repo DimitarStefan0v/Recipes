@@ -5,6 +5,10 @@
     border-radius: 5px;
 }
 
+h1 {
+    text-align: center;
+}
+
 .recipe-img {
     width: 800px;
 }
