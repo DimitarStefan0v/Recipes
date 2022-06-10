@@ -14,7 +14,7 @@
             <a asp-action="All" asp-route-id="@i">@i</a>
             }
         }
-        <a asp-action="All" asp-route-id="@Model.PageNumber" class="active">@Model.PageNumber</a>
+        <a asp-action="All" asp-route-id="@Model.PageNumber">@Model.PageNumber</a>
         @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 4; i++)
         {
             if (i <= Model.PagesCount)

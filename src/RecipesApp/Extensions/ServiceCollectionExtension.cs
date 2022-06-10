@@ -17,6 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<ICloudImageService, CloudImageService>();
             services.AddTransient<IImageDbService, ImageDbService>();
+            services.AddTransient<IVotesService, VotesService>();
 
             return services;
         }
