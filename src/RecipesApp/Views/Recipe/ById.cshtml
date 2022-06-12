@@ -15,26 +15,65 @@
                     <li><i class="fa-regular fa-clock"></i> Приготвяне: @Model.PreparationTime.Value.TotalMinutes мин.</li>
                     <li><i class="fa-solid fa-utensils"></i> Готвене: @Model.CookingTime.Value.TotalMinutes мин.</li>
                     <li><i class="fa-solid fa-hourglass-end"></i> Общо: @(Model.TotalTime ?? 0) мин.</li>
-                    <li><i class="fa-solid fa-list"></i> Порции: @(Model.PortionsCount ?? 0)</li>
+                    <li><i class="fa-solid fa-list"></i> Порции:     @(Model.PortionsCount ?? 0)</li>
                 </ul>
             </article>
         </article>
     </section>
-    <section class="instructions-and-ingredients-container">
-        <article class="ingredients-container">
-            <ol>
-                <p>Съставки:</p>
-                @foreach (var ingredient in Model.Ingredients)
-               {
-                   <li>@ingredient.IngredientName - @ingredient.Quantity</li>
-               }
-            </ol>
-        </article>
-        <article class="instructions-container">
-            <p class="instructions-container-title">Начин на приготвяне:</p>
-            <p>@Model.Instructions</p>
-        </article>
-    </section>
 </header>
+<section class="instructions-and-ingredients-container">
+    <article class="ingredients-container">
+        <ol>
+            <p>Съставки:</p>
+            @foreach (var ingredient in Model.Ingredients)
+            {
+                <li>@ingredient.IngredientName - @ingredient.Quantity</li>
+            }
+        </ol>
+    </article>
+    <article class="instructions-container">
+        <p class="instructions-container-title">Начин на приготвяне:</p>
+        <p>@Model.Instructions</p>
+    </article>
+</section>
+<section id="section-votes">
+    <ul>
+        <li><i class="fa-regular fa-star" data-vote="1"></i></li>
+        <li><i class="fa-regular fa-star" data-vote="2"></i></li>
+        <li><i class="fa-regular fa-star" data-vote="3"></i></li>
+        <li><i class="fa-regular fa-star" data-vote="4"></i></li>
+        <li><i class="fa-regular fa-star" data-vote="5"></i></li>
+        <li id="avg-votes">@Model.AverageVotesValue.ToString("0.0") / 5</li>
+    </ul>
+</section>
+<form method="post" id="antiForgeryForm"></form>
 
-        @*TODO: Rating and Comments*@
+@section Scripts {
+    <script>
+        var elements = document.querySelectorAll('#section-votes i');
+        for (let el of elements) {
+            el.addEventListener('click', async () => {
+                const value = el.getAttribute('data-vote');
+                const recipeId = @Model.Id;
+                const antiForgeryToken = document.querySelector('#antiForgeryForm input[name=__RequestVerificationToken]').value;
+                let data = { recipeId: recipeId, value: value };
+                const url = '/api/Votes'
+                const options = {
+                    method: 'post',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': antiForgeryToken
+                    },
+                    body: JSON.stringify(data)
+                };
+
+                const response = await fetch(url, options);
+                const result = await response.json();
+
+                document.getElementById('avg-votes').textContent = result.averageVote.toFixed(1) + ' / 5';
+            });
+        }
+    </script>
+}
+
+    @*TODO: Rating and Comments*@

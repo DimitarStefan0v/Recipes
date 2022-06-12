@@ -12,14 +12,17 @@ namespace RecipesApp.Core.Services
         private readonly IApplicationDbRepository repo;
         private readonly IImageDbService imageDbService;
         private readonly ICloudImageService cloudImageService;
+        private readonly IVotesService votesService;
 
         public RecipesService(IApplicationDbRepository _repo,
             IImageDbService _imageDbService,
-            ICloudImageService _cloudImageService)
+            ICloudImageService _cloudImageService,
+            IVotesService _votesService)
         {
             repo = _repo;
             imageDbService = _imageDbService;
             cloudImageService = _cloudImageService;
+            votesService = _votesService;
         }
 
         public async Task CreateAsync(RecipeInputModel input, string userId)
@@ -128,6 +131,7 @@ namespace RecipesApp.Core.Services
                 ImageUrl = recipe.Image?.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl,
                 AddedByUser = recipe.AddedByUser.UserName,
                 PortionsCount = recipe.PortionsCount,
+                AverageVotesValue = votesService.GetAverageVotes(recipe.Id),
             };
 
             var ingredientsId = recipe.Ingredients.Select(x => x.IngredientId).ToList();

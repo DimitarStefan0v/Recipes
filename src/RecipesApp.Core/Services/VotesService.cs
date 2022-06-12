@@ -13,6 +13,13 @@ namespace RecipesApp.Core.Services
             repo = _repo;
         }
 
+        public double GetAverageVotes(int recipeId)
+        {
+            return repo.All<Vote>()
+                .Where(x => x.RecipeId == recipeId)
+                .Average(x => x.Value);
+        }
+
         public async Task SetVoteAsync(int recipeId, string userId, byte value)
         {
             var vote = repo.All<Vote>()

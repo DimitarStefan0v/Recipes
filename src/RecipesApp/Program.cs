@@ -33,6 +33,11 @@ var cloudUtility = new Cloudinary(myAccount);
 
 builder.Services.AddSingleton(cloudUtility);
 
+builder.Services.AddAntiforgery(options =>
+{
+    options.HeaderName = "X-CSRF-TOKEN";
+});
+
 builder.Services.AddApplicationServices();
 
 var app = builder.Build();
