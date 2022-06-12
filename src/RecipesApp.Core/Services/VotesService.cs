@@ -15,9 +15,16 @@ namespace RecipesApp.Core.Services
 
         public double GetAverageVotes(int recipeId)
         {
-            return repo.All<Vote>()
-                .Where(x => x.RecipeId == recipeId)
-                .Average(x => x.Value);
+            var votes = repo.All<Vote>()
+                .Where(x => x.RecipeId == recipeId).
+                ToList();
+
+            if (votes.Count > 0)
+            {
+                return votes.Average(x => x.Value);
+            }
+
+            return 0;
         }
 
         public async Task SetVoteAsync(int recipeId, string userId, byte value)
