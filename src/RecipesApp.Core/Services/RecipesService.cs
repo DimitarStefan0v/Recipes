@@ -167,5 +167,22 @@ namespace RecipesApp.Core.Services
         {
             return repo.All<Recipe>().Count();
         }
+
+        public IEnumerable<RecipeInListViewModel> GetRecentlyAddedRecipes(int count = 9)
+        {
+            var recipes = repo.AllReadonly<Recipe>()
+                .OrderByDescending(x => x.CreatedOn)
+                .Take(count)
+                .Select(x => new RecipeInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryId = x.Category.Id,
+                    CategoryName = x.Category.Name,
+                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
+                }).ToList();
+
+            return recipes;
+        }
     }
 }

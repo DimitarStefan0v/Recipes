@@ -10,11 +10,11 @@ h1 {
 }
 
 .recipe-img {
-    width: 800px;
+    max-width: 800px;
 }
 
 .recipe-img img {
-    width: 100vw;
+    height: 400px;
     align-content: stretch;
     border-bottom-left-radius: 5px;
 }
@@ -43,7 +43,7 @@ h1 {
 }
 
 .recipe-title p {
-    font-size: 2em;
+    font-size: 2.3em;
     margin: auto;
     padding-top: 15px;
 }

@@ -21,18 +21,18 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #292637;
+    background-color: white;
+    color: #4A4A4A;
 }
 
 #section-nav {
-    max-width: 1200px;
+    max-width: 1070px;
     margin: auto;
 }
 
 #section-nav a {
     text-decoration: none;
-    color: white;
-    font-weight: 700;
+    color: #4A4A4A;
 }
 
 #flex-nav-container {
@@ -56,8 +56,6 @@ body {
 #flex-nav-container a:hover {
     background-color: #EFEFEF;
     border-top: 4px solid #FF9900;
-    color: black;
-    font-weight: 700;
 }
 
 .userContainer {
@@ -90,15 +88,12 @@ body {
     height: 100%;
     padding: 15px;
     margin-right: 25px;
-    color: white;
-    font-weight: 700;
+    color: #4A4A4A;
 }
 
 .logOutContainer button:hover {
     background-color: #EFEFEF;
     border-top: 4px solid #FF9900;
-    color: black;
-    font-weight: 700;
 }
 
 .logOutContainer {
@@ -113,7 +108,7 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1070px;
     margin: auto;
     margin-top: 120px;
 }
@@ -124,4 +119,46 @@ footer {
     margin-top: auto;
     min-height: 100px;
     color: white;
+}
+
+#index-allRecipesTitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#index-recipes-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    margin: auto;
+    width: 100%;
+}
+
+.single-recipe-container a {
+    text-decoration: none;
+}
+
+.single-recipe-container-img img {
+    width: 100vw;
+    height: 250px;
+}
+
+.single-recipe-container {
+    margin: 10px auto;
+    width: 31%;
+}
+
+.single-recipe-container-name {
+    border-left: 8px solid #FFCD00;
+    height: 65px;
+    padding: 5px 0 0 10px;
+    font-size: 1.3em;
+    margin-top: 10px;
+    color: black;
+    font-weight: 600;
+}
+
+.singe-recipe-category {
+    display: none;
 }

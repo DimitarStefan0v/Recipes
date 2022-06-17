@@ -1,8 +1,27 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using RecipesApp.Core.Models
+@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Последно добавени рецепти";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    
-</div>
+<h1 id="index-allRecipesTitle">@ViewData["Title"]</h1>
+
+<section id="index-recipes-container">
+    @foreach (var recipe in Model.Recipes)
+    {
+        <article class="single-recipe-container">
+            <a asp-area="" asp-controller="Recipe" asp-action="ById" asp-route-id="@recipe.Id">
+                <article class="single-recipe-container-img">
+                    <img src="@recipe.Image" class="img-fluid w-100">
+                </article>
+                <article class="single-recipe-container-name">
+                    <p class="single-recipe-container-name-paragraph">@recipe.Name</p>
+                </article>
+                <article class="singe-recipe-category">
+                    @recipe.CategoryId
+                </article>
+            </a>
+        </article>
+    }
+</section>

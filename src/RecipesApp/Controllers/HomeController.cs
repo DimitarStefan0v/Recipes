@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
+using RecipesApp.Core.Contracts;
+using RecipesApp.Core.Models;
 using RecipesApp.Models;
 using System.Diagnostics;
 
@@ -11,10 +13,15 @@ namespace RecipesApp.Controllers
 
         private readonly IDistributedCache cache;
 
-        public HomeController(ILogger<HomeController> _logger, IDistributedCache _cache)
+        private readonly IRecipesService recipesService;
+
+        public HomeController(ILogger<HomeController> _logger,
+            IDistributedCache _cache,
+            IRecipesService _recipesService)
         {
             logger = _logger;
             cache = _cache;
+            recipesService = _recipesService;
         }
 
         public async Task<IActionResult> Index()
@@ -35,8 +42,13 @@ namespace RecipesApp.Controllers
             //}
 
             //ViewBag.DateTime = cachedData;
-            
-            return View();
+
+            var viewModel = new HomeViewModel
+            {
+                Recipes = recipesService.GetRecentlyAddedRecipes(3)
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
