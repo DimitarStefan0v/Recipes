@@ -13,5 +13,5 @@ Simple web application for recipes built with ASP.Net Core
 * HTML
 * Bootstrap
 * CSS
-- Flexbox
-- Media Queries
+  * Flexbox
+  * Media Queries
