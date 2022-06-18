@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RecipesApp.Core.Constants;
 using RecipesApp.Core.Contracts;
 using RecipesApp.Core.Models;
 using RecipesApp.Infrastructure.Data.Identity;
@@ -9,13 +10,13 @@ using System.Security.Claims;
 
 namespace RecipesApp.Controllers
 {
-    public class RecipeController : Controller
+    public class RecipesController : Controller
     {
         private readonly IRecipesService recipesService;
         private readonly ICategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public RecipeController(IRecipesService _recipesService,
+        public RecipesController(IRecipesService _recipesService,
             ICategoriesService _categoriesService,
             UserManager<ApplicationUser> _userManager)
         {
@@ -85,22 +86,38 @@ namespace RecipesApp.Controllers
             return View(viewModel);
         }
 
-        [Authorize]
+        [Authorize(Roles = Roles.Administrator)]
         public IActionResult Edit(int id)
         {
-            return View();
+            var recipe = recipesService.GetById(id);
+
+            var recipeToEdit = new EditRecipeInputModel
+            {
+                Id = id,
+                Name = recipe.Name,
+                Instructions = recipe.Instructions,
+                PreparationTime = (int)recipe.PreparationTime.Value.TotalMinutes,
+                CookingTime = (int)recipe.CookingTime.Value.TotalMinutes,
+                PortionsCount = recipe.PortionsCount,
+            };
+
+            recipeToEdit.Categories = categoriesService.GetAllCategories();
+
+            return View(recipeToEdit);
         }
 
-        [Authorize]
+        [Authorize(Roles = Roles.Administrator)]
         [HttpPost]
-        public IActionResult Edit(int id, EditRecipeInputModel recipe)
+        public async Task<IActionResult> Edit(int id, EditRecipeInputModel recipe)
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                recipe.Id = id;
+                recipe.Categories = categoriesService.GetAllCategories();
+                return View(recipe);
             }
 
-            // TODO: update recipe
+            await recipesService.UpdateAsync(id, recipe);
 
             return RedirectToAction(nameof(ById), new { id });
         }

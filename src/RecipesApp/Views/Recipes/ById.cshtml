@@ -1,5 +1,10 @@
-﻿@using RecipesApp.Core.Models
+﻿@using RecipesApp.Core.Constants
+@using RecipesApp.Core.Models
 @model SingleRecipeViewModel
+
+@{
+    ViewData["Title"] = "Рецепта за " + Model.Name;
+}
 
 <header>
     <section class="recipe-container">
@@ -15,7 +20,7 @@
                     <li><i class="fa-regular fa-clock"></i> Приготвяне: @Model.PreparationTime.Value.TotalMinutes мин.</li>
                     <li><i class="fa-solid fa-utensils"></i> Готвене: @Model.CookingTime.Value.TotalMinutes мин.</li>
                     <li><i class="fa-solid fa-hourglass-end"></i> Общо: @(Model.TotalTime ?? 0) мин.</li>
-                    <li><i class="fa-solid fa-list"></i> Порции:     @(Model.PortionsCount ?? 0)</li>
+                    <li><i class="fa-solid fa-list"></i> Порции: @(Model.PortionsCount ?? 0)</li>
                 </ul>
             </article>
         </article>
@@ -46,6 +51,12 @@
         <li id="avg-votes">@Model.AverageVotesValue.ToString("0.0") / 5</li>
     </ul>
 </section>
+
+@if (User.IsInRole(Roles.Administrator))
+{
+    <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@Model.Id" id="editLink">Редактирай</a>
+}
+
 <form method="post" id="antiForgeryForm"></form>
 
 @section Scripts {

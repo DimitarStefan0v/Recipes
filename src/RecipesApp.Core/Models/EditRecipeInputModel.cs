@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using RecipesApp.Core.Attributes;
-using RecipesApp.Core.Constants;
+﻿using RecipesApp.Core.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Core.Models
@@ -26,12 +24,7 @@ namespace RecipesApp.Core.Models
 
         public int CategoryId { get; set; }
 
-        public ICollection<CategoriesViewModel> Categories { get; set; }
+        public ICollection<CategoriesViewModel>? Categories { get; set; }
 
-        public ICollection<IngredientInputModel> Ingredients { get; set; }
-
-        [MaxFileSize(3 * 1024 * 1024)]
-        [AllowedExtensions(new string[] { ".jpg", ".png", ".gif" })]
-        public IFormFile Image { get; set; }
     }
 }

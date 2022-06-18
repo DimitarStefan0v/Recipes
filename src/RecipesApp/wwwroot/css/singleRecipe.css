@@ -80,3 +80,12 @@ h1 {
 .ingredients-container ol li {
     padding: 7px 0 7px 0;
 }
+
+#editLink {
+    background-color: #E6580C;
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    font-size: 1.3em;
+    float: right;
+}

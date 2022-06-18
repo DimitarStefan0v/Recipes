@@ -201,5 +201,25 @@ namespace RecipesApp.Core.Services
 
             return recipes;
         }
+
+        public async Task UpdateAsync(int id, EditRecipeInputModel input)
+        {
+            var recipe = repo.All<Recipe>().FirstOrDefault(x => x.Id == id);
+
+            var category = repo.All<Category>().FirstOrDefault(x => x.Id == input.CategoryId);
+
+            if (category != null)
+            {
+                recipe.Category = category;
+            }
+
+            recipe.Name = input.Name;
+            recipe.Instructions = input.Instructions;
+            recipe.PreparationTime = TimeSpan.FromMinutes(input.PreparationTime);
+            recipe.CookingTime = TimeSpan.FromMinutes(input.CookingTime);
+            recipe.PortionsCount = input.PortionsCount;
+
+            await repo.SaveChangesAsync();
+        }
     }
 }

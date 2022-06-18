@@ -11,7 +11,7 @@
     @foreach (var recipe in Model.RecentRecipes)
     {
         <article class="single-recipe-container">
-            <a asp-area="" asp-controller="Recipe" asp-action="ById" asp-route-id="@recipe.Id">
+            <a asp-area="" asp-controller="Recipes" asp-action="ById" asp-route-id="@recipe.Id">
                 <article class="single-recipe-container-img">
                     <img src="@recipe.Image" class="img-fluid w-100">
                 </article>
@@ -32,7 +32,7 @@
     @foreach (var recipe in Model.MostVotedRecipes)
     {
         <article class="single-recipe-container">
-            <a asp-area="" asp-controller="Recipe" asp-action="ById" asp-route-id="@recipe.Id">
+            <a asp-area="" asp-controller="Recipes" asp-action="ById" asp-route-id="@recipe.Id">
                 <article class="single-recipe-container-img">
                     <img src="@recipe.Image" class="img-fluid w-100">
                 </article>

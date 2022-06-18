@@ -15,5 +15,7 @@ namespace RecipesApp.Core.Contracts
         int GetCount();
 
         SingleRecipeViewModel GetById(int id);
+
+        Task UpdateAsync(int id, EditRecipeInputModel input);
     }
 }
