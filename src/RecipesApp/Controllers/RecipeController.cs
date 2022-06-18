@@ -29,7 +29,7 @@ namespace RecipesApp.Controllers
         {
             var viewModel = new RecipeInputModel();
             viewModel.Categories = categoriesService.GetAllCategories();
-            
+
             return View(viewModel);
         }
 
@@ -83,6 +83,26 @@ namespace RecipesApp.Controllers
         {
             var viewModel = recipesService.GetById(id);
             return View(viewModel);
+        }
+
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Edit(int id, EditRecipeInputModel recipe)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            // TODO: update recipe
+
+            return RedirectToAction(nameof(ById), new { id });
         }
     }
 }
