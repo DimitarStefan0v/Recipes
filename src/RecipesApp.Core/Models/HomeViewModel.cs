@@ -2,6 +2,10 @@
 {
     public class HomeViewModel
     {
-        public IEnumerable<RecipeInListViewModel> Recipes { get; set; }
+        public IEnumerable<RecipeInListViewModel> RecentRecipes { get; set; }
+
+        public IEnumerable<RecipeInListViewModel> MostVotedRecipes { get; set; }
+
+       // public IEnumerable<RecipeInListViewModel> MostCommentedRecipes { get; set; }
     }
 }

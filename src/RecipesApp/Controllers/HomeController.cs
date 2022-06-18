@@ -45,7 +45,8 @@ namespace RecipesApp.Controllers
 
             var viewModel = new HomeViewModel
             {
-                Recipes = recipesService.GetRecentlyAddedRecipes(3)
+                RecentRecipes = recipesService.GetRecentRecipes(),
+                MostVotedRecipes = recipesService.GetMostVotedRecipes(),
             };
 
             return View(viewModel);

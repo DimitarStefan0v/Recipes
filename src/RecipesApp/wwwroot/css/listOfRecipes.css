@@ -1,6 +1,9 @@
 ﻿#allRecipesTitle {
     text-align: center;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-bottom: 0px;
 }
 
 #recipes-container {
@@ -10,6 +13,7 @@
     justify-content: start;
     margin: auto;
     width: 100%;
+    border-top: 1px solid #999;
 }
 
 .single-recipe-container a {

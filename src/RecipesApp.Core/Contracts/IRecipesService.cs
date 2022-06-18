@@ -8,7 +8,9 @@ namespace RecipesApp.Core.Contracts
 
         IEnumerable<RecipeInListViewModel> GetAll(int page, int itemsPerPage = 12);
 
-        IEnumerable<RecipeInListViewModel> GetRecentlyAddedRecipes(int count = 9);
+        IEnumerable<RecipeInListViewModel> GetRecentRecipes(int count = 3);
+
+        IEnumerable<RecipeInListViewModel> GetMostVotedRecipes(int count = 3);
 
         int GetCount();
 

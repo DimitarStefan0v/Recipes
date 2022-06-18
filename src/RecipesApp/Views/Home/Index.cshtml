@@ -2,13 +2,34 @@
 @model HomeViewModel
 
 @{
-    ViewData["Title"] = "Последно добавени рецепти";
+    ViewData["Title"] = "Рецепти";
 }
 
-<h1 id="index-allRecipesTitle">@ViewData["Title"]</h1>
+<p class="index-allRecipesTitle">Последно добавени рецепти</p>
 
-<section id="index-recipes-container">
-    @foreach (var recipe in Model.Recipes)
+<section class="index-recipes-container">
+    @foreach (var recipe in Model.RecentRecipes)
+    {
+        <article class="single-recipe-container">
+            <a asp-area="" asp-controller="Recipe" asp-action="ById" asp-route-id="@recipe.Id">
+                <article class="single-recipe-container-img">
+                    <img src="@recipe.Image" class="img-fluid w-100">
+                </article>
+                <article class="single-recipe-container-name">
+                    <p class="single-recipe-container-name-paragraph">@recipe.Name</p>
+                </article>
+                <article class="singe-recipe-category">
+                    @recipe.CategoryId
+                </article>
+            </a>
+        </article>
+    }
+</section>
+
+<p class="index-allRecipesTitle">Най-много оценявани рецепти</p>
+
+<section class="index-recipes-container">
+    @foreach (var recipe in Model.MostVotedRecipes)
     {
         <article class="single-recipe-container">
             <a asp-area="" asp-controller="Recipe" asp-action="ById" asp-route-id="@recipe.Id">
