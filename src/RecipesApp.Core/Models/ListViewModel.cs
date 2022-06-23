@@ -2,6 +2,6 @@
 {
     public class ListViewModel
     {
-        IEnumerable<RecipeInListViewModel> Recipes { get; set; }
+        public IEnumerable<RecipeInListViewModel> Recipes { get; set; }
     }
 }
