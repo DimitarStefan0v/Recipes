@@ -54,6 +54,9 @@
 
 @if (User.IsInRole(Roles.Administrator))
 {
+    <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
+    <button type="submit">Изтрий</button>
+    </form>
     <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@Model.Id" id="editLink">Редактирай</a>
 }
 

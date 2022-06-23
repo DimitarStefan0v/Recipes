@@ -34,6 +34,8 @@ namespace RecipesApp.Infrastructure.Data
 
         public bool IsChecked { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
 

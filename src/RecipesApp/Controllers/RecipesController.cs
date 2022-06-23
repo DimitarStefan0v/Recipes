@@ -121,5 +121,15 @@ namespace RecipesApp.Controllers
 
             return RedirectToAction(nameof(ById), new { id });
         }
+
+        [HttpPost]
+        [Authorize(Roles = Roles.Administrator)]
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await recipesService.DeleteAsync(id);
+
+            return RedirectToAction(nameof(All));
+        }
     }
 }

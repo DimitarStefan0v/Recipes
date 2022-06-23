@@ -94,6 +94,7 @@ namespace RecipesApp.Core.Services
         public IEnumerable<RecipeInListViewModel> GetAll(int page, int itemsPerPage = 12)
         {
             var recipes = repo.AllReadonly<Recipe>()
+                .Where(x => x.IsDeleted == false)
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -165,12 +166,13 @@ namespace RecipesApp.Core.Services
 
         public int GetCount()
         {
-            return repo.All<Recipe>().Count();
+            return repo.All<Recipe>().Where(x => x.IsDeleted == false).Count();
         }
 
         public IEnumerable<RecipeInListViewModel> GetRecentRecipes(int count = 3)
         {
             var recipes = repo.AllReadonly<Recipe>()
+                .Where(x => x.IsDeleted == false)
                 .OrderByDescending(x => x.CreatedOn)
                 .Take(count)
                 .Select(x => new RecipeInListViewModel
@@ -188,6 +190,7 @@ namespace RecipesApp.Core.Services
         public IEnumerable<RecipeInListViewModel> GetMostVotedRecipes(int count = 3)
         {
             var recipes = repo.AllReadonly<Recipe>()
+                .Where(x => x.IsDeleted == false)
                 .OrderByDescending(x => x.Votes.Count)
                 .Take(count)
                 .Select(x => new RecipeInListViewModel
@@ -224,7 +227,7 @@ namespace RecipesApp.Core.Services
 
         public IEnumerable<RecipeInListViewModel> GetRecipesByIngredients(int page, IEnumerable<int> ingredientIds, int itemsPerPage = 12)
         {
-            var query = repo.All<Recipe>();
+            var query = repo.All<Recipe>().Where(x => x.IsDeleted == false);
 
             foreach (var ingredientId in ingredientIds)
             {
@@ -242,6 +245,14 @@ namespace RecipesApp.Core.Services
                     CategoryName = x.Category.Name,
                     Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
                 }).ToList();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var recipe = repo.All<Recipe>().FirstOrDefault(x => x.Id == id);
+            recipe.IsDeleted = true;
+
+            await repo.SaveChangesAsync();
         }
     }
 }
