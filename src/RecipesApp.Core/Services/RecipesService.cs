@@ -221,5 +221,24 @@ namespace RecipesApp.Core.Services
 
             await repo.SaveChangesAsync();
         }
+
+        public IEnumerable<RecipeInListViewModel> GetRecipesByIngredients(IEnumerable<int> ingredientIds)
+        {
+            var query = repo.All<Recipe>();
+
+            foreach (var ingredientId in ingredientIds)
+            {
+                query = query.Where(x => x.Ingredients.Any(i => i.IngredientId == ingredientId));
+            }
+            
+            return query.Select(x => new RecipeInListViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                CategoryId = x.Category.Id,
+                CategoryName = x.Category.Name,
+                Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
+            }).ToList();
+        }
     }
 }
