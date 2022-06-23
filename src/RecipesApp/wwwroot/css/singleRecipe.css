@@ -104,3 +104,30 @@ h1 {
     font-size: 1.3em;
     border: none;
 }
+
+#section-votes {
+    margin-top: 35px;
+}
+
+#section-votes ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#section-votes ul li {
+    list-style-type: none;
+    font-size: 1.7em; 
+}
+
+#section-votes ul li i {
+    color: orange;
+    margin-right: 5px;
+}
+
+#votes-msg {
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: bold;
+}

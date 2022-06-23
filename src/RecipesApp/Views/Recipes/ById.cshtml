@@ -41,21 +41,27 @@
         <p>@Model.Instructions</p>
     </article>
 </section>
+
 <section id="section-votes">
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p id="votes-msg">Само регистрирани потребители могат да гласуват !!!</p>
+    }
     <ul>
-        <li><i class="fa-regular fa-star" data-vote="1"></i></li>
-        <li><i class="fa-regular fa-star" data-vote="2"></i></li>
-        <li><i class="fa-regular fa-star" data-vote="3"></i></li>
-        <li><i class="fa-regular fa-star" data-vote="4"></i></li>
-        <li><i class="fa-regular fa-star" data-vote="5"></i></li>
+        <li><i id="firstStar" class="fa-regular fa-star" data-vote="1"></i></li>
+        <li><i id="secondStar" class="fa-regular fa-star" data-vote="2"></i></li>
+        <li><i id="thirdStar" class="fa-regular fa-star" data-vote="3"></i></li>
+        <li><i id="fourthStar" class="fa-regular fa-star" data-vote="4"></i></li>
+        <li><i id="fifthStar" class="fa-regular fa-star" data-vote="5"></i></li>
         <li id="avg-votes">@Model.AverageVotesValue.ToString("0.0") / 5</li>
     </ul>
 </section>
+<span id="span-avg-votes" style="display:none">@Model.AverageVotesValue.ToString("0.0")</span>
 
 @if (User.IsInRole(Roles.Administrator))
 {
     <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
-    <button type="submit">Изтрий</button>
+        <button type="submit">Изтрий</button>
     </form>
     <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@Model.Id" id="editLink">Редактирай</a>
 }
@@ -63,6 +69,7 @@
 <form method="post" id="antiForgeryForm"></form>
 
 @section Scripts {
+    <script src="~/js/vote.js"></script>
     <script>
         var elements = document.querySelectorAll('#section-votes i');
         for (let el of elements) {
