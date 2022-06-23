@@ -6,7 +6,6 @@ Simple web application for recipes built with ASP.Net Core
 * Entity Framework CORE 6.0
 * SQL Server
 * Cloudinary
-* SendGrid
 * AJAX real-time Requests
 * JavaScript
 * nUnit
