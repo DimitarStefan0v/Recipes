@@ -89,3 +89,18 @@ h1 {
     font-size: 1.3em;
     float: right;
 }
+
+#deleteForm {
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+}
+
+#deleteForm button {
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    font-size: 1.3em;
+    border: none;
+}
