@@ -1,0 +1,18 @@
+﻿@using RecipesApp.Core.Models
+@model SearchIndexViewModel
+
+@{
+    ViewData["Title"] = "Търсене на рецепти по съставка";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="List" method="get">
+    @foreach (var ingredient in Model.Ingredients)
+    {
+        <input id="ingredient-@ingredient.Id" type="checkbox" name="Ingredients" value="@ingredient.Id" />
+        <label for="ingredient-@ingredient.Id">@ingredient.Name</label>
+    }
+
+    <input type="submit" />
+</form>
