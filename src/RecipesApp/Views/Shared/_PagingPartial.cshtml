@@ -5,7 +5,7 @@
     <article class="pagination">
         @if (Model.HasPreviousPage)
         {
-            <a asp-action="All" asp-route-id="@Model.PreviousPageNumber">&laquo; Предишна</a>
+            <a asp-action="All" asp-route-id="1">|&lt;</a>
         }
         @for (int i = Model.PageNumber - 4; i < Model.PageNumber; i++)
         {
@@ -24,7 +24,7 @@
         }
         @if (Model.HasNextPage)
         {
-            <a asp-action="All" asp-route-id="@Model.NextPageNumber">Следваща &raquo;</a>
+            <a asp-action="All" asp-route-id="@Model.PagesCount">>|</a>
         }
     </article>
 </section>
