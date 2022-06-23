@@ -26,7 +26,9 @@ namespace RecipesApp.Core.Services
                 {
                     Id = x.Id,
                     Name = x.Name,
-                }).ToList();
+                })
+                .OrderBy(x => x.Name)
+                .ToList();
 
             return ingredients;
         }

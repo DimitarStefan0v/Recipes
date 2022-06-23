@@ -27,8 +27,4 @@
     <ProjectReference Include="..\RecipesApp.Core\RecipesApp.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\SearchRecipes\" />
-  </ItemGroup>
-
 </Project>

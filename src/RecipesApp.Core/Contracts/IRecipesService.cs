@@ -4,7 +4,11 @@ namespace RecipesApp.Core.Contracts
 {
     public interface IRecipesService
     {
+        int GetCount();
+
         Task CreateAsync(RecipeInputModel input, string userId);
+
+        SingleRecipeViewModel GetById(int id);
 
         IEnumerable<RecipeInListViewModel> GetAll(int page, int itemsPerPage = 12);
 
@@ -12,9 +16,7 @@ namespace RecipesApp.Core.Contracts
 
         IEnumerable<RecipeInListViewModel> GetMostVotedRecipes(int count = 3);
 
-        int GetCount();
-
-        SingleRecipeViewModel GetById(int id);
+        IEnumerable<RecipeInListViewModel> GetRecipesByIngredients(IEnumerable<int> ingredientIds);
 
         Task UpdateAsync(int id, EditRecipeInputModel input);
     }
