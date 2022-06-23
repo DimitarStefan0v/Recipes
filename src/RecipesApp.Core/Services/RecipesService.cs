@@ -70,13 +70,13 @@ namespace RecipesApp.Core.Services
             {
                 var ingredient = repo
                     .All<Ingredient>()
-                    .FirstOrDefault(x => x.Name == ingredientInput.IngredientName);
+                    .FirstOrDefault(x => x.Name.ToLower() == ingredientInput.IngredientName.ToLower());
 
                 if (ingredient == null)
                 {
                     ingredient = new Ingredient()
                     {
-                        Name = ingredientInput.IngredientName,
+                        Name = ingredientInput.IngredientName.ToLower(),
                     };
                 }
 
@@ -222,7 +222,7 @@ namespace RecipesApp.Core.Services
             await repo.SaveChangesAsync();
         }
 
-        public IEnumerable<RecipeInListViewModel> GetRecipesByIngredients(IEnumerable<int> ingredientIds)
+        public IEnumerable<RecipeInListViewModel> GetRecipesByIngredients(int page, IEnumerable<int> ingredientIds, int itemsPerPage = 12)
         {
             var query = repo.All<Recipe>();
 
@@ -230,15 +230,18 @@ namespace RecipesApp.Core.Services
             {
                 query = query.Where(x => x.Ingredients.Any(i => i.IngredientId == ingredientId));
             }
-            
-            return query.Select(x => new RecipeInListViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                CategoryId = x.Category.Id,
-                CategoryName = x.Category.Name,
-                Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
-            }).ToList();
+
+            return query
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new RecipeInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryId = x.Category.Id,
+                    CategoryName = x.Category.Name,
+                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
+                }).ToList();
         }
     }
 }

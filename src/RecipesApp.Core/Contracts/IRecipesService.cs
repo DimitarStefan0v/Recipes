@@ -16,7 +16,7 @@ namespace RecipesApp.Core.Contracts
 
         IEnumerable<RecipeInListViewModel> GetMostVotedRecipes(int count = 3);
 
-        IEnumerable<RecipeInListViewModel> GetRecipesByIngredients(IEnumerable<int> ingredientIds);
+        IEnumerable<RecipeInListViewModel> GetRecipesByIngredients(int page, IEnumerable<int> ingredientIds, int itemsPerPage = 12);
 
         Task UpdateAsync(int id, EditRecipeInputModel input);
     }

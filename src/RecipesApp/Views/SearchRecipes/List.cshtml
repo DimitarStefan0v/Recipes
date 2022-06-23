@@ -2,12 +2,12 @@
 @model RecipesListViewModel
 
 @{
-    ViewData["Title"] = "Всички рецепти";
+    ViewData["Title"] = "Намерени " + Model.Recipes.Count();
 }
 
-<h1 id="allRecipesTitle">@ViewData["Title"]</h1>
+<h1>@ViewData["Title"] @(Model.Recipes.Count() > 1 ? "рецепти" : "рецепта") съдържащи търсената съставка/и</h1>
 
-<section id="recipes-container">
+<section id="search-recipes-container">
     @foreach (var recipe in Model.Recipes)
     {
         <article class="single-recipe-container">

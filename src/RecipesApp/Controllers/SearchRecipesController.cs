@@ -26,11 +26,21 @@ namespace RecipesApp.Controllers
             return View(viewModel);
         }
 
-        public IActionResult List(SearchListInputModel input)
+        public IActionResult List(SearchListInputModel input, int id = 1)
         {
-            var viewModel = new ListViewModel
+            if (id <= 0)
             {
-                Recipes = recipesService.GetRecipesByIngredients(input.Ingredients),
+                return NotFound();
+            }
+
+            int itemPerPage = 12;
+
+            var viewModel = new RecipesListViewModel
+            {
+                Recipes = recipesService.GetRecipesByIngredients(id, input.Ingredients, 12),
+                ItemsPerPage = itemPerPage,
+                RecipesCount = recipesService.GetCount(),
+                PageNumber = id
             };
 
             return View(viewModel);
