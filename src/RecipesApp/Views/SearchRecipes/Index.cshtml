@@ -7,12 +7,16 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<form asp-action="List" method="get">
-    @foreach (var ingredient in Model.Ingredients)
-    {
-        <input id="ingredient-@ingredient.Id" type="checkbox" name="Ingredients" value="@ingredient.Id" />
-        <label for="ingredient-@ingredient.Id">@ingredient.Name</label>
-    }
+<form class="seach-recipesByIngredientForm" asp-action="List" method="get">
+    <section class="flex-container-search">
+        @foreach (var ingredient in Model.Ingredients)
+        {
+            <article class="flex-container-search-item">
+                <input id="ingredient-@ingredient.Id" type="checkbox" name="Ingredients" value="@ingredient.Id" />
+                <label for="ingredient-@ingredient.Id">@ingredient.Name</label>
+            </article>
+        }
 
-    <input type="submit" />
+    </section>
+    <button class="searchByIngredient-btn" type="submit">Търси</button>
 </form>

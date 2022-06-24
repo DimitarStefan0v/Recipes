@@ -1,0 +1,29 @@
+﻿.flex-container-search {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: auto;
+    max-width: 60%;
+}
+
+.flex-container-search-item {
+    margin: 10px 10px 0 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 5px 10px 5px 10px;
+    font-size: 1.1em;
+    font-weight: bolder;
+    min-width: 20%;
+    text-align: center;
+}
+
+.searchByIngredient-btn {
+  margin-left: 65%;
+  margin-top: 20px;
+  font-size: 1.5em;
+  border-radius: 25px;
+  background-color: #2D2D2D;
+  color: white;
+  padding: 5px 30px 5px 30px;
+}
