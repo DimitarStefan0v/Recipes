@@ -5,9 +5,9 @@
     ViewData["Title"] = "Рецепти";
 }
 
-<p class="index-allRecipesTitle">Последно добавени рецепти</p>
+<h1 class="page-title">Последно добавени рецепти</h1>
 
-<section class="index-recipes-container">
+<section class="recipes-container">
     @foreach (var recipe in Model.RecentRecipes)
     {
         <article class="single-recipe-container">
@@ -26,9 +26,9 @@
     }
 </section>
 
-<p class="index-allRecipesTitle">Най-много оценявани рецепти</p>
+<h1 class="page-title">Най-много оценявани рецепти</h1>
 
-<section class="index-recipes-container">
+<section class="recipes-container">
     @foreach (var recipe in Model.MostVotedRecipes)
     {
         <article class="single-recipe-container">

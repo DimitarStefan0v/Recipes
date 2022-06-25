@@ -8,16 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\navbar.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\searchController.css" />
-    <_ContentIncludedByDefault Remove="wwwroot\js\navbar.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\js\navbar.js" />
   </ItemGroup>
 
   <ItemGroup>

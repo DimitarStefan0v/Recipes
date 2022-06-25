@@ -86,6 +86,26 @@ namespace RecipesApp.Controllers
             return View(viewModel);
         }
 
+        public IActionResult ByName([FromQuery(Name = "SearchTerm")]string name, int id = 1)
+        {
+            if (id <= 0)
+            {
+                return NotFound();
+            }
+
+            int itemPerPage = 12;
+
+            var viewModel = new RecipesListViewModel
+            {
+                ItemsPerPage = itemPerPage,
+                PageNumber = id,
+                RecipesCount = recipesService.GetCount(),
+                Recipes = recipesService.GetRecipesByName(name, id, 12),
+            };
+
+            return View(viewModel);
+        }
+
         [Authorize(Roles = Roles.Administrator)]
         public IActionResult Edit(int id)
         {

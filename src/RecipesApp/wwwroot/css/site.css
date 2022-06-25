@@ -76,12 +76,12 @@ nav {
 
 footer {
     background-color: #292637;
-    margin-top: auto;
+    margin-top: 40px;
     min-height: 100px;
     color: white;
 }
 
-.index-allRecipesTitle {
+.page-title {
     text-align: center;
     margin-bottom: 20px;
     font-size: 2.5em;
@@ -90,7 +90,7 @@ footer {
     margin-bottom: 0px;
 }
 
-.index-recipes-container {
+.recipes-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -126,4 +126,20 @@ footer {
 
 .singe-recipe-category {
     display: none;
+}
+
+#search-form button {
+    background-color: white;
+    border: none;
+    height: 100%;
+    padding: 10px;
+}
+
+#search-form input {
+    border-radius: 10px;
+}
+
+#search-form button:hover {
+    background-color: #EFEFEF;
+    border-top: 4px solid #FF9900;
 }

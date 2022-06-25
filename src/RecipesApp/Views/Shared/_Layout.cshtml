@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/recipeInputForm.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/listOfRecipes.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/pagination.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/singleRecipe.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/searchController.css" asp-append-version="true" />
 </head>
@@ -33,6 +33,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="All">Рецепти</a>
                         </li>
                     </ul>
+                    <form method="get" id="search-form" asp-controller="Recipes" asp-action="ByName">
+                        <input id="ipt_search" type="search" name="SearchTerm" />
+                        <button>Търси</button>
+                    </form>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -43,13 +47,10 @@
             @RenderBody()
         </main>
     </div>
-    <section>
-        <footer>
-            <div class="container">
-                &copy; 2022 - RecipesApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>
-    </section>
+
+    <footer>
+    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

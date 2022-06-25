@@ -254,5 +254,24 @@ namespace RecipesApp.Core.Services
 
             await repo.SaveChangesAsync();
         }
+
+        public IEnumerable<RecipeInListViewModel> GetRecipesByName(string name, int page, int itemsPerPage = 12)
+        {
+            var recipes = repo.AllReadonly<Recipe>()
+                .Where(x => x.IsDeleted == false && x.Name.Contains(name))
+                .OrderByDescending(x => x.Name)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new RecipeInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryId = x.Category.Id,
+                    CategoryName = x.Category.Name,
+                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
+                }).ToList();
+
+            return recipes;
+        }
     }
 }

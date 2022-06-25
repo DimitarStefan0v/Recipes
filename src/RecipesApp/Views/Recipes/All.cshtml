@@ -5,9 +5,9 @@
     ViewData["Title"] = "Всички рецепти";
 }
 
-<h1 id="allRecipesTitle">@ViewData["Title"]</h1>
+<h1 class="page-title">@ViewData["Title"]</h1>
 
-<section id="recipes-container">
+<section class="recipes-container">
     @foreach (var recipe in Model.Recipes)
     {
         <article class="single-recipe-container">
@@ -26,4 +26,7 @@
     }
 </section>
 
-<partial name="_PagingPartial" model="@Model" />
+@if (Model.Recipes.Count() > Model.ItemsPerPage)
+{
+    <partial name="_PagingPartial" model="@Model" />
+}
