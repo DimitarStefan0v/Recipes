@@ -15,7 +15,6 @@ body {
 }
 
 #header {
-    height: 70px;
     font-size: 1.5em;
     box-shadow: rgb(170, 170, 170) 0 0 30px 0;
     position: fixed;
@@ -23,89 +22,50 @@ body {
     width: 100%;
     background-color: white;
     color: #4A4A4A;
+    height: 70px;
 }
 
-#section-nav {
+nav {
     max-width: 1070px;
     margin: auto;
+    height: 65px;
 }
 
-#section-nav a {
-    text-decoration: none;
-    color: #4A4A4A;
-}
-
-#flex-nav-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    align-items: center;
-    justify-content: flex-start;
-    height: 70px;
-    position: relative;
+.nav-item a {
+    margin: 0 3px 0 3px;
+    height: 100%;
+    padding: 10px;
     text-transform: uppercase;
 }
 
-#flex-nav-container a {
-    margin: 0 3px 0 3px;
-    height: 100%;
-    padding: 15px;
-}
-
-#flex-nav-container a:hover {
+.nav-item a:hover {
     background-color: #EFEFEF;
     border-top: 4px solid #FF9900;
 }
 
-.userContainer {
-    width: 130px;
-    text-align: end;
-    position: absolute;
-    right: 0;
-    border-top: none;
-    margin-left: 10px;
+.container-fluid {
+    background-color: white;
 }
 
-.userLoggedContainer {
-    width: 150px;
-    text-align: end;
-    position: absolute;
-    right: 0;
-    border-top: none;
+#logOutForm button {
+    border: none;
+    background-color: white;
+    margin: 0 3px 0 3px;
+    height: 100%;
+    padding: 10px;
+    text-transform: uppercase;
 }
 
-.userContainer:hover {
-    border-top: none;
+#logOutForm button:hover {
+    background-color: #EFEFEF;
+    border-top: 4px solid #FF9900;
+    font-size: 1em;
 }
 
 .fa-user {
     padding-right: 5px;
 }
 
-.logOutContainer button {
-    margin: 0 3px 0 3px;
-    height: 100%;
-    padding: 15px;
-    margin-right: 25px;
-    color: #4A4A4A;
-}
-
-.logOutContainer button:hover {
-    background-color: #EFEFEF;
-    border-top: 4px solid #FF9900;
-}
-
-.logOutContainer {
-    position: absolute;
-    right: 120px;
-    margin-right: 10px;
-}
-
-.logOutContainer button {
-    border: none;
-    background-color: inherit;
-}
 
 .container {
     max-width: 1070px;
