@@ -2,10 +2,10 @@
 @model RecipesListViewModel
 
 @{
-    ViewData["Title"] = "Намерени " + Model.Recipes.Count();
+    ViewData["Title"] = "Намерени " + Model.Recipes.Count() + " рецепта / и";
 }
 
-<h1 class="page-title">@ViewData["Title"] @(Model.Recipes.Count() > 1 ? "рецепти" : "рецепта") съдържащи търсената съставка/и</h1>
+<partial name="_PageTitle" />
 
 <partial name="_RecipesPartial" model="@Model" />
 

@@ -12,7 +12,20 @@
 }
 
 #submitRecipe {
+    margin-left: 65%;
+    margin-top: 20px;
+    font-size: 1.1em;
+    border-radius: 25px;
+    background-color: #2D2D2D;
+    color: white;
+    padding: 5px 30px 5px 30px;
     float: right;
+}
+
+#addIngredient {
+    border-radius: 25px;
+    padding: 5px 30px 5px 30px;
+    font-size: 0.9em;
 }
 
 #recipeForm {

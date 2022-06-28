@@ -1,1 +1,10 @@
-﻿<partial name="_RecipesPartial" model="@Model" />
+﻿@using RecipesApp.Core.Models
+@model RecipesListViewModel
+
+@{
+    ViewData["Title"] = "Рецепти съдържащи \"" + ViewData["SearchString"] + "\" в името си";
+}
+
+<partial name="_PageTitle" />
+
+<partial name="_RecipesPartial" model="@Model" />

@@ -103,6 +103,8 @@ namespace RecipesApp.Controllers
                 Recipes = recipesService.GetRecipesByName(name, id, 12),
             };
 
+            ViewData["SearchString"] = name;
+
             return View(viewModel);
         }
 
