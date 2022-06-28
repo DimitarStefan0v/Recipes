@@ -1,0 +1,16 @@
+﻿@using RecipesApp.Core.Models
+@model HomeViewModel
+
+<section class="category-container">
+    @foreach (var category in Model.Categories)
+    {
+        <section class="single-category-container">
+            <article class="single-category-container-img">
+                <img src="@category.ImgUrl" alt="@category.Name" class="img-fluid w-100" />
+            </article>
+            <article class="single-category-container-name">
+                <p>@category.Name</p>
+            </article>
+        </section>
+    }
+</section>
