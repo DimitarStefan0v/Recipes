@@ -35,7 +35,7 @@ namespace RecipesApp.Core.Models
         public ICollection<IngredientInputModel> Ingredients { get; set; }
 
         [Required(ErrorMessage = RecipeErrorMessages.ImageRequired)]
-        [MaxFileSize(3 * 1024 * 1024)]
+        [MaxFileSize(4 * 1024 * 1024)]
         [AllowedExtensions(new string[] { ".jpg", ".png", ".gif", ".jpeg" })]
         public IFormFile Image { get; set; }
     }

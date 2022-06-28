@@ -18,7 +18,7 @@
 
         public const string ImageRequired = "Снимка към рецепта е задължителна";
 
-        public const int MaxImageSize = 3;
+        public const int MaxImageSize = 4;
 
         public const string AllowedImageExtensions = "jpg, png, gif, jpeg";
 
