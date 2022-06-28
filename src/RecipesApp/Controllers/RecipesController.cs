@@ -86,7 +86,7 @@ namespace RecipesApp.Controllers
             return View(viewModel);
         }
 
-        public IActionResult ByName([FromQuery(Name = "SearchTerm")]string name, int id = 1)
+        public IActionResult ByName([FromQuery(Name = "searchterm")]string name, int id = 1)
         {
             if (id <= 0)
             {

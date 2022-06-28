@@ -32,11 +32,28 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="All">Рецепти</a>
                         </li>
+
                     </ul>
-                    <form method="get" id="search-form" asp-controller="Recipes" asp-action="ByName">
-                        <input id="ipt_search" type="search" name="SearchTerm" />
-                        <button>Търси</button>
-                    </form>
+
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <div class="dropdown-item">
+                                <form method="get" id="search-form" asp-controller="Recipes" asp-action="ByName">
+                                    <input class="form-control" id="ipt_search" placeholder="Име на рецепта" type="search" name="searchterm" />
+                                    <button><i class="fas fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="SearchRecipes" asp-action="Index">Съставки</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>

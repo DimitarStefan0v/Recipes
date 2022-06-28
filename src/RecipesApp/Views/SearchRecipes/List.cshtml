@@ -7,23 +7,6 @@
 
 <h1 class="page-title">@ViewData["Title"] @(Model.Recipes.Count() > 1 ? "рецепти" : "рецепта") съдържащи търсената съставка/и</h1>
 
-<section class="recipes-container">
-    @foreach (var recipe in Model.Recipes)
-    {
-        <article class="single-recipe-container">
-            <a asp-area="" asp-controller="Recipes" asp-action="ById" asp-route-id="@recipe.Id">
-                <article class="single-recipe-container-img">
-                    <img src="@recipe.Image" class="img-fluid w-100">
-                </article>
-                <article class="single-recipe-container-name">
-                    <p class="single-recipe-container-name-paragraph">@recipe.Name</p>
-                </article>
-                <article class="singe-recipe-category">
-                    @recipe.CategoryName
-                </article>
-            </a>
-        </article>
-    }
-</section>
+<partial name="_RecipesPartial" model="@Model" />
 
 <partial name="_PagingPartial" model="@Model" />

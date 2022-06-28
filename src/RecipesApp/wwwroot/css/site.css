@@ -128,18 +128,43 @@ footer {
     display: none;
 }
 
+#searchIcon: {
+
+}
+ 
+#search-form input {
+    width: 220px;
+    height: 40px;
+    border-radius: 10px;
+    display: inline-block;
+}   
+
+
 #search-form button {
+    background-color: white;
+    border: none;
+}
+
+.dropdown-item:hover {
+    background-color: white;
+}
+
+/*#search-form button {
     background-color: white;
     border: none;
     height: 100%;
     padding: 10px;
+    margin-left: 0px;
 }
 
 #search-form input {
     border-radius: 10px;
+    max-width: 220px;
+    margin-right: 0px;
 }
 
 #search-form button:hover {
     background-color: #EFEFEF;
     border-top: 4px solid #FF9900;
 }
+*/
