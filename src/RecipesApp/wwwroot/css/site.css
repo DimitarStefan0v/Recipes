@@ -125,9 +125,10 @@ footer {
     height: 65px;
     padding: 5px 0 0 10px;
     font-size: 1.3em;
-    margin-top: 10px;
     color: black;
     font-weight: 600;
+    margin-top: 5px;
+    background-color: #E7E9ED;
 }
 
 .singe-recipe-category {

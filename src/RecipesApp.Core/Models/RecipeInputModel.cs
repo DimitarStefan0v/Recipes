@@ -36,7 +36,7 @@ namespace RecipesApp.Core.Models
 
         [Required(ErrorMessage = RecipeErrorMessages.ImageRequired)]
         [MaxFileSize(3 * 1024 * 1024)]
-        [AllowedExtensions(new string[] { ".jpg", ".png", ".gif" })]
+        [AllowedExtensions(new string[] { ".jpg", ".png", ".gif", ".jpeg" })]
         public IFormFile Image { get; set; }
     }
 }

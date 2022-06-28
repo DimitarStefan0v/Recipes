@@ -20,7 +20,7 @@
 
         public const int MaxImageSize = 3;
 
-        public const string AllowedImageExtensions = "jpg, png, gif";
+        public const string AllowedImageExtensions = "jpg, png, gif, jpeg";
 
     }
 }
