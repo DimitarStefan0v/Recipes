@@ -28,9 +28,10 @@ namespace RecipesApp.Core.Services
             return categories;
         }
 
-        public ICollection<IndexCategoryViewModel> GetFirstFiveCategories()
+        public ICollection<IndexCategoryViewModel> GetCategoriesWithImages()
         {
-            var categories = repo.All<Category>()
+            var categories = repo.AllReadonly<Category>()
+                .OrderBy(c => c.Id)
                 .Select(c => new IndexCategoryViewModel
                 {
                     Id = c.Id,

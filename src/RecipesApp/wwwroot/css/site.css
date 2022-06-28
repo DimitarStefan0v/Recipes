@@ -194,3 +194,27 @@ footer {
     width: 70px;
     text-align: center;
 }
+
+.category-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+.single-category-container {
+    width: 150px;
+    margin: 10px 5px 10px 5px;
+}
+
+.single-category-container-img img {
+    height: 139px;
+    border-radius: 50%;
+}
+
+.single-category-container-name p {
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+}

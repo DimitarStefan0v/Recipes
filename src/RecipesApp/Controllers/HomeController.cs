@@ -14,14 +14,17 @@ namespace RecipesApp.Controllers
         private readonly IDistributedCache cache;
 
         private readonly IRecipesService recipesService;
+        private readonly ICategoriesService categoriesService;
 
         public HomeController(ILogger<HomeController> _logger,
             IDistributedCache _cache,
-            IRecipesService _recipesService)
+            IRecipesService _recipesService,
+            ICategoriesService _categoriesService)
         {
             logger = _logger;
             cache = _cache;
             recipesService = _recipesService;
+            categoriesService = _categoriesService;
         }
 
         public async Task<IActionResult> Index()
@@ -47,6 +50,7 @@ namespace RecipesApp.Controllers
             {
                 RecentRecipes = recipesService.GetRecentRecipes(),
                 MostVotedRecipes = recipesService.GetMostVotedRecipes(),
+                Categories = categoriesService.GetCategoriesWithImages()
             };
 
             return View(viewModel);

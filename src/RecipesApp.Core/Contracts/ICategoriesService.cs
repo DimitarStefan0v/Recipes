@@ -6,6 +6,6 @@ namespace RecipesApp.Core.Contracts
     {
         ICollection<CategoriesViewModel> GetAllCategories();
 
-        ICollection<IndexCategoryViewModel> GetFirstFiveCategories();
+        ICollection<IndexCategoryViewModel> GetCategoriesWithImages();
     }
 }

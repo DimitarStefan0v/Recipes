@@ -7,5 +7,7 @@
         public IEnumerable<RecipeInListViewModel> MostVotedRecipes { get; set; }
 
        // public IEnumerable<RecipeInListViewModel> MostCommentedRecipes { get; set; }
+
+        public IEnumerable<IndexCategoryViewModel> Categories { get; set; }
     }
 }
