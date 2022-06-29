@@ -24,6 +24,8 @@ namespace RecipesApp.Infrastructure.Data
 
         public DbSet<Vote> Votes { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //builder.Entity<Category>()

@@ -10,6 +10,7 @@ namespace RecipesApp.Infrastructure.Data
         {
             Ingredients = new HashSet<RecipeIngredient>();
             Votes = new HashSet<Vote>();
+            Comments = new HashSet<Comment>();
         }
 
         [Key]
@@ -54,5 +55,7 @@ namespace RecipesApp.Infrastructure.Data
         public ICollection<RecipeIngredient> Ingredients { get; set; }
 
         public ICollection<Vote> Votes { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
     }
 }

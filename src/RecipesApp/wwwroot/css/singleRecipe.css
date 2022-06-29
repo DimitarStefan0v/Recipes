@@ -68,7 +68,7 @@ h1 {
     font-size: 1.4em;
     margin-top: 20px;
     padding-top: 40px;
-    background-color: #F6F6F6;
+    background-color: #E7E9ED;
     border-radius: 5px;
 }
 
@@ -143,4 +143,15 @@ h1 {
 .linksAboveHeader a {
     text-decoration: none;
     color: #8e8e8e;
+}
+
+#recipe-user-info {
+    margin: auto;
+    text-align: end;
+}
+
+#recipe-user-info ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 20px 30px 10px 0;
 }

@@ -6,8 +6,9 @@
     ViewData["Title"] = "Рецепта за " + Model.Name;
 }
 
-<p class="linksAboveHeader"><a asp-controller="Home" asp-action="Index">Начало</a> > 
-    <a asp-controller="Categories" asp-action="ByName" asp-route-name="@Model.CategoryName">@Model.CategoryName</a> > 
+<p class="linksAboveHeader">
+    <a asp-controller="Home" asp-action="Index">Начало</a> >
+    <a asp-controller="Categories" asp-action="ByName" asp-route-name="@Model.CategoryName">@Model.CategoryName</a> >
     <a asp-controller="Recipes" asp-action="ById" asp-route-id="@Model.Id">@Model.Name</a>
 </p>
 
@@ -49,6 +50,22 @@
     </article>
 </section>
 
+<section>
+    <article id="recipe-user-info">
+        <ul>
+            @if (Model.AddedByUser == "adminRecipes@gmail.com")
+            {
+                <li>Рецептата е взета от <a href="https://recepti.gotvach.bg/">recepti.gotvach.bg</a></li>
+            }
+            else
+            {
+                <li>Добавена от <i class="fa-regular fa-user"></i>@Model.AddedByUser</li>
+            }
+            <li><i class="fa-regular fa-calendar-days"></i> @Model.CreatedOn.ToShortDateString()</li>
+        </ul>
+    </article>
+</section>
+
 <section id="section-votes">
     @if (!User.Identity.IsAuthenticated)
     {
@@ -76,9 +93,9 @@
 <form method="post" id="antiForgeryForm"></form>
 
 @section Scripts {
-    <script src="~/js/vote.js"></script>
+    <script src="~/js/starsColoring.js"></script>
     <script>
-        var elements = document.querySelectorAll('#section-votes i');
+        let elements = document.querySelectorAll('#section-votes i');
         for (let el of elements) {
             el.addEventListener('click', async () => {
                 const value = el.getAttribute('data-vote');
