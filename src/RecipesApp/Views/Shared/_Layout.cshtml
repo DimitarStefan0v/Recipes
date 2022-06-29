@@ -40,7 +40,6 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                 <div class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-controller="Recipes" asp-action="All">Всички</a>
                                     @foreach (var category in categories)
                                     {
                                         <a class="nav-link text-dark" asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a>
@@ -48,6 +47,9 @@
                                 </div>
                             </div>
                         </div>
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Recipes" asp-action="All">Всички</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Create">Добави рецепта</a>
                         </li>

@@ -18,7 +18,12 @@ namespace RecipesApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new HomeViewModel
+            {
+                Categories = categoriesService.GetCategoriesWithImages()
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult ById(int id, int pageNumber = 1)
@@ -40,32 +45,6 @@ namespace RecipesApp.Controllers
             viewModel.RecipesCount = viewModel.Recipes.Count();
             var category = categoriesService.GetCategoriesWithImages()
                 .Where(x => x.Id == id)
-                .FirstOrDefault();
-            TempData["CategoryName"] = category.Name;
-            TempData["CategoryImage"] = category.ImgUrl;
-
-            return View(viewModel);
-        }
-
-        public IActionResult ByName(string name, int pageNumber = 1)
-        {
-            if (pageNumber <= 0)
-            {
-                return NotFound();
-            }
-
-            int itemPerPage = 12;
-
-            var viewModel = new RecipesListViewModel
-            {
-                ItemsPerPage = itemPerPage,
-                PageNumber = pageNumber,
-                Recipes = recipesService.GetRecipesByCategory(name, pageNumber, 12),
-            };
-
-            viewModel.RecipesCount = viewModel.Recipes.Count();
-            var category = categoriesService.GetCategoriesWithImages()
-                .Where(x => x.Name.ToLower() == name.ToLower())
                 .FirstOrDefault();
             TempData["CategoryName"] = category.Name;
             TempData["CategoryImage"] = category.ImgUrl;
