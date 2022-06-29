@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using RecipesApp.Core.Constants
+@using RecipesApp.Core.Contracts
+@inject ICategoriesService categoriesService
+@{
+    var categories = categoriesService.GetAllCategories();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,8 +30,24 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">
+                                    <img id="iconImg" src="@DefaultImages.WebsiteIconImage" />
+                            </a>
                         </li>
+                        <div id="firstDropdown" class="dropdown">
+                            <button class="dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Рецепти
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <div class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-controller="Recipes" asp-action="All">Всички</a>
+                                    @foreach (var category in categories)
+                                    {
+                                        <a class="nav-link text-dark" asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Create">Добави рецепта</a>
                         </li>

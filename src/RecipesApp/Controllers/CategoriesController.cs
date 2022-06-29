@@ -38,7 +38,9 @@ namespace RecipesApp.Controllers
             };
 
             viewModel.RecipesCount = viewModel.Recipes.Count();
-            var category = categoriesService.GetCategoriesWithImages().Where(x => x.Id == id).FirstOrDefault();
+            var category = categoriesService.GetCategoriesWithImages()
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
             TempData["CategoryName"] = category.Name;
             TempData["CategoryImage"] = category.ImgUrl;
 
@@ -62,6 +64,11 @@ namespace RecipesApp.Controllers
             };
 
             viewModel.RecipesCount = viewModel.Recipes.Count();
+            var category = categoriesService.GetCategoriesWithImages()
+                .Where(x => x.Name.ToLower() == name.ToLower())
+                .FirstOrDefault();
+            TempData["CategoryName"] = category.Name;
+            TempData["CategoryImage"] = category.ImgUrl;
 
             return View(viewModel);
         }

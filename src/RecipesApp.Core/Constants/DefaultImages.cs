@@ -4,6 +4,8 @@
     {
         public const string DefaultRecipeImageUrl = "https://res.cloudinary.com/dsedszaeg/image/upload/v1654614325/RecipesAppImages/frd5vozffofhx7mxteds.jpg";
 
+        public const string WebsiteIconImage = "https://res.cloudinary.com/dsedszaeg/image/upload/v1656540653/RecipesAppImages/cr9rwwlkndfflhstafhh.png";
+
         public const string MainDishImage = "https://res.cloudinary.com/dsedszaeg/image/upload/v1656442751/RecipesAppImages/itqsm6fazjdph5lxkwdi.jpg";
 
         public const string SoupImage = "https://res.cloudinary.com/dsedszaeg/image/upload/v1656442931/RecipesAppImages/wesnanllous6pred1hz3.jpg";

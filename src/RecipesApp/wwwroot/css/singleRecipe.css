@@ -10,7 +10,7 @@ h1 {
 }
 
 .recipe-img {
-    max-width: 800px;
+    max-width: 600px;
 }
 
 .recipe-img img {
@@ -34,6 +34,7 @@ h1 {
     margin-bottom: 1.5em;
     padding: 5px 0 15px 0;
     border-bottom: 3px solid #D9D9DB;
+    word-break: break-all;
 }
 
 .recipe-info ul li i {

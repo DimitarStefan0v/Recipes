@@ -43,6 +43,21 @@ nav {
     border-top: 4px solid #FF9900;
 }
 
+#iconImg {
+    width: 50px;
+    padding: 0px;
+    height: 30px;
+}
+
+#firstDropdown .dropdown-toggle {
+    width: 100%;
+    font-size: 1em;
+}
+
+#firstDropdown button {
+    text-align: left;
+}
+
 .container-fluid {
     background-color: white;
 }
@@ -200,7 +215,6 @@ footer {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    
 }
 
 .single-category-container {
