@@ -5,5 +5,7 @@ namespace RecipesApp.Core.Contracts
     public interface ICommentsService
     {
         Task AddAsync(CommentInputModel input, string userId);
+
+        Task DeleteAsync(int id);
     }
 }

@@ -136,7 +136,7 @@ namespace RecipesApp.Core.Services
                 AverageVotesValue = votesService.GetAverageVotes(recipe.Id),
             };
 
-            foreach (var comment in recipe.Comments)
+            foreach (var comment in recipe.Comments.Where(x => x.IsDeleted == false))
             {
                 var commentViewModel = new CommentViewModel
                 {
@@ -170,8 +170,8 @@ namespace RecipesApp.Core.Services
                 {
                     var ingredient = new IngredientsViewModel
                     {
-                        IngredientName = ingredientName,
-                        Quantity = ingredientQuantity,
+                        IngredientName = ingredientName.ToLower().Trim(),
+                        Quantity = ingredientQuantity.ToLower().Trim(),
                     };
 
                     viewModelrecipe.Ingredients.Add(ingredient);
