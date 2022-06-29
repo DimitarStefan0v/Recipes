@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 /src/RecipesApp/appsettings.json
 /src/RecipesApp/wwwroot/lib
+/src/RecipesApp/wwwroot/images
