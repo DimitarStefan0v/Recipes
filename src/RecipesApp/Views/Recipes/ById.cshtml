@@ -116,7 +116,7 @@
             </article>
             @if (User.IsInRole(Roles.Administrator))
             {
-                <form method="post" asp-controller="Comments" asp-action="Delete" id="deleteCommentBtn" asp-route-id="@comment.Id">
+                <form method="post" asp-controller="Comments" asp-action="Delete" id="deleteCommentBtn" asp-route-id="@comment.Id" asp-route-recipeId="@Model.Id">
                     <button type="submit">Изтрий</button>
                 </form>
             }

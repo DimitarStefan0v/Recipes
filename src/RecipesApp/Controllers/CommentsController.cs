@@ -49,5 +49,12 @@ namespace RecipesApp.Controllers
 
             return RedirectToAction("ById", "Recipes", new { id = id });
         }
+        
+        public async Task<IActionResult> Delete(int id, int recipeId)
+        {
+            await commentsService.DeleteAsync(id);
+
+            return RedirectToAction("ById", "Recipes", new { id = recipeId });
+        }   
     }
 }
