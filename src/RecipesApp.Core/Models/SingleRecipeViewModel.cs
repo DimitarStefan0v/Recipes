@@ -5,6 +5,7 @@
         public SingleRecipeViewModel()
         {
             Ingredients = new HashSet<IngredientsViewModel>();
+            Comments = new HashSet<CommentViewModel>();
         }
         public int Id { get; set; }
 
@@ -31,5 +32,7 @@
         public DateTime CreatedOn { get; set; }
 
         public double AverageVotesValue { get; set; }
+
+        public ICollection<CommentViewModel> Comments { get; set; }
     }
 }

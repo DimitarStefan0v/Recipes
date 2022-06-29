@@ -117,7 +117,8 @@ namespace RecipesApp.Core.Services
                 .Include(x => x.Image)
                 .Include(x => x.Ingredients)
                 .Include(x => x.AddedByUser)
-                .Where(x => x.Id == id)
+                .Include(x => x.Comments)
+                .Where(x => x.Id == id && x.IsDeleted == false)
                 .FirstOrDefault();
 
             var viewModelrecipe = new SingleRecipeViewModel
@@ -134,6 +135,21 @@ namespace RecipesApp.Core.Services
                 PortionsCount = recipe.PortionsCount,
                 AverageVotesValue = votesService.GetAverageVotes(recipe.Id),
             };
+
+            foreach (var comment in recipe.Comments)
+            {
+                var commentViewModel = new CommentViewModel
+                {
+                    Content = comment.Content,
+                    AddedByUser = comment.AddedByUser.ToString(),
+                    CreatedOn = comment.CreatedOn,
+                };
+
+                if (commentViewModel != null)
+                {
+                    viewModelrecipe.Comments.Add(commentViewModel);
+                }
+            }
 
             var ingredientsId = recipe.Ingredients.Select(x => x.IngredientId).ToList();
 

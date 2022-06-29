@@ -101,6 +101,21 @@
     </ul>
 </section>
 
+<section class="comments-section">
+    @foreach (var comment in Model.Comments)
+    {
+        <article class="comments-section-user">
+            <i class="fa-regular fa-user"></i>@comment.AddedByUser
+        </article>
+        <article class="commets-section-date">
+            <i class="fa-regular fa-calendar-days"></i> @comment.CreatedOn
+        </article>
+        <article class="comments-section-content">
+            <textarea>@comment.Content</textarea>
+        </article>
+    }
+</section>
+
 <form method="post" id="antiForgeryForm"></form>
 @section Scripts {
     <script src="~/js/starsColoring.js"></script>
