@@ -290,5 +290,45 @@ namespace RecipesApp.Core.Services
 
             return recipes;
         }
+
+        public IEnumerable<RecipeInListViewModel> GetRecipesByCategory(int id, int page, int itemsPerPage = 12)
+        {
+            var recipes = repo.AllReadonly<Recipe>()
+                .Where(x => x.Category.Id == id)
+                .Where(x => x.IsDeleted == false)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new RecipeInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryId = x.Category.Id,
+                    CategoryName = x.Category.Name,
+                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
+                }).ToList();
+
+            return recipes;
+        }
+
+        public IEnumerable<RecipeInListViewModel> GetRecipesByCategory(string name, int page, int itemsPerPage = 12)
+        {
+            var recipes = repo.AllReadonly<Recipe>()
+                .Where(x => x.Category.Name == name)
+                .Where(x => x.IsDeleted == false)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new RecipeInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryId = x.Category.Id,
+                    CategoryName = x.Category.Name,
+                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
+                }).ToList();
+
+            return recipes;
+        }
     }
 }

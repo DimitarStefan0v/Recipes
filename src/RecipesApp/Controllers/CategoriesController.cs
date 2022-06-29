@@ -9,7 +9,7 @@ namespace RecipesApp.Controllers
             return View();
         }
 
-        public IActionResult ByName()
+        public IActionResult ById(int id)
         {
             return View();
         }

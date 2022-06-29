@@ -220,6 +220,7 @@ h1 {
     font-weight: 600;
     padding-left: 10px;
     margin-bottom: 5px;
+    word-break: break-all;
 }
 
 .comments-section-current-date {

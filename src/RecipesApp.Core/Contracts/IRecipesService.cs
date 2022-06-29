@@ -20,6 +20,10 @@ namespace RecipesApp.Core.Contracts
 
         IEnumerable<RecipeInListViewModel> GetRecipesByName(string name, int page, int itemsPerPage = 12);
 
+        IEnumerable<RecipeInListViewModel> GetRecipesByCategory(int id, int page, int itemsPerPage = 12);
+
+        IEnumerable<RecipeInListViewModel> GetRecipesByCategory(string name, int page, int itemsPerPage = 12);
+
         Task UpdateAsync(int id, EditRecipeInputModel input);
 
         Task DeleteAsync(int id);

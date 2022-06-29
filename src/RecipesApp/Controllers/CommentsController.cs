@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RecipesApp.Core.Constants;
 using RecipesApp.Core.Contracts;
 using RecipesApp.Core.Models;
 using System.Security.Claims;
@@ -49,7 +50,9 @@ namespace RecipesApp.Controllers
 
             return RedirectToAction("ById", "Recipes", new { id = id });
         }
-        
+
+        [HttpPost]
+        [Authorize(Roles = Roles.Administrator)]
         public async Task<IActionResult> Delete(int id, int recipeId)
         {
             await commentsService.DeleteAsync(id);
