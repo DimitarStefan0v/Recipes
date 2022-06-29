@@ -228,3 +228,9 @@ h1 {
     color: #606060;
     font-size: 1.1em;
 }
+
+#singleCategory .recipe-info {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: auto;
+}
