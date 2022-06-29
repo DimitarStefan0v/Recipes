@@ -19,6 +19,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient<IImageDbService, ImageDbService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<IIngredientsService, IngredientsService>();
+            services.AddTransient<ICommentsService, CommentsService>();
 
             return services;
         }
