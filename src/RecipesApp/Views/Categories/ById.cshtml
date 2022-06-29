@@ -1,1 +1,15 @@
-﻿
+﻿@using RecipesApp.Core.Models
+@model RecipesListViewModel
+
+@{
+    ViewData["Title"] = "Всички рецепти в категория \"" + TempData["CategoryName"] + "\"";
+}
+
+<partial name="_PageTitle" />
+
+<partial name="_RecipesPartial" model="@Model" />
+
+@if (Model.Recipes.Count() > Model.ItemsPerPage)
+{
+    <partial name="_PagingPartial" model="@Model" />
+}

@@ -7,10 +7,13 @@ namespace RecipesApp.Controllers
     public class CategoriesController : Controller
     {
         private readonly IRecipesService recipesService;
+        private readonly ICategoriesService categoriesService;
 
-        public CategoriesController(IRecipesService _recipesService)
+        public CategoriesController(IRecipesService _recipesService,
+            ICategoriesService _categoriesService)
         {
             recipesService = _recipesService;
+            categoriesService = _categoriesService;
         }
 
         public IActionResult Index()
@@ -35,6 +38,8 @@ namespace RecipesApp.Controllers
             };
 
             viewModel.RecipesCount = viewModel.Recipes.Count();
+            var category = categoriesService.GetAllCategories().Where(x => x.Id == id).FirstOrDefault();
+            TempData["CategoryName"] = category.Name;
 
             return View(viewModel);
         }
