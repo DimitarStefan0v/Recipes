@@ -82,18 +82,26 @@
 </section>
 <span id="span-avg-votes" style="display:none">@Model.AverageVotesValue.ToString("0.0")</span>
 
-@if (User.IsInRole(Roles.Administrator))
-{
-    <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
-        <button type="submit">Изтрий</button>
-    </form>
-    <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@Model.Id" id="editLink">Редактирай</a>
-}
-
-<a asp-controller=""></a>
+<section id="button-links">
+    <ul>
+        <li>
+            <a id="addCommentLink" asp-controller="Comments" asp-action="Add" asp-route-id="@Model.Id">Добави коментар</a>
+        </li>
+        @if (User.IsInRole(Roles.Administrator))
+        {
+            <li>
+                <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@Model.Id" id="editLink">Редактирай</a>
+            </li>
+            <li>
+                <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
+                    <button type="submit">Изтрий</button>
+                </form>
+            </li>
+        }
+    </ul>
+</section>
 
 <form method="post" id="antiForgeryForm"></form>
-
 @section Scripts {
     <script src="~/js/starsColoring.js"></script>
     <script>

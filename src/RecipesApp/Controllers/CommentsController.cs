@@ -17,17 +17,20 @@ namespace RecipesApp.Controllers
 
 
         [Authorize]
-        public IActionResult Add()
+        public IActionResult Add(int id)
         {
             var inputModel = new CommentInputModel();
+            inputModel.RecipeId = id;
             return View(inputModel);
         }
 
         [Authorize]
         [HttpPost]
-        public IActionResult Add(CommentInputModel input)
+        public async Task<IActionResult> Add(int id, CommentInputModel input)
         {
-            if(!ModelState.IsValid)
+            input.RecipeId = id;
+
+            if (!ModelState.IsValid)
             {
                 return View(input);
             }
@@ -36,7 +39,7 @@ namespace RecipesApp.Controllers
 
             try
             {
-                commentsService.AddAsync(input, userId);
+                await commentsService.AddAsync(input, userId);
             }
             catch (Exception e)
             {
@@ -44,7 +47,7 @@ namespace RecipesApp.Controllers
                 return View(input);
             }
 
-            return Redirect("/");
+            return RedirectToAction("ById", "Recipes", new { id = id });
         }
     }
 }

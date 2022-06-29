@@ -1,0 +1,21 @@
+﻿@using RecipesApp.Core.Models
+@model CommentInputModel
+
+@{
+    ViewData["Title"] = "Добави нов коментар";
+}
+
+<partial name="_PageTitle" />
+
+<form method="post" id="commentForm">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Content" class="form-label">Добави коментар тук!</label>
+        <textarea asp-for="Content" class="form-control" rows="10"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <input id="submitComment" type="submit" value="Коментирай" asp-route-id="@Model.RecipeId" />
+
+</form>

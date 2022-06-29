@@ -9,7 +9,7 @@ namespace RecipesApp.Core.Models
         [MinLength(1, ErrorMessage = CommentErrorMessages.CommentContentName)]
         public string Content { get; set; }
 
+        [Required]
         public int RecipeId { get; set; }
-
     }
 }
