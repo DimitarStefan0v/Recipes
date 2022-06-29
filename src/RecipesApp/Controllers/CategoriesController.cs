@@ -8,5 +8,10 @@ namespace RecipesApp.Controllers
         {
             return View();
         }
+
+        public IActionResult ByName()
+        {
+            return View();
+        }
     }
 }
