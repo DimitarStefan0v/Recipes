@@ -185,3 +185,35 @@ h1 {
     justify-content: center;
     align-items: center;
 }
+
+.comments-section {
+    width: 600px;
+    margin: auto;
+}
+
+.comments-section-current {
+    border-bottom: 1px solid #e3e3e3;
+    margin-top: 35px;
+}
+
+.comments-section-current-user {
+    text-align: start;
+    color: #606060;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.comments-section-current-content p {
+    width: 100%;
+    color: black;
+    font-size: 1.3em;
+    font-weight: 600;
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+
+.comments-section-current-date {
+    padding-bottom: 10px;
+    color: #606060;
+    font-size: 1.1em;
+}

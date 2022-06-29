@@ -140,6 +140,7 @@ namespace RecipesApp.Core.Services
             {
                 var commentViewModel = new CommentViewModel
                 {
+                    Id = comment.Id,
                     Content = comment.Content,
                     AddedByUser = comment.AddedByUser.ToString(),
                     CreatedOn = comment.CreatedOn,

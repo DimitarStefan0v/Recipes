@@ -104,15 +104,24 @@
 <section class="comments-section">
     @foreach (var comment in Model.Comments)
     {
-        <article class="comments-section-user">
-            <i class="fa-regular fa-user"></i>@comment.AddedByUser
+        <article class="comments-section-current">
+            <article class="comments-section-current-user">
+                <i class="fa-regular fa-user"></i>@comment.AddedByUser
+            </article>
+            <article class="comments-section-current-content">
+                <p>@comment.Content</p>
+            </article>
+            <article class="comments-section-current-date">
+                <i class="fa-regular fa-calendar-days"></i> @comment.CreatedOn
+            </article>
+            @if (User.IsInRole(Roles.Administrator))
+            {
+                <form method="post" asp-controller="Comments" asp-action="Delete" id="deleteCommentBtn" asp-route-id="@comment.Id">
+                    <button type="submit">Изтрий</button>
+                </form>
+            }
         </article>
-        <article class="commets-section-date">
-            <i class="fa-regular fa-calendar-days"></i> @comment.CreatedOn
-        </article>
-        <article class="comments-section-content">
-            <textarea>@comment.Content</textarea>
-        </article>
+
     }
 </section>
 
