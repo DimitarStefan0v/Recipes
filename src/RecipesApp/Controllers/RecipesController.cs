@@ -99,9 +99,10 @@ namespace RecipesApp.Controllers
             {
                 ItemsPerPage = itemPerPage,
                 PageNumber = id,
-                RecipesCount = recipesService.GetCount(),
                 Recipes = recipesService.GetRecipesByName(name, id, 12),
             };
+
+            viewModel.RecipesCount = viewModel.Recipes.Count();
 
             ViewData["SearchString"] = name;
 

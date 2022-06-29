@@ -39,9 +39,10 @@ namespace RecipesApp.Controllers
             {
                 Recipes = recipesService.GetRecipesByIngredients(id, input.Ingredients, 12),
                 ItemsPerPage = itemPerPage,
-                RecipesCount = recipesService.GetCount(),
                 PageNumber = id
             };
+
+            viewModel.RecipesCount = viewModel.Recipes.Count();
 
             return View(viewModel);
         }
