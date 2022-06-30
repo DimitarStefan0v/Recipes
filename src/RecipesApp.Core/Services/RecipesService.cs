@@ -350,5 +350,21 @@ namespace RecipesApp.Core.Services
                 await repo.SaveChangesAsync();
             }
         }
+
+        public bool IsRecipeFavorite(string userId, int recipeId)
+        {
+            var user = repo.All<ApplicationUser>()
+                .Where(x => x.Id == userId)
+                .FirstOrDefault();
+
+            var recipe = user.FavoriteRecipeIds.FirstOrDefault(x => x.RecipeId == recipeId);
+
+            if (recipe != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

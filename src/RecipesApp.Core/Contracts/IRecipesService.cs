@@ -26,6 +26,8 @@ namespace RecipesApp.Core.Contracts
 
         Task AddFavoriteRecipeAsync(string userId, int recipeId);
 
+        bool IsRecipeFavorite(string userId, int recipeId);
+
         Task UpdateAsync(int id, EditRecipeInputModel input);
 
         Task DeleteAsync(int id);

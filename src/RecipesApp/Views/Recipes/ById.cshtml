@@ -53,6 +53,10 @@
 <section>
     <article id="recipe-user-info">
         <ul>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li><i class="fa-regular fa-heart"></i></li>
+            }
             @if (Model.AddedByUser == "adminRecipes@gmail.com")
             {
                 <li>Рецептата е взета от <a href="https://recepti.gotvach.bg/">recepti.gotvach.bg</a></li>
