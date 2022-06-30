@@ -136,6 +136,10 @@ footer {
     width: 31%;
 }
 
+.recipes-container article:hover {
+    box-shadow: -1px 1px 25px #EB6523;
+}
+
 .single-recipe-container-name {
     border-left: 8px solid #FFCD00;
     height: 65px;
