@@ -159,5 +159,31 @@ namespace RecipesApp.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        [Authorize]
+        public async Task<IActionResult> Favorites(int id, int page = 1)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            await recipesService.AddFavoriteRecipeAsync(userId, id);
+
+            if (page <= 0)
+            {
+                return NotFound();
+            }
+
+            int itemPerPage = 12;
+
+            var viewModel = new RecipesListViewModel
+            {
+                ItemsPerPage = itemPerPage,
+                PageNumber = page,
+                Recipes = recipesService.GetFavoriteRecipes(userId, page)
+            };
+
+            viewModel.RecipesCount = viewModel.Recipes.Count();
+
+            return View(viewModel);
+        }
     }
 }
