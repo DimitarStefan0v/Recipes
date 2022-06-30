@@ -250,3 +250,8 @@ h1 {
 .heart i {
     font-size: 3em;
 }
+
+.instructions-and-ingredients-container p:hover, .instructions-and-ingredients-container li:hover {
+    color: #EB6523;
+    font-weight: bold;
+}

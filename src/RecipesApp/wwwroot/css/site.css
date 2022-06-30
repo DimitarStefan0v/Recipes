@@ -252,3 +252,11 @@ footer {
 #favorites-msg a:hover {
     text-decoration: underline;
 }
+
+.single-category-container a:hover {
+    color: #EB6523;
+}
+
+.single-category-container .img-fluid:hover {
+    box-shadow: -1px 1px 25px #EB6523;
+}
