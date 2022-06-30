@@ -56,7 +56,7 @@
             @if (Model.IsRecipeFavorite)
             {
                 <li class="heart">
-                    <a data-toggle="tooltip" title="Премахни от любими">
+                    <a asp-action="RemoveAsync" asp-controller="Recipes" asp-route-id="@Model.Id" data-toggle="tooltip" title="Премахни от любими">
                         <i style="color: Red;" class="fa-solid fa-heart"></i>
                     </a>
                 </li>
@@ -64,7 +64,7 @@
             else
             {
                 <li class="heart">
-                    <a asp-controller="Recipes" asp-action="AddAsync" asp-route-id="@Model.Id" data-toggle="tooltip" title="Добави в любими">
+                    <a asp-action="AddToFavorites" asp-controller="Recipes" asp-route-id="@Model.Id" data-toggle="tooltip" title="Добави в любими">
                         <i style="color: Red;" class="fa-regular fa-heart"></i>
                     </a>
                 </li>

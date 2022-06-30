@@ -238,3 +238,17 @@ footer {
     text-decoration: none;
     color: black;
 }
+
+#favorites-msg {
+    font-size: 1.7em;
+    line-height: 2em;
+}
+
+#favorites-msg a {
+    text-decoration: none;
+    color: #EB6523;
+}
+
+#favorites-msg a:hover {
+    text-decoration: underline;
+}

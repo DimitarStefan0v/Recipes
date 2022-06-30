@@ -161,8 +161,7 @@ namespace RecipesApp.Controllers
         }
 
         [Authorize]
-
-        public async Task<IActionResult> AddAsync(int id)
+        public async Task<IActionResult> AddToFavorites(int id)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await recipesService.AddFavoriteRecipeAsync(userId, id);
@@ -199,6 +198,11 @@ namespace RecipesApp.Controllers
             }
 
             return View(viewModel);
+        }
+
+        public async Task<IActionResult> RemoveAsync(int id)
+        {
+            return RedirectToAction(nameof(Favorites));
         }
     }
 }

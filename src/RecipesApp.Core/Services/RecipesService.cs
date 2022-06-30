@@ -336,19 +336,31 @@ namespace RecipesApp.Core.Services
         {
             var user = repo.All<ApplicationUser>()
                 .Where(x => x.Id == userId)
+                .Select(x => x.Id)
                 .FirstOrDefault();
 
-            if (user != null)
+            if (user == null)
             {
-                var favoriteRecipe = new FavoriteRecipeId
-                {
-                    RecipeId = recipeId,
-                    LikedByUserId = userId,
-                };
-
-                await repo.AddAsync(favoriteRecipe);
-                await repo.SaveChangesAsync();
+                return;
             }
+
+            var favoriteRecipe = repo.All<FavoriteRecipeId>()
+                .Where(x => x.LikedByUserId == user && x.RecipeId == recipeId)
+                .FirstOrDefault();
+
+            if (favoriteRecipe != null)
+            {
+                return;   
+            }
+
+            favoriteRecipe = new FavoriteRecipeId
+            {
+                RecipeId = recipeId,
+                LikedByUserId = user
+            };
+
+            await repo.AddAsync(favoriteRecipe);
+            await repo.SaveChangesAsync();
         }
 
         public bool IsRecipeFavorite(string userId, int recipeId)
@@ -357,14 +369,19 @@ namespace RecipesApp.Core.Services
                 .Where(x => x.Id == userId)
                 .FirstOrDefault();
 
-            var recipe = user?.FavoriteRecipeIds.FirstOrDefault(x => x.RecipeId == recipeId);
-
-            if (recipe != null)
+            if (user == null)
             {
-                return true;
+                return false;
             }
 
-            return false;
+            var recipe = user.FavoriteRecipeIds.FirstOrDefault(x => x.RecipeId == recipeId);
+
+            if (recipe == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public IEnumerable<RecipeInListViewModel> GetFavoriteRecipes(string userId, int page, int itemsPerPage = 12)
