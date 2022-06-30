@@ -203,8 +203,12 @@ namespace RecipesApp.Controllers
             return View(viewModel);
         }
 
-        public async Task<IActionResult> RemoveAsync(int id)
+        [Authorize]
+        public async Task<IActionResult> DeleteFromFavorites(int id)
         {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            await recipesService.DeleteFavoriteRecipe(userId, id);
             return RedirectToAction(nameof(Favorites));
         }
     }

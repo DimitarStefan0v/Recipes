@@ -14,16 +14,19 @@ namespace RecipesApp.Core.Services
         private readonly IImageDbService imageDbService;
         private readonly ICloudImageService cloudImageService;
         private readonly IVotesService votesService;
+        private readonly ApplicationDbContext applicationDbContext; // Used only for Hard Delete
 
         public RecipesService(IApplicationDbRepository _repo,
             IImageDbService _imageDbService,
             ICloudImageService _cloudImageService,
-            IVotesService _votesService)
+            IVotesService _votesService,
+            ApplicationDbContext _applicationDbContext)
         {
             repo = _repo;
             imageDbService = _imageDbService;
             cloudImageService = _cloudImageService;
             votesService = _votesService;
+            applicationDbContext = _applicationDbContext;
         }
 
         public async Task CreateAsync(RecipeInputModel input, string userId)
@@ -442,7 +445,8 @@ namespace RecipesApp.Core.Services
 
             if (favoriteRecipeToRemove != null)
             {
-                await repo.DeleteAsync<FavoriteRecipeId>(favoriteRecipeToRemove);
+                applicationDbContext.FavoriteRecipeIds.Remove(favoriteRecipeToRemove);
+                // ApplicationDbContext used only here for HardDelete
                 await repo.SaveChangesAsync();
             }
         }
