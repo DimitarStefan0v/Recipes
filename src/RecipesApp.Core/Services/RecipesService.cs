@@ -433,5 +433,18 @@ namespace RecipesApp.Core.Services
             
             return recipesToReturn;
         }
+
+        public async Task DeleteFavoriteRecipe(string userId, int recipeId)
+        {
+            var favoriteRecipeToRemove = repo.AllReadonly<FavoriteRecipeId>()
+                .Where(x => x.LikedByUserId == userId && x.RecipeId == recipeId)
+                .FirstOrDefault();
+
+            if (favoriteRecipeToRemove != null)
+            {
+                await repo.DeleteAsync<FavoriteRecipeId>(favoriteRecipeToRemove);
+                await repo.SaveChangesAsync();
+            }
+        }
     }
 }

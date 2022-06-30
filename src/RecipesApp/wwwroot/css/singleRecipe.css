@@ -152,6 +152,17 @@ h1 {
 #recipe-user-info {
     margin: auto;
     text-align: end;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+#recipe-user-info a {
+    text-decoration: none;
+    color: #EB6523;
+}
+
+#recipe-user-info a:hover {
+    text-decoration: underline;
 }
 
 #recipe-user-info ul li {

@@ -33,5 +33,7 @@ namespace RecipesApp.Core.Contracts
         Task UpdateAsync(int id, EditRecipeInputModel input);
 
         Task DeleteAsync(int id);
+
+        Task DeleteFavoriteRecipe(string userId, int recipeId);
     }
 }
