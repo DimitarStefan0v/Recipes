@@ -9,9 +9,11 @@ namespace RecipesApp.Infrastructure.Data
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(AddedByUser))]
-        public string AddedByUserId { get; set; }
+        public int RecipeId { get; set; }
 
-        public ApplicationUser AddedByUser { get; set; }
+        [ForeignKey(nameof(LikedByUser))]
+        public string LikedByUserId { get; set; }
+
+        public ApplicationUser LikedByUser { get; set; }
     }
 }

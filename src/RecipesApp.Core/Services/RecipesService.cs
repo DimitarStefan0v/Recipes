@@ -3,6 +3,7 @@ using RecipesApp.Core.Constants;
 using RecipesApp.Core.Contracts;
 using RecipesApp.Core.Models;
 using RecipesApp.Infrastructure.Data;
+using RecipesApp.Infrastructure.Data.Identity;
 using RecipesApp.Infrastructure.Data.Repositories;
 
 namespace RecipesApp.Core.Services
@@ -329,6 +330,25 @@ namespace RecipesApp.Core.Services
                 }).ToList();
 
             return recipes;
+        }
+
+        public async Task AddFavoriteRecipeAsync(string userId, int recipeId)
+        {
+            var user = repo.All<ApplicationUser>()
+                .Where(x => x.Id == userId)
+                .FirstOrDefault();
+
+            if (user != null)
+            {
+                var favoriteRecipe = new FavoriteRecipeId
+                {
+                    RecipeId = recipeId,
+                    LikedByUserId = userId,
+                };
+
+                await repo.AddAsync(favoriteRecipe);
+                await repo.SaveChangesAsync();
+            }
         }
     }
 }

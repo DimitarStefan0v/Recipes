@@ -24,6 +24,8 @@ namespace RecipesApp.Core.Contracts
 
         IEnumerable<RecipeInListViewModel> GetRecipesByCategory(string name, int page, int itemsPerPage = 12);
 
+        Task AddFavoriteRecipeAsync(string userId, int recipeId);
+
         Task UpdateAsync(int id, EditRecipeInputModel input);
 
         Task DeleteAsync(int id);
