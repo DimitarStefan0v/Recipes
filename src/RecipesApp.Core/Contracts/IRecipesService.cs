@@ -28,6 +28,8 @@ namespace RecipesApp.Core.Contracts
 
         bool IsRecipeFavorite(string userId, int recipeId);
 
+        IEnumerable<RecipeInListViewModel> GetFavoriteRecipes(string userId, int page, int itemsPerPage = 12);
+
         Task UpdateAsync(int id, EditRecipeInputModel input);
 
         Task DeleteAsync(int id);

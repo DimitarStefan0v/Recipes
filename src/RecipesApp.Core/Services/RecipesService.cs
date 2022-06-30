@@ -366,5 +366,30 @@ namespace RecipesApp.Core.Services
 
             return false;
         }
+
+        public IEnumerable<RecipeInListViewModel> GetFavoriteRecipes(string userId, int page, int itemsPerPage = 12)
+        {
+            var user = repo.AllReadonly<ApplicationUser>()
+                .FirstOrDefault(x => x.Id == userId);
+
+            var query = repo.All<Recipe>().Where(x => x.IsDeleted == false);
+
+            foreach (var favoriteRecipe in user.FavoriteRecipeIds)
+            {
+                query.Where(x => x.Id == favoriteRecipe.RecipeId);
+            }
+
+            return query
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new RecipeInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryId = x.Category.Id,
+                    CategoryName = x.Category.Name,
+                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
+                }).ToList();
+        }
     }
 }
