@@ -11,5 +11,7 @@ namespace RecipesApp.Infrastructure.Data.Identity
         public ICollection<CloudImage> Images { get; set; } = new HashSet<CloudImage>();
 
         public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+
+        public ICollection<FavoriteRecipeId> FavoriteRecipeIds { get; set; } = new HashSet<FavoriteRecipeId>();
     }
 }

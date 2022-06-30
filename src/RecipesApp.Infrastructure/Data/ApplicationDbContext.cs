@@ -26,6 +26,8 @@ namespace RecipesApp.Infrastructure.Data
 
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<FavoriteRecipeId> FavoriteRecipeIds { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //builder.Entity<Category>()

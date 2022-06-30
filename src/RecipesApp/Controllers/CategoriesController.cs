@@ -51,5 +51,31 @@ namespace RecipesApp.Controllers
 
             return View(viewModel);
         }
+
+        public IActionResult ByName(string name, int pageNumber = 1)
+        {
+            if (pageNumber <= 0)
+            {
+                return NotFound();
+            }
+
+            int itemPerPage = 12;
+
+            var viewModel = new RecipesListViewModel
+            {
+                ItemsPerPage = itemPerPage,
+                PageNumber = pageNumber,
+                Recipes = recipesService.GetRecipesByCategory(name, pageNumber, 12),
+            };
+
+            viewModel.RecipesCount = viewModel.Recipes.Count();
+            var category = categoriesService.GetCategoriesWithImages()
+                .Where(x => x.Name == name)
+                .FirstOrDefault();
+            TempData["CategoryName"] = category.Name;
+            TempData["CategoryImage"] = category.ImgUrl;
+
+            return View(viewModel);
+        }
     }
 }
