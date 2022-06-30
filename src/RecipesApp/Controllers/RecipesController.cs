@@ -83,6 +83,11 @@ namespace RecipesApp.Controllers
         public IActionResult ById(int id)
         {
             var viewModel = recipesService.GetById(id);
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            viewModel.IsRecipeFavorite = recipesService.IsRecipeFavorite(userId, id);
+
             return View(viewModel);
         }
 

@@ -357,7 +357,7 @@ namespace RecipesApp.Core.Services
                 .Where(x => x.Id == userId)
                 .FirstOrDefault();
 
-            var recipe = user.FavoriteRecipeIds.FirstOrDefault(x => x.RecipeId == recipeId);
+            var recipe = user?.FavoriteRecipeIds.FirstOrDefault(x => x.RecipeId == recipeId);
 
             if (recipe != null)
             {

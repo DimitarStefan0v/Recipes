@@ -34,5 +34,7 @@
         public double AverageVotesValue { get; set; }
 
         public ICollection<CommentViewModel> Comments { get; set; }
+
+        public bool IsRecipeFavorite { get; set; }
     }
 }
