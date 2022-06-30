@@ -91,7 +91,7 @@ namespace RecipesApp.Controllers
             return View(viewModel);
         }
 
-        public IActionResult ByName([FromQuery(Name = "searchterm")]string name, int id = 1)
+        public IActionResult ByName([FromQuery(Name = "searchterm")] string name, int id = 1)
         {
             if (id <= 0)
             {
@@ -161,11 +161,19 @@ namespace RecipesApp.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Favorites(int id, int page = 1)
+
+        public async Task<IActionResult> AddAsync(int id)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
             await recipesService.AddFavoriteRecipeAsync(userId, id);
+
+            return RedirectToAction(nameof(Favorites));
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Favorites(int page = 1)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             if (page <= 0)
             {
@@ -181,7 +189,14 @@ namespace RecipesApp.Controllers
                 Recipes = recipesService.GetFavoriteRecipes(userId, page)
             };
 
-            viewModel.RecipesCount = viewModel.Recipes.Count();
+            if (viewModel.Recipes != null)
+            {
+                viewModel.RecipesCount = viewModel.Recipes.Count();
+            }
+            else
+            {
+                viewModel.RecipesCount = 0;
+            }
 
             return View(viewModel);
         }

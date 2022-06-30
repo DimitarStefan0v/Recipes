@@ -96,7 +96,7 @@ namespace RecipesApp.Core.Services
         {
             var recipes = repo.AllReadonly<Recipe>()
                 .Where(x => x.IsDeleted == false)
-                .OrderByDescending(x => x.Id)
+                .OrderByDescending(x => x.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .Select(x => new RecipeInListViewModel
@@ -371,6 +371,11 @@ namespace RecipesApp.Core.Services
         {
             var user = repo.AllReadonly<ApplicationUser>()
                 .FirstOrDefault(x => x.Id == userId);
+
+            if (!user.FavoriteRecipeIds.Any())
+            {
+                return null;
+            }
 
             var query = repo.All<Recipe>().Where(x => x.IsDeleted == false);
 
