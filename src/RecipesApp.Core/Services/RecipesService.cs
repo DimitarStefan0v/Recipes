@@ -367,6 +367,7 @@ namespace RecipesApp.Core.Services
         {
             var user = repo.All<ApplicationUser>()
                 .Where(x => x.Id == userId)
+                .Select(x => x.Id)
                 .FirstOrDefault();
 
             if (user == null)
@@ -374,9 +375,11 @@ namespace RecipesApp.Core.Services
                 return false;
             }
 
-            var recipe = user.FavoriteRecipeIds.FirstOrDefault(x => x.RecipeId == recipeId);
+            var isRecipeFavorite = repo.AllReadonly<FavoriteRecipeId>()
+                .Where(x => x.LikedByUserId == user && x.RecipeId == recipeId)
+                .FirstOrDefault();
 
-            if (recipe == null)
+            if (isRecipeFavorite == null)
             {
                 return false;
             }
@@ -387,31 +390,48 @@ namespace RecipesApp.Core.Services
         public IEnumerable<RecipeInListViewModel> GetFavoriteRecipes(string userId, int page, int itemsPerPage = 12)
         {
             var user = repo.AllReadonly<ApplicationUser>()
-                .FirstOrDefault(x => x.Id == userId);
+                .Where(x => x.Id == userId)
+                .Select(x => x.Id)
+                .FirstOrDefault();
 
-            if (!user.FavoriteRecipeIds.Any())
+            if (user == null)
             {
                 return null;
             }
 
-            var query = repo.All<Recipe>().Where(x => x.IsDeleted == false);
+            var favoriteRecipes = repo.AllReadonly<FavoriteRecipeId>()
+                .Where(x => x.LikedByUserId == user)
+                .ToList();
 
-            foreach (var favoriteRecipe in user.FavoriteRecipeIds)
+            var recipesToReturn = new List<RecipeInListViewModel>();
+
+            foreach (var favoriteRecipe in favoriteRecipes)
             {
-                query.Where(x => x.Id == favoriteRecipe.RecipeId);
+                var recipe = repo.AllReadonly<Recipe>()
+                    .Where(x => x.IsDeleted == false)
+                    .Select(x => new RecipeInListViewModel
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        CategoryId = x.Category.Id,
+                        CategoryName = x.Category.Name,
+                        Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
+                    })
+                    .FirstOrDefault(x => x.Id == favoriteRecipe.RecipeId);
+
+                if (recipe != null)
+                {
+                    recipesToReturn.Add(recipe);
+                }
             }
 
-            return query
+            recipesToReturn
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
-                .Select(x => new RecipeInListViewModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    CategoryId = x.Category.Id,
-                    CategoryName = x.Category.Name,
-                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
-                }).ToList();
+                .ToList();
+
+            
+            return recipesToReturn;
         }
     }
 }
