@@ -93,8 +93,36 @@ nav {
 footer {
     background-color: #292637;
     margin-top: 40px;
-    min-height: 100px;
+    max-height: 800px;
     color: white;
+}
+
+footer section {
+    max-width: 1070px;
+    margin: auto;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.4em;
+}
+
+footer a:hover {
+    color: #EB6523;
+    text-decoration: underline;
+}
+
+footer ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+footer ul li {
+    list-style-type: none;
+    margin: 10px;
 }
 
 .page-title {
@@ -117,8 +145,8 @@ footer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: start;
-    margin: auto;
+    justify-content: flex-start;
+    align-content: center;
     width: 100%;
 }
 
@@ -132,7 +160,7 @@ footer {
 }
 
 .single-recipe-container {
-    margin: 10px auto;
+    margin: 10px;
     width: 31%;
 }
 
@@ -263,4 +291,18 @@ footer {
 
 .single-category-container .img-fluid:hover {
     box-shadow: -1px 1px 25px #EB6523;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0;
+    vertical-align: 0;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    float: right;
+    margin-top: 23px;
+    margin-left: 3px;
 }
