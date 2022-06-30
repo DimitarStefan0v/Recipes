@@ -80,13 +80,16 @@ namespace RecipesApp.Controllers
             return View(viewModel);
         }
 
-        public IActionResult ById(int id)
+        public async Task<IActionResult> ById(int id)
         {
             var viewModel = recipesService.GetById(id);
 
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             viewModel.IsRecipeFavorite = recipesService.IsRecipeFavorite(userId, id);
+
+            var user = await userManager.FindByNameAsync(viewModel.AddedByUser);
+            viewModel.IsTakenFromRecipeGotvachWebsite = await userManager.IsInRoleAsync(user, Roles.Administrator);
 
             return View(viewModel);
         }

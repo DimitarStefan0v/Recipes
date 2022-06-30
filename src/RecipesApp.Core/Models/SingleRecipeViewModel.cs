@@ -36,5 +36,7 @@
         public ICollection<CommentViewModel> Comments { get; set; }
 
         public bool IsRecipeFavorite { get; set; }
+
+        public bool IsTakenFromRecipeGotvachWebsite { get; set; }
     }
 }
