@@ -55,11 +55,19 @@
         <ul>
             @if (Model.IsRecipeFavorite)
             {
-                <li><i class="fa-solid fa-heart"></i></li>
+                <li class="heart">
+                    <a data-toggle="tooltip" title="Премахни от любими">
+                        <i style="color: Red;" class="fa-solid fa-heart"></i>
+                    </a>
+                </li>
             }
             else
             {
-                <li><i class="fa-regular fa-heart"></i></li>
+                <li class="heart">
+                    <a data-toggle="tooltip" title="Добави в любими">
+                        <i style="color: Red;" class="fa-regular fa-heart"></i>
+                    </a>
+                </li>
             }
             @if (Model.AddedByUser == "adminRecipes@gmail.com")
             {
