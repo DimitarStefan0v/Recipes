@@ -7,8 +7,8 @@
 <ul id="acc-links">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li>
-            <a id="accountDetails" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Акаунт</a>
+        <li id="accDetailsLiEl">
+            <a id="accountDetails" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fa-regular fa-user"></i></a>
         </li>
         <li>
             <form id="logOutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -18,7 +18,7 @@
     }
     else
     {
-        <li>
+        <li id="logInLiEl">
             <a id="logIn" asp-area="Identity" asp-page="/Account/Login">Вход</a>
         </li>
     }
