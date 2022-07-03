@@ -5,10 +5,6 @@
     border-radius: 5px;
 }
 
-h1 {
-    text-align: center;
-}
-
 .recipe-img {
     max-width: 600px;
 }
@@ -161,7 +157,7 @@ h1 {
     color: #EB6523;
 }
 
-#recipe-user-info a:hover {
+#info-origin:hover {
     text-decoration: underline;
 }
 
@@ -254,4 +250,8 @@ h1 {
 .instructions-and-ingredients-container p:hover, .instructions-and-ingredients-container li:hover {
     color: #EB6523;
     font-weight: bold;
+}
+
+.fa-user {
+    padding-right: 5px;
 }

@@ -4,22 +4,15 @@
 @inject UserManager<ApplicationUser> UserManager
 
 
-<ul id="acc-links">
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <li id="accDetailsLiEl">
-            <a id="accountDetails" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fa-regular fa-user"></i></a>
-        </li>
-        <li>
-            <form id="logOutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" id="logOutBtn">ИЗЛЕЗ</button>
-            </form>
-        </li>
-    }
-    else
-    {
-        <li id="logInLiEl">
-            <a id="logIn" asp-area="Identity" asp-page="/Account/Login">Вход</a>
-        </li>
-    }
-</ul>
+@if (SignInManager.IsSignedIn(User))
+{
+    <a id="accInfo" class="navbar-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fa-regular fa-user"></i></a>
+    <form id="logOutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button type="submit" id="logOutBtn">ИЗЛЕЗ</button>
+    </form>
+
+}
+else
+{
+    <a id="logIn"  class="navbar-link" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+}
