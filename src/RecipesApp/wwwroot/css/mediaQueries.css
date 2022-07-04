@@ -15,6 +15,60 @@
         max-width: 500px;
     }
 
+    .topnav .navbar-link, .topnav div {
+        display: none;
+    }
+
+    #collapseMenu {
+        display: inline-block;
+        margin-left: 20px;
+        position: relative;
+    }
+
+        #collapseMenu .custom-dropdown-content {
+            width: 417px;
+            background-color: #292637 !important;
+            margin-top: 0px;
+            color: white;
+            max-height: 500px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+
+            #collapseMenu .custom-dropdown-content a:hover {
+                color: #EB6523 !important;
+                text-decoration: underline;
+                background-color: black;
+            }
+
+        #collapseMenu #search-form {
+            position: relative;
+            height: 40px;
+            background-color: inherit;
+        }
+
+            #collapseMenu #search-form input {
+                left: 0;
+                border-radius: 0px;
+                font-size: 0.8em;
+                background-color: #292637;
+                color: white;
+                padding-right: 25px;
+                padding-left: 5px;
+                border-bottom: none;
+            }
+
+    ::placeholder {
+        color: white;
+    }
+
+    #collapseMenu #search-form button {
+        right: 0px;
+        border-radius: 0px;
+        padding: 5px;
+    }
+
+   
 }
 
 @media all and (max-width: 600px) {
@@ -39,9 +93,9 @@
         max-width: 400px;
     }
 
-    .recipe-img img {
-        height: 200px;
-    }
+        .recipe-img img {
+            height: 200px;
+        }
 
     .instructions-and-ingredients-container {
         flex-direction: column;

@@ -31,16 +31,20 @@ h1 {
     height: 70px;
 }
 
-nav {
+#navbar {
     max-width: 1070px;
     margin: auto;
     font-size: 1.8em;
     height: 100%;
-    display: flex;
+    /*display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 5px;
+    gap: 5px;*/
     position: relative;
+}
+
+#onSmallScreens {
+    display: none;
 }
 
 #collapseMenu {
@@ -51,8 +55,17 @@ nav {
     text-decoration: none;
     color: #4A4A4A;
     height: 100%;
-    padding: 10px;
+    padding-bottom: 16px;
+    padding-top: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
     text-transform: uppercase;
+}
+
+#navbar #navbar-link, #navbar button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .custom-dropdown-menu {
@@ -70,6 +83,7 @@ nav {
 
 #links-dropdown-content {
     background-color: #292637 !important;
+    margin-top: 15px;
 }
 
 #links-dropdown-content a:hover {
@@ -95,20 +109,14 @@ nav {
     position: relative;
     height: 70px;
     width: 90px;
-    padding-right: 15px;
+    padding: 10px;
     color: #4A4A4A;
     text-transform: uppercase;
 }
 
 #id-custom-dropdown-btn {
     width: 150px;
-}
-
-.fa.fa-caret-down {
-    margin-left: 3px;
-    position: absolute;
-    bottom: 10px;
-    font-size: 0.6em;
+    display: flex;
 }
 
 #navbar button {
@@ -127,6 +135,7 @@ nav {
     width: 90px;
     position: absolute;
     right:115px;
+    padding: 10px !important;
 }
 
 #accInfo i {
@@ -139,6 +148,7 @@ nav {
     height: 70px;
     position: absolute;
     right: 10px;
+    bottom: 0;
 }
 
 #logOutBtn {
@@ -148,6 +158,15 @@ nav {
 #logIn {
     position: absolute;
     right: 10px;
+}
+
+.triangle-top {
+    border-bottom: 15px solid #292637;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    position: absolute;
+    top: -15px;
+    left: 17px;
 }
 
 .container {
@@ -230,7 +249,7 @@ footer ul li {
     width: 31%;
 }
 
-.recipes-container article:hover {
+.single-recipe-container:hover {
     box-shadow: -1px 1px 25px #EB6523;
 }
 
@@ -300,7 +319,7 @@ footer ul li {
 }
 
 #search-form {
-    width: 500px;
+    width: 400px;
     background-color: #dfdfdf;
     height: 120px;
     display: flex;
@@ -308,112 +327,31 @@ footer ul li {
     justify-content: center;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    position: relative;
 }
 
 #search-form input {
     width: 300px;
-    height: 50px;
-    display: inline-block;
+    height: 40px;
     padding: 10px;
-    font-size: 1em;
+    font-size: 0.7em;
     border: none;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+    position: absolute;
+    left: 20px;
 }
 
 #search-form button {
     color: white;
     margin: 0px;
-    font-size: 1.1em;
+    height: 40px;
     background-color: #FF9900;
     border: none;
-    float: right;
-    width: fit-content;
     border-radius: 10px;
+    position: absolute;
+    right: 20px;
+    padding-bottom: 15px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*@media screen and (max-width: 1000px) {
-    .topnav a, .dropdown .dropbtn {
-        display: none;
-    }
-
-    #search-form {
-        display: block;
-    }
-
-        #search-form button {
-            float: none;
-        }
-
-    #iconImg, #firstLink {
-        display: none;
-    }
-
-    .topnav a.icon {
-        font-size: 1.5em;
-        margin-left: 20px;
-        width: 80px;
-        padding: 10px;
-        float: left;
-        display: block;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .topnav.responsive {
-        position: relative;
-        background-color: white;
-    }
-
-        .topnav.responsive a.icon {
-            position: relative;
-            left: 0;
-            top: 0;
-            margin-left: 20px;
-            width: 80px;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .topnav.responsive a {
-            float: none;
-            display: block;
-            text-align: left;
-            background-color: white;
-            width: 100%;
-        }
-
-        .topnav.responsive .dropdown {
-            float: none;
-            background-color: white;
-            width: 100%;
-        }
-
-        .topnav.responsive .dropdown-content {
-            position: relative;
-            width: 100%;
-        }
-
-        .topnav.responsive .dropdown .dropbtn {
-            display: block;
-            width: 100%;
-            text-align: left;
-        }
-}
-*/

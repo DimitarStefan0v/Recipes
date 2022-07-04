@@ -1,6 +1,10 @@
 ﻿@using RecipesApp.Core.Constants
 @using RecipesApp.Core.Contracts
+@using Microsoft.AspNetCore.Identity
+@using RecipesApp.Infrastructure.Data.Identity
 @inject ICategoriesService categoriesService
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
     var categories = categoriesService.GetAllCategories();
 }
@@ -26,10 +30,40 @@
 <body>
     <header id="navbar-wrapper">
         <nav class="topnav" id="navbar">
-            <a id="collapseMenu" href="#" onclick="myFunction()">&#9776;</a>
+            <div id="collapseMenu" class="custom-dropdown-menu">
+                <button class="custom-dropdown-btn" onclick="myFunction()">&#9776;</button>
+                <div class="custom-dropdown-content">
+                    <a class="dropdown-link" asp-controller="Home" asp-action="Index">Начало</a>
+                    <a class="dropdown-link" asp-controller="Recipes" asp-action="All">Всички рецепти</a>
+                    <a class="dropdown-link" asp-controller="SearchRecipes" asp-action="Index">Търси по съставки</a>
+                    @foreach (var category in categories)
+                    {
+                        <a class="dropdown-link" asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a>
+                    }
+                    <a class="dropdown-link" asp-controller="Recipes" asp-action="Create">Добави рецепта</a>
+                    <a class="dropdown-link" asp-controller="Recipes" asp-action="Favorites">Любими</a>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a class="dropdown-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Акаунт</a>
+                        
+
+                    }
+                    else
+                    {
+                        <a class="dropdown-link" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+                    }
+                    <form method="get" id="search-form" asp-controller="Recipes" asp-action="ByName">
+                        <input id="ipt_search" placeholder="Име на рецепта" type="search" name="searchterm" />
+                        <button>Намери</button>
+                    </form>
+                </div>
+            </div>
+
+            <a class="navbar-link" asp-controller="Home" asp-action="Index">Начало</a>
             <div class="custom-dropdown-menu">
-                <button id="id-custom-dropdown-btn" class="custom-dropdown-btn">Рецепти<i class="fa fa-caret-down"></i></button>
+                <button id="id-custom-dropdown-btn" class="custom-dropdown-btn">Рецепти</button>
                 <div id="links-dropdown-content" class="custom-dropdown-content">
+                    <div class="triangle-top"></div>
                     <a class="dropdown-link" asp-controller="Recipes" asp-action="All">Всички</a>
                     <a class="dropdown-link" asp-controller="SearchRecipes" asp-action="Index">Търси по съставки</a>
                     @foreach (var category in categories)
@@ -41,56 +75,16 @@
             <a class="navbar-link" asp-controller="Recipes" asp-action="Create">Добави рецепта</a>
             <a class="navbar-link" asp-controller="Recipes" asp-action="Favorites">Любими</a>
             <div class="custom-dropdown-menu">
-                <button class="custom-dropdown-btn"><i class="fas fa-search" aria-hidden="true"></i><i class="fa fa-caret-down"></i></button>
+                <button class="custom-dropdown-btn"><i class="fas fa-search" aria-hidden="true"></i></button>
                 <div class="custom-dropdown-content">
                     <form method="get" id="search-form" asp-controller="Recipes" asp-action="ByName">
-                    <input id="ipt_search" placeholder="  Име на рецепта" type="search" name="searchterm" />
-                    <button>Намери</button>
+                        <input id="ipt_search" placeholder="Име на рецепта" type="search" name="searchterm" />
+                        <button>Намери</button>
                     </form>
                 </div>
             </div>
             <partial name="_LoginPartial" />
         </nav>
-        @*<nav>
-        <div class="topnav" id="myTopnav">
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-        <a id="firstLink" asp-controller="Home" asp-action="Index"><img id="iconImg" src="@DefaultImages.WebsiteIconImage" /></a>
-        <div class="dropdown">
-        <button class="dropbtn">
-        Рецепти
-        <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-        <a asp-controller="Recipes" asp-action="All">Всички</a>
-        <a asp-area="" asp-controller="SearchRecipes" asp-action="Index">Търси по съставки</a>
-
-        @foreach (var category in categories)
-        {
-        <a asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a>
-        }
-        </div>
-        </div>
-
-        <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Create">Добави рецепта</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Favorites">Любими</a>
-        <div class="dropdown">
-        <button class="dropbtn">
-        <i class="fas fa-search" aria-hidden="true"></i>
-        <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-        <form method="get" id="search-form" asp-controller="Recipes" asp-action="ByName">
-        <article>
-        <input id="ipt_search" placeholder="  Име на рецепта" type="search" name="searchterm" />
-        <button>Намери</button>
-        </article>
-        </form>
-        </div>
-        </div>
-
-        </div>
-        <partial name="_LoginPartial" />
-        </nav>*@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
