@@ -97,19 +97,7 @@ namespace RecipesApp.Core.Services
 
         public IEnumerable<RecipeInListViewModel> GetAll(int page, int itemsPerPage = 12)
         {
-            var recipes = repo.AllReadonly<Recipe>()
-                .Where(x => x.IsDeleted == false)
-                .OrderByDescending(x => x.CreatedOn)
-                .Skip((page - 1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .Select(x => new RecipeInListViewModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    CategoryId = x.Category.Id,
-                    CategoryName = x.Category.Name,
-                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
-                }).ToList();
+            List<RecipeInListViewModel> recipes = GetAllRecipesWithPages(page, itemsPerPage);
 
             return recipes;
         }
@@ -289,9 +277,24 @@ namespace RecipesApp.Core.Services
         public async Task DeleteAsync(int id)
         {
             var recipe = repo.All<Recipe>().FirstOrDefault(x => x.Id == id);
-            recipe.IsDeleted = true;
+            //recipe.IsDeleted = true;
+            if (recipe != null)
+            {
+                var comments = repo.All<Comment>().Where(x => x.RecipeId == recipe.Id);
+                var votes = repo.All<Vote>().Where(x => x.RecipeId == recipe.Id);
 
-            await repo.SaveChangesAsync();
+                var image = repo.All<CloudImage>().FirstOrDefault(x => x.RecipeId == recipe.Id);
+                if (image != null)
+                {
+                    applicationDbContext.Remove(image);
+                }
+
+                applicationDbContext.RemoveRange(comments);
+                applicationDbContext.RemoveRange(votes);
+                applicationDbContext.Remove(recipe);
+
+                await repo.SaveChangesAsync();
+            }
         }
 
         public IEnumerable<RecipeInListViewModel> GetRecipesByName(string name, int page, int itemsPerPage = 12)
@@ -371,7 +374,7 @@ namespace RecipesApp.Core.Services
 
             if (favoriteRecipe != null)
             {
-                return;   
+                return;
             }
 
             favoriteRecipe = new FavoriteRecipeId
@@ -451,7 +454,7 @@ namespace RecipesApp.Core.Services
                 .Take(itemsPerPage)
                 .ToList();
 
-            
+
             return recipesToReturn;
         }
 
@@ -464,10 +467,27 @@ namespace RecipesApp.Core.Services
             if (favoriteRecipeToRemove != null)
             {
                 applicationDbContext.FavoriteRecipeIds.Remove(favoriteRecipeToRemove);
-                // ApplicationDbContext used only here for HardDelete
                 await repo.SaveChangesAsync();
             }
         }
 
+
+
+        private List<RecipeInListViewModel> GetAllRecipesWithPages(int page, int itemsPerPage)
+        {
+            return repo.AllReadonly<Recipe>()
+                .Where(x => x.IsDeleted == false)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new RecipeInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryId = x.Category.Id,
+                    CategoryName = x.Category.Name,
+                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
+                }).ToList();
+        }
     }
 }
