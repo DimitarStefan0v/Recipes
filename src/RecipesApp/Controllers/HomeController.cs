@@ -50,6 +50,7 @@ namespace RecipesApp.Controllers
             {
                 RecentRecipes = recipesService.GetRecentRecipes(),
                 MostVotedRecipes = recipesService.GetMostVotedRecipes(),
+                MostCommentedRecipes = recipesService.GetMostCommentedRecipes(),
                 Categories = categoriesService.GetCategoriesWithImages()
             };
 

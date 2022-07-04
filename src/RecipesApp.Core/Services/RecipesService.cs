@@ -208,6 +208,24 @@ namespace RecipesApp.Core.Services
             return recipes;
         }
 
+        public IEnumerable<RecipeInListViewModel> GetMostCommentedRecipes(int count = 3)
+        {
+            var recipes = repo.AllReadonly<Recipe>()
+                .Where(x => x.IsDeleted == false)
+                .OrderByDescending(x => x.Comments.Count)
+                .Take(count)
+                .Select(x => new RecipeInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryId = x.Category.Id,
+                    CategoryName = x.Category.Name,
+                    Image = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl
+                }).ToList();
+
+            return recipes;
+        }
+
         public IEnumerable<RecipeInListViewModel> GetMostVotedRecipes(int count = 3)
         {
             var recipes = repo.AllReadonly<Recipe>()
@@ -450,5 +468,6 @@ namespace RecipesApp.Core.Services
                 await repo.SaveChangesAsync();
             }
         }
+
     }
 }

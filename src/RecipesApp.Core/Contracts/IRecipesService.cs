@@ -16,6 +16,8 @@ namespace RecipesApp.Core.Contracts
 
         IEnumerable<RecipeInListViewModel> GetMostVotedRecipes(int count = 3);
 
+        IEnumerable<RecipeInListViewModel> GetMostCommentedRecipes(int count = 3);
+
         IEnumerable<RecipeInListViewModel> GetRecipesByIngredients(int page, IEnumerable<int> ingredientIds, int itemsPerPage = 12);
 
         IEnumerable<RecipeInListViewModel> GetRecipesByName(string name, int page, int itemsPerPage = 12);
