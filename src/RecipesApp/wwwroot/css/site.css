@@ -258,8 +258,9 @@ footer ul li {
     height: 65px;
     padding: 5px 0 0 10px;
     font-size: 1.3em;
+    line-height: 1.2em;
     color: black;
-    font-weight: 600;
+    font-weight: 300;
     margin-top: 5px;
     background-color: #E7E9ED;
 }

@@ -24,7 +24,7 @@
                     <img src="@recipe.Image" class="img-fluid w-100">
                 </article>
                 <article class="single-recipe-container-name">
-                    <p class="single-recipe-container-name-paragraph">@recipe.Name</p>
+                    <p class="single-recipe-container-name-paragraph">@(recipe.Name.Length > 50 ? recipe.Name.Substring(0, 50) + "..." : recipe.Name)</p>
                 </article>
                 <article class="singe-recipe-category">
                     @recipe.CategoryName
@@ -47,7 +47,7 @@
                     <img src="@recipe.Image" class="img-fluid w-100">
                 </article>
                 <article class="single-recipe-container-name">
-                    <p class="single-recipe-container-name-paragraph">@recipe.Name</p>
+                    <p class="single-recipe-container-name-paragraph">@(recipe.Name.Length > 50 ? recipe.Name.Substring(0, 50) + "..." : recipe.Name)</p>
                 </article>
                 <article class="singe-recipe-category">
                     @recipe.CategoryName
@@ -71,7 +71,7 @@
                     <img src="@recipe.Image" class="img-fluid w-100">
                 </article>
                 <article class="single-recipe-container-name">
-                    <p class="single-recipe-container-name-paragraph">@recipe.Name</p>
+                    <p class="single-recipe-container-name-paragraph">@(recipe.Name.Length > 50 ? recipe.Name.Substring(0, 50   ) + "..." : recipe.Name)</p>
                 </article>
                 <article class="singe-recipe-category">
                     @recipe.CategoryName
