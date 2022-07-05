@@ -7,5 +7,7 @@ namespace RecipesApp.Core.Contracts
         ICollection<CategoriesViewModel> GetAllCategories();
 
         ICollection<IndexCategoryViewModel> GetCategoriesWithImages();
+
+        int GetCategoryIdByName(string name);
     }
 }

@@ -37,7 +37,7 @@
                     <a class="dropdown-link" asp-controller="Recipes" asp-action="All">Всички рецепти</a>
                     @foreach (var category in categories)
                     {
-                        <a class="dropdown-link" asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a>
+                        <a class="dropdown-link" asp-controller="Categories" asp-action="ById" asp-route-categoryId="@category.Id">@category.Name</a>
                     }
                     <a class="dropdown-link" asp-controller="Recipes" asp-action="Create">Добави рецепта</a>
                     <a class="dropdown-link" asp-controller="Recipes" asp-action="Favorites">Любими</a>
@@ -65,7 +65,7 @@
                     <a class="dropdown-link" asp-controller="Recipes" asp-action="All">Всички</a>
                     @foreach (var category in categories)
                     {
-                        <a class="dropdown-link" asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a>
+                        <a class="dropdown-link" asp-controller="Categories" asp-action="ById" asp-route-categoryId="@category.Id">@category.Name</a>
                     }
                     <a class="dropdown-link" asp-controller="SearchRecipes" asp-action="Index">Търси по съставки</a>
                 </div>
@@ -101,7 +101,7 @@
                 @foreach (var category in categories)
                 {
                     <li>
-                        <a asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a>
+                        <a asp-controller="Categories" asp-action="ById" asp-route-categoryId="@category.Id">@category.Name</a>
                     </li>
                 }
             </ul>

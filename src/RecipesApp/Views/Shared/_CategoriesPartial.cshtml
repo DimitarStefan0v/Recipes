@@ -5,7 +5,7 @@
     @foreach (var category in Model.Categories)
     {
         <section class="single-category-container">
-            <a asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">
+            <a asp-controller="Categories" asp-action="ById" asp-route-categoryId="@category.Id">
                 <article class="single-category-container-img">
                     <img src="@category.ImgUrl" alt="@category.Name" class="img-fluid w-100" />
                 </article>

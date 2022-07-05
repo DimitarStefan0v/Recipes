@@ -26,9 +26,9 @@ namespace RecipesApp.Controllers
             return View(viewModel);
         }
 
-        public IActionResult ById(int id, int pageNumber = 1)
+        public IActionResult ById(int categoryId, int pageNumber = 1)
         {
-            if (pageNumber <= 0)
+            if (pageNumber <= 0 || categoryId == 0)
             {
                 return NotFound();
             }
@@ -39,43 +39,30 @@ namespace RecipesApp.Controllers
             {
                 ItemsPerPage = itemPerPage,
                 PageNumber = pageNumber,
-                Recipes = recipesService.GetRecipesByCategory(id, pageNumber, 12),
+                RecipesCount = (int)recipesService.GetRecipesCountByCategory(categoryId),
+                Recipes = recipesService.GetRecipesByCategory(categoryId, pageNumber, 12),
+                FromCategoriesController = true,
             };
 
-            viewModel.RecipesCount = viewModel.Recipes.Count();
             var category = categoriesService.GetCategoriesWithImages()
-                .Where(x => x.Id == id)
+                .Where(x => x.Id == categoryId)
                 .FirstOrDefault();
-            TempData["CategoryName"] = category.Name;
-            TempData["CategoryImage"] = category.ImgUrl;
+
+            if (category != null)
+            {
+                TempData["CategoryId"] = category.Id;
+                TempData["CategoryName"] = category.Name;
+                TempData["CategoryImage"] = category.ImgUrl;
+            }
 
             return View(viewModel);
         }
 
-        public IActionResult ByName(string name, int pageNumber = 1)
+        public IActionResult ByName(string name)
         {
-            if (pageNumber <= 0)
-            {
-                return NotFound();
-            }
+            int categoryId = categoriesService.GetCategoryIdByName(name);
 
-            int itemPerPage = 12;
-
-            var viewModel = new RecipesListViewModel
-            {
-                ItemsPerPage = itemPerPage,
-                PageNumber = pageNumber,
-                Recipes = recipesService.GetRecipesByCategory(name, pageNumber, 12),
-            };
-
-            viewModel.RecipesCount = viewModel.Recipes.Count();
-            var category = categoriesService.GetCategoriesWithImages()
-                .Where(x => x.Name == name)
-                .FirstOrDefault();
-            TempData["CategoryName"] = category.Name;
-            TempData["CategoryImage"] = category.ImgUrl;
-
-            return View(viewModel);
+            return RedirectToAction(nameof(ById), new { categoryId });
         }
     }
 }

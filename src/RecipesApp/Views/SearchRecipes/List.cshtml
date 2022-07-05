@@ -26,6 +26,9 @@
 
 <partial name="_PageTitle" />
 
-<partial name="_RecipesPartial" model="@Model" />
+@if (Model.RecipesCount > 0)
+{
+    <partial name="_RecipesPartial" model="@Model" />
 
-<partial name="_PagingPartial" model="@Model" />
+    <partial name="_PagingPartial" model="@Model" />
+}

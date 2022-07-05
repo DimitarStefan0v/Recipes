@@ -320,8 +320,8 @@ namespace RecipesApp.Core.Services
         public IEnumerable<RecipeInListViewModel> GetRecipesByCategory(int id, int page, int itemsPerPage = 12)
         {
             var recipes = repo.AllReadonly<Recipe>()
-                .Where(x => x.Category.Id == id)
                 .Where(x => x.IsDeleted == false)
+                .Where(x => x.Category.Id == id)
                 .OrderByDescending(x => x.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -472,7 +472,20 @@ namespace RecipesApp.Core.Services
             }
         }
 
+        public int? GetRecipesCountByCategory(int id)
+        {
+            var count = repo.AllReadonly<Recipe>()
+                .Where(x => x.IsDeleted == false)
+                .Where(x => x.CategoryId == id)
+                ?.Count();
 
+            if (count == null)
+            {
+                count = 0;
+            }
+
+            return count;
+        }
 
         private List<RecipeInListViewModel> GetAllRecipesWithPages(int page, int itemsPerPage)
         {

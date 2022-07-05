@@ -17,5 +17,7 @@
         public int PreviousPageNumber => PageNumber - 1;
 
         public int NextPageNumber => PageNumber + 1;
+
+        public bool FromCategoriesController { get; set; }
     }
 }

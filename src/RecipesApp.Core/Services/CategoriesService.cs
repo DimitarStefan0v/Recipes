@@ -81,5 +81,16 @@ namespace RecipesApp.Core.Services
 
             return categories;
         }
+
+        public int GetCategoryIdByName(string name)
+        {
+            var categoryId = repo.AllReadonly<Category>()
+                .Where(x => x.Name.ToLower().Trim() == name.ToLower().Trim())
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
+            return categoryId;
+        }
+
     }
 }

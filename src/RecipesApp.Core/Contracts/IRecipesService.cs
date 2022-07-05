@@ -6,6 +6,8 @@ namespace RecipesApp.Core.Contracts
     {
         int GetCount();
 
+        int? GetRecipesCountByCategory(int id);
+
         Task CreateAsync(RecipeInputModel input, string userId);
 
         SingleRecipeViewModel GetById(int id);
