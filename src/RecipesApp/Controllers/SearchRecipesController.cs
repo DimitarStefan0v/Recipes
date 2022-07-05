@@ -35,6 +35,7 @@ namespace RecipesApp.Controllers
 
             int itemPerPage = 12;
 
+
             var viewModel = new RecipesListViewModel
             {
                 Recipes = recipesService.GetRecipesByIngredients(id, input.Ingredients, 12),
@@ -43,6 +44,8 @@ namespace RecipesApp.Controllers
             };
 
             viewModel.RecipesCount = viewModel.Recipes.Count();
+
+            ViewData["ingredients"] = ingredientsService.GetIngredientNamesById((IList<int>)input.Ingredients);
 
             return View(viewModel);
         }

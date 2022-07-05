@@ -35,18 +35,16 @@
                 <div class="custom-dropdown-content">
                     <a class="dropdown-link" asp-controller="Home" asp-action="Index">Начало</a>
                     <a class="dropdown-link" asp-controller="Recipes" asp-action="All">Всички рецепти</a>
-                    <a class="dropdown-link" asp-controller="SearchRecipes" asp-action="Index">Търси по съставки</a>
                     @foreach (var category in categories)
                     {
                         <a class="dropdown-link" asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a>
                     }
                     <a class="dropdown-link" asp-controller="Recipes" asp-action="Create">Добави рецепта</a>
                     <a class="dropdown-link" asp-controller="Recipes" asp-action="Favorites">Любими</a>
+                    <a class="dropdown-link" asp-controller="SearchRecipes" asp-action="Index">Търси по съставки</a>
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <a class="dropdown-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Акаунт</a>
-                        
-
                     }
                     else
                     {
@@ -65,11 +63,11 @@
                 <div id="links-dropdown-content" class="custom-dropdown-content">
                     <div class="triangle-top"></div>
                     <a class="dropdown-link" asp-controller="Recipes" asp-action="All">Всички</a>
-                    <a class="dropdown-link" asp-controller="SearchRecipes" asp-action="Index">Търси по съставки</a>
                     @foreach (var category in categories)
                     {
                         <a class="dropdown-link" asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a>
                     }
+                    <a class="dropdown-link" asp-controller="SearchRecipes" asp-action="Index">Търси по съставки</a>
                 </div>
             </div>
             <a class="navbar-link" asp-controller="Recipes" asp-action="Create">Добави рецепта</a>

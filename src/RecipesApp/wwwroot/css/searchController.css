@@ -3,19 +3,19 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    align-items: center;
     margin: auto;
     max-width: 60%;
+    gap: 10px;
 }
 
 .flex-container-search-item {
-    margin: 10px 10px 0 10px;
     border: 1px solid black;
     border-radius: 15px;
     padding: 5px 10px 5px 10px;
     font-size: 1.1em;
     font-weight: bolder;
-    min-width: 20%;
-    text-align: center;
+    text-align: left;
 }
 
 .searchByIngredient-btn {

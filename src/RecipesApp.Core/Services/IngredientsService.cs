@@ -32,5 +32,40 @@ namespace RecipesApp.Core.Services
 
             return ingredients;
         }
+
+        public string GetIngredientNamesById(IList<int> ingredientIds)
+        {
+            var query = repo.All<Ingredient>();
+
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < ingredientIds.Count(); i++)
+            {
+                var ingredient = query
+                    .Where(x => x.Id == ingredientIds[i])
+                    .Select(x => x.Name)
+                    .FirstOrDefault();
+
+                if (ingredientIds.Count() == 1)
+                {
+                    sb.Append(ingredient);
+                    break;
+                }
+
+                if (i == ingredientIds.Count() - 1)
+                {
+                    sb.Append("и ");
+                    sb.Append(ingredient);
+                }
+                else
+                {
+                    sb.Append(ingredient);
+                    sb.Append(", ");
+                }
+
+            }
+
+            return sb.ToString();
+        }
     }
 }

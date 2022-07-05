@@ -2,7 +2,26 @@
 @model RecipesListViewModel
 
 @{
-    ViewData["Title"] = "Намерени " + Model.Recipes.Count() + " рецепта / и";
+    var areMultipeIngredients = ViewData["ingredients"].ToString().Contains(", ");
+
+    var multiple = "";
+    if (areMultipeIngredients)
+    {
+        multiple = " едновременно";
+    }
+
+    if (Model.RecipesCount == 1)
+    {
+        ViewData["Title"] = "Намерена е само 1 рецепта съдържащa" + multiple + ": " + ViewData["ingredients"];
+    }
+    else if (Model.RecipesCount > 1)
+    {
+        ViewData["Title"] = "Намерени са " + Model.RecipesCount + " рецепти съдържащи" + multiple + ": " + ViewData["ingredients"];
+    }
+    else
+    {
+        ViewData["Title"] = "Нито една рецепта не бе намерена съдържаща" + multiple + ": " + ViewData["ingredients"];
+    }
 }
 
 <partial name="_PageTitle" />

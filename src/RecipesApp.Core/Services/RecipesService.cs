@@ -74,20 +74,20 @@ namespace RecipesApp.Core.Services
             {
                 var ingredient = repo
                     .All<Ingredient>()
-                    .FirstOrDefault(x => x.Name.ToLower() == ingredientInput.IngredientName.ToLower());
+                    .FirstOrDefault(x => x.Name.ToLower() == ingredientInput.IngredientName.Trim().ToLower());
 
                 if (ingredient == null)
                 {
                     ingredient = new Ingredient()
                     {
-                        Name = ingredientInput.IngredientName.ToLower(),
+                        Name = ingredientInput.IngredientName.Trim().ToLower(),
                     };
                 }
 
                 recipe.Ingredients.Add(new RecipeIngredient
                 {
                     Ingredient = ingredient,
-                    Quantity = ingredientInput.Quantity,
+                    Quantity = ingredientInput.Quantity.Trim().ToLower(),
                 });
             }
 
@@ -259,6 +259,7 @@ namespace RecipesApp.Core.Services
             foreach (var ingredientId in ingredientIds)
             {
                 query = query.Where(x => x.Ingredients.Any(i => i.IngredientId == ingredientId));
+
             }
 
             return query

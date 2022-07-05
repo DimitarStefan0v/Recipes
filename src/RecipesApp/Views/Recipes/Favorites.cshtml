@@ -25,8 +25,5 @@ else
 {
     <partial name="_RecipesPartial" model="@Model" />
 
-    @if (Model.Recipes.Count() > Model.ItemsPerPage)
-    {
-        <partial name="_PagingPartial" model="@Model" />
-    }
+    <partial name="_PagingPartial" model="@Model" />
 }

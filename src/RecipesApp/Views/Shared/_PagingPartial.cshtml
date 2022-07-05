@@ -1,11 +1,13 @@
 ﻿@using RecipesApp.Core.Models
 @model PagingViewModel
 
-<section>
+<section class="pagination-wrapper">
+    <p id="pagingMsg">@(Model.PagesCount > 1 ? "Показване на страница " + @Model.PageNumber + " от общо " + @Model.PagesCount + " страници" : "Показване на страница 1 от общо 1 страница")</p>
     <article class="pagination">
         @if (Model.HasPreviousPage)
         {
             <a asp-action="All" asp-route-id="1">|&lt;</a>
+            <a asp-action="All" asp-route-id="@Model.PreviousPageNumber">&lt;</a>
         }
         @for (int i = Model.PageNumber - 4; i < Model.PageNumber; i++)
         {
@@ -24,6 +26,7 @@
         }
         @if (Model.HasNextPage)
         {
+            <a asp-action="All" asp-route-id="@Model.NextPageNumber">></a>
             <a asp-action="All" asp-route-id="@Model.PagesCount">>|</a>
         }
     </article>

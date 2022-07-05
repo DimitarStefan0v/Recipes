@@ -9,11 +9,12 @@
     max-width: 600px;
 }
 
-.recipe-img img {
-    height: 400px;
-    align-content: stretch;
-    border-bottom-left-radius: 5px;
-}
+    .recipe-img img {
+        height: 400px;
+        align-content: stretch;
+        border-bottom-left-radius: 5px;
+        margin-top: 10px;
+    }
 
 
 .flex-recipe-container {
@@ -70,12 +71,15 @@
 }
 
 .instructions-container {
-    max-width: 600px;
-    text-align: center;
+    max-width: 500px;
+    text-align: left;
+    padding: 0 5px 0 5px;
 }
 
-.ingredients-container ol li {
-    padding: 7px 0 7px 0;
+.ingredients-container {
+    max-width: 500px;
+    text-align: left;
+    padding: 0 5px 0 5px;
 }
 
 #editLink {

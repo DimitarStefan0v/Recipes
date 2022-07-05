@@ -12,7 +12,7 @@
 
         public const string IngredientNameRequired = "Името на съставката e задължително";
 
-        public const string IngredientNameLength = "Името на съставката трябва е с дължина между 2 и 20 символа";
+        public const string IngredientNameLength = "Името на съставката трябва е с дължина между 2 и 50 символа";
 
         public const string QuantityNameRequired = "Количеството на съставката е задължително";
 

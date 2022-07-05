@@ -7,7 +7,7 @@ namespace RecipesApp.Core.Models
     {
         [Required(ErrorMessage = RecipeErrorMessages.IngredientNameRequired)]
         [MinLength(2, ErrorMessage = RecipeErrorMessages.IngredientNameLength)]
-        [MaxLength(20, ErrorMessage = RecipeErrorMessages.IngredientNameLength)]
+        [MaxLength(50, ErrorMessage = RecipeErrorMessages.IngredientNameLength)]
         public string IngredientName { get; set; }
 
         [Required(ErrorMessage = RecipeErrorMessages.QuantityNameRequired)]
