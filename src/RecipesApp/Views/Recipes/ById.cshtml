@@ -1,5 +1,6 @@
 ﻿@using RecipesApp.Core.Constants
 @using RecipesApp.Core.Models
+@using System.Text
 @model SingleRecipeViewModel
 
 @{
@@ -46,7 +47,19 @@
     </article>
     <article class="instructions-container">
         <p class="instructions-container-title">Начин на приготвяне:</p>
-        <p>@Model.Instructions</p>
+        @{
+            var instructions = new StringBuilder();
+            foreach (var character in Model.Instructions)
+            {
+                instructions.Append(character);
+                if (character == '.' || character == '!')
+                {
+                    instructions.Append("<br /><br />");
+                }
+            }
+
+        }
+        <p>@Html.Raw(instructions)</p>
     </article>
 </section>
 

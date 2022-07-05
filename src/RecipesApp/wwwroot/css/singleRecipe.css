@@ -76,10 +76,15 @@
     padding: 0 5px 0 5px;
 }
 
+.instructions-container {
+    line-height: 1.2em;
+}
+
 .ingredients-container {
     max-width: 500px;
     text-align: left;
     padding: 0 5px 0 5px;
+    line-height: 1.2em;
 }
 
 #editLink {
