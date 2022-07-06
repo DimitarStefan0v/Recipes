@@ -20,8 +20,8 @@
   - add recipe to his own favorite recipes by clicking on the heart font awesome icon in chosen ById page;
   - remove recipe from his own favorite recipes by clicking on the heart icon again;
 - Administrator can do all of the above and:
-  - deletes recipes;
-  - deletes comments;
+  - delete recipes;
+  - delete comments;
   - view UncheckedRecipes page where it shows all recipes sorted by oldest which are unchecked by administrator and by clicking on chosen recipe redirect to ById page with option to approve recipe after viewing it;
 	
 ## :hammer: Used technologies
