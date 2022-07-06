@@ -7,8 +7,8 @@
 ## :pencil: Project Description
 - Guest visitors can:
   - view home index page where it shows all categories, most recently added recipes, most commented recipes and recipes with the highest vote count 
-  - view recipes by categories by clicking on the category in home index page, chosing from the dropdown menu in the navbar navigation or from the footer links;
-  - view all recipes;
+  - view recipes by categories by clicking on the category image in home index page, chosing from the dropdown menu in the navbar navigation or from the footer links;
+  - view all recipes by choosing from the dropdown menu in the navbar navigation or from the footer links;
   - view single recipe in ById page by clicking on chosen recipe and view its public details: name, image, preparation time, cooking time, portions count, ingredients, instructions, recipe author, recipe added time, vote rate, comments(for each comment it shows the comment content, comment author and date and time of the added comment);
   - search for recipes by chosen ingredients;
   - search for recipe by recipe name;
