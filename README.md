@@ -1,5 +1,29 @@
 # RecipesApp
-Simple web application for recipes built with ASP.Net Core
+
+## :point_right: Project Introduction :point_left:
+
+**RecipesApp** is a ready-to-use ASP.NET Core application.
+
+## :pencil: Project Description
+- Guest visitors can:
+  - view home index page where it shows all categories, most recently added recipes, most commented recipes and recipes with the highest vote count 
+  - view recipes by categories by clicking on the category in home index page, chosing from the dropdown menu in the navbar navigation or from the footer links;
+  - view all recipes;
+  - view single recipe in ById page by clicking on chosen recipe and view its public details: name, image, preparation time, cooking time, portions count, ingredients, instructions, recipe author, recipe added time, vote rate, comments(for each comment it shows the comment content, comment author and date and time of the added comment);
+  - search for recipes by chosen ingredients;
+  - search for recipe by recipe name;
+- Logged Users can do all of the above and:
+  - add new recipes;
+  - add new comment to recipe;
+  - vote for recipe in ById page;
+  - view favorites page;
+  - add recipe to his own favorite recipes by clicking on the heart font awesome icon in chosen ById page;
+  - remove recipe from his own favorite recipes by clicking on the heart icon again;
+- Administrator can do all of the above and:
+  - deletes recipes;
+  - deletes comments;
+  - view UncheckedRecipes page where it shows all recipes sorted by oldest which are unchecked by administrator and by clicking on chosen recipe redirect to ById page with option to approve recipe after viewing it;
+	
 ## :hammer: Used technologies
 * .NET 6.0
 * ASP.NET Core MVC

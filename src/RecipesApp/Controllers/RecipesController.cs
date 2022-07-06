@@ -163,6 +163,13 @@ namespace RecipesApp.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        [Authorize(Roles = Roles.Administrator)]
+        public IActionResult UncheckedRecipes(int id = 1)
+        {
+            // TODO: add view model and method in recipesService
+            return View();
+        }
+
         [Authorize]
         public async Task<IActionResult> AddToFavorites(int id)
         {
