@@ -5,7 +5,7 @@
 **RecipesApp** is a ready-to-use ASP.NET Core application.
 
 # Link
-https://cinemaworld.azurewebsites.net
+https://recipesbg.azurewebsites.net
 
 ## :pencil: Project Description
 - Guest visitors can:
