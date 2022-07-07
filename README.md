@@ -5,7 +5,7 @@
 **RecipesApp** is a ready-to-use ASP.NET Core application.
 
 # Link
-https://recipesbg.azurewebsites.net
+https://bgrecipes.azurewebsites.net/
 
 ## :pencil: Project Description
 - Guest visitors can:
