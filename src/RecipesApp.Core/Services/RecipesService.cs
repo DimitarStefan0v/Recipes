@@ -69,11 +69,11 @@ namespace RecipesApp.Core.Services
                 CreatedOn = DateTime.UtcNow
             };
 
+            var ingredients = repo.AllReadonly<Ingredient>().ToList();
 
             foreach (var ingredientInput in input.Ingredients)
             {
-                var ingredient = repo
-                    .All<Ingredient>()
+                var ingredient = ingredients
                     .FirstOrDefault(x => x.Name.ToLower() == ingredientInput.IngredientName.Trim().ToLower());
 
                 if (ingredient == null)
@@ -105,12 +105,13 @@ namespace RecipesApp.Core.Services
         public SingleRecipeViewModel GetById(int id)
         {
             var recipe = repo.All<Recipe>()
-                .Include(x => x.Category)
-                .Include(x => x.Image)
-                .Include(x => x.Ingredients)
-                .Include(x => x.AddedByUser)
-                .Include(x => x.Comments)
                 .Where(x => x.Id == id && x.IsDeleted == false)
+                .Include(c => c.Category)
+                .Include(i => i.Image)
+                .Include(i => i.Ingredients)
+                .ThenInclude(ri => ri.Ingredient)
+                .Include(u => u.AddedByUser)
+                .Include(c => c.Comments)
                 .FirstOrDefault();
 
             var viewModelrecipe = new SingleRecipeViewModel
@@ -144,30 +145,15 @@ namespace RecipesApp.Core.Services
                 }
             }
 
-            var ingredientsId = recipe.Ingredients.Select(x => x.IngredientId).ToList();
-
-            foreach (var item in ingredientsId)
+            foreach (var item in recipe.Ingredients)
             {
-                var ingredientName = repo.All<Ingredient>()
-                    .Where(x => x.Id == item)
-                    .Select(x => x.Name)
-                    .FirstOrDefault();
-
-                var ingredientQuantity = recipe.Ingredients
-                    .Where(x => x.IngredientId == item)
-                    .Select(x => x.Quantity)
-                    .FirstOrDefault();
-
-                if (ingredientName != null && ingredientQuantity != null)
+                var ingredient = new IngredientsViewModel
                 {
-                    var ingredient = new IngredientsViewModel
-                    {
-                        IngredientName = ingredientName.ToLower().Trim(),
-                        Quantity = ingredientQuantity.ToLower().Trim(),
-                    };
+                    IngredientName = item.Ingredient.Name.ToLower().Trim(),
+                    Quantity = item.Quantity.ToLower().Trim(),
+                };
 
-                    viewModelrecipe.Ingredients.Add(ingredient);
-                }
+                viewModelrecipe.Ingredients.Add(ingredient);
             }
 
             return viewModelrecipe;

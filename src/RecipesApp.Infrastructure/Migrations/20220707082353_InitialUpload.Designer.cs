@@ -12,8 +12,8 @@ using RecipesApp.Infrastructure.Data;
 namespace RecipesApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220623132849_AddIsDeletedColumnToRecipes")]
-    partial class AddIsDeletedColumnToRecipes
+    [Migration("20220707082353_InitialUpload")]
+    partial class InitialUpload
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -262,6 +262,62 @@ namespace RecipesApp.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("CloudImages");
+                });
+
+            modelBuilder.Entity("RecipesApp.Infrastructure.Data.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AddedByUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddedByUserId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("RecipesApp.Infrastructure.Data.FavoriteRecipeId", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("LikedByUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LikedByUserId");
+
+                    b.ToTable("FavoriteRecipeIds");
                 });
 
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.Identity.ApplicationUser", b =>
@@ -526,6 +582,36 @@ namespace RecipesApp.Infrastructure.Migrations
                     b.Navigation("Recipe");
                 });
 
+            modelBuilder.Entity("RecipesApp.Infrastructure.Data.Comment", b =>
+                {
+                    b.HasOne("RecipesApp.Infrastructure.Data.Identity.ApplicationUser", "AddedByUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("AddedByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RecipesApp.Infrastructure.Data.Recipe", "Recipe")
+                        .WithMany("Comments")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AddedByUser");
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("RecipesApp.Infrastructure.Data.FavoriteRecipeId", b =>
+                {
+                    b.HasOne("RecipesApp.Infrastructure.Data.Identity.ApplicationUser", "LikedByUser")
+                        .WithMany("FavoriteRecipeIds")
+                        .HasForeignKey("LikedByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LikedByUser");
+                });
+
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.Recipe", b =>
                 {
                     b.HasOne("RecipesApp.Infrastructure.Data.Identity.ApplicationUser", "AddedByUser")
@@ -590,6 +676,10 @@ namespace RecipesApp.Infrastructure.Migrations
 
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.Identity.ApplicationUser", b =>
                 {
+                    b.Navigation("Comments");
+
+                    b.Navigation("FavoriteRecipeIds");
+
                     b.Navigation("Images");
 
                     b.Navigation("Recipes");
@@ -604,6 +694,8 @@ namespace RecipesApp.Infrastructure.Migrations
 
             modelBuilder.Entity("RecipesApp.Infrastructure.Data.Recipe", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Image")
                         .IsRequired();
 

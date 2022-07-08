@@ -15,17 +15,15 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 builder.Services.AddControllersWithViews()
     .AddRazorRuntimeCompilation();
 
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = builder.Configuration.GetConnectionString("Redis");
-});
+//var cloudName = builder.Configuration.GetConnectionString("CloudinarySettings:CloudName");
+//var cloudApiKey = builder.Configuration.GetConnectionString("CloudinarySettings:ApiKey");
+//var cloudApiSecret = builder.Configuration.GetConnectionString("CloudinarySettings:ApiSecret");
 
-var myAccount = new Account
-(
-    builder.Configuration.GetConnectionString("CloudinarySettings:CloudName"),
-    builder.Configuration.GetConnectionString("CloudinarySettings:ApiKey"),
-    builder.Configuration.GetConnectionString("CloudinarySettings:ApiSecret")
-);
+var myAccount = new Account(
+    builder.Configuration["CloudinarySettings:CloudName"],
+    builder.Configuration["CloudinarySettings:ApiKey"],
+    builder.Configuration["CloudinarySettings:ApiSecret"]
+    );
 
 var cloudUtility = new Cloudinary(myAccount);
 

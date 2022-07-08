@@ -181,6 +181,26 @@ namespace RecipesApp.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FavoriteRecipeIds",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecipeId = table.Column<int>(type: "int", nullable: false),
+                    LikedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FavoriteRecipeIds", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FavoriteRecipeIds_AspNetUsers_LikedByUserId",
+                        column: x => x.LikedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Recipes",
                 columns: table => new
                 {
@@ -193,6 +213,7 @@ namespace RecipesApp.Infrastructure.Migrations
                     PortionsCount = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsChecked = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     AddedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: false)
@@ -223,23 +244,52 @@ namespace RecipesApp.Infrastructure.Migrations
                     PicturePublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RecipeId = table.Column<int>(type: "int", nullable: false),
-                    AddedByUserIs = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    AddedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CloudImages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CloudImages_AspNetUsers_AddedByUserIs",
-                        column: x => x.AddedByUserIs,
+                        name: "FK_CloudImages_AspNetUsers_AddedByUserId",
+                        column: x => x.AddedByUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CloudImages_Recipes_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AddedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RecipeId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_AddedByUserId",
+                        column: x => x.AddedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comments_Recipes_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -293,7 +343,7 @@ namespace RecipesApp.Infrastructure.Migrations
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -353,15 +403,30 @@ namespace RecipesApp.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CloudImages_AddedByUserIs",
+                name: "IX_CloudImages_AddedByUserId",
                 table: "CloudImages",
-                column: "AddedByUserIs");
+                column: "AddedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CloudImages_RecipeId",
                 table: "CloudImages",
                 column: "RecipeId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_AddedByUserId",
+                table: "Comments",
+                column: "AddedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_RecipeId",
+                table: "Comments",
+                column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FavoriteRecipeIds_LikedByUserId",
+                table: "FavoriteRecipeIds",
+                column: "LikedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RecipeIngredients_IngredientId",
@@ -413,6 +478,12 @@ namespace RecipesApp.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "CloudImages");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "FavoriteRecipeIds");
 
             migrationBuilder.DropTable(
                 name: "RecipeIngredients");

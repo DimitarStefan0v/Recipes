@@ -399,3 +399,10 @@ FodyWeavers.xsd
 /src/RecipesApp/appsettings.json
 /src/RecipesApp/wwwroot/lib
 /src/RecipesApp/wwwroot/images
+/src/RecipesApp/.config
+/src/RecipesApp/appsettings.json
+/src/RecipesApp/appsettings.Development.json
+/src/RecipesApp/appsettings.Production.json
+/src/RecipesApp/Properties
+/src/RecipesApp/Properties
+/src/RecipesApp/appsettings.Development.json
