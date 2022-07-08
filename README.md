@@ -46,3 +46,23 @@ https://bgrecipes.azurewebsites.net/
   * Media Queries
   * Positioning
   * etc
+
+## Pictures
+
+* Logged-In User
+
+**Home Index Page**
+![Unregistered user](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Home%20Index%20Page.png)
+
+**Caregories Index Page**
+![Logged-In User]() 
+
+**Recipes ById Page**
+![Logged-In User]()
+
+**Register**
+![Logged-In User]() 
+
+**Login**
+![Logged-In User]()
+
