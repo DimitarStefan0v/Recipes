@@ -164,6 +164,7 @@ namespace RecipesApp.Core.Services
             return repo.All<Recipe>().Where(x => x.IsDeleted == false).Count();
         }
 
+        // TODO: Refactor
         public IEnumerable<RecipeInListViewModel> GetRecentRecipes(int count = 3)
         {
             var recipes = repo.AllReadonly<Recipe>()
