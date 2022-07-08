@@ -52,17 +52,41 @@ https://bgrecipes.azurewebsites.net/
 * Logged-In User
 
 **Home Index Page**
+
 ![Unregistered user](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Home%20Index%20Page.png)
 
-**Caregories Index Page**
-![Logged-In User]() 
-
 **Recipes ById Page**
-![Logged-In User]()
 
-**Register**
-![Logged-In User]() 
+![Logged-In User](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Recipes%20ById%20Page.png) 
 
-**Login**
-![Logged-In User]()
+**Caregories ById Page(main-dishes)**
 
+![Logged-In User](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Categories%20ById%20Page.png)
+
+**Caregories ById Page(deserts)**
+
+![Logged-In User](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Categories%20ById(deserts)%20Page.png) 
+
+**Categories Index Page**
+
+![Logged-In User](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Categories%20Index%20Page.png)
+
+**Recipes All Page**
+
+![Logged-In User](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Recipes%20All%20Page.png)
+
+**Dropdown In Layout**
+
+![Logged-In User](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Dropdown%20In%20Layout.png)
+
+**Recipes Favorites Page (with no added recipes for the current user)**
+
+![Logged-In User](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Recipes%20Favorites%20Page(with%20no%20added%20recipes%20for%20current%20user).png)
+
+**Recipes Favorites Page (with eight added recipes for the current user)**
+
+![Logged-In User](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Recipes%20Favorites%20Page.png)
+
+**Recipes Create Page**
+
+![Logged-In User](https://github.com/DimitarStefan0v/Recipes/blob/main/Screenshots/Recipes%20Create%20Page.png)
