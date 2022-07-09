@@ -17,7 +17,7 @@ namespace RecipesApp.Core.Services
 
         public ICollection<CategoriesViewModel> GetAllCategories()
         {
-            var categories = repo.All<Category>()
+            var categories = repo.AllReadonly<Category>()
                 .Select(c => new CategoriesViewModel
                 {
                     Id = c.Id,

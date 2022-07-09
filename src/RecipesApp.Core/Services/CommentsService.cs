@@ -8,10 +8,12 @@ namespace RecipesApp.Core.Services
     public class CommentsService : ICommentsService
     {
         private readonly IApplicationDbRepository repo;
+        private readonly ApplicationDbContext applicationDbContext;
 
-        public CommentsService(IApplicationDbRepository _repo)
+        public CommentsService(IApplicationDbRepository _repo, ApplicationDbContext _applicationDbContext)
         {
             repo = _repo;
+            applicationDbContext = _applicationDbContext;
         }
 
         public async Task AddAsync(CommentInputModel input, string userId)
@@ -31,9 +33,13 @@ namespace RecipesApp.Core.Services
         public async Task DeleteAsync(int id)
         {
             var comment = repo.All<Comment>().Where(x => x.Id == id).FirstOrDefault();
-            comment.IsDeleted = true;
 
-            await repo.SaveChangesAsync();
+            if (comment != null)
+            {
+                applicationDbContext.Remove(comment);
+                await repo.SaveChangesAsync();
+            }
+
         }
     }
 }

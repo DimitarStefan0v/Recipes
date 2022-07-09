@@ -104,64 +104,43 @@ namespace RecipesApp.Core.Services
 
         public SingleRecipeViewModel GetById(int id)
         {
-            var recipe = repo.All<Recipe>()
+            var recipe = repo.AllReadonly<Recipe>()
                 .Where(x => x.Id == id && x.IsDeleted == false)
-                .Include(c => c.Category)
-                .Include(i => i.Image)
-                .Include(i => i.Ingredients)
-                .ThenInclude(ri => ri.Ingredient)
-                .Include(u => u.AddedByUser)
-                .Include(c => c.Comments)
-                .FirstOrDefault();
-
-            var viewModelrecipe = new SingleRecipeViewModel
-            {
-                Id = recipe.Id,
-                Name = recipe.Name,
-                Instructions = recipe.Instructions,
-                CategoryName = recipe.Category.Name,
-                CookingTime = recipe.CookingTime,
-                PreparationTime = recipe.PreparationTime,
-                CreatedOn = recipe.CreatedOn,
-                ImageUrl = recipe.Image?.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl,
-                AddedByUser = recipe.AddedByUser.UserName,
-                PortionsCount = recipe.PortionsCount,
-                AverageVotesValue = votesService.GetAverageVotes(recipe.Id),
-            };
-
-            foreach (var comment in recipe.Comments.Where(x => x.IsDeleted == false))
-            {
-                var commentViewModel = new CommentViewModel
+                .Select(x => new SingleRecipeViewModel
                 {
-                    Id = comment.Id,
-                    Content = comment.Content,
-                    AddedByUser = comment.AddedByUser.ToString(),
-                    CreatedOn = comment.CreatedOn,
-                };
+                    Id = x.Id,
+                    Name = x.Name,
+                    Instructions = x.Instructions,
+                    CategoryName = x.Category.Name,
+                    CookingTime = x.CookingTime,
+                    PreparationTime = x.PreparationTime,
+                    CreatedOn = x.CreatedOn,
+                    ImageUrl = x.Image.PictureUrl ?? DefaultImages.DefaultRecipeImageUrl,
+                    AddedByUser = x.AddedByUser.UserName,
+                    PortionsCount = x.PortionsCount,
+                    AverageVotesValue = votesService.GetAverageVotes(x.Id),
+                    Comments = x.Comments.Select(c => new CommentViewModel
+                    {
+                        Id = c.Id,
+                        Content = c.Content,
+                        AddedByUser = c.AddedByUser.UserName.ToString(),
+                        CreatedOn = c.CreatedOn,
+                    }).ToList(),
+                    Ingredients = x.Ingredients.Select(i => new IngredientsViewModel
+                    {
+                        IngredientName = i.Ingredient.Name.ToLower().Trim(),
+                        Quantity = i.Quantity.ToLower().Trim(),
+                    }).ToList()
 
-                if (commentViewModel != null)
-                {
-                    viewModelrecipe.Comments.Add(commentViewModel);
-                }
-            }
+                }).FirstOrDefault();
 
-            foreach (var item in recipe.Ingredients)
-            {
-                var ingredient = new IngredientsViewModel
-                {
-                    IngredientName = item.Ingredient.Name.ToLower().Trim(),
-                    Quantity = item.Quantity.ToLower().Trim(),
-                };
-
-                viewModelrecipe.Ingredients.Add(ingredient);
-            }
-
-            return viewModelrecipe;
+            return recipe;
+                
         }
 
         public int GetCount()
         {
-            return repo.All<Recipe>().Where(x => x.IsDeleted == false).Count();
+            return repo.AllReadonly<Recipe>().Where(x => x.IsDeleted == false).Count();
         }
 
         // TODO: Refactor
