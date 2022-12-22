@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Recipes.Web.ViewModels.Recipes
+﻿namespace Recipes.Web.ViewModels.Recipes
 {
     public class IngredientInputModel
     {
+        public string IngredientName { get; set; }
+
+        public string Quantity { get; set; }
     }
 }
