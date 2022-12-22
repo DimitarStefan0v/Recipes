@@ -1,10 +1,6 @@
 ﻿namespace Recipes.Web.ViewModels.Recipes
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class CreateRecipeInputModel
     {
@@ -16,6 +12,12 @@
 
         public int? CookingTime { get; set; }
 
+        public int? PortionsCount { get; set; }
+
         public int CategoryId { get; set; }
+
+        public ICollection<CategoriesViewModel> Categories { get; set; }
+
+        public ICollection<IngredientInputModel> Ingredients { get; set; }
     }
 }
