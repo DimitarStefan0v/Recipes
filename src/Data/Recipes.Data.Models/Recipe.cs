@@ -2,9 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     using Recipes.Data.Common.Models;
 
@@ -30,5 +27,9 @@
         public Category Category { get; set; }
 
         public ICollection<RecipeIngredient> Ingredients { get; set; }
+
+        public string AddedByUserId { get; set; }
+
+        public ApplicationUser AddedByUser { get; set; }
     }
 }
