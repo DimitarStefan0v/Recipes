@@ -1,5 +1,6 @@
 ﻿namespace Recipes.Web.ViewModels.Recipes
 {
+    using Recipes.Web.ViewModels.Categories;
     using System.Collections.Generic;
 
     public class CreateRecipeInputModel
