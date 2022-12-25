@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Recipes.Web.ViewModels.Home
+﻿namespace Recipes.Web.ViewModels.Home
 {
-    internal class IndexStatsViewModel
+    public class IndexStatsViewModel
     {
+        public int RecipesCount { get; set; }
+
+        public int CategoriesCount { get; set; }
+
+        public int IngredientsCount { get; set; }
     }
 }
