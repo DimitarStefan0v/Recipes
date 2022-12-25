@@ -1,14 +1,11 @@
 ﻿namespace Recipes.Services.Data
 {
-    using Recipes.Web.ViewModels.Recipes;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
+
+    using Recipes.Web.ViewModels.Recipes;
 
     public interface IRecipesService
     {
-        Task CreateAsync(CreateRecipeInputModel)
+        Task CreateAsync(CreateRecipeInputModel input, string userId);
     }
 }
