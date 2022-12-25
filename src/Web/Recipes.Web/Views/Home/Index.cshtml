@@ -1,9 +1,12 @@
 ﻿@using Recipes.Common
+@using Recipes.Web.ViewModels.Home;
+@model IndexStatsViewModel
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<ul class="stats">
+    <li>Рецепти: @Model.RecipesCount</li>
+    <li>Съставки: @Model.IngredientsCount</li>
+    <li>Категории: @Model.CategoriesCount</li>
+</ul>
