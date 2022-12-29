@@ -27,8 +27,8 @@
             {
                 Name = input.Name,
                 Description = input.Description,
-                PreparationTime = TimeSpan.FromMinutes(Convert.ToDouble(input.PreparationTime == 0 ? null : input.PreparationTime)),
-                CookingTime = TimeSpan.FromMinutes(Convert.ToDouble(input.CookingTime == 0 ? null : input.PreparationTime)),
+                PreparationTime = TimeSpan.FromMinutes(Convert.ToDouble(input.PreparationTime == null ? 0 : input.PreparationTime)),
+                CookingTime = TimeSpan.FromMinutes(Convert.ToDouble(input.CookingTime == null ? 0 : input.PreparationTime)),
                 PortionsCount = input.PortionsCount,
                 CategoryId = input.CategoryId,
                 AddedByUserId = userId,
