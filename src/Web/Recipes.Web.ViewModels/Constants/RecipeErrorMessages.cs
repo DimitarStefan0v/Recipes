@@ -6,8 +6,8 @@
 
         public const string NameLength = "Името на рецептата трябва да е с дължина между 3 и 50 символа";
 
-        public const string InstructionsRequired = "Начина на приготвяне е задължителен";
+        public const string DescriptionRequired = "Начина на приготвяне е задължителен";
 
-        public const string InstructionsLength = "Начина на приготвяне трябва да е с дължина минимум 10 символа";
+        public const string DescriptionLength = "Начина на приготвяне трябва да е с дължина минимум 10 символа";
     }
 }
