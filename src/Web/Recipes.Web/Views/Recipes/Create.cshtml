@@ -3,6 +3,7 @@
 
 @{
     this.ViewData["Title"] = "Добави Рецепта";
+    var categoryItems = this.Model.Categories.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
 }
 
 <h1>Добавяне на рецепта</h1>
@@ -13,7 +14,7 @@
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-    <div class ="mb-3">
+    <div class="mb-3">
         <label asp-for="Description" class="form-label"></label>
         <textarea asp-for="Description" class="form-control" rows="4"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
@@ -33,4 +34,12 @@
         <input asp-for="PortionsCount" class="form-control" />
         <span asp-validation-for="PortionsCount" class="text-danger"></span>
     </div>
+    <div class="mb-3">
+        <label asp-for="CategoryId" class="form-label"></label>
+        <select asp-for="CategoryId" asp-items="categoryItems" class="form-select" aria-label="Default select example">
+            <option selected>Изберете категория от тук</option>
+        </select>
+    </div>
+
+    <input type="submit" value="Изпрати" class="btn btn-primary" />
 </form>
