@@ -17,5 +17,11 @@
         public const string IngredientNameLength = "Името на съставката трябва е с дължина между 2 и 50 символа";
 
         public const string QuantityRequired = "Количеството към съставката е задължително";
+
+        public const string ImageRequired = "Снимка към рецептата е задължителна";
+
+        public const string AllowedImageExtensions = "jpg, png, gif, jpeg";
+
+        public const int MaxImageSize = 4;
     }
 }

@@ -37,6 +37,7 @@
         [Required(ErrorMessage = RecipeErrorMessages.IngredientRequired)]
         public ICollection<IngredientInputModel> Ingredients { get; set; }
 
+        [Display(Name = "Снимка")]
         public IFormFile Image { get; set; }
     }
 }
