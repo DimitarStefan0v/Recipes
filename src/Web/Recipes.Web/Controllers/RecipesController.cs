@@ -8,23 +8,28 @@
     using Microsoft.AspNetCore.Mvc;
     using Recipes.Data.Models;
     using Recipes.Services.Data;
+    using Recipes.Web.ViewModels.Categories;
     using Recipes.Web.ViewModels.Recipes;
 
     public class RecipesController : BaseController
     {
         private readonly IRecipesService recipesService;
+        private readonly ICategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public RecipesController(IRecipesService recipesService, UserManager<ApplicationUser> userManager)
+        public RecipesController(IRecipesService recipesService, ICategoriesService categoriesService, UserManager<ApplicationUser> userManager)
         {
             this.recipesService = recipesService;
+            this.categoriesService = categoriesService;
             this.userManager = userManager;
         }
 
         [Authorize]
         public IActionResult Create()
         {
-            return this.View();
+            var viewModel = new CreateRecipeInputModel();
+            viewModel.Categories = this.categoriesService.GetCategories<CategoriesViewModel>();
+            return this.View(viewModel);
         }
 
         [Authorize]
@@ -33,6 +38,7 @@
         {
             if (!this.ModelState.IsValid)
             {
+                input.Categories = this.categoriesService.GetCategories<CategoriesViewModel>();
                 return this.View(input);
             }
 
@@ -45,6 +51,7 @@
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
+                input.Categories = this.categoriesService.GetCategories<CategoriesViewModel>();
                 return this.View(input);
             }
 

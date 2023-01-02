@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Recipes.Services.Data
+﻿namespace Recipes.Services.Data
 {
-    internal class ICategoriesService
+    using System.Collections.Generic;
+
+    public interface ICategoriesService
     {
+        ICollection<T> GetCategories<T>();
     }
 }
