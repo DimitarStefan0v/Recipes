@@ -12,23 +12,35 @@
     {
         private readonly IDeletableEntityRepository<Recipe> recipesRepository;
         private readonly IDeletableEntityRepository<Ingredient> ingredientsRepository;
+        private readonly IDeletableEntityRepository<Category> categoriesRepository;
 
         public RecipesService(
             IDeletableEntityRepository<Recipe> recipesRepository,
-            IDeletableEntityRepository<Ingredient> ingredientsRepository)
+            IDeletableEntityRepository<Ingredient> ingredientsRepository,
+            IDeletableEntityRepository<Category> categoriesRepository)
         {
             this.recipesRepository = recipesRepository;
             this.ingredientsRepository = ingredientsRepository;
+            this.categoriesRepository = categoriesRepository;
         }
 
         public async Task CreateAsync(CreateRecipeInputModel input, string userId)
         {
+            if (input.CategoryId == 0)
+            {
+                input.CategoryId = this.categoriesRepository
+                    .AllAsNoTracking()
+                    .Where(x => x.Name == "Други")
+                    .Select(x => x.Id)
+                    .FirstOrDefault();
+            }
+
             var recipe = new Recipe
             {
                 Name = input.Name,
                 Description = input.Description,
-                PreparationTime = TimeSpan.FromMinutes(Convert.ToDouble(input.PreparationTime == null ? 0 : input.PreparationTime)),
-                CookingTime = TimeSpan.FromMinutes(Convert.ToDouble(input.CookingTime == null ? 0 : input.PreparationTime)),
+                PreparationTime = TimeSpan.FromMinutes(Convert.ToDouble(input.PreparationTime)),
+                CookingTime = TimeSpan.FromMinutes(Convert.ToDouble(input.CookingTime)),
                 PortionsCount = input.PortionsCount,
                 CategoryId = input.CategoryId,
                 AddedByUserId = userId,
