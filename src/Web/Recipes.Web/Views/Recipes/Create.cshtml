@@ -40,11 +40,19 @@
             <option value="0">Изберете категория от тук</option>
         </select>
     </div>
+    <div class="mb-3">
+        <label asp-for="Image" class="form-label"></label>
+        <input asp-for="Image" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
     <div id="IngredientsContainer">
     </div>
-
-    <button id="addIngredient" class="btn btn-info">Добави съставка</button>
-    <input type="submit" value="Изпрати" class="btn btn-primary" />
+    <div class="mb-3">
+        <button id="addIngredient" class="btn btn-info">Добави съставка</button>
+    </div>
+    <div class="mb-3">
+        <input type="submit" value="Изпрати" class="btn btn-primary" />
+    </div>
 </form>
 
 @section Scripts{

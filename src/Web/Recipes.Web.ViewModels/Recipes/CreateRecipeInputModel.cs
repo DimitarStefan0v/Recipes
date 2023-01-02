@@ -5,6 +5,7 @@
 
     using global::Recipes.Web.ViewModels.Categories;
     using global::Recipes.Web.ViewModels.Constants;
+    using Microsoft.AspNetCore.Http;
 
     public class CreateRecipeInputModel
     {
@@ -35,5 +36,7 @@
 
         [Required(ErrorMessage = RecipeErrorMessages.IngredientRequired)]
         public ICollection<IngredientInputModel> Ingredients { get; set; }
+
+        public IFormFile Image { get; set; }
     }
 }
