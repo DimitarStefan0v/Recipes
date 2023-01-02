@@ -33,6 +33,7 @@
 
         public ICollection<CategoriesViewModel> Categories { get; set; }
 
+        [Required(ErrorMessage = RecipeErrorMessages.IngredientRequired)]
         public ICollection<IngredientInputModel> Ingredients { get; set; }
     }
 }

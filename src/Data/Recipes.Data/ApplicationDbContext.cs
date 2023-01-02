@@ -31,6 +31,8 @@
 
         public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
 
+        public DbSet<CloudImage> CloudImages { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);

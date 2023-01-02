@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using Recipes.Data.Common.Models;
 
@@ -22,16 +23,19 @@
 
         public int? PortionsCount { get; set; }
 
-        public string ImageUrl { get; set; }
+        [ForeignKey(nameof(CloudImage))]
+        public int ImageId { get; set; }
+
+        public CloudImage Image { get; set; }
 
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
 
-        public ICollection<RecipeIngredient> Ingredients { get; set; }
-
         public string AddedByUserId { get; set; }
 
         public ApplicationUser AddedByUser { get; set; }
+
+        public ICollection<RecipeIngredient> Ingredients { get; set; }
     }
 }

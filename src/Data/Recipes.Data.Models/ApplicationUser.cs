@@ -16,6 +16,7 @@ namespace Recipes.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Recipes = new HashSet<Recipe>();
+            this.Images = new HashSet<CloudImage>();
         }
 
         // Audit info
@@ -35,5 +36,7 @@ namespace Recipes.Data.Models
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
         public ICollection<Recipe> Recipes { get; set; }
+
+        public ICollection<CloudImage> Images { get; set; }
     }
 }
