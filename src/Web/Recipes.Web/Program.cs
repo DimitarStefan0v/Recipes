@@ -2,6 +2,7 @@
 {
     using System.Reflection;
 
+    using CloudinaryDotNet;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -51,6 +52,16 @@
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }).AddRazorRuntimeCompilation();
+
+            var myAccount = new Account(
+                configuration.GetValue<string>("CloudinarySettings:CloudName"),
+                configuration.GetValue<string>("CloudinarySettings:ApiKey"),
+                configuration.GetValue<string>("CloudinarySettings:ApiSecret"));
+
+            var cloudUtility = new Cloudinary(myAccount);
+
+            services.AddSingleton(cloudUtility);
+
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -68,6 +79,7 @@
             services.AddTransient<IRecipesService, RecipesService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<ICloudImagesService, CloudImagesService>();
+            services.AddTransient<IImageDbService, ImageDbService>();
         }
 
         private static void Configure(WebApplication app)

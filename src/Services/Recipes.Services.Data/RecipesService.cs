@@ -38,6 +38,18 @@
                     .FirstOrDefault();
             }
 
+            var imgResult = await this.imagesService.UploadImageAsync(input.Image);
+
+            string imgUrl = imgResult.SecureUrl.AbsoluteUri;
+            string imgPubId = imgResult.PublicId;
+
+            var imageToWrite = new CloudImage
+            {
+                PictureUrl = imgUrl,
+                PicturePublicId = imgPubId,
+                AddedByUserId = userId,
+            };
+
             var recipe = new Recipe
             {
                 Name = input.Name,
@@ -47,6 +59,7 @@
                 PortionsCount = input.PortionsCount,
                 CategoryId = input.CategoryId,
                 AddedByUserId = userId,
+                Image = imageToWrite,
             };
 
             foreach (var ingredientInput in input.Ingredients)
