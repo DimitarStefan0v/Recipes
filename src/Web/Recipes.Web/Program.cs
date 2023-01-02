@@ -67,6 +67,7 @@
             services.AddTransient<ICountsService, CountsService>();
             services.AddTransient<IRecipesService, RecipesService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<ICloudImagesService, CloudImagesService>();
         }
 
         private static void Configure(WebApplication app)

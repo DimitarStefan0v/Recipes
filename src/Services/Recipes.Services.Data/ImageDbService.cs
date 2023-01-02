@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Recipes.Services.Data
 {
-    internal class ICloudImageService
+    internal class ImageDbService
     {
     }
 }

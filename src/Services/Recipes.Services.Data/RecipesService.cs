@@ -13,15 +13,18 @@
         private readonly IDeletableEntityRepository<Recipe> recipesRepository;
         private readonly IDeletableEntityRepository<Ingredient> ingredientsRepository;
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
+        private readonly ICloudImagesService imagesService;
 
         public RecipesService(
             IDeletableEntityRepository<Recipe> recipesRepository,
             IDeletableEntityRepository<Ingredient> ingredientsRepository,
-            IDeletableEntityRepository<Category> categoriesRepository)
+            IDeletableEntityRepository<Category> categoriesRepository,
+            ICloudImagesService imagesService)
         {
             this.recipesRepository = recipesRepository;
             this.ingredientsRepository = ingredientsRepository;
             this.categoriesRepository = categoriesRepository;
+            this.imagesService = imagesService;
         }
 
         public async Task CreateAsync(CreateRecipeInputModel input, string userId)
