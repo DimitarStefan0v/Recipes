@@ -3,9 +3,9 @@
     using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Http;
-    using Recipes.Web.ViewModels.Constants;
+    using Recipes.Common.Constants;
 
-    internal class MaxFileSizeAttribute : ValidationAttribute
+    public class MaxFileSizeAttribute : ValidationAttribute
     {
         private readonly int maxFileSize;
 

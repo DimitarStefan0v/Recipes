@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using global::Recipes.Web.ViewModels.Constants;
+    using global::Recipes.Common.Constants;
 
     public class IngredientInputModel
     {

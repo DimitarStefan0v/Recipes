@@ -6,9 +6,9 @@
     using System.Linq;
 
     using Microsoft.AspNetCore.Http;
-    using Recipes.Web.ViewModels.Constants;
+    using Recipes.Common.Constants;
 
-    internal class AllowedExtensionsAttribute : ValidationAttribute
+    public class AllowedExtensionsAttribute : ValidationAttribute
     {
         private readonly string[] extensions;
 
