@@ -1,13 +1,9 @@
 ﻿namespace Recipes.Common.Attributes
 {
+    using System.ComponentModel.DataAnnotations;
+
     using Microsoft.AspNetCore.Http;
     using Recipes.Web.ViewModels.Constants;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     internal class MaxFileSizeAttribute : ValidationAttribute
     {
@@ -24,9 +20,9 @@
             var file = value as IFormFile;
             if (file != null)
             {
-                if (file.Length > _maxFileSize)
+                if (file.Length > this.maxFileSize)
                 {
-                    return new ValidationResult(GetErrorMessage());
+                    return new ValidationResult(this.GetErrorMessage());
                 }
             }
 

@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    using global::Recipes.Common.Attributes;
     using global::Recipes.Web.ViewModels.Categories;
     using global::Recipes.Web.ViewModels.Constants;
     using Microsoft.AspNetCore.Http;
@@ -38,6 +38,8 @@
         public ICollection<IngredientInputModel> Ingredients { get; set; }
 
         [Display(Name = "Снимка")]
+        [MaxFileSize(4 * 1024 * 1024)]
+        [AllowedExtensions(new string[] { ".jpg, .png, .gif, .jpeg" })]
         public IFormFile Image { get; set; }
     }
 }

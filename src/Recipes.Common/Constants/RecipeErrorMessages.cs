@@ -1,4 +1,4 @@
-﻿namespace Recipes.Web.ViewModels.Constants
+﻿namespace Recipes.Common.Constants
 {
     public static class RecipeErrorMessages
     {
