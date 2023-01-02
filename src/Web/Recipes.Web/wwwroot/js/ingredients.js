@@ -24,6 +24,11 @@ const AddIngredientAndQuantity = function (container, number) {
     ingredientInput.setAttribute('class', 'form-control');
     ingredientInput.setAttribute('placeholder', 'Съставка');
 
+    let validationForInput = CreateSpan();
+    validationForInput.setAttribute('class', 'text-danger');
+    validationForInput.setAttribute('asp-validation-for', 'Ingredients[' + count + '].IngredientName');
+    ingredientInput.appendChild(validationForInput);
+
     ingredientDivCol.appendChild(ingredientInput);
 
     let quantityDivCol = CreateDiv();
@@ -33,6 +38,11 @@ const AddIngredientAndQuantity = function (container, number) {
     quantityInput.setAttribute('name', 'Ingredients[' + count + '].Quantity');
     quantityInput.setAttribute('class', 'form-control');
     quantityInput.setAttribute('placeholder', 'Количество');
+
+    let validationForQuantity = CreateSpan();
+    validationForQuantity.setAttribute('class', 'text-danger');
+    validationForQuantity.setAttribute('asp-validation-for', 'Ingredients[' + count + '].Quantity');
+    quantityInput.appendChild(validationForQuantity);
 
     quantityDivCol.appendChild(quantityInput);
 
@@ -55,6 +65,11 @@ const CreateInput = function () {
 const CreateLabel = function () {
     let label = document.createElement('label');
     return label;
+}
+
+const CreateSpan = function () {
+    let span = document.createElement('span');
+    return span;
 }
 
 window.onload = AddIngredient();
