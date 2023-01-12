@@ -19,7 +19,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Recipe, RecipeInListViewModel>()
-                .ForMember(x => x.ImageUrl, opt => opt.MapFrom(r => r.Image));
+                .ForMember(x => x.ImageUrl, opt => opt.MapFrom(r => r.Image.PictureUrl));
         }
     }
 }

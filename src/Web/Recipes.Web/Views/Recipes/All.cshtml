@@ -11,7 +11,7 @@
     {
         <article class="single-recipe-container">
             <article class="single-recipe-container-img">
-                <img src="@recipe.ImageUrl">
+                <img src="@recipe.ImageUrl" class="img-fluid w-100">
             </article>
             <article class="single-recipe-container-name">
                 <p>@(recipe.Name.Length > 50 ? recipe.Name.Substring(0, 50) + "..." : recipe.Name)</p>
