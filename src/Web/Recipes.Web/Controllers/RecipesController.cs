@@ -57,5 +57,12 @@
 
             return this.Redirect("/");
         }
+
+        public IActionResult All()
+        {
+            var viewModel = new RecipesListViewModel();
+            viewModel.Recipes = this.recipesService.GetAll<RecipeInListViewModel>();
+            return this.View(viewModel);
+        }
     }
 }
