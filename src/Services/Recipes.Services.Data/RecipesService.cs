@@ -1,11 +1,13 @@
 ﻿namespace Recipes.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
+    using Recipes.Services.Mapping;
     using Recipes.Web.ViewModels.Recipes;
 
     public class RecipesService : IRecipesService
@@ -85,6 +87,11 @@
 
             await this.recipesRepository.AddAsync(recipe);
             await this.recipesRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>()
+        {
+            return this.recipesRepository.AllAsNoTracking().To<T>().ToList();
         }
     }
 }
