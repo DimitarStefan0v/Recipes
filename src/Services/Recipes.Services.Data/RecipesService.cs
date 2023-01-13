@@ -68,13 +68,13 @@
             {
                 var ingredient = this.ingredientsRepository
                     .AllAsNoTracking()
-                    .FirstOrDefault(i => i.Name == ingredientInput.IngredientName);
+                    .FirstOrDefault(i => i.Name.ToLower() == ingredientInput.IngredientName.ToLower());
 
                 if (ingredient == null)
                 {
                     ingredient = new Ingredient
                     {
-                        Name = ingredientInput.IngredientName,
+                        Name = ingredientInput.IngredientName.ToLower(),
                     };
                 }
 
@@ -91,7 +91,19 @@
 
         public IEnumerable<T> GetAll<T>()
         {
-            return this.recipesRepository.AllAsNoTracking().To<T>().ToList();
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .To<T>()
+                .ToList();
+        }
+
+        public T GetById<T>(int id)
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
         }
     }
 }
