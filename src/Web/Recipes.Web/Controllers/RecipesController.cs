@@ -64,5 +64,11 @@
             viewModel.Recipes = this.recipesService.GetAll<RecipeInListViewModel>();
             return this.View(viewModel);
         }
+
+        public IActionResult ById(int id)
+        {
+            var viewModel = this.recipesService.GetById<SingleRecipeViewModel>(id);
+            return this.View(viewModel);
+        }
     }
 }
