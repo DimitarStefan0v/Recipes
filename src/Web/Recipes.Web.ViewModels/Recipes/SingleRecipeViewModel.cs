@@ -1,6 +1,7 @@
 ﻿namespace Recipes.Web.ViewModels.Recipes
 {
     using System;
+    using System.Collections.Generic;
 
     using AutoMapper;
     using global::Recipes.Data.Models;
@@ -23,6 +24,8 @@
         public int PortionsCount { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public IEnumerable<IngredientViewModel> Ingredients { get; set; }
 
         public string AddedByUserUserName { get; set; }
 
