@@ -21,3 +21,18 @@
         </ul>
     </article>
 </section>
+<section class="description-and-ingredients-container">
+    <article class="description">
+        <p>@Model.Description</p>
+    </article>
+    <article class="ingredients">
+        <ul>
+            @foreach (var ingredient in Model.Ingredients)
+            {
+                <li>@ingredient.IngredientName - @ingredient.Quantity</li>
+            }
+        </ul>
+    </article>
+</section>
+<p>@Model.AddedByUserUserName</p>
+<p>@Model.CreatedOn</p>
