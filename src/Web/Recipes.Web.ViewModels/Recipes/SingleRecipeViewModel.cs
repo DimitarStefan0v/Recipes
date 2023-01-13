@@ -34,7 +34,9 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Recipe, SingleRecipeViewModel>()
-                .ForMember(x => x.ImageUrl, opt => opt.MapFrom(x => x.Image.PictureUrl));
+                .ForMember(x => x.ImageUrl, opt => opt.MapFrom(r => r.Image.PictureUrl))
+                .ForMember(x => x.PreparationTime, opt => opt.MapFrom(r => (int)r.PreparationTime.Value.TotalMinutes))
+                .ForMember(x => x.CookingTime, opt => opt.MapFrom(r => (int)r.CookingTime.Value.TotalMinutes));
         }
     }
 }
