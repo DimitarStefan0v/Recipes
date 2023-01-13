@@ -10,5 +10,7 @@
         Task CreateAsync(CreateRecipeInputModel input, string userId);
 
         IEnumerable<T> GetAll<T>();
+
+        T GetById<T>(int id);
     }
 }
