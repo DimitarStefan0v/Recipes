@@ -1,0 +1,23 @@
+﻿@using Recipes.Web.ViewModels.Recipes;
+@model SingleRecipeViewModel
+
+@{
+    this.ViewData["Title"] = Model.Name;
+}
+
+<section class="recipe-container">
+    <article class="recipe-container-name">
+        <h1>@Model.Name</h1>
+    </article>
+    <article class="recipe-container-img">
+        <img src="@Model.ImageUrl" class="img-fluid w-100" />
+    </article>
+    <article class="recipe-container-details">
+        <ul>
+           <li>@Model.PreparationTime</li>
+           <li>@Model.CookingTime</li>
+           <li>@Model.TotalTime</li>
+           <li>@Model.PortionsCount</li>
+        </ul>
+    </article>
+</section>
