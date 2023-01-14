@@ -24,7 +24,7 @@
         public int? PortionsCount { get; set; }
 
         [ForeignKey(nameof(CloudImage))]
-        public int ImageId { get; set; }
+        public int? ImageId { get; set; }
 
         public CloudImage Image { get; set; }
 
