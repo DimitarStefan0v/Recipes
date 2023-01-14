@@ -74,14 +74,14 @@
                 {
                     ingredient = new Ingredient
                     {
-                        Name = ingredientInput.IngredientName.ToLower(),
+                        Name = ingredientInput.IngredientName.ToLower().Trim(),
                     };
                 }
 
                 recipe.Ingredients.Add(new RecipeIngredient
                 {
                     Ingredient = ingredient,
-                    Quantity = ingredientInput.Quantity,
+                    Quantity = ingredientInput.Quantity.ToLower().Trim(),
                 });
             }
 
