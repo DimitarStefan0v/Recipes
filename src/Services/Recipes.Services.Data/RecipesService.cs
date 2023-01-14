@@ -54,8 +54,8 @@
 
             var recipe = new Recipe
             {
-                Name = input.Name,
-                Description = input.Description,
+                Name = input.Name.Trim(),
+                Description = input.Description.Trim(),
                 PreparationTime = TimeSpan.FromMinutes(Convert.ToDouble(input.PreparationTime)),
                 CookingTime = TimeSpan.FromMinutes(Convert.ToDouble(input.CookingTime)),
                 PortionsCount = input.PortionsCount,
@@ -86,6 +86,13 @@
             }
 
             await this.recipesRepository.AddAsync(recipe);
+            await this.recipesRepository.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var recipe = this.recipesRepository.All().FirstOrDefault(x => x.Id == id);
+            this.recipesRepository.Delete(recipe);
             await this.recipesRepository.SaveChangesAsync();
         }
 

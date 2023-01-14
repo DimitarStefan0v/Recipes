@@ -12,5 +12,7 @@
         IEnumerable<T> GetAll<T>();
 
         T GetById<T>(int id);
+
+        Task DeleteAsync(int id);
     }
 }
