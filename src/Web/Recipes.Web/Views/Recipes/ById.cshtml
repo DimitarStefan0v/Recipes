@@ -1,4 +1,5 @@
-﻿@using Recipes.Web.ViewModels.Recipes;
+﻿@using Recipes.Common;
+@using Recipes.Web.ViewModels.Recipes;
 @model SingleRecipeViewModel
 
 @{
@@ -14,10 +15,10 @@
     </article>
     <article class="recipe-container-details">
         <ul>
-           <li>@Model.PreparationTime</li>
-           <li>@Model.CookingTime</li>
-           <li>@Model.TotalTime</li>
-           <li>@Model.PortionsCount</li>
+            <li>@Model.PreparationTime</li>
+            <li>@Model.CookingTime</li>
+            <li>@Model.TotalTime</li>
+            <li>@Model.PortionsCount</li>
         </ul>
     </article>
 </section>
@@ -36,3 +37,26 @@
 </section>
 <p>@Model.AddedByUserUserName</p>
 <p>@Model.CreatedOn</p>
+@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+{
+    <form method="post" asp-action="Delete" asp-route-id="@Model.Id">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Изтрий</button>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Моля потвърдете</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Сигурни ли сте че искате да изтриете рецептата?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Откажи</button>
+                        <button class="btn btn-danger">Изтрий</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
