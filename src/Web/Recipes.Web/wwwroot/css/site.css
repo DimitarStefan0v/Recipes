@@ -132,14 +132,11 @@ body {
     background: none;
     color: inherit;
     border: none;
-    padding: 0;
     font: inherit;
     cursor: pointer;
     outline: inherit;
-}
-
-.logout-form button {
-    padding: 15px;
+    padding: 1rem;
+    width: 100%;
 }
 
 .logout-form button:hover {
@@ -175,6 +172,10 @@ body {
 @media (max-width: 1000px) {
     .toggle-button {
         display: flex;
+    }
+
+    .logout-form button {
+        display: inline-block;
     }
 
     .navbar-links {

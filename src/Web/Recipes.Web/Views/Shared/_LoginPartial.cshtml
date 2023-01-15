@@ -9,7 +9,7 @@
     <li class="navbar-link">
         <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@this.User.Identity.Name!</a>
     </li>
-    <li class="navbar-link">
+    <li class="navbar-link logout-link">
         <form class="logout-form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@this.Url.Action("Index", "Home", new { area = string.Empty })">
             <button type="submit">Излез</button>
         </form>
