@@ -59,6 +59,11 @@
             }
         }
 
+        public Task DeleteAsync(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public ICollection<T> GetCategories<T>()
         {
             return this.categoriesRepository.AllAsNoTracking().To<T>().ToList();
