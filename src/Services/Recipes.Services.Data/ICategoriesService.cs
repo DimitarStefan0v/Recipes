@@ -9,6 +9,6 @@
     {
         ICollection<T> GetCategories<T>();
 
-        Task CreateAsync(CreateCategoryInputModel input);
+        Task CreateAsync(CreateCategoryInputModel input, string userId);
     }
 }
