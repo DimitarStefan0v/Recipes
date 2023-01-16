@@ -10,5 +10,7 @@
         ICollection<T> GetCategories<T>();
 
         Task CreateAsync(CreateCategoryInputModel input, string userId);
+
+        Task DeleteAsync(int id);
     }
 }
