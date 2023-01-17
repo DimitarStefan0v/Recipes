@@ -6,21 +6,21 @@
 
 @if (this.SignInManager.IsSignedIn(this.User))
 {
-    <li class="navbar-link">
+    <li>
         <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@this.User.Identity.Name!</a>
     </li>
-    <li class="navbar-link logout-link">
-        <form class="logout-form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@this.Url.Action("Index", "Home", new { area = string.Empty })">
+    <li>
+        <form id="logout-form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@this.Url.Action("Index", "Home", new { area = string.Empty })">
             <button type="submit">Излез</button>
         </form>
     </li>
 }
 else
 {
-    <li class="navbar-link">
+    <li>
         <a asp-area="Identity" asp-page="/Account/Register">Регистрирай се</a>
     </li>
-    <li class="navbar-link">
+    <li>
         <a asp-area="Identity" asp-page="/Account/Login">Вход</a>
     </li>
 }

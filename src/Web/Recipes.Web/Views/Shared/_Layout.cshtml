@@ -21,7 +21,9 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li>
-                        <a href="#">Features</a>
+                        <a href="#" class="desktop-link">Features</a>
+                        <input type="checkbox" id="show-features" />
+                        <label for="show-features">Features</label>
                         <ul>
                             <li><a href="#">Dropmenu 1</a></li>
                             <li><a href="#">Dropmenu 2</a></li>
@@ -30,13 +32,17 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#" class="desktop-link">Services</a>
+                        <input type="checkbox" id="show-services" />
+                        <label for="show-services">Services</label>
                         <ul>
                             <li><a href="#">Dropmenu 1</a></li>
                             <li><a href="#">Dropmenu 2</a></li>
                             <li><a href="#">Dropmenu 3</a></li>
                             <li>
-                                <a href="#">More items</a>
+                                <a href="#" class="desktop-link">More items</a>
+                                <input type="checkbox" id="show-more-items" />
+                                <label for="show-more-items">More items</label>
                                 <ul>
                                     <li><a href="#">Submenu 1</a></li>
                                     <li><a href="#">Submenu 2</a></li>
@@ -47,6 +53,7 @@
                         </ul>
                     </li>
                     <li><a href="#">Feedback</a></li>
+                    <partial name="_LoginPartial" />
                 </ul>
             </div>
             <label for="show-search" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></label>
@@ -71,38 +78,6 @@
     <li class="navbar-link"><a asp-area="" asp-controller="Recipes" asp-action="Create">Добави рецепта</a></li>
     <partial name="_LoginPartial" />
     </ul>
-    </div>
-    </nav>
-    </header>*@
-
-    @*<header>
-    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
-    <div class="container">
-    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-    <ul class="navbar-nav flex-grow-1">
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Create">Добави рецепта</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="All">Всички</a>
-    </li>
-    </ul>
-    <partial name="_LoginPartial" />
-    </div>
     </div>
     </nav>
     </header>*@
