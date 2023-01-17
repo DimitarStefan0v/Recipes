@@ -267,10 +267,11 @@ nav .content .links {
     color: #fff;
     text-decoration: none;
     font-size: 32px;
-    font-weight: 600;/*
-    margin-left: 20px;*/
+    font-weight: 600;
+    margin-left: 20px;
 }
 
+.wrapper .menu-icon,
 .wrapper .search-icon {
     color: #fff;
     font-size: 20px;
@@ -278,6 +279,10 @@ nav .content .links {
     line-height: 70px;
     width: 70px;
     text-align: center;
+}
+
+.wrapper .menu-icon {
+    display: none;
 }
 
 .wrapper #show-search:checked ~ .search-icon i::before {
@@ -359,13 +364,41 @@ Responsive code start from here*/
 }
 
 @media screen and (max-width: 900px) {
+    .wrapper .menu-icon {
+        display: block;
+        font-size: 30px;
+    }
+
+    .wrapper #show-menu:checked ~ .menu-icon i::before {
+        content: "\f00d";
+    }
+
     nav .content .links {
         display: block;
         position: fixed;
-        background: teal;
+        background-color: #14181f;
         height: 100%;
         width: 100%;
         top: 70px;
-        left: 0;
+        left: -100%;
+        margin-left: 0;
+        padding: 0;
+        max-width: 350px;
+        transition: all 0.5s ease;
+    }
+
+    nav #show-menu:checked ~ .content .links {
+        left: 0%;
+    }
+
+    .content .links li {
+        margin: 15px 20px;
+    }
+
+    .content .links li a {
+        line-height: 40px;
+        font-size: 20px;
+        display: block;
+        padding: 8px 18px;
     }
 }
