@@ -267,7 +267,8 @@ nav .content .links {
     color: #fff;
     text-decoration: none;
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 600;/*
+    margin-left: 20px;*/
 }
 
 .wrapper .search-icon {
@@ -333,3 +334,38 @@ nav .content .links {
 
 /*
 Responsive code start from here*/
+
+@media screen and (max-width: 1080px) {
+    .wrapper nav {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    nav .content .links {
+        margin-left: 30px;
+    }
+
+    .content .links li a {
+        padding: 8px 13px;
+    }
+
+    .wrapper .search-box {
+        max-width: calc(100% - 100px);
+    }
+
+    .wrapper .search-box input {
+        padding: 0 100px 0 15px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    nav .content .links {
+        display: block;
+        position: fixed;
+        background: teal;
+        height: 100%;
+        width: 100%;
+        top: 70px;
+        left: 0;
+    }
+}
