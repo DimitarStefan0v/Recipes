@@ -29,7 +29,7 @@
         public IActionResult Create()
         {
             var viewModel = new CreateRecipeInputModel();
-            viewModel.Categories = this.categoriesService.GetCategories<CategoriesViewModel>();
+            viewModel.Categories = this.categoriesService.GetCategories<CategoryInListViewModel>();
             return this.View(viewModel);
         }
 
@@ -39,7 +39,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                input.Categories = this.categoriesService.GetCategories<CategoriesViewModel>();
+                input.Categories = this.categoriesService.GetCategories<CategoryInListViewModel>();
                 return this.View(input);
             }
 
@@ -52,7 +52,7 @@
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                input.Categories = this.categoriesService.GetCategories<CategoriesViewModel>();
+                input.Categories = this.categoriesService.GetCategories<CategoryInListViewModel>();
                 return this.View(input);
             }
 

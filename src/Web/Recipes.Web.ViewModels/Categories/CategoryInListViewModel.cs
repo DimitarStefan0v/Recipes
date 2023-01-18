@@ -4,7 +4,7 @@
     using global::Recipes.Data.Models;
     using global::Recipes.Services.Mapping;
 
-    public class CategoriesViewModel : IMapFrom<Category>, IHaveCustomMappings
+    public class CategoryInListViewModel : IMapFrom<Category>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -17,7 +17,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration
-                .CreateMap<Category, CategoriesViewModel>()
+                .CreateMap<Category, CategoryInListViewModel>()
                 .ForMember(x => x.ImageUrl, opt => opt.MapFrom(c => c.Image.PictureUrl));
         }
     }

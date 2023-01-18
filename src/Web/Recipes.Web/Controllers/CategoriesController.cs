@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Recipes.Web.Controllers
+﻿namespace Recipes.Web.Controllers
 {
-    public class CategoriesController : Controller
+    using Microsoft.AspNetCore.Mvc;
+    using Recipes.Services.Data;
+    using Recipes.Web.ViewModels.Categories;
+
+    public class CategoriesController : BaseController
     {
-        public IActionResult Index()
+        private readonly ICategoriesService categoriesService;
+
+        public CategoriesController(ICategoriesService categoriesService)
         {
-            return View();
+            this.categoriesService = categoriesService;
+        }
+
+        public IActionResult All()
+        {
+            var viewModel = this.categoriesService.GetCategories<CategoriesListViewModel>();
+            return this.View(viewModel);
         }
     }
 }

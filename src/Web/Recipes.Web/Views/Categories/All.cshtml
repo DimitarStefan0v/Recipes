@@ -1,0 +1,21 @@
+﻿@using Recipes.Web.ViewModels.Categories;
+@model CategoriesListViewModel
+
+@{
+    this.ViewData["Title"] = "Категории";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+<section class="categories-wrapper">
+    @foreach (var category in Model.Categories)
+    {
+        <section class="single-category-wrapper">
+            <article class="category-name">
+                <p>@category.Name</p>
+            </article>
+            <article class="category-img">
+                <img src="@category.ImageUrl" class="img-fluid w-100">
+            </article>
+        </section>
+    }
+</section>
