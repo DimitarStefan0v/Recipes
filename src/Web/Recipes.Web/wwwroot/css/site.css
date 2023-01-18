@@ -129,7 +129,6 @@ nav .content {
 }
 
 nav .content .links {
-    margin-left: 80px;
     display: flex;
     margin-bottom: 0;
 }
@@ -247,10 +246,13 @@ nav .content .links {
     display: none;
 }
 
-
+.container {
+    padding-top: 70px;
+    width: 1080px;
+    margin: 0 auto;
+}
 
 /*Dropdown menu*/
-
 .content .links ul {
     position: absolute;
     background-color: #14181f;

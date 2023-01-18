@@ -26,7 +26,7 @@
         {
             var category = this.categoriesRepository
                 .AllAsNoTracking()
-                .Where(x => x.Name == input.Name.Trim())
+                .Where(x => x.Name.ToLower() == input.Name.ToLower().Trim())
                 .FirstOrDefault();
 
             if (category == null)
@@ -59,9 +59,11 @@
             }
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == id);
+            this.categoriesRepository.Delete(category);
+            await this.categoriesRepository.SaveChangesAsync();
         }
 
         public ICollection<T> GetCategories<T>()
