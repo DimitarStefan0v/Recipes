@@ -7,7 +7,9 @@
 
     public interface ICategoriesService
     {
-        ICollection<T> GetCategories<T>();
+        ICollection<CategoryInListViewModel> GetCategories();
+
+        ICollection<T> GetCategoryNames<T>();
 
         Task CreateAsync(CreateCategoryInputModel input, string userId);
 

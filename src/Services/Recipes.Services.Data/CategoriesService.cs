@@ -66,9 +66,20 @@
             await this.categoriesRepository.SaveChangesAsync();
         }
 
-        public ICollection<T> GetCategories<T>()
+        public ICollection<CategoryInListViewModel> GetCategories()
         {
-            return this.categoriesRepository.AllAsNoTracking().To<T>().ToList();
+            //return this.categoriesRepository.AllAsNoTracking().To<T>().ToList();
+            var categories = this.categoriesRepository
+                .AllAsNoTracking()
+                .Select(x => new CategoryInListViewModel
+                {
+                    Name = x.Name,
+                    Color = x.Color,
+                    ImageUrl = x.Image.PictureUrl == null ? null : x.Image.PictureUrl,
+                })
+                .ToList();
+
+            return categories;
         }
     }
 }

@@ -18,7 +18,7 @@
         {
             configuration
                 .CreateMap<Category, CategoryInListViewModel>()
-                .ForMember(x => x.ImageUrl, opt => opt.MapFrom(c => c.Image.PictureUrl));
+                .ForMember(x => x.ImageUrl, opt => opt.MapFrom(c => c.Image.PictureUrl == null ? null : c.Image.Pic));
         }
     }
 }
