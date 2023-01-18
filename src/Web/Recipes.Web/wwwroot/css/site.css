@@ -150,12 +150,25 @@ nav .content .links {
     transition: all 0.3s ease;
 }
 
+#logout-form button {
+    font-size: 18px;
+    font-weight: 500;
+    background: none;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    line-height: 30px;
+    padding: 10px 17px;
+    margin-right: 30px;
+}
+
 .content .links li label {
     display: none;
 }
 
 .content .links li a:hover,
-.content .links li label:hover {
+.content .links li label:hover,
+#logout-form button:hover {
     background-color: #323c4e;
     color: #FFA400;
 }
@@ -301,7 +314,7 @@ nav .content .links {
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1010px) {
     .wrapper .menu-icon {
         display: block;
         font-size: 30px;
@@ -336,7 +349,8 @@ nav .content .links {
     }
 
     .content .links li a,
-    .content .links li label {
+    .content .links li label,
+    .content .links li #logout-form button {
         line-height: 40px;
         font-size: 20px;
         display: block;
@@ -344,6 +358,10 @@ nav .content .links {
         cursor: pointer;
     }
 
+    .content .links li #logout-form button {
+        width: 100%;
+        text-align: left;
+    }
     .content .links li a.desktop-link {
         display: none;
     }
@@ -375,7 +393,7 @@ nav .content .links {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 480px) {
     .wrapper nav {
         padding: 0 10px;
     }
@@ -391,5 +409,15 @@ nav .content .links {
 
     .wrapper .search-box input {
         padding-right: 30px;
+    }
+
+    nav .content .links {
+        top: -100%;
+        left: 0;
+        max-width: 100%;
+    }
+
+    nav #show-menu:checked ~ .content .links {
+        top: 70px;
     }
 }
