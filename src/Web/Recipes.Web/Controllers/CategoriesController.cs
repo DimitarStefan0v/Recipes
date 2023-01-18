@@ -15,7 +15,8 @@
 
         public IActionResult All()
         {
-            var viewModel = this.categoriesService.GetCategories();
+            var viewModel = new CategoriesListViewModel();
+            viewModel.Categories = this.categoriesService.GetCategories();
             return this.View(viewModel);
         }
     }

@@ -33,7 +33,7 @@
         [Display(Name = "Категория")]
         public int CategoryId { get; set; }
 
-        public ICollection<CategoryInListViewModel> Categories { get; set; }
+        public ICollection<CategoriesViewModel> Categories { get; set; }
 
         [Required(ErrorMessage = RecipeErrorMessages.IngredientRequired)]
         public ICollection<IngredientInputModel> Ingredients { get; set; }

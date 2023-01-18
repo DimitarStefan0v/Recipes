@@ -7,7 +7,7 @@
 
     public interface ICategoriesService
     {
-        ICollection<CategoryInListViewModel> GetCategories();
+        IEnumerable<CategoryInListViewModel> GetCategories();
 
         ICollection<T> GetCategoryNames<T>();
 
