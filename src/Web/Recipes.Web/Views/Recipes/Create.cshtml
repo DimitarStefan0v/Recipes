@@ -6,7 +6,7 @@
     var categoryItems = this.Model.Categories.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
 }
 
-<h1>Добавяне на рецепта</h1>
+<h1 class="text-center">Добавяне на рецепта</h1>
 <form method="post" class="col-md-6 col-10 mx-auto" enctype="multipart/form-data">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="mb-3">

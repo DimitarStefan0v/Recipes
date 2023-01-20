@@ -1,8 +1,8 @@
 ﻿@using Recipes.Web.ViewModels.Categories;
-@model EditCategoryInputModel
+@model CreateCategoryInputModel
 
 @{
-    this.ViewData["Title"] = "Редактиране на категорията";
+    this.ViewData["Title"] = "Добавяне на нова категория";
 }
 
 <h1 class="text-center">@this.ViewData["Title"]</h1>
@@ -18,13 +18,10 @@
         <input asp-for="Color" class="form-control" />
         <span asp-validation-for="Color" class="text-danger"></span>
     </div>
-    <div class="current-img-container">
-        <img src="@Model.ImageUrl" class="img-fluid w-100" />
-    </div>
     <div class="mb-3">
-        <label asp-for="NewImage" class="form-label"></label>
-        <input asp-for="NewImage" class="form-control" />
-        <span asp-validation-for="NewImage" class="text-danger"></span>
+        <label asp-for="Image" class="form-label"></label>
+        <input asp-for="Image" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
     </div>
     
     <div class="mb-3">

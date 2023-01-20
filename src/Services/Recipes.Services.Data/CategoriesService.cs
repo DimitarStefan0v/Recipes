@@ -34,7 +34,7 @@
                 category = new Category
                 {
                     Name = input.Name.Trim(),
-                    Color = input.Color.Trim(),
+                    Color = input.Color == null ? null : input.Color.Trim(),
                 };
 
                 if (input.Image != null)
