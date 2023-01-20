@@ -14,5 +14,7 @@
         Task CreateAsync(CreateCategoryInputModel input, string userId);
 
         Task DeleteAsync(int id);
+
+        T GetById<T>(int id);
     }
 }
