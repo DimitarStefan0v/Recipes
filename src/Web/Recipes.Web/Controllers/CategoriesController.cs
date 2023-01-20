@@ -67,5 +67,36 @@
 
             return this.RedirectToAction(nameof(this.ById), new { id });
         }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult Create()
+        {
+            var inputModel = new CreateCategoryInputModel();
+            return this.View(inputModel);
+        }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateCategoryInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            try
+            {
+                await this.categoriesService.CreateAsync(input, user.Id);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                return this.View(input);
+            }
+
+            return this.RedirectToAction(nameof(this.All));
+        }
     }
 }

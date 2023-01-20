@@ -99,14 +99,14 @@
         public async Task UpdateAsync(int id, EditCategoryInputModel input, string userId)
         {
             var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == id);
-            if (category.Name != input.Name)
+            if (category.Name != input.Name.Trim())
             {
-                category.Name = input.Name;
+                category.Name = input.Name.Trim();
             }
 
             if (category.Color != input.Color)
             {
-                category.Color = input.Color;
+                category.Color = input.Color.Trim();
             }
 
             if (input.NewImage != null)
