@@ -95,5 +95,31 @@
         {
             return this.categoriesRepository.AllAsNoTracking().To<T>().ToList();
         }
+
+        public async Task UpdateAsync(int id, EditCategoryInputModel input, string userId)
+        {
+            var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == id);
+            category.Name = input.Name;
+            category.Color = input.Color;
+
+            if (input.NewImage != null)
+            {
+                var imgResult = await this.imagesService.UploadImageAsync(input.NewImage);
+
+                string imgUrl = imgResult.SecureUrl.AbsoluteUri;
+                string imgPubId = imgResult.PublicId;
+
+                var imageToWrite = new CloudImage
+                {
+                    PictureUrl = imgUrl,
+                    PicturePublicId = imgPubId,
+                    AddedByUserId = userId,
+                };
+
+                category.Image = imageToWrite;
+            }
+
+            await this.categoriesRepository.SaveChangesAsync();
+        }
     }
 }

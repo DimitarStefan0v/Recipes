@@ -13,7 +13,7 @@
 
         Task CreateAsync(CreateCategoryInputModel input, string userId);
 
-        Task UpdateAsync(int id, EditCategoryInputModel input);
+        Task UpdateAsync(int id, EditCategoryInputModel input, string userId);
 
         Task DeleteAsync(int id);
 
