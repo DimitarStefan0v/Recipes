@@ -98,5 +98,13 @@
 
             return this.RedirectToAction(nameof(this.All));
         }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.categoriesService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        }
     }
 }
