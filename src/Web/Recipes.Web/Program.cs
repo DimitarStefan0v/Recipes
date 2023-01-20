@@ -53,12 +53,12 @@
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }).AddRazorRuntimeCompilation();
 
-            var myAccount = new Account(
+            var cloudinaryAccount = new Account(
                 configuration.GetValue<string>("CloudinarySettings:CloudName"),
                 configuration.GetValue<string>("CloudinarySettings:ApiKey"),
                 configuration.GetValue<string>("CloudinarySettings:ApiSecret"));
 
-            var cloudUtility = new Cloudinary(myAccount);
+            var cloudUtility = new Cloudinary(cloudinaryAccount);
 
             services.AddSingleton(cloudUtility);
 

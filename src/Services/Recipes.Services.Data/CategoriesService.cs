@@ -66,6 +66,15 @@
             await this.categoriesRepository.SaveChangesAsync();
         }
 
+        public T GetById<T>(int id)
+        {
+            return this.categoriesRepository
+                .AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+        }
+
         public IEnumerable<CategoryInListViewModel> GetCategories()
         {
             var categories = this.categoriesRepository
