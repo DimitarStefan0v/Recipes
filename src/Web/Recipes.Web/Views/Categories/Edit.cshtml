@@ -1,0 +1,33 @@
+﻿@using Recipes.Web.ViewModels.Categories;
+@model EditCategoryInputModel
+
+@{
+    this.ViewData["Title"] = "Редактиране на категорията";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+<form method="post" class="col-md-6 col-10 mx-auto" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Color" class="form-label"></label>
+        <input asp-for="Color" class="form-control" />
+        <span asp-validation-for="Color" class="text-danger"></span>
+    </div>
+    <div class="current-img-container">
+        <img src="@Model.ImageUrl" class="img-fluid w-100" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewImage" class="form-label"></label>
+        <input asp-for="NewImage" class="form-control" />
+        <span asp-validation-for="NewImage" class="text-danger"></span>
+    </div>
+    
+    <div class="mb-3">
+        <input type="submit" value="Изпрати" class="btn btn-primary" />
+    </div>
+</form>

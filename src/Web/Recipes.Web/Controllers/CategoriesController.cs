@@ -65,7 +65,7 @@
                 return this.View(input);
             }
 
-            return this.RedirectToAction(nameof(this.ById), id);
+            return this.RedirectToAction(nameof(this.ById), new { id });
         }
     }
 }

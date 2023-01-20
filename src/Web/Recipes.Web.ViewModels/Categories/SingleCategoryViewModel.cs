@@ -17,7 +17,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration
-                .CreateMap<Category, EditCategoryInputModel>()
+                .CreateMap<Category, SingleCategoryViewModel>()
                 .ForMember(x => x.ImageUrl, opt => opt.MapFrom(c => c.Image.PictureUrl));
         }
     }
