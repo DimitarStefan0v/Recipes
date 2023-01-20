@@ -1,4 +1,5 @@
-﻿@using Recipes.Web.ViewModels.Categories;
+﻿@using Recipes.Common;
+@using Recipes.Web.ViewModels.Categories;
 @model SingleCategoryViewModel
 
 @{
@@ -14,3 +15,7 @@
         <img src="@Model.ImageUrl" class="img-fluid w-100" />
     </article>
 </section>
+@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+{
+    <a asp-controller="Categories" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Редактирай</a>
+}
