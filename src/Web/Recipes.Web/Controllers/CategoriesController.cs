@@ -19,5 +19,11 @@
             viewModel.Categories = this.categoriesService.GetCategories();
             return this.View(viewModel);
         }
+
+        public IActionResult ById(int id)
+        {
+            var viewModel = this.categoriesService.GetById<SingleCategoryViewModel>(id);
+            return this.View(viewModel);
+        }
     }
 }
