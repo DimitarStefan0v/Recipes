@@ -13,6 +13,8 @@
 
         Task CreateAsync(CreateCategoryInputModel input, string userId);
 
+        Task UpdateAsync(int id, EditCategoryInputModel input);
+
         Task DeleteAsync(int id);
 
         T GetById<T>(int id);
