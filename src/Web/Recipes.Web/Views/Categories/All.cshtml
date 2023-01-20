@@ -6,16 +6,18 @@
 }
 
 <h1>@this.ViewData["Title"]</h1>
-<section class="categories-wrapper">
+<section class="categories-list-container">
     @foreach (var category in Model.Categories)
     {
-        <section class="single-category-wrapper">
-            <article class="category-name">
+        <section class="category-in-list-container">
+            <a asp-action="ById" asp-route-id="@category.Id">
+                <article class="category-in-list-container-name">
                 <p>@category.Name</p>
             </article>
-            <article class="category-img">
+            <article class="category-in-list-container-img">
                 <img src="@category.ImageUrl" class="img-fluid w-100">
             </article>
+            </a>
         </section>
     }
 </section>

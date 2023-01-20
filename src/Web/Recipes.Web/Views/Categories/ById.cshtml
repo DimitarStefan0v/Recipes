@@ -1,0 +1,16 @@
+﻿@using Recipes.Web.ViewModels.Categories;
+@model SingleCategoryViewModel
+
+@{
+    this.ViewData["Title"] = this.Model.Name;
+}
+
+<h1>@this.ViewData["Title"]</h1>
+<section class="category-container">
+    <article class="category-container-name">
+        <p>@Model.Name</p>
+    </article>
+    <article class="category-container-img">
+        <img src="@Model.ImageUrl" class="img-fluid w-100" />
+    </article>
+</section>

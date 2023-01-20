@@ -6,17 +6,17 @@
 }
 
 <h1>Рецепти</h1>
-<section class="recipes-container">
+<section class="recipes-list-container">
     @foreach (var recipe in Model.Recipes)
     {
-        <article class="single-recipe-container">
+        <article class="recipe-in-list-container">
             <a asp-action="ById" asp-route-id="@recipe.Id">
-            <article class="single-recipe-container-img">
-                <img src="@recipe.ImageUrl" class="img-fluid w-100">
-            </article>
-            <article class="single-recipe-container-name">
-                <p>@(recipe.Name.Length > 50 ? recipe.Name.Substring(0, 50) + "..." : recipe.Name)</p>
-            </article>
+                <article class="recipe-in-list-container-img">
+                    <img src="@recipe.ImageUrl" class="img-fluid w-100">
+                </article>
+                <article class="recipe-in-list-container-name">
+                    <p>@(recipe.Name.Length > 50 ? recipe.Name.Substring(0, 50) + "..." : recipe.Name)</p>
+                </article>
             </a>
         </article>
     }
