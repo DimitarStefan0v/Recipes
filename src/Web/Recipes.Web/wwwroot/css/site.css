@@ -344,6 +344,12 @@ a {
 .category-in-list-container a:hover p {
     color: #FFA400;
 }
+
+.recipe-container {
+    display: flex;
+    border: 1px solid black;
+}
+
 /*----------------------------------------Media queries----------------------------------------*/
 @media screen and (max-width: 1080px) {
     .wrapper nav {
