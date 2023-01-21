@@ -4,6 +4,7 @@
     using System.Collections.Generic;
 
     using AutoMapper;
+    using global::Recipes.Common;
     using global::Recipes.Data.Models;
     using global::Recipes.Services.Mapping;
 
@@ -39,7 +40,7 @@
                 .ForMember(x => x.ImageUrl, opt => opt.MapFrom(r => r.Image.PictureUrl))
                 .ForMember(x => x.PreparationTime, opt => opt.MapFrom(r => (int)r.PreparationTime.Value.TotalMinutes))
                 .ForMember(x => x.CookingTime, opt => opt.MapFrom(r => (int)r.CookingTime.Value.TotalMinutes))
-                .ForMember(x => x.Color, opt => opt.MapFrom(r => r.Category.Color == null ? "FFA200" : r.Category.Color));
+                .ForMember(x => x.Color, opt => opt.MapFrom(r => r.Category.Color == null ? GlobalConstants.CategoryDefaultColor : r.Category.Color));
         }
     }
 }
