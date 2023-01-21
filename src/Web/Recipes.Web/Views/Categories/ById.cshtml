@@ -8,11 +8,14 @@
 
 <h1 class="text-center">@this.ViewData["Title"]</h1>
 <section class="category-container">
-    <article class="category-container-name">
-        <p>@Model.Name</p>
-    </article>
     <article class="category-container-img">
         <img src="@Model.ImageUrl" class="img-fluid w-100" />
+    </article>
+    <article class="category-container-details">
+        <ul>
+            <li>Брой рецепти: 22</li>
+            <li>Последно добавена рецепта в категорията на: 22/11/2023</li>
+        </ul>
     </article>
 </section>
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
