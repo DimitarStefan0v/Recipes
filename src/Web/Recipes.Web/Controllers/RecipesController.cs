@@ -79,5 +79,34 @@
             await this.recipesService.DeleteAsync(id);
             return this.RedirectToAction(nameof(this.All));
         }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult Edit(int id)
+        {
+            var inputModel = this.recipesService.GetById<EditRecipeInputModel>(id);
+            return this.View(inputModel);
+        }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditRecipeInputModel inputModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(inputModel);
+            }
+
+            try
+            {
+                await this.recipesService.UpdateAsync(id, inputModel);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                return this.View(inputModel);
+            }
+
+            return this.RedirectToAction(nameof(this.ById), new { id });
+        }
     }
 }
