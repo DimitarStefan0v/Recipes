@@ -13,6 +13,8 @@
 
         T GetById<T>(int id);
 
+        Task UpdateAsync(int id, EditRecipeInputModel input);
+
         Task DeleteAsync(int id);
     }
 }
