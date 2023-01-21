@@ -4,7 +4,8 @@
 @inject ICategoriesService categoriesService;
 
 @{
-    var categories = this.categoriesService.GetCategoryNames<CategoriesViewModel>();
+    var foodsCategory = this.categoriesService.GetCategoryNames<CategoriesViewModel>().Where(x => x.Name != "Напитки").ToList();
+    var beveragesCategory = this.categoriesService.GetCategoryNames<CategoriesViewModel>().Where(x => x.Name == "Напитки").FirstOrDefault();
 }
 
 <!DOCTYPE html>
@@ -42,27 +43,29 @@
                         <input type="checkbox" id="show-services" />
                         <label for="show-services">Рецепти</label>
                         <ul>
-                            <li><a asp-controller="Categories" asp-action="All">Всички</a></li>
                             <li><a asp-controller="Recipes" asp-action="Create">Добави рецепта</a></li>
+                            <li><a asp-controller="Recipes" asp-action="All">Всички</a></li>
                             <li>
                                 <a href="#" class="desktop-link">Категории</a>
                                 <input type="checkbox" id="show-more-items" />
                                 <label for="show-more-items">Категории</label>
                                 <ul>
-                                    @foreach (var category in categories)
+                                    @foreach (var category in foodsCategory)
                                     {
                                         <li><a asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a></li>
                                     }
+                                    <li><a asp-controller="Categories" asp-action="All">Всички категории</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
+                    <li><a asp-controller="Categories" asp-action="ById" asp-route-id="@beveragesCategory.Id">@beveragesCategory.Name</a></li>
                     <partial name="_LoginPartial" />
                 </ul>
             </div>
             <label for="show-search" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></label>
             <form action="#" class="search-box">
-                <input type="text" placeholder="Type something to search..." required />
+                <input type="text" placeholder="Търси по име на рецепта" required />
                 <button type="submit" class="go-icon"><i class="fa-solid fa-arrow-right-long"></i></button>
             </form>
         </nav>

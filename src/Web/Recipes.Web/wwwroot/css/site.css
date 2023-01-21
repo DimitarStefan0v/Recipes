@@ -248,7 +248,7 @@ nav .content .links {
 }
 
 .container {
-    padding-top: 70px;
+    padding-top: 90px;
     max-width: 1080px;
     margin: 0 auto;
 }
@@ -308,6 +308,13 @@ nav .content .links {
 
 .categories-list-container {
     display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.categories-list-container .category-in-list-container {
+    flex-basis: 30%;
+    margin: 10px 15px;
 }
 
 /*----------------------------------------Media queries----------------------------------------*/
