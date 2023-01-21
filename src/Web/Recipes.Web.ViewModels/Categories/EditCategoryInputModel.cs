@@ -14,7 +14,7 @@
         [Display(Name = "Заглавие на категорията")]
         [Required(ErrorMessage = CategoryErrorMessages.NameRequired)]
         [MinLength(4, ErrorMessage = CategoryErrorMessages.NameLength)]
-        [MaxLength(20, ErrorMessage = CategoryErrorMessages.NameLength)]
+        [MaxLength(30, ErrorMessage = CategoryErrorMessages.NameLength)]
         public string Name { get; set; }
 
         [Display(Name = "Цвят на категорията")]

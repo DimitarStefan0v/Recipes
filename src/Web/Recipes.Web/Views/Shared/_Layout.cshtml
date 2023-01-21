@@ -1,4 +1,12 @@
 ﻿@using Recipes.Common
+@using Recipes.Services.Data;
+@using Recipes.Web.ViewModels.Categories;
+@inject ICategoriesService categoriesService;
+
+@{
+    var categories = this.categoriesService.GetCategoryNames<CategoriesViewModel>();
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +26,6 @@
             <div class="content">
                 <div class="logo"><a asp-controller="Home" asp-action="Index">LOGO</a></div>
                 <ul class="links">
-                    <li><a asp-area="" asp-controller="Recipes" asp-action="All">Всички</a></li>
-                    <li><a asp-area="" asp-controller="Recipes" asp-action="Create">Добави рецепта</a></li>
                     <li>
                         <a href="#" class="desktop-link">Features</a>
                         <input type="checkbox" id="show-features" />
@@ -32,22 +38,21 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="desktop-link">Services</a>
+                        <a href="#" class="desktop-link">Рецепти</a>
                         <input type="checkbox" id="show-services" />
-                        <label for="show-services">Services</label>
+                        <label for="show-services">Рецепти</label>
                         <ul>
-                            <li><a href="#">Dropmenu 1</a></li>
-                            <li><a href="#">Dropmenu 2</a></li>
-                            <li><a href="#">Dropmenu 3</a></li>
+                            <li><a asp-controller="Categories" asp-action="All">Всички</a></li>
+                            <li><a asp-controller="Recipes" asp-action="Create">Добави рецепта</a></li>
                             <li>
-                                <a href="#" class="desktop-link">More items</a>
+                                <a href="#" class="desktop-link">Категории</a>
                                 <input type="checkbox" id="show-more-items" />
-                                <label for="show-more-items">More items</label>
+                                <label for="show-more-items">Категории</label>
                                 <ul>
-                                    <li><a href="#">Submenu 1</a></li>
-                                    <li><a href="#">Submenu 2</a></li>
-                                    <li><a href="#">Submenu 3</a></li>
-                                    <li><a href="#">Submenu 4</a></li>
+                                    @foreach (var category in categories)
+                                    {
+                                        <li><a asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a></li>
+                                    }
                                 </ul>
                             </li>
                         </ul>

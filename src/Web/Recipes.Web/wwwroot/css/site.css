@@ -281,7 +281,7 @@ nav .content .links {
 .content .links ul ul {
     position: absolute;
     top: 0;
-    right: calc(-100% + 8px);
+    right: calc(-100% - 53px);
 }
 
 .content .links ul li {
@@ -304,6 +304,10 @@ nav .content .links {
 
 .buttons-list li {
     list-style: none;
+}
+
+.categories-list-container {
+    display: flex;
 }
 
 /*----------------------------------------Media queries----------------------------------------*/
@@ -390,7 +394,7 @@ nav .content .links {
         visibility: visible;
         background: none;
         max-height: 0px;
-        overflow: hidden;
+        overflow-y: auto;
     }
 
     .content .links #show-features:checked ~ ul,
