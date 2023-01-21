@@ -17,25 +17,31 @@
 </section>
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
-    <a asp-controller="Categories" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Редактирай</a>
-    <form method="post" asp-controller="Categories" asp-action="Delete" asp-route-id="@Model.Id">
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Изтрий</button>
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Моля потвърдете</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Сигурни ли сте че искате да изтриете категорията?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Откажи</button>
-                        <button class="btn btn-danger">Изтрий</button>
+    <ul class="buttons-list">
+        <li>
+            <a asp-controller="Categories" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Редактирай</a>
+        </li>
+        <li>
+            <form method="post" asp-controller="Categories" asp-action="Delete" asp-route-id="@Model.Id">
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Изтрий</button>
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Моля потвърдете</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Сигурни ли сте че искате да изтриете категорията?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Откажи</button>
+                                <button class="btn btn-danger">Изтрий</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </form>
+            </form>
+        </li>
+    </ul>
 }
