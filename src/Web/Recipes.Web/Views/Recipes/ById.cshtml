@@ -21,6 +21,7 @@
             <li>@Model.PortionsCount</li>
         </ul>
     </article>
+    <input id="recipe-container-color" value="@Model.Color" type="hidden" />
 </section>
 <section class="description-and-ingredients-container">
     <article class="description">
@@ -66,4 +67,8 @@
             </form>
         </li>
     </ul>
+}
+
+@section Scripts {
+    <script src="~/js/paint.js"></script>
 }
