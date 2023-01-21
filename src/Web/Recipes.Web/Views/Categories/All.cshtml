@@ -11,12 +11,12 @@
     {
         <section class="category-in-list-container">
             <a asp-action="ById" asp-route-id="@category.Id">
+                <article class="category-in-list-container-img">
+                    <img src="@category.ImageUrl" class="img-fluid w-100">
+                </article>
                 <article class="category-in-list-container-name">
-                <p>@category.Name</p>
-            </article>
-            <article class="category-in-list-container-img">
-                <img src="@category.ImageUrl" class="img-fluid w-100">
-            </article>
+                    <p>@category.Name</p>
+                </article>
             </a>
         </section>
     }
