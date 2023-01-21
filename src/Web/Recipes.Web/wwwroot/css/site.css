@@ -98,7 +98,6 @@ html {
 
 
 */
-/*----------------------------------------Navigation bar and some styles for body and base container*/
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
 
@@ -249,11 +248,11 @@ nav .content .links {
 
 .container {
     padding-top: 70px;
-    max-width: 1080px;
+    width: 1080px;
     margin: 0 auto;
 }
 
-/*----------------------------------------Dropdown menu----------------------------------------*/
+/*Dropdown menu*/
 .content .links ul {
     position: absolute;
     background-color: #14181f;
@@ -292,21 +291,7 @@ nav .content .links {
     top: 0;
 }
 
-/*----------------------------------------Pages styles----------------------------------------*/
-
-.buttons-list {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 30px auto;
-    padding: 0;
-}
-
-.buttons-list li {
-    list-style: none;
-}
-
-/*----------------------------------------Media queries----------------------------------------*/
+/*Media queries*/
 
 @media screen and (max-width: 1080px) {
     .wrapper nav {
@@ -410,12 +395,6 @@ nav .content .links {
     }
 }
 
-@media screen and (max-width: 768px) {
-    .buttons-list {
-        width: 320px;
-    }
-}
-
 @media screen and (max-width: 480px) {
     .wrapper nav {
         padding: 0 10px;
@@ -442,9 +421,5 @@ nav .content .links {
 
     nav #show-menu:checked ~ .content .links {
         top: 70px;
-    }
-
-    .buttons-list {
-        width: 200px;
     }
 }
