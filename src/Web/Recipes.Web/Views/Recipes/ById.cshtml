@@ -10,16 +10,18 @@
     <article class="recipe-container-name">
         <h1>@Model.Name</h1>
     </article>
-    <article class="recipe-container-img">
-        <img src="@Model.ImageUrl" class="img-fluid w-100" />
-    </article>
-    <article class="recipe-container-details">
-        <ul>
-            <li>@Model.PreparationTime</li>
-            <li>@Model.CookingTime</li>
-            <li>@Model.TotalTime</li>
-            <li>@Model.PortionsCount</li>
-        </ul>
+    <article class="container-for-img-and-details">
+        <article class="recipe-container-img">
+            <img src="@Model.ImageUrl" class="img-fluid w-100" />
+        </article>
+        <article class="recipe-container-details">
+            <ul>
+                <li><i class="fa-regular fa-clock"></i> Приготвяне @Model.PreparationTime мин.</li>
+                <li><i class="fa-regular fa-clock"></i> Готвене @Model.CookingTime мин.</li>
+                <li><i class="fa-regular fa-clock"></i> Общо @Model.TotalTime мин.</li>
+                <li><i class="fa-solid fa-utensils"></i> Порции @Model.PortionsCount</li>
+            </ul>
+        </article>
     </article>
     <input id="recipe-container-color" value="@Model.Color" type="hidden" />
 </section>
@@ -28,16 +30,19 @@
         <p>@Model.Description</p>
     </article>
     <article class="ingredients">
-        <ul>
+        <p>Съставки:</p>
+        <ol>
             @foreach (var ingredient in Model.Ingredients)
             {
                 <li>@ingredient.IngredientName - @ingredient.Quantity</li>
             }
-        </ul>
+        </ol>
     </article>
 </section>
-<p>@Model.AddedByUserUserName</p>
-<p>@Model.CreatedOn</p>
+<article class="additional-details">
+    <p><i class="fa-regular fa-user"></i> @Model.AddedByUserUserName</p>
+    <p><i class="fa-regular fa-calendar-days"></i> @Model.CreatedOn</p>
+</article>
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
     <ul class="buttons-list">
