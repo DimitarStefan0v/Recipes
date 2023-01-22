@@ -13,8 +13,8 @@
     </article>
     <article class="category-container-details">
         <ul>
-            <li>Брой рецепти: 22</li>
-            <li>Последно добавена рецепта в категорията на: 22/11/2023</li>
+            <li>Брой рецепти: @Model.RecipesCount</li>
+            <li>Последно добавена рецепта в категорията на: @Model.RecentRecipeDate.ToShortDateString()</li>
         </ul>
     </article>
 </section>
