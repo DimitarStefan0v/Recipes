@@ -69,7 +69,7 @@
                 return this.NotFound();
             }
 
-            int itemsPerPage = 3;
+            int itemsPerPage = 1;
 
             var viewModel = new RecipesListViewModel
             {

@@ -23,6 +23,34 @@
     }
 </section>
 
+<section class="pagination-container">
+    <article class="pagination-links">
+        @for (int i = this.Model.PageNumber - 4; i < this.Model.PageNumber - 1; i++)
+        {
+            if (i > 0)
+            {
+                <a class="page-desktop-link" asp-controller="Recipes" asp-action="All" asp-route-id="@i">@i</a>
+            }
+        }
+        @if (Model.HasPreviousPage)
+        {
+            <a class="page-desktop-link" asp-controller="Recipes" asp-action="All" asp-route-id="@Model.PreviousPageNumber">@Model.PreviousPageNumber</a>
+        }
+
+        @if (Model.HasNextPage)
+        {
+            <a class="page-desktop-link" asp-controller="Recipes" asp-action="All" asp-route-id="@Model.NextPageNumber">@Model.NextPageNumber</a>
+        }
+        @for (int i = this.Model.PageNumber + 2; i < this.Model.PageNumber + 4; i++)
+        {
+            if (i <= this.Model.PagesCount)
+            {
+                <a class="page-desktop-link" asp-controller="Recipes" asp-action="All" asp-route-id="@i">@i</a>
+            }
+        }
+    </article>
+</section>
+
 @section Scripts {
     <script src="~/js/paintBorder.js"></script>
 }
