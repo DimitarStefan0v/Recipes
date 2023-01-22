@@ -1,4 +1,4 @@
-﻿namespace Recipes.Web
+namespace Recipes.Web
 {
     using System.Reflection;
 

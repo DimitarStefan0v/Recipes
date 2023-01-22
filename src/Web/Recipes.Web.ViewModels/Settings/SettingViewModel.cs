@@ -1,9 +1,9 @@
-﻿using AutoMapper;
-using Recipes.Data.Models;
-using Recipes.Services.Mapping;
-
-namespace Recipes.Web.ViewModels.Settings
+﻿namespace Recipes.Web.ViewModels.Settings
 {
+    using AutoMapper;
+    using global::Recipes.Data.Models;
+    using global::Recipes.Services.Mapping;
+
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {
         public int Id { get; set; }
