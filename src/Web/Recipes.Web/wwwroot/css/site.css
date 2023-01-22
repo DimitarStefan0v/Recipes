@@ -436,12 +436,11 @@ a {
 .recipes-list-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .recipe-in-list-container {
     flex-basis: 30%;
-    margin: 10px 0;
+    margin: 10px 10px;
     min-width: 300px;
 }
 

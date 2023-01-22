@@ -18,7 +18,10 @@
         private readonly ICategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public RecipesController(IRecipesService recipesService, ICategoriesService categoriesService, UserManager<ApplicationUser> userManager)
+        public RecipesController(
+            IRecipesService recipesService,
+            ICategoriesService categoriesService,
+            UserManager<ApplicationUser> userManager)
         {
             this.recipesService = recipesService;
             this.categoriesService = categoriesService;
@@ -59,10 +62,23 @@
             return this.Redirect("/");
         }
 
-        public IActionResult All()
+        public IActionResult All(int id = 1)
         {
-            var viewModel = new RecipesListViewModel();
-            viewModel.Recipes = this.recipesService.GetAll<RecipeInListViewModel>();
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            int itemsPerPage = 3;
+
+            var viewModel = new RecipesListViewModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                ItemsCount = this.recipesService.GetRecipesCount(),
+                Recipes = this.recipesService.GetAll<RecipeInListViewModel>(id, itemsPerPage),
+            };
+
             return this.View(viewModel);
         }
 
