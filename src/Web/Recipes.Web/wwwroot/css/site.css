@@ -457,6 +457,22 @@ a {
     overflow: auto;
 }
 
+.pagination-links {
+    margin: 20px auto;
+    width: fit-content;
+}
+
+.pagination-links a {
+    color: #fff;
+    background-color: #e6580c;
+    padding: 10px 20px;
+}
+
+.pagination-links a:hover {
+    background-color: #CF4100;
+}
+
+
 /*----------------------------------------Media queries----------------------------------------*/
 @media screen and (max-width: 1080px) {
     .wrapper nav {
