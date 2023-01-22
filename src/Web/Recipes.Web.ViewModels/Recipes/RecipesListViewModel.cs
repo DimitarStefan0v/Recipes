@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class RecipesListViewModel
+    public class RecipesListViewModel : PagingViewModel
     {
         public IEnumerable<RecipeInListViewModel> Recipes { get; set; }
     }
