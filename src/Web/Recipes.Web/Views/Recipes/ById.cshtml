@@ -5,7 +5,11 @@
 @{
     this.ViewData["Title"] = Model.Name;
 }
-
+<section class="links-above-container">
+    <a asp-controller="Home" asp-action="Index">Начало &gt; </a>
+    <a asp-controller="Categories" asp-action="ById" asp-route-id="@Model.CategoryId">@Model.CategoryName &gt; </a>
+    <a asp-controller="Recipes" asp-action="ById" asp-route-id="@Model.Id">@Model.Name</a>
+</section>
 <section class="recipe-container">
     <article class="recipe-container-name">
         <h1>@Model.Name</h1>

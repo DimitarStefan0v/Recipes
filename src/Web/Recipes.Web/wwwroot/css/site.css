@@ -446,7 +446,7 @@ a {
 
 .recipe-in-list-container-name {
     height: 80px;
-    background-color: #DEDEDE;
+    background-color: #F0F0F0;
 }
 
 .recipe-in-list-container-name p {
@@ -483,6 +483,19 @@ a {
     display: none;
 }
 
+.links-above-container {
+    margin: 10px auto;
+    font-size: 16px;
+}
+
+.links-above-container a {
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.links-above-container a:hover {
+    color: #FFA428;
+}
 
 /*----------------------------------------Media queries----------------------------------------*/
 @media screen and (max-width: 1080px) {
