@@ -11,6 +11,7 @@
         public Recipe()
         {
             this.Ingredients = new HashSet<RecipeIngredient>();
+            this.Votes = new HashSet<Vote>();
         }
 
         public string Name { get; set; }
@@ -37,5 +38,7 @@
         public ApplicationUser AddedByUser { get; set; }
 
         public ICollection<RecipeIngredient> Ingredients { get; set; }
+
+        public ICollection<Vote> Votes { get; set; }
     }
 }
