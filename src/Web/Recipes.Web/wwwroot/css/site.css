@@ -460,6 +460,8 @@ a {
 .pagination-links {
     margin: 20px auto;
     width: fit-content;
+    display: flex;
+    gap: 5px;   
 }
 
 .pagination-links a {
@@ -468,8 +470,17 @@ a {
     padding: 10px 20px;
 }
 
+.pagination-links p {
+    text-align: center;
+    margin: auto;
+}
+
 .pagination-links a:hover {
     background-color: #CF4100;
+}
+
+.page-mobile-link {
+    display: none;
 }
 
 
@@ -635,6 +646,14 @@ a {
     .recipe-container-details ul {
         align-items: center;
         flex-direction: column;
+    }
+
+    .page-mobile-link {
+        display: block;
+    }
+
+    .page-desktop-link {
+        display: none;
     }
 }
 
