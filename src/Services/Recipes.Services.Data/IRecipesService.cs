@@ -9,12 +9,14 @@
     {
         Task CreateAsync(CreateRecipeInputModel input, string userId);
 
-        IEnumerable<T> GetAll<T>();
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
 
         T GetById<T>(int id);
 
         Task UpdateAsync(int id, EditRecipeInputModel input);
 
         Task DeleteAsync(int id);
+
+        int GetRecipesCount();
     }
 }
