@@ -80,10 +80,12 @@
             await this.recipesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>()
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
         {
             return this.recipesRepository
                 .AllAsNoTracking()
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
         }
@@ -95,6 +97,11 @@
                 .Where(x => x.Id == id)
                 .To<T>()
                 .FirstOrDefault();
+        }
+
+        public int GetRecipesCount()
+        {
+            return this.recipesRepository.AllAsNoTracking().Count();
         }
 
         public async Task UpdateAsync(int id, EditRecipeInputModel input)
