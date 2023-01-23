@@ -3,5 +3,7 @@
     public class PostVoteResponseViewModel
     {
         public double AverageVote { get; set; }
+
+        public int VotesCount { get; set; }
     }
 }

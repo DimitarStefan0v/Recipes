@@ -53,7 +53,7 @@
         <li><i id="fifth-star" class="fa-regular fa-star" data-vote="5"></i></li>
     </ul>
     <p id="avg-votes">@Model.AverageVotesValue.ToString("0.0") / 5</p>
-    <p>Общо гласували: @Model.VotesCount</p>
+    <p id="votes-count">Общо гласували: @Model.VotesCount</p>
     <span id="avg-votes-hidden">@Model.AverageVotesValue.ToString("0.0")</span>
 </section>
 <article class="additional-details">
@@ -90,35 +90,11 @@
         </li>
     </ul>
 }
-
+<input type="hidden" value="@Model.Id" id="recipe-id" />
 <form method="post" id="antiForgeryForm"></form>
 
 @section Scripts {
     <script src="~/js/paint.js"></script>
+    <script src="~/js/ajaxVote.js"></script>
     <script src="~/js/paintStars.js"></script>
-    <script>
-        let elements = document.querySelectorAll('.votes-container i');
-        for (let el of elements) {
-            el.addEventListener('click', async () => {
-                const value = el.getAttribute('data-vote');
-                const recipeId = @Model.Id;
-                const antiForgeryToken = document.querySelector('#antiForgeryForm input[name=__RequestVerificationToken]').value;
-                let data = { recipeId: recipeId, value: value };
-                const url = '/api/Votes';
-                const options = {
-                    method: 'post',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': antiForgeryToken,
-                    },
-                    body: JSON.stringify(data),
-                };
-
-                const response = await fetch(url, options);
-                const result = await response.json();
-
-                document.getElementById('avg-votes').textContent = result.averageVote.toFixed(1) + ' / 5';
-            });
-        }
-    </script>
 }
