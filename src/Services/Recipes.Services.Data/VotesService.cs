@@ -15,6 +15,21 @@
             this.votesRepository = votesRepository;
         }
 
+        public double GetAverageVotes(int recipeId)
+        {
+            var votes = this.votesRepository
+                .AllAsNoTracking()
+                .Where(x => x.RecipeId == recipeId)
+                .ToList();
+
+            if (votes.Count > 0)
+            {
+                return votes.Average(x => x.Value);
+            }
+
+            return 0;
+        }
+
         public async Task SetVoteAsync(int recipeId, string userId, byte value)
         {
             var vote = this.votesRepository
