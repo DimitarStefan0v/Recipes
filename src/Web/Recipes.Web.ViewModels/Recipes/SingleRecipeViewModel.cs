@@ -34,6 +34,8 @@
 
         public double AverageVotesValue { get; set; }
 
+        public int VotesCount { get; set; }
+
         public IEnumerable<IngredientViewModel> Ingredients { get; set; }
 
         public string AddedByUserUserName { get; set; }

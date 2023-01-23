@@ -53,6 +53,7 @@
         <li><i id="fifth-star" class="fa-regular fa-star" data-vote="5"></i></li>
     </ul>
     <p id="avg-votes">@Model.AverageVotesValue.ToString("0.0") / 5</p>
+    <p>Общо гласували: @Model.VotesCount</p>
     <span id="avg-votes-hidden">@Model.AverageVotesValue.ToString("0.0")</span>
 </section>
 <article class="additional-details">
@@ -97,7 +98,7 @@
     <script src="~/js/paintStars.js"></script>
     <script>
         let elements = document.querySelectorAll('.votes-container i');
-        for(let el of elements) {
+        for (let el of elements) {
             el.addEventListener('click', async () => {
                 const value = el.getAttribute('data-vote');
                 const recipeId = @Model.Id;
