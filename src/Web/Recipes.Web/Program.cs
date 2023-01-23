@@ -62,6 +62,11 @@ namespace Recipes.Web
 
             services.AddSingleton(cloudUtility);
 
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });
+
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
 

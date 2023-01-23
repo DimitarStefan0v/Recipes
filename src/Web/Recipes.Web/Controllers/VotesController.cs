@@ -32,7 +32,7 @@
             var averageVotes = this.votesService.GetAverageVotes(input.RecipeId);
             var postVoteResponse = new PostVoteResponseViewModel
             {
-                AverageVotes = averageVotes,
+                AverageVote = averageVotes,
             };
 
             return postVoteResponse;
