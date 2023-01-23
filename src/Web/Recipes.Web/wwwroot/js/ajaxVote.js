@@ -2,6 +2,7 @@
     let elements = document.querySelectorAll('.votes-container i');
     for (let el of elements) {
         el.addEventListener('click', async () => {
+            CheckIfUserShouldVote();
             const value = el.getAttribute('data-vote');
             const recipeId = document.getElementById('recipe-id').value;
             const antiForgeryToken = document.querySelector('#antiForgeryForm input[name=__RequestVerificationToken]').value;
@@ -22,6 +23,17 @@
             document.getElementById('avg-votes').textContent = result.averageVote.toFixed(1) + ' / 5';
             document.getElementById('votes-count').textContent = 'Общо гласували: ' + result.votesCount;
         });
+    }
+}
+
+const CheckIfUserShouldVote = function () {
+    let p = document.querySelector('.paragraph-warning');
+    if (p != null && p.textContent == 'unregistered') {
+        p.textContent = 'Само за регистрирани потребители!!!';
+        p.style.display = 'block';
+        let i = document.getElementById('first-star');
+        let ul = i.parentElement.parentElement;
+        ul.style.display = 'none';
     }
 }
 

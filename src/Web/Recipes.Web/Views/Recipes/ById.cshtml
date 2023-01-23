@@ -45,6 +45,10 @@
     </article>
 </section>
 <section class="votes-container">
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p class="paragraph-warning">unregistered</p>
+    }
     <ul>
         <li><i id="first-star" class="fa-regular fa-star" data-vote="1"></i></li>
         <li><i id="second-star" class="fa-regular fa-star" data-vote="2"></i></li>
@@ -95,6 +99,6 @@
 
 @section Scripts {
     <script src="~/js/paint.js"></script>
-    <script src="~/js/ajaxVote.js"></script>
     <script src="~/js/paintStars.js"></script>
+    <script src="~/js/ajaxVote.js"></script>
 }
