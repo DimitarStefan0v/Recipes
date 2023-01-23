@@ -46,13 +46,14 @@
 </section>
 <section class="votes-container">
     <ul>
-        <li><i class="fa-regular fa-star" data-vote="1"></i></li>
-        <li><i class="fa-regular fa-star" data-vote="2"></i></li>
-        <li><i class="fa-regular fa-star" data-vote="3"></i></li>
-        <li><i class="fa-regular fa-star" data-vote="4"></i></li>
-        <li><i class="fa-regular fa-star" data-vote="5"></i></li>
+        <li><i id="first-star" class="fa-regular fa-star" data-vote="1"></i></li>
+        <li><i id="second-star" class="fa-regular fa-star" data-vote="2"></i></li>
+        <li><i id="third-star" class="fa-regular fa-star" data-vote="3"></i></li>
+        <li><i id="fourth-star" class="fa-regular fa-star" data-vote="4"></i></li>
+        <li><i id="fifth-star" class="fa-regular fa-star" data-vote="5"></i></li>
     </ul>
     <p id="avg-votes">@Model.AverageVotesValue.ToString("0.0") / 5</p>
+    <span id="avg-votes-hidden">@Model.AverageVotesValue.ToString("0.0")</span>
 </section>
 <article class="additional-details">
     <p><i class="fa-regular fa-user"></i> @Model.AddedByUserUserName</p>
@@ -93,6 +94,7 @@
 
 @section Scripts {
     <script src="~/js/paint.js"></script>
+    <script src="~/js/paintStars.js"></script>
     <script>
         let elements = document.querySelectorAll('.votes-container i');
         for(let el of elements) {
