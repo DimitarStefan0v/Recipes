@@ -44,6 +44,15 @@
         </ol>
     </article>
 </section>
+<section class="votes-container">
+    <ul>
+        <li><i class="fa-regular fa-star" data-vote="1"></i></li>
+        <li><i class="fa-regular fa-star" data-vote="2"></i></li>
+        <li><i class="fa-regular fa-star" data-vote="3"></i></li>
+        <li><i class="fa-regular fa-star" data-vote="4"></i></li>
+        <li><i class="fa-regular fa-star" data-vote="5"></i></li>
+    </ul>
+</section>
 <article class="additional-details">
     <p><i class="fa-regular fa-user"></i> @Model.AddedByUserUserName</p>
     <p><i class="fa-regular fa-calendar-days"></i> @Model.CreatedOn</p>
@@ -81,4 +90,14 @@
 
 @section Scripts {
     <script src="~/js/paint.js"></script>
+    <script>
+        let elements = document.querySelectorAll('.votes-container ul li i');
+        for(let el of elements) {
+            el.addEventListener('click', async () => {
+                const value = el.getAttribute('data-vote');
+                const recipeId = @Model.Id;
+                console.log(value, recipeId);
+            });
+        }
+    </script>
 }
