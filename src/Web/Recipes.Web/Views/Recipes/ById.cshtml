@@ -52,6 +52,7 @@
         <li><i class="fa-regular fa-star" data-vote="4"></i></li>
         <li><i class="fa-regular fa-star" data-vote="5"></i></li>
     </ul>
+    <p id="avg-votes">@Model.AverageVotesValue.ToString("0.0") / 5</p>
 </section>
 <article class="additional-details">
     <p><i class="fa-regular fa-user"></i> @Model.AddedByUserUserName</p>
@@ -88,15 +89,32 @@
     </ul>
 }
 
+<form method="post" id="antiForgeryForm"></form>
+
 @section Scripts {
     <script src="~/js/paint.js"></script>
     <script>
-        let elements = document.querySelectorAll('.votes-container ul li i');
+        let elements = document.querySelectorAll('.votes-container i');
         for(let el of elements) {
             el.addEventListener('click', async () => {
                 const value = el.getAttribute('data-vote');
                 const recipeId = @Model.Id;
-                console.log(value, recipeId);
+                const antiForgeryToken = document.querySelector('#antiForgeryForm input[name=__RequestVerificationToken]').value;
+                let data = { recipeId: recipeId, value: value };
+                const url = '/api/Votes';
+                const options = {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': antiForgeryToken,
+                    },
+                    body: JSON.stringify(data),
+                };
+
+                const response = await fetch(url, options);
+                const result = await response.json();
+
+                document.getElementById('avg-votes').textContent = result.averageVote.toFixed(1) + ' / 5';
             });
         }
     </script>
