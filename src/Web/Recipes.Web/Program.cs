@@ -80,6 +80,7 @@ namespace Recipes.Web
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<ICloudImagesService, CloudImagesService>();
             services.AddTransient<IImageDbService, ImageDbService>();
+            services.AddTransient<IVotesService, VotesService>();
         }
 
         private static void Configure(WebApplication app)
