@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Recipes.Data.Models;
     using Recipes.Services.Data;
+    using Recipes.Web.ViewModels.Recipes;
     using Recipes.Web.ViewModels.Votes;
 
     [ApiController]
@@ -14,11 +15,16 @@
     public class VotesController : Controller
     {
         private readonly IVotesService votesService;
+        private readonly IRecipesService recipesService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public VotesController(IVotesService votesService, UserManager<ApplicationUser> userManager)
+        public VotesController(
+            IVotesService votesService,
+            IRecipesService recipesService,
+            UserManager<ApplicationUser> userManager)
         {
             this.votesService = votesService;
+            this.recipesService = recipesService;
             this.userManager = userManager;
         }
 
@@ -33,6 +39,7 @@
             var postVoteResponse = new PostVoteResponseViewModel
             {
                 AverageVote = averageVotes,
+                VotesCount = this.recipesService.GetById<SingleRecipeViewModel>(input.RecipeId).VotesCount,
             };
 
             return postVoteResponse;
