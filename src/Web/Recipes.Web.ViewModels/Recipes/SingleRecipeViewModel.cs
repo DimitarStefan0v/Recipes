@@ -32,6 +32,8 @@
 
         public string ImageUrl { get; set; }
 
+        public double AverageVotesValue { get; set; }
+
         public IEnumerable<IngredientViewModel> Ingredients { get; set; }
 
         public string AddedByUserUserName { get; set; }

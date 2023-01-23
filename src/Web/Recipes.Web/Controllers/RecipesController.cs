@@ -16,15 +16,18 @@
     {
         private readonly IRecipesService recipesService;
         private readonly ICategoriesService categoriesService;
+        private readonly IVotesService votesService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public RecipesController(
             IRecipesService recipesService,
             ICategoriesService categoriesService,
+            IVotesService votesService,
             UserManager<ApplicationUser> userManager)
         {
             this.recipesService = recipesService;
             this.categoriesService = categoriesService;
+            this.votesService = votesService;
             this.userManager = userManager;
         }
 
@@ -85,6 +88,7 @@
         public IActionResult ById(int id)
         {
             var viewModel = this.recipesService.GetById<SingleRecipeViewModel>(id);
+            viewModel.AverageVotesValue = this.votesService.GetAverageVotes(id);
             return this.View(viewModel);
         }
 
