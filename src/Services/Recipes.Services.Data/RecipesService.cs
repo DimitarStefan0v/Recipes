@@ -139,6 +139,14 @@
                 .Count();
         }
 
+        public int GetUnapprovedRecipesCount()
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved == false)
+                .Count();
+        }
+
         public async Task UpdateAsync(int id, EditRecipeInputModel input)
         {
             var recipe = this.recipesRepository
