@@ -6,25 +6,25 @@
         {
             if (i > 0)
             {
-                <a class="page-desktop-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-id="@i">@i</a>
+                <a class="page-desktop-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-categoryId="@Model.CategoryId" asp-route-id="@i">@i</a>
             }
         }
         @if (Model.HasPreviousPage)
         {
-            <a class="page-desktop-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-id="@Model.PreviousPageNumber">@Model.PreviousPageNumber</a>
-            <a class="page-mobile-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-id="@Model.PreviousPageNumber">&lt; Назад</a>
+            <a class="page-desktop-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-categoryId="@Model.CategoryId" asp-route-id="@Model.PreviousPageNumber">@Model.PreviousPageNumber</a>
+            <a class="page-mobile-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-categoryId="@Model.CategoryId" asp-route-id="@Model.PreviousPageNumber">&lt; Назад</a>
         }
         <p>Страница @this.Model.PageNumber от @this.Model.PagesCount</p>
         @if (Model.HasNextPage)
         {
-            <a class="page-desktop-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-id="@Model.NextPageNumber">@Model.NextPageNumber</a>
-            <a class="page-mobile-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-id="@Model.NextPageNumber">Напред &gt;</a>
+            <a class="page-desktop-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-categoryId="@Model.CategoryId" asp-route-id="@Model.NextPageNumber">@Model.NextPageNumber</a>
+            <a class="page-mobile-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-categoryId="@Model.CategoryId" asp-route-id="@Model.NextPageNumber">Напред &gt;</a>
         }
         @for (int i = this.Model.PageNumber + 2; i < this.Model.PageNumber + 4; i++)
         {
             if (i <= this.Model.PagesCount)
             {
-                <a class="page-desktop-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-id="@i">@i</a>
+                <a class="page-desktop-link" asp-controller="@Model.ControllerName" asp-action="@Model.ActionName" asp-route-search="@Model.Search" asp-route-categoryId="@Model.CategoryId" asp-route-id="@i">@i</a>
             }
         }
     </article>

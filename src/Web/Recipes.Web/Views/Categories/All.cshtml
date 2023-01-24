@@ -10,7 +10,7 @@
     @foreach (var category in Model.Categories)
     {
         <section class="category-in-list-container">
-            <a asp-action="ById" asp-route-id="@category.Id">
+            <a asp-action="ById" asp-route-categoryId="@category.Id">
                 <article class="category-in-list-container-img">
                     <img src="@category.ImageUrl" class="img-fluid w-100">
                 </article>

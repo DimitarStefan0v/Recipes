@@ -53,6 +53,7 @@
             viewModel.RecipesByCategoryId = this.recipesService.GetRecipesByCategoryId<RecipeInListViewModel>(categoryId, id, itemsPerPage);
             viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
             viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
+            viewModel.CategoryId = categoryId;
             return this.View(viewModel);
         }
 

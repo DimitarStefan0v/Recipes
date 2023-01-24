@@ -7,7 +7,7 @@
 }
 <section class="links-above-container">
     <a asp-controller="Home" asp-action="Index">Начало &gt; </a>
-    <a asp-controller="Categories" asp-action="ById" asp-route-id="@Model.CategoryId">@Model.CategoryName &gt; </a>
+    <a asp-controller="Categories" asp-action="ById" asp-route-categoryId="@Model.CategoryId">@Model.CategoryName &gt; </a>
     <a asp-controller="Recipes" asp-action="ById" asp-route-id="@Model.Id">@Model.Name</a>
 </section>
 <section class="recipe-container">
@@ -27,7 +27,7 @@
             </ul>
         </article>
     </article>
-    <input id="recipe-container-color" value="@Model.Color" type="hidden" />
+    <input class="container-color" value="@Model.Color" type="hidden" />
 </section>
 <section class="description-and-ingredients-container">
     <article class="description">
@@ -104,7 +104,7 @@
 <form method="post" id="antiForgeryForm"></form>
 
 @section Scripts {
-    <script src="~/js/paint.js"></script>
-    <script src="~/js/paintStars.js"></script>
-    <script src="~/js/ajaxVote.js"></script>
+    <script src="~/js/paint.js" asp-append-version="true"></script>
+    <script src="~/js/paintStars.js" asp-append-version="true"></script>
+    <script src="~/js/ajaxVote.js" asp-append-version="true"></script>
 }
