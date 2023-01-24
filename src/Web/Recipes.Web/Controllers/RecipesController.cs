@@ -119,6 +119,12 @@
         public IActionResult ById(int id)
         {
             var viewModel = this.recipesService.GetById<SingleRecipeViewModel>(id);
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
             viewModel.AverageVotesValue = this.votesService.GetAverageVotes(id);
             return this.View(viewModel);
         }
