@@ -112,12 +112,25 @@
 
         public int GetRecipesCount()
         {
-            return this.recipesRepository.AllAsNoTracking().Count();
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Count();
+        }
+
+        public int GetRecipesCountByName(string search)
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.Name.Contains(search.ToLower().Trim()))
+                .Count();
         }
 
         public async Task UpdateAsync(int id, EditRecipeInputModel input)
         {
-            var recipe = this.recipesRepository.All().FirstOrDefault(x => x.Id == id);
+            var recipe = this.recipesRepository
+                .All()
+                .FirstOrDefault(x => x.Id == id);
+
             if (recipe.Name != input.Name.Trim())
             {
                 recipe.Name = input.Name.Trim();
@@ -163,7 +176,7 @@
             recipe.Ingredients.Add(new RecipeIngredient
             {
                 Ingredient = ingredient,
-                Quantity = ingredientInput.Quantity.ToLower().Trim(),
+                Quantity = ingredientInput.Quantity == null ? null : ingredientInput.Quantity.ToLower().Trim(),
             });
         }
     }
