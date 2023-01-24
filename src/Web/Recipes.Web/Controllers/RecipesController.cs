@@ -73,7 +73,7 @@
                 return this.NotFound();
             }
 
-            int itemsPerPage = 1;
+            int itemsPerPage = 9;
 
             var viewModel = new RecipesListViewModel
             {
@@ -99,7 +99,7 @@
                 return this.NotFound();
             }
 
-            int itemsPerPage = 1;
+            int itemsPerPage = 9;
 
             var viewModel = new RecipesListViewModel
             {
@@ -122,7 +122,7 @@
                 return this.NotFound();
             }
 
-            int itemsPerPage = 1;
+            int itemsPerPage = 9;
 
             var viewModel = new RecipesListViewModel
             {

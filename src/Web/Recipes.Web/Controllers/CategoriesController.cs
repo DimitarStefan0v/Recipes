@@ -1,6 +1,8 @@
 ﻿namespace Recipes.Web.Controllers
 {
     using System;
+    using System.Collections;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -10,17 +12,21 @@
     using Recipes.Data.Models;
     using Recipes.Services.Data;
     using Recipes.Web.ViewModels.Categories;
+    using Recipes.Web.ViewModels.Recipes;
 
     public class CategoriesController : BaseController
     {
         private readonly ICategoriesService categoriesService;
+        private readonly IRecipesService recipesService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public CategoriesController(
             ICategoriesService categoriesService,
+            IRecipesService recipesService,
             UserManager<ApplicationUser> userManager)
         {
             this.categoriesService = categoriesService;
+            this.recipesService = recipesService;
             this.userManager = userManager;
         }
 
@@ -31,9 +37,22 @@
             return this.View(viewModel);
         }
 
-        public IActionResult ById(int id)
+        public IActionResult ById(int categoryId, int id = 1)
         {
-            var viewModel = this.categoriesService.GetById<SingleCategoryViewModel>(id);
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            int itemsPerPage = 9;
+
+            var viewModel = this.categoriesService.GetById<SingleCategoryViewModel>(categoryId);
+            viewModel.ItemsPerPage = itemsPerPage;
+            viewModel.PageNumber = id;
+            viewModel.ItemsCount = this.recipesService.GetRecipesCountByCategoryId(categoryId);
+            viewModel.RecipesByCategoryId = this.recipesService.GetRecipesByCategoryId<RecipeInListViewModel>(categoryId, id, itemsPerPage);
+            viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
+            viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
             return this.View(viewModel);
         }
 
