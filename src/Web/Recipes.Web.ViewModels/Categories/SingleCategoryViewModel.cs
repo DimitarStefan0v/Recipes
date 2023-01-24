@@ -1,13 +1,15 @@
 ﻿namespace Recipes.Web.ViewModels.Categories
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using AutoMapper;
     using global::Recipes.Data.Models;
     using global::Recipes.Services.Mapping;
+    using global::Recipes.Web.ViewModels.Recipes;
 
-    public class SingleCategoryViewModel : IMapFrom<Category>, IHaveCustomMappings
+    public class SingleCategoryViewModel : PagingViewModel, IMapFrom<Category>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -20,6 +22,8 @@
         public int RecipesCount { get; set; }
 
         public DateTime RecentRecipeDate { get; set; }
+
+        public IEnumerable<RecipeInListViewModel> RecipesByCategoryId { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {

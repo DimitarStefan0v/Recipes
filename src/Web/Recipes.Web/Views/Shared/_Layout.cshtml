@@ -52,14 +52,14 @@
                                 <ul>
                                     @foreach (var category in foodsCategory)
                                     {
-                                        <li><a asp-controller="Categories" asp-action="ById" asp-route-id="@category.Id">@category.Name</a></li>
+                                        <li><a asp-controller="Categories" asp-action="ById" asp-route-categoryId="@category.Id">@category.Name</a></li>
                                     }
                                     <li><a asp-controller="Categories" asp-action="All">Всички категории</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
-                    <li><a asp-controller="Categories" asp-action="ById" asp-route-id="@beveragesCategory.Id">@beveragesCategory.Name</a></li>
+                    <li><a asp-controller="Categories" asp-action="ById" asp-route-categoryId="@beveragesCategory.Id">@beveragesCategory.Name</a></li>
                     <partial name="_LoginPartial" />
                 </ul>
             </div>
