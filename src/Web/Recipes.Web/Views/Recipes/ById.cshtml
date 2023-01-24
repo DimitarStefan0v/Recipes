@@ -68,8 +68,14 @@
 {
     <ul class="buttons-list">
         <li>
-            <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Редактирай</a>
+            <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактирай</a>
         </li>
+        @if (!this.Model.IsApproved)
+        {
+            <li>
+                <a asp-controller="Recipes" asp-action="Approve" asp-route-id="@Model.Id" class="btn btn-success">Одобри</a>
+            </li>
+        }
         <li>
             <form method="post" asp-controller="Recipes" asp-action="Delete" asp-route-id="@Model.Id">
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Изтрий</button>

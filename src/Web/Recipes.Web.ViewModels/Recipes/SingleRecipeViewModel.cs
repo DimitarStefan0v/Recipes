@@ -36,6 +36,8 @@
 
         public int VotesCount { get; set; }
 
+        public bool IsApproved { get; set; }
+
         public IEnumerable<IngredientViewModel> Ingredients { get; set; }
 
         public string AddedByUserUserName { get; set; }
