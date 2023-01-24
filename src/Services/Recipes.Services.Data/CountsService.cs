@@ -26,7 +26,7 @@
         {
             var data = new IndexStatsViewModel
             {
-                RecipesCount = this.recipesRepository.AllAsNoTracking().Count(),
+                RecipesCount = this.recipesRepository.AllAsNoTracking().Where(x => x.IsApproved).Count(),
                 IngredientsCount = this.ingredientsRepository.AllAsNoTracking().Count(),
                 CategoriesCount = this.categoriesRepository.AllAsNoTracking().Count(),
             };

@@ -84,6 +84,7 @@
         {
             return this.recipesRepository
                 .AllAsNoTracking()
+                .Where(x => x.IsApproved)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
@@ -95,6 +96,7 @@
             return this.recipesRepository
                 .AllAsNoTracking()
                 .Where(x => x.Name.Contains(search.ToLower().Trim()))
+                .Where(x => x.IsApproved)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
@@ -114,6 +116,7 @@
         {
             return this.recipesRepository
                 .AllAsNoTracking()
+                .Where(x => x.IsApproved)
                 .Count();
         }
 
@@ -122,6 +125,7 @@
             return this.recipesRepository
                 .AllAsNoTracking()
                 .Where(x => x.Name.Contains(search.ToLower().Trim()))
+                .Where(x => x.IsApproved)
                 .Count();
         }
 
