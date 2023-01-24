@@ -39,7 +39,7 @@
         <ol>
             @foreach (var ingredient in Model.Ingredients)
             {
-                <li>@ingredient.IngredientName - @ingredient.Quantity</li>
+                <li>@ingredient.IngredientName @(ingredient.Quantity != null ? "- " + ingredient.Quantity : null)</li>
             }
         </ol>
     </article>
