@@ -24,6 +24,8 @@
 
         public int? PortionsCount { get; set; }
 
+        public bool IsApproved { get; set; }
+
         [ForeignKey(nameof(CloudImage))]
         public int? ImageId { get; set; }
 
