@@ -1,0 +1,19 @@
+﻿@using Recipes.Web.ViewModels.Recipes;
+@model RecipesListViewModel
+
+@{
+    this.ViewData["Title"] = "Рецепти за проверка";
+}
+
+<h1 class="text-center">@this.ViewData["Title"]</h1>
+
+<partial name="_RecipesListPartial" model="@Model" />
+
+@if (Model.PagesCount > 0)
+{
+    <partial name="_PagingPartial" model="@Model" />
+}
+
+@section Scripts {
+    <script src="~/js/paintBorder.js"></script>
+}

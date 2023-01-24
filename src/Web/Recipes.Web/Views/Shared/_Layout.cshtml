@@ -28,11 +28,11 @@
                 <div class="logo"><a asp-controller="Home" asp-action="Index">LOGO</a></div>
                 <ul class="links">
                     <li>
-                        <a href="#" class="desktop-link">Features</a>
+                        <a href="#" class="desktop-link">Администрация</a>
                         <input type="checkbox" id="show-features" />
                         <label for="show-features">Features</label>
                         <ul>
-                            <li><a href="#">Dropmenu 1</a></li>
+                            <li><a asp-controller="Recipes" asp-action="AllUnapproved">Рецепти за одобряване</a></li>
                             <li><a href="#">Dropmenu 2</a></li>
                             <li><a href="#">Dropmenu 3</a></li>
                             <li><a href="#">Dropmenu 4</a></li>
