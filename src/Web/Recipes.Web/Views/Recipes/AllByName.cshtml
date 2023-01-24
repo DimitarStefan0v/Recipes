@@ -2,10 +2,10 @@
 @model RecipesListViewModel
 
 @{
-    this.ViewData["Title"] = "Всички рецепти";
+    this.ViewData["Title"] = "Всички рецепти съдържащи \""+ this.ViewData["SearchString"] + "\" в името си";
 }
 
-<h1 class="text-center">Рецепти</h1>
+<h1 class="text-center">@this.ViewData["Title"]</h1>
 
 <partial name="_RecipesListPartial" model="@Model" />
 

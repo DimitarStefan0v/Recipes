@@ -91,7 +91,7 @@
             return this.View(viewModel);
         }
 
-        public IActionResult GetAllByName([FromQuery(Name = "search")]string name, int id = 1)
+        public IActionResult AllByName([FromQuery(Name = "search")]string name, int id = 1)
         {
             if (string.IsNullOrWhiteSpace(name) || id <= 0)
             {
