@@ -11,7 +11,6 @@
         [MaxLength(50, ErrorMessage = RecipeErrorMessages.IngredientNameLength)]
         public string IngredientName { get; set; }
 
-        [Required(ErrorMessage = RecipeErrorMessages.QuantityRequired)]
         public string Quantity { get; set; }
     }
 }
