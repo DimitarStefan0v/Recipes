@@ -1,8 +1,8 @@
-﻿const PaintRecipeByIdWrapper = function () {
-    const color = document.getElementById('recipe-container-color');
+﻿const PaintWrapper = function () {
+    const color = document.querySelector('.container-color');
     const wrapper = color.parentElement;
     wrapper.style.backgroundColor = color.value;
 }
 
-window.onload = PaintRecipeByIdWrapper();
+window.onload = PaintWrapper();
 
