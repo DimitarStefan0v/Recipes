@@ -24,5 +24,7 @@
         int GetRecipesCount();
 
         int GetRecipesCountByName(string search);
+
+        int GetUnapprovedRecipesCount();
     }
 }
