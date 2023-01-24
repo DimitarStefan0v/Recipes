@@ -107,10 +107,28 @@
         {
             return this.recipesRepository
                 .AllAsNoTracking()
+                .Where(x => x.IsApproved == false)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
+        }
+
+        public async Task ApproveRecipe(int id)
+        {
+            var recipe = this.recipesRepository
+                            .All()
+                            .Where(x => x.Id == id)
+                            .FirstOrDefault();
+
+            if (recipe == null)
+            {
+                return;
+            }
+
+            recipe.IsApproved = true;
+
+            await this.recipesRepository.SaveChangesAsync();
         }
 
         public T GetById<T>(int id)
