@@ -1,6 +1,7 @@
 ﻿namespace Recipes.Web.Controllers
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -72,7 +73,7 @@
                 return this.NotFound();
             }
 
-            int itemsPerPage = 1;
+            int itemsPerPage = 9;
 
             var viewModel = new RecipesListViewModel
             {
@@ -80,6 +81,26 @@
                 PageNumber = id,
                 ItemsCount = this.recipesService.GetRecipesCount(),
                 Recipes = this.recipesService.GetAll<RecipeInListViewModel>(id, itemsPerPage),
+            };
+
+            return this.View(viewModel);
+        }
+
+        public IActionResult GetAllByName([FromQuery(Name = "search")]string name, int id = 1)
+        {
+            if (string.IsNullOrWhiteSpace(name) || id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            int itemsPerPage = 9;
+
+            var viewModel = new RecipesListViewModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                ItemsCount = this.recipesService.GetRecipesCountByName(name),
+                Recipes = this.recipesService.GetAllRecipesByName<RecipeInListViewModel>(name, id, itemsPerPage),
             };
 
             return this.View(viewModel);
