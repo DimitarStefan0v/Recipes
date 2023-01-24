@@ -19,5 +19,11 @@
         public int PreviousPageNumber => this.PageNumber - 1;
 
         public int NextPageNumber => this.PageNumber + 1;
+
+        public string ControllerName { get; set; }
+
+        public string ActionName { get; set; }
+
+        public string Search { get; set; }
     }
 }

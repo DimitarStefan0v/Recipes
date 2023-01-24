@@ -93,7 +93,7 @@
                 return this.NotFound();
             }
 
-            int itemsPerPage = 9;
+            int itemsPerPage = 1;
 
             var viewModel = new RecipesListViewModel
             {
@@ -102,6 +102,11 @@
                 ItemsCount = this.recipesService.GetRecipesCountByName(name),
                 Recipes = this.recipesService.GetAllRecipesByName<RecipeInListViewModel>(name, id, itemsPerPage),
             };
+
+            this.ViewData["SearchString"] = name.Trim();
+            viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
+            viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
+            viewModel.Search = name.Trim();
 
             return this.View(viewModel);
         }
