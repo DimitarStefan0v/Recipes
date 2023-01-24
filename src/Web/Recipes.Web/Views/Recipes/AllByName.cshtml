@@ -2,14 +2,17 @@
 @model RecipesListViewModel
 
 @{
-    this.ViewData["Title"] = "Всички рецепти съдържащи \""+ this.ViewData["SearchString"] + "\" в името си";
+    this.ViewData["Title"] = "Всички рецепти съдържащи \"" + this.ViewData["SearchString"] + "\" в името си";
 }
 
 <h1 class="text-center">@this.ViewData["Title"]</h1>
 
 <partial name="_RecipesListPartial" model="@Model" />
 
-<partial name="_PagingPartial" model="@Model" />
+@if (Model.PagesCount > 0)
+{
+    <partial name="_PagingPartial" model="@Model" />
+}
 
 @section Scripts {
     <script src="~/js/paintBorder.js"></script>
