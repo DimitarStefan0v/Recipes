@@ -27,9 +27,13 @@
                 .CreateMap<Category, SingleCategoryViewModel>()
                 .ForMember(x => x.ImageUrl, opt => opt.MapFrom(c => c.Image.PictureUrl))
                 .ForMember(x => x.RecentRecipeDate, opt => opt.MapFrom(c => c.Recipes
+                                                                    .Where(r => r.IsApproved)
                                                                     .OrderByDescending(r => r.CreatedOn)
                                                                     .Select(rd => rd.CreatedOn)
-                                                                    .FirstOrDefault()));
+                                                                    .FirstOrDefault()))
+                .ForMember(x => x.RecipesCount, opt => opt.MapFrom(c => c.Recipes
+                                                                    .Where(r => r.IsApproved)
+                                                                    .Count()));
         }
     }
 }
