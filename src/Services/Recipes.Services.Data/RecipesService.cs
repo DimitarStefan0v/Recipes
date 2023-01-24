@@ -90,6 +90,17 @@
                 .ToList();
         }
 
+        public IEnumerable<T> GetAllRecipesByName<T>(string search, int page, int itemsPerPage)
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.Name.Contains(search.ToLower().Trim()))
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+        }
+
         public T GetById<T>(int id)
         {
             return this.recipesRepository
