@@ -64,30 +64,12 @@
                 </ul>
             </div>
             <label for="show-search" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></label>
-            <form action="#" class="search-box">
-                <input type="text" placeholder="Търси по име на рецепта" required />
+            <form asp-controller="Recipes" asp-action="GetAllByName" class="search-box">
+                <input type="text" name="search" placeholder="Търси по име на рецепта" required />
                 <button type="submit" class="go-icon"><i class="fa-solid fa-arrow-right-long"></i></button>
             </form>
         </nav>
     </div>
-
-    @*<header class="navbar-wrapper">
-    <nav class="custom-navbar">
-    <div class="brand-title">Brand Name</div>
-    <a href="#" class="toggle-button">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-    </a>
-    <div class="navbar-links">
-    <ul>
-    <li class="navbar-link"><a asp-area="" asp-controller="Recipes" asp-action="All">Всички</a></li>
-    <li class="navbar-link"><a asp-area="" asp-controller="Recipes" asp-action="Create">Добави рецепта</a></li>
-    <partial name="_LoginPartial" />
-    </ul>
-    </div>
-    </nav>
-    </header>*@
 
     <div class="container">
         <partial name="_CookieConsentPartial" />
