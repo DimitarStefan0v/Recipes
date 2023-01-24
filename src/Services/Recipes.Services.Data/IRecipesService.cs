@@ -11,6 +11,8 @@
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
 
+        IEnumerable<T> GetAllRecipesByName<T>(string search, int page, int itemsPerPage);
+
         T GetById<T>(int id);
 
         Task UpdateAsync(int id, EditRecipeInputModel input);
