@@ -189,5 +189,12 @@
 
             return this.RedirectToAction(nameof(this.ById), new { id });
         }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Approve(int id)
+        {
+            await this.recipesService.ApproveRecipe(id);
+            return this.RedirectToAction(nameof(this.AllUnapproved), new { id = 1 });
+        }
     }
 }
