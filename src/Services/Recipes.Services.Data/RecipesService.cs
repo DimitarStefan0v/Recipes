@@ -80,91 +80,6 @@
             await this.recipesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.IsApproved)
-                .Skip((page - 1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .To<T>()
-                .ToList();
-        }
-
-        public IEnumerable<T> GetAllRecipesByName<T>(string search, int page, int itemsPerPage)
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.Name.Contains(search.ToLower().Trim()))
-                .Where(x => x.IsApproved)
-                .Skip((page - 1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .To<T>()
-                .ToList();
-        }
-
-        public IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage)
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.IsApproved == false)
-                .Skip((page - 1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .To<T>()
-                .ToList();
-        }
-
-        public async Task ApproveRecipe(int id)
-        {
-            var recipe = this.recipesRepository
-                            .All()
-                            .Where(x => x.Id == id)
-                            .FirstOrDefault();
-
-            if (recipe == null)
-            {
-                return;
-            }
-
-            recipe.IsApproved = true;
-
-            await this.recipesRepository.SaveChangesAsync();
-        }
-
-        public T GetById<T>(int id)
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.Id == id)
-                .To<T>()
-                .FirstOrDefault();
-        }
-
-        public int GetRecipesCount()
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.IsApproved)
-                .Count();
-        }
-
-        public int GetRecipesCountByName(string search)
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.Name.Contains(search.ToLower().Trim()))
-                .Where(x => x.IsApproved)
-                .Count();
-        }
-
-        public int GetUnapprovedRecipesCount()
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.IsApproved == false)
-                .Count();
-        }
-
         public async Task UpdateAsync(int id, EditRecipeInputModel input)
         {
             var recipe = this.recipesRepository
@@ -197,6 +112,94 @@
             }
 
             await this.recipesRepository.SaveChangesAsync();
+        }
+
+        public T GetById<T>(int id)
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+        }
+
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+        }
+
+        public IEnumerable<T> GetAllRecipesByName<T>(string search, int page, int itemsPerPage)
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.Name.Contains(search.ToLower().Trim()))
+                .Where(x => x.IsApproved)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+        }
+
+        public IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage)
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved == false)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+        }
+
+        public async Task ApproveRecipe(int id)
+        {
+            var recipe = this.recipesRepository
+                            .All()
+                            .Where(x => x.Id == id)
+                            .FirstOrDefault();
+
+            if (recipe == null)
+            {
+                return;
+            }
+
+            recipe.IsApproved = true;
+
+            await this.recipesRepository.SaveChangesAsync();
+        }
+
+        public int GetRecipesCount()
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved)
+                .Count();
+        }
+
+        public int GetRecipesCountByName(string search)
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.Name.Contains(search.ToLower().Trim()))
+                .Where(x => x.IsApproved)
+                .Count();
+        }
+
+        public int GetUnapprovedRecipesCount()
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved == false)
+                .Count();
         }
 
         private void AddIngredientsToRecipe(Recipe recipe, IngredientInputModel ingredientInput)
