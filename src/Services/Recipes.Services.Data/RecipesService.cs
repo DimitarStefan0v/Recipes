@@ -194,6 +194,14 @@
                 .Count();
         }
 
+        public int GetRecipesCountByCategoryId(int id)
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved && x.CategoryId == id)
+                .Count();
+        }
+
         public int GetUnapprovedRecipesCount()
         {
             return this.recipesRepository
