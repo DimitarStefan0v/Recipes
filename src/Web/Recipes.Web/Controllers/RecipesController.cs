@@ -73,7 +73,7 @@
                 return this.NotFound();
             }
 
-            int itemsPerPage = 9;
+            int itemsPerPage = 1;
 
             var viewModel = new RecipesListViewModel
             {
@@ -82,6 +82,11 @@
                 ItemsCount = this.recipesService.GetRecipesCount(),
                 Recipes = this.recipesService.GetAll<RecipeInListViewModel>(id, itemsPerPage),
             };
+
+            // Add ControllerName and ActionName so Paging can be extracted in PartialView
+            // and work for different actions without repeating Paging in every view that needs it
+            viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
+            viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
 
             return this.View(viewModel);
         }
