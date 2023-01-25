@@ -18,6 +18,7 @@ namespace Recipes.Data.Models
             this.Recipes = new HashSet<Recipe>();
             this.Images = new HashSet<CloudImage>();
             this.Votes = new HashSet<Vote>();
+            this.Messages = new HashSet<Message>();
         }
 
         // Audit info
@@ -41,5 +42,7 @@ namespace Recipes.Data.Models
         public ICollection<CloudImage> Images { get; set; }
 
         public ICollection<Vote> Votes { get; set; }
+
+        public ICollection<Message> Messages { get; set; }
     }
 }
