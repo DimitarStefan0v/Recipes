@@ -64,7 +64,7 @@
     }
     <article class="favorites">
         <i class="fa-regular fa-heart"></i>
-        <span id="is-recipe-favorite">@Model.IsRecipeInFavorites</span>
+        <span id="is-recipe-favorite">@Model.IsRecipeInFavorites.ToString().ToLower()</span>
     </article>
 </section>
 <article class="additional-details">
@@ -111,8 +111,9 @@
 <form method="post" id="antiForgeryForm"></form>
 
 @section Scripts {
+    <script src="~/js/ajaxVote.js" asp-append-version="true"></script>
+    <script src="~/js/ajaxAddRecipeToFavorites.js" asp-append-version="true"></script>
     <script src="~/js/paint.js" asp-append-version="true"></script>
     <script src="~/js/paintStars.js" asp-append-version="true"></script>
-    <script src="~/js/ajaxVote.js" asp-append-version="true"></script>
     <script src="~/js/fillHeart.js" asp-append-version="true"></script>
 }
