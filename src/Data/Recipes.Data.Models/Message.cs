@@ -4,6 +4,8 @@
 
     public class Message : BaseDeletableModel<int>
     {
+        public string Title { get; set; }
+
         public string Content { get; set; }
 
         public string AddedByUserId { get; set; }
