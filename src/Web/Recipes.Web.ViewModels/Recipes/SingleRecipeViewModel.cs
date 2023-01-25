@@ -26,6 +26,8 @@
 
         public string Color { get; set; }
 
+        public int ViewsCount { get; set; }
+
         public string CategoryId { get; set; }
 
         public string CategoryName { get; set; }

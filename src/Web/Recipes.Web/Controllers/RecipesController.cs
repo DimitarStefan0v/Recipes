@@ -115,7 +115,7 @@
             return this.View(viewModel);
         }
 
-        public IActionResult AllByName([FromQuery(Name = "search")]string name, int id = 1)
+        public IActionResult AllByName([FromQuery(Name = "search")] string name, int id = 1)
         {
             if (string.IsNullOrWhiteSpace(name) || id <= 0)
             {
@@ -140,8 +140,10 @@
             return this.View(viewModel);
         }
 
-        public IActionResult ById(int id)
+        public async Task<IActionResult> ById(int id)
         {
+            await this.recipesService.IncreaseViews(id);
+
             var viewModel = this.recipesService.GetById<SingleRecipeViewModel>(id);
 
             if (viewModel == null)
@@ -150,6 +152,7 @@
             }
 
             viewModel.AverageVotesValue = this.votesService.GetAverageVotes(id);
+
             return this.View(viewModel);
         }
 
