@@ -38,6 +38,23 @@
             };
 
             await this.favoriteRecipesRepository.AddAsync(favoriteRecipe);
+            await this.favoriteRecipesRepository.SaveChangesAsync();
+        }
+
+        public async Task RemoveRecipeFromFavoritesAsync(int recipeId, string userId)
+        {
+            var recipe = this.favoriteRecipesRepository
+                .All()
+                .Where(x => x.RecipeId == recipeId && x.AddedByUserId == userId)
+                .FirstOrDefault();
+
+            if (recipe == null)
+            {
+                return;
+            }
+
+            this.favoriteRecipesRepository.Delete(recipe);
+            await this.favoriteRecipesRepository.SaveChangesAsync();
         }
 
         public async Task CreateMessageAsync(ContactInputModel input, string userId)
