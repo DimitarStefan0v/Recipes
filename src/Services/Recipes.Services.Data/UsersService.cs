@@ -19,9 +19,10 @@
         {
             var message = new Message
             {
-                 Title = input.Title,
-                 Content = input.Content,
-                 Names = input.Names,
+                 Title = input.Title.Trim(),
+                 Content = input.Content.Trim(),
+                 Name = input.Name.Trim(),
+                 Email = input.Email.Trim(),
                  AddedByUserId = userId,
             };
 
