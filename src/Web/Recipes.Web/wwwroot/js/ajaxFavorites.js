@@ -3,7 +3,6 @@
     const i = article.querySelector('i');
     i.addEventListener('click', async () => {
         const value = document.querySelector('.favorites span');
-        if (value.textContent == 'false') {
             const recipeId = document.getElementById('recipe-id').value;
             const antiForgeryToken = document.querySelector('#antiForgeryForm input[name=__RequestVerificationToken]').value;
             let data = { recipeId: recipeId };
@@ -21,7 +20,6 @@
             const result = await response.json();
 
             value.textContent = result;
-        }
     });
 }
 

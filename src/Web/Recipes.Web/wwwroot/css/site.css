@@ -544,9 +544,11 @@ a {
     padding: 10px;
 }
 
-#avg-votes {
+#avg-votes,
+#favorites-p {
     font-size: 30px;
     font-weight: 700;
+    text-align: center;
 }
 
 .votes-container ul {
@@ -587,7 +589,9 @@ a {
     text-align: center;
 }
 
-
+#is-recipe-favorite {
+    display: none;
+}
 
 
 

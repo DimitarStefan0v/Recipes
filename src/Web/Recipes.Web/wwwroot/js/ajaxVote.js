@@ -1,5 +1,6 @@
 ﻿const SendVote = function () {
     let elements = document.querySelectorAll('.votes-container .votes i');
+
     for (let el of elements) {
         el.addEventListener('click', async () => {
             CheckIfUserShouldVote();
@@ -35,8 +36,10 @@ const CheckIfUserShouldVote = function () {
         let ul = i.parentElement.parentElement;
         let sectionFavorites = document.querySelector('.votes-container .favorites');
         let heartToRemove = sectionFavorites.querySelector('i');
+        let paragrapthToRemove = document.getElementById('favorites-p');
         ul.style.display = 'none';
         sectionFavorites.removeChild(heartToRemove);
+        sectionFavorites.removeChild(paragrapthToRemove);
     }
 }
 

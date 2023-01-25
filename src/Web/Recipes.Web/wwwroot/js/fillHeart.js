@@ -1,16 +1,16 @@
 ﻿const AddClassToHeart = function () {
     let heart = document.querySelector('.favorites i');
     heart.addEventListener('click', fillHeart);
-
+    let paragrapth = document.getElementById('favorites-p');
     function fillHeart() {
         CheckIfUserCanAddRecipeToFavorites(heart);
         let isRecipeInFavorites = document.getElementById('is-recipe-favorite');
-        if (isRecipeInFavorites.textContent == 'True') {
-            isRecipeInFavorites.textContent = 'False';
+        if (isRecipeInFavorites.textContent == 'true') {
             heart.setAttribute('class', 'fa-regular fa-heart');
-        } else if (isRecipeInFavorites.textContent == 'False') {
-            isRecipeInFavorites.textContent = 'True';
+            paragrapth.textContent = 'Добави в любими'
+        } else if (isRecipeInFavorites.textContent == 'false') {
             heart.setAttribute('class', 'fa-solid fa-heart');
+            paragrapth.textContent = 'Премахни от любими'
         }
     }
 }
@@ -23,9 +23,10 @@ const CheckIfUserCanAddRecipeToFavorites = function (childToRemove) {
         let ul = document.querySelector('.votes ul');
         let article = document.querySelector('.votes-container .votes');
         let articleFavorites = document.querySelector('.votes-container .favorites');
+        let paragrapthToRemove = document.getElementById('favorites-p');
         article.removeChild(ul);
         articleFavorites.removeChild(childToRemove);
-
+        articleFavorites.removeChild(paragrapthToRemove);
     }
 }
 

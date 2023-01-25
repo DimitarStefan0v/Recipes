@@ -63,7 +63,16 @@
         <p class="paragraph-warning">unregistered</p>
     }
     <article class="favorites">
-        <i class="fa-regular fa-heart"></i>
+        @if (Model.IsRecipeInFavorites)
+        {
+            <i class="fa-solid fa-heart"></i>
+            <p id="favorites-p">Премахни от любими</p>
+        }
+        else
+        {
+            <i class="fa-regular fa-heart"></i>
+            <p id="favorites-p">Добави в любими</p>
+        }
         <span id="is-recipe-favorite">@Model.IsRecipeInFavorites.ToString().ToLower()</span>
     </article>
 </section>
@@ -112,7 +121,7 @@
 
 @section Scripts {
     <script src="~/js/ajaxVote.js" asp-append-version="true"></script>
-    <script src="~/js/ajaxAddRecipeToFavorites.js" asp-append-version="true"></script>
+    <script src="~/js/ajaxFavorites.js" asp-append-version="true"></script>
     <script src="~/js/paint.js" asp-append-version="true"></script>
     <script src="~/js/paintStars.js" asp-append-version="true"></script>
     <script src="~/js/fillHeart.js" asp-append-version="true"></script>
