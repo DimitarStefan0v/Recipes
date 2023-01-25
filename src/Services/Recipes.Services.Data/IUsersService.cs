@@ -9,5 +9,7 @@
         Task CreateMessageAsync(ContactInputModel input, string userId);
 
         Task AddRecipeToFavoritesAsync(int recipeId, string userId);
+
+        bool IsRecipeInUserFavorites(int recipeId, string userId);
     }
 }

@@ -40,6 +40,8 @@
 
         public bool IsApproved { get; set; }
 
+        public bool IsRecipeInFavorites { get; set; }
+
         public IEnumerable<IngredientViewModel> Ingredients { get; set; }
 
         public string AddedByUserUserName { get; set; }
