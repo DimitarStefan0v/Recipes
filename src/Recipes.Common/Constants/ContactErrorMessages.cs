@@ -8,6 +8,8 @@
 
         public const string EmailRequired = "Вашият email адрес е задължителен";
 
+        public const string EmailNotValid = "Вашият email адрес е невалиден";
+
         public const string TitleRequired = "Заглавие на съобщението е задължително";
 
         public const string TitleLength = "Заглавието трябва да е с дължина от поне 5 букви";

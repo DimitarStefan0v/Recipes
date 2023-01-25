@@ -26,6 +26,8 @@
 
         public bool IsApproved { get; set; }
 
+        public int ViewsCount { get; set; }
+
         [ForeignKey(nameof(CloudImage))]
         public int? ImageId { get; set; }
 

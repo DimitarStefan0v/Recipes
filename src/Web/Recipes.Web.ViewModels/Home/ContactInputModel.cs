@@ -11,7 +11,7 @@
         public string Name { get; set; }
 
         [Display(Name = "Вашият email адрес")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = ContactErrorMessages.EmailNotValid)]
         public string Email { get; set; }
 
         [Display(Name = "Заглавие на съобщението")]
