@@ -18,17 +18,20 @@
         private readonly IRecipesService recipesService;
         private readonly ICategoriesService categoriesService;
         private readonly IVotesService votesService;
+        private readonly ICountsService countsService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public RecipesController(
             IRecipesService recipesService,
             ICategoriesService categoriesService,
             IVotesService votesService,
+            ICountsService countsService,
             UserManager<ApplicationUser> userManager)
         {
             this.recipesService = recipesService;
             this.categoriesService = categoriesService;
             this.votesService = votesService;
+            this.countsService = countsService;
             this.userManager = userManager;
         }
 
@@ -142,7 +145,7 @@
 
         public async Task<IActionResult> ById(int id)
         {
-            await this.recipesService.IncreaseViews(id);
+            await this.countsService.IncreaseViews(id, false);
 
             var viewModel = this.recipesService.GetById<SingleRecipeViewModel>(id);
 

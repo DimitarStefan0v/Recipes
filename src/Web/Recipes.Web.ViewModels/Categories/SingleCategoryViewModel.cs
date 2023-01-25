@@ -21,6 +21,8 @@
 
         public int RecipesCount { get; set; }
 
+        public int ViewCount { get; set; }
+
         public DateTime RecentRecipeDate { get; set; }
 
         public IEnumerable<RecipeInListViewModel> RecipesByCategoryId { get; set; }

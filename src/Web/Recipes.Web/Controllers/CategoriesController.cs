@@ -18,15 +18,18 @@
     {
         private readonly ICategoriesService categoriesService;
         private readonly IRecipesService recipesService;
+        private readonly ICountsService countsService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public CategoriesController(
             ICategoriesService categoriesService,
             IRecipesService recipesService,
+            ICountsService countsService,
             UserManager<ApplicationUser> userManager)
         {
             this.categoriesService = categoriesService;
             this.recipesService = recipesService;
+            this.countsService = countsService;
             this.userManager = userManager;
         }
 
@@ -37,8 +40,10 @@
             return this.View(viewModel);
         }
 
-        public IActionResult ById(int categoryId, int id = 1)
+        public async Task<IActionResult> ById(int categoryId, int id = 1)
         {
+            await this.countsService.IncreaseViews(categoryId, true);
+
             if (id <= 0)
             {
                 return this.NotFound();
