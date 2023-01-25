@@ -6,6 +6,6 @@
 
     public interface IUsersService
     {
-        Task SendMessage(ContactInputModel input, string userId);
+        Task CreateMessageAsync(ContactInputModel input, string userId);
     }
 }
