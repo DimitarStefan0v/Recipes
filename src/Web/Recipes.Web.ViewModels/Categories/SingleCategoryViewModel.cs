@@ -21,7 +21,7 @@
 
         public int RecipesCount { get; set; }
 
-        public int ViewCount { get; set; }
+        public int ViewsCount { get; set; }
 
         public DateTime RecentRecipeDate { get; set; }
 

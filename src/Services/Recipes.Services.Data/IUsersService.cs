@@ -7,5 +7,7 @@
     public interface IUsersService
     {
         Task CreateMessageAsync(ContactInputModel input, string userId);
+
+        Task AddRecipeToFavoritesAsync(int recipeId, string userId);
     }
 }

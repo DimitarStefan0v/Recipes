@@ -57,7 +57,7 @@
                     return;
                 }
 
-                category.ViewCount += 1;
+                category.ViewsCount += 1;
 
                 await this.categoriesRepository.SaveChangesAsync();
             }
