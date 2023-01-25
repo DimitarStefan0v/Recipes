@@ -62,8 +62,8 @@
     <span id="avg-votes-hidden">@Model.AverageVotesValue.ToString("0.0")</span>
 </section>
 <article class="additional-details">
-    <p><i class="fa-regular fa-user"></i> @Model.AddedByUserUserName</p>
-    <p><i class="fa-regular fa-calendar-days"></i> @Model.CreatedOn</p>
+    <p>Добавена от: @Model.AddedByUserUserName <i class="fa-regular fa-user"></i></p>
+    <p>Добавена на:@Model.CreatedOn.ToShortDateString() <i class="fa-regular fa-calendar-days"></i></p>
 </article>
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
