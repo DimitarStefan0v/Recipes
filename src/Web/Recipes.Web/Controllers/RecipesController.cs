@@ -19,6 +19,7 @@
         private readonly ICategoriesService categoriesService;
         private readonly IVotesService votesService;
         private readonly ICountsService countsService;
+        private readonly IUsersService usersService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public RecipesController(
@@ -26,12 +27,14 @@
             ICategoriesService categoriesService,
             IVotesService votesService,
             ICountsService countsService,
+            IUsersService usersService,
             UserManager<ApplicationUser> userManager)
         {
             this.recipesService = recipesService;
             this.categoriesService = categoriesService;
             this.votesService = votesService;
             this.countsService = countsService;
+            this.usersService = usersService;
             this.userManager = userManager;
         }
 
@@ -155,6 +158,10 @@
             }
 
             viewModel.AverageVotesValue = this.votesService.GetAverageVotes(id);
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            viewModel.IsRecipeInFavorites = this.usersService.IsRecipeInUserFavorites(viewModel.Id, user == null ? null : user.Id);
 
             return this.View(viewModel);
         }
