@@ -16,7 +16,7 @@
 
         public string Color { get; set; }
 
-        public int ViewCount { get; set; }
+        public int ViewsCount { get; set; }
 
         [ForeignKey(nameof(CloudImage))]
         public int? ImageId { get; set; }
