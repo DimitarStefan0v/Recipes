@@ -1,0 +1,38 @@
+﻿@using Recipes.Web.ViewModels.Home;
+@model ContactInputModel
+
+@{
+    this.ViewData["Title"] = "За Контакт";
+}
+
+<h1 class="text-center">@this.ViewData["Title"]</h1>
+<form method="post" class="col-md-6 col-10 mx-auto" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (!this.User.Identity.IsAuthenticated)
+    {
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    }
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Content" class="form-label"></label>
+        <textarea asp-for="Content" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" value="Изпрати" class="btn btn-primary" />
+    </div>
+</form>
