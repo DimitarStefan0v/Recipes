@@ -520,10 +520,17 @@ a {
     background-color: #F3F3F3;
     border-radius: 5px;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px auto;
+}
+
+.votes-container article {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 10px auto;
 }
 
 #avg-votes-hidden {
@@ -552,9 +559,24 @@ a {
     list-style: none;
 }
 
-.votes-container i {
+.votes i {
     color: #E45B25;
     font-size: 30px;
+    transition: all 0.5s ease;
+}
+
+.votes i:hover {
+    font-size: 70px;
+}
+
+.favorites i {
+    font-size: 50px;
+    color: red;
+    transition: all 0.5s ease;
+}
+
+.favorites i:hover {
+    font-size: 100px;
 }
 
 .paragraph-warning {
@@ -727,6 +749,10 @@ a {
     .recipe-in-list-container-name {
         height: fit-content;
         padding: 10px 0;
+    }
+
+    .votes-container {
+        flex-direction: column;
     }
 }
 
