@@ -28,9 +28,9 @@
                 <div class="logo"><a asp-controller="Home" asp-action="Index">LOGO</a></div>
                 <ul class="links">
                     <li>
-                        <a href="#" class="desktop-link">Администрация</a>
+                        <a href="#" class="desktop-link">Администрация <i class="fa-solid fa-caret-down"></i></a>
                         <input type="checkbox" id="show-features" />
-                        <label for="show-features">Features</label>
+                        <label for="show-features">Администрация<i class="fa-solid fa-caret-down"></i></label>
                         <ul>
                             <li><a asp-controller="Recipes" asp-action="AllUnapproved">Рецепти за одобряване</a></li>
                             <li><a href="#">Dropmenu 2</a></li>
@@ -39,16 +39,16 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="desktop-link">Рецепти</a>
+                        <a href="#" class="desktop-link">Рецепти <i class="fa-solid fa-caret-down"></i></a>
                         <input type="checkbox" id="show-services" />
-                        <label for="show-services">Рецепти</label>
+                        <label for="show-services">Рецепти <i class="fa-solid fa-caret-down"></i></label>
                         <ul>
                             <li><a asp-controller="Recipes" asp-action="Create">Добави рецепта</a></li>
                             <li><a asp-controller="Recipes" asp-action="All">Всички рецепти</a></li>
                             <li>
-                                <a href="#" class="desktop-link">Категории</a>
+                                <a href="#" class="desktop-link">Категории <i class="fa-solid fa-caret-right"></i></a>
                                 <input type="checkbox" id="show-more-items" />
-                                <label for="show-more-items">Категории</label>
+                                <label for="show-more-items">Категории <i class="fa-solid fa-caret-down"></i></label>
                                 <ul>
                                     @foreach (var category in foodsCategory)
                                     {
