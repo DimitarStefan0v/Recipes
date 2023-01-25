@@ -47,10 +47,6 @@
 </section>
 <section class="votes-container">
     <article class="votes">
-        @if (!User.Identity.IsAuthenticated)
-        {
-            <p class="paragraph-warning">unregistered</p>
-        }
         <ul>
             <li><i id="first-star" class="fa-regular fa-star" data-vote="1"></i></li>
             <li><i id="second-star" class="fa-regular fa-star" data-vote="2"></i></li>
@@ -62,8 +58,13 @@
         <p id="votes-count">Общо гласували: @Model.VotesCount</p>
         <span id="avg-votes-hidden">@Model.AverageVotesValue.ToString("0.0")</span>
     </article>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p class="paragraph-warning">unregistered</p>
+    }
     <article class="favorites">
         <i class="fa-regular fa-heart"></i>
+        <span id="is-recipe-favorite">@Model.IsRecipeInFavorites</span>
     </article>
 </section>
 <article class="additional-details">
@@ -113,4 +114,5 @@
     <script src="~/js/paint.js" asp-append-version="true"></script>
     <script src="~/js/paintStars.js" asp-append-version="true"></script>
     <script src="~/js/ajaxVote.js" asp-append-version="true"></script>
+    <script src="~/js/fillHeart.js" asp-append-version="true"></script>
 }
