@@ -189,19 +189,6 @@
             await this.recipesRepository.SaveChangesAsync();
         }
 
-        public async Task IncreaseViews(int id)
-        {
-            var recipe = this.recipesRepository.All().Where(x => x.Id == id).FirstOrDefault();
-            if (recipe == null)
-            {
-                return;
-            }
-
-            recipe.ViewsCount += 1;
-
-            await this.recipesRepository.SaveChangesAsync();
-        }
-
         public int GetRecipesCount()
         {
             return this.recipesRepository

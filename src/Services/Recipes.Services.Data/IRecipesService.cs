@@ -25,8 +25,6 @@
 
         Task ApproveRecipe(int id);
 
-        Task IncreaseViews(int id);
-
         int GetRecipesCount();
 
         int GetRecipesCountByName(string search);
