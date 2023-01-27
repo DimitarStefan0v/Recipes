@@ -15,17 +15,23 @@
         private readonly IDeletableEntityRepository<Recipe> recipesRepository;
         private readonly IDeletableEntityRepository<Ingredient> ingredientsRepository;
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
+        private readonly IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly ICloudImagesService imagesService;
 
         public RecipesService(
             IDeletableEntityRepository<Recipe> recipesRepository,
             IDeletableEntityRepository<Ingredient> ingredientsRepository,
             IDeletableEntityRepository<Category> categoriesRepository,
+            IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository,
+            IDeletableEntityRepository<ApplicationUser> usersRepository,
             ICloudImagesService imagesService)
         {
             this.recipesRepository = recipesRepository;
             this.ingredientsRepository = ingredientsRepository;
             this.categoriesRepository = categoriesRepository;
+            this.favoriteRecipesRepository = favoriteRecipesRepository;
+            this.usersRepository = usersRepository;
             this.imagesService = imagesService;
         }
 
@@ -127,7 +133,6 @@
         {
             return this.recipesRepository
                 .AllAsNoTracking()
-                .Where(x => x.IsApproved)
                 .OrderByDescending(x => x.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -140,7 +145,6 @@
             return this.recipesRepository
                 .AllAsNoTracking()
                 .Where(x => x.Name.Contains(search.ToLower().Trim()))
-                .Where(x => x.IsApproved)
                 .OrderByDescending(x => x.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -152,7 +156,7 @@
         {
             return this.recipesRepository
                         .AllAsNoTracking()
-                        .Where(x => x.CategoryId == categoryId && x.IsApproved)
+                        .Where(x => x.CategoryId == categoryId)
                         .OrderByDescending(x => x.CreatedOn)
                         .Skip((page - 1) * itemsPerPage)
                         .Take(itemsPerPage)
@@ -193,7 +197,14 @@
         {
             return this.recipesRepository
                 .AllAsNoTracking()
-                .Where(x => x.IsApproved)
+                .Count();
+        }
+
+        public int GetFavoriteRecipesCount(string userId)
+        {
+            return this.favoriteRecipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.AddedByUserId == userId)
                 .Count();
         }
 
@@ -202,7 +213,6 @@
             return this.recipesRepository
                 .AllAsNoTracking()
                 .Where(x => x.Name.Contains(search.ToLower().Trim()))
-                .Where(x => x.IsApproved)
                 .Count();
         }
 
@@ -210,7 +220,7 @@
         {
             return this.recipesRepository
                 .AllAsNoTracking()
-                .Where(x => x.IsApproved && x.CategoryId == id)
+                .Where(x => x.IsApproved)
                 .Count();
         }
 
