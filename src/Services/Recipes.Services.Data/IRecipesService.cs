@@ -27,6 +27,8 @@
 
         int GetRecipesCount();
 
+        int GetFavoriteRecipesCount(string userId);
+
         int GetRecipesCountByName(string search);
 
         int GetRecipesCountByCategoryId(int id);
