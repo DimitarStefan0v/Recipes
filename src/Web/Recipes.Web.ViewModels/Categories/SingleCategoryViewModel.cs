@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
 
     using AutoMapper;
@@ -24,6 +25,8 @@
         public int ViewsCount { get; set; }
 
         public DateTime RecentRecipeDate { get; set; }
+
+        public string RecentRecipeDateAsString => this.RecentRecipeDate.ToString("dd MMMM yyyy", new CultureInfo("bg-Bg"));
 
         public IEnumerable<RecipeInListViewModel> RecipesByCategoryId { get; set; }
 

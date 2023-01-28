@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
 
     using AutoMapper;
     using global::Recipes.Common;
@@ -47,6 +48,8 @@
         public string AddedByUserUserName { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public string DateAsString => this.CreatedOn.ToString("dd MMMM yyyy", new CultureInfo("bg-Bg"));
 
         public void CreateMappings(IProfileExpression configuration)
         {
