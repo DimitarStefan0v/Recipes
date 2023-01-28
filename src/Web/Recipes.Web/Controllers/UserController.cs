@@ -13,16 +13,16 @@
     public class UserController : Controller
     {
         private readonly IUsersService usersService;
-        private readonly IRecipesService recipesService;
+        private readonly ICountsService countsService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public UserController(
             IUsersService usersService,
-            IRecipesService recipesService,
+            ICountsService countsService,
             UserManager<ApplicationUser> userManager)
         {
             this.usersService = usersService;
-            this.recipesService = recipesService;
+            this.countsService = countsService;
             this.userManager = userManager;
         }
 
@@ -46,7 +46,7 @@
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                ItemsCount = this.recipesService.GetFavoriteRecipesCount(user.Id),
+                ItemsCount = this.countsService.GetFavoriteRecipesCount(user.Id),
                 Recipes = this.usersService.GetFavorites<RecipeInListViewModel>(id, itemsPerPage, user.Id),
             };
 

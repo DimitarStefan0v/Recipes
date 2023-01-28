@@ -15,23 +15,17 @@
         private readonly IDeletableEntityRepository<Recipe> recipesRepository;
         private readonly IDeletableEntityRepository<Ingredient> ingredientsRepository;
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
-        private readonly IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository;
-        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly ICloudImagesService imagesService;
 
         public RecipesService(
             IDeletableEntityRepository<Recipe> recipesRepository,
             IDeletableEntityRepository<Ingredient> ingredientsRepository,
             IDeletableEntityRepository<Category> categoriesRepository,
-            IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository,
-            IDeletableEntityRepository<ApplicationUser> usersRepository,
             ICloudImagesService imagesService)
         {
             this.recipesRepository = recipesRepository;
             this.ingredientsRepository = ingredientsRepository;
             this.categoriesRepository = categoriesRepository;
-            this.favoriteRecipesRepository = favoriteRecipesRepository;
-            this.usersRepository = usersRepository;
             this.imagesService = imagesService;
         }
 
@@ -191,45 +185,6 @@
             recipe.IsApproved = true;
 
             await this.recipesRepository.SaveChangesAsync();
-        }
-
-        public int GetRecipesCount()
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Count();
-        }
-
-        public int GetFavoriteRecipesCount(string userId)
-        {
-            return this.favoriteRecipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.AddedByUserId == userId)
-                .Count();
-        }
-
-        public int GetRecipesCountByName(string search)
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.Name.Contains(search.ToLower().Trim()))
-                .Count();
-        }
-
-        public int GetRecipesCountByCategoryId(int id)
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.IsApproved)
-                .Count();
-        }
-
-        public int GetUnapprovedRecipesCount()
-        {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .Where(x => x.IsApproved == false)
-                .Count();
         }
 
         private void AddIngredientsToRecipe(Recipe recipe, IngredientInputModel ingredientInput)

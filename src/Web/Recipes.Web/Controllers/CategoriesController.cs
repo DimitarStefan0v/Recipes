@@ -54,7 +54,7 @@
             var viewModel = this.categoriesService.GetById<SingleCategoryViewModel>(categoryId);
             viewModel.ItemsPerPage = itemsPerPage;
             viewModel.PageNumber = id;
-            viewModel.ItemsCount = this.recipesService.GetRecipesCountByCategoryId(categoryId);
+            viewModel.ItemsCount = this.countsService.GetRecipesCountByCategoryId(categoryId);
             viewModel.RecipesByCategoryId = this.recipesService.GetRecipesByCategoryId<RecipeInListViewModel>(categoryId, id, itemsPerPage);
             viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
             viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;

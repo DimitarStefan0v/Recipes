@@ -24,15 +24,5 @@
         Task DeleteAsync(int id);
 
         Task ApproveRecipe(int id);
-
-        int GetRecipesCount();
-
-        int GetFavoriteRecipesCount(string userId);
-
-        int GetRecipesCountByName(string search);
-
-        int GetRecipesCountByCategoryId(int id);
-
-        int GetUnapprovedRecipesCount();
     }
 }

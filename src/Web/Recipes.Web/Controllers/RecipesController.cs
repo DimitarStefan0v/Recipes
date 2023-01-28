@@ -85,7 +85,7 @@
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                ItemsCount = this.recipesService.GetRecipesCount(),
+                ItemsCount = this.countsService.GetRecipesCount(),
                 Recipes = this.recipesService.GetAll<RecipeInListViewModel>(id, itemsPerPage),
             };
 
@@ -111,7 +111,7 @@
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                ItemsCount = this.recipesService.GetUnapprovedRecipesCount(),
+                ItemsCount = this.countsService.GetUnapprovedRecipesCount(),
                 Recipes = this.recipesService.GetAllUnapproved<RecipeInListViewModel>(id, itemsPerPage),
             };
 
@@ -134,7 +134,7 @@
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                ItemsCount = this.recipesService.GetRecipesCountByName(name),
+                ItemsCount = this.countsService.GetRecipesCountByName(name),
                 Recipes = this.recipesService.GetAllRecipesByName<RecipeInListViewModel>(name, id, itemsPerPage),
             };
 

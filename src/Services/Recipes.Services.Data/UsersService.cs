@@ -16,18 +16,15 @@
         private readonly IDeletableEntityRepository<Message> messagesRepository;
         private readonly IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository;
         private readonly IDeletableEntityRepository<Recipe> recipesRepository;
-        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
 
         public UsersService(
             IDeletableEntityRepository<Message> messagesRepository,
             IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository,
-            IDeletableEntityRepository<Recipe> recipesRepository,
-            IDeletableEntityRepository<ApplicationUser> usersRepository)
+            IDeletableEntityRepository<Recipe> recipesRepository)
         {
             this.messagesRepository = messagesRepository;
             this.favoriteRecipesRepository = favoriteRecipesRepository;
             this.recipesRepository = recipesRepository;
-            this.usersRepository = usersRepository;
         }
 
         public async Task AddRecipeToFavoritesAsync(int recipeId, string userId)

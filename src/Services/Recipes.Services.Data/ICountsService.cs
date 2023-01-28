@@ -9,5 +9,15 @@
         IndexStatsViewModel GetStats();
 
         Task IncreaseViews(int id, bool forCategory);
+
+        int GetRecipesCount();
+
+        int GetFavoriteRecipesCount(string userId);
+
+        int GetRecipesCountByName(string search);
+
+        int GetRecipesCountByCategoryId(int id);
+
+        int GetUnapprovedRecipesCount();
     }
 }
