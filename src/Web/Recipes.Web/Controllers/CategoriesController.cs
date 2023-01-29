@@ -40,7 +40,7 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> ById(int categoryId, int id = 1)
+        public async Task<IActionResult> ById(int categoryId, string sortOrder, int id = 1)
         {
             await this.countsService.IncreaseViews(categoryId, true);
 
@@ -55,10 +55,11 @@
             viewModel.ItemsPerPage = itemsPerPage;
             viewModel.PageNumber = id;
             viewModel.ItemsCount = this.countsService.GetRecipesCountByCategoryId(categoryId);
-            viewModel.RecipesByCategoryId = this.recipesService.GetRecipesByCategoryId<RecipeInListViewModel>(categoryId, id, itemsPerPage);
+            viewModel.RecipesByCategoryId = this.recipesService.GetRecipesByCategoryId<RecipeInListViewModel>(categoryId, sortOrder, id, itemsPerPage);
             viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
             viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
             viewModel.CategoryId = categoryId;
+            viewModel.SortOrder = sortOrder;
             return this.View(viewModel);
         }
 

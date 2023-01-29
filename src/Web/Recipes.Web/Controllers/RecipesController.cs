@@ -72,28 +72,28 @@
             return this.Redirect("/");
         }
 
-        public IActionResult All(int id = 1)
+        public IActionResult All(string sortOrder = "descending", int id = 1)
         {
             if (id <= 0)
             {
                 return this.NotFound();
             }
 
-            int itemsPerPage = 9;
+            int itemsPerPage = 2;
 
             var viewModel = new RecipesListViewModel
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
                 ItemsCount = this.countsService.GetRecipesCount(),
-                Recipes = this.recipesService.GetAll<RecipeInListViewModel>(id, itemsPerPage),
+                Recipes = this.recipesService.GetAll<RecipeInListViewModel>(sortOrder, id, itemsPerPage),
             };
 
             // Add ControllerName and ActionName so Paging can be extracted in PartialView
             // and work for different actions without repeating Paging in every view that needs it
             viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
             viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
-
+            viewModel.SortOrder = sortOrder;
             return this.View(viewModel);
         }
 
@@ -121,7 +121,7 @@
             return this.View(viewModel);
         }
 
-        public IActionResult AllByName([FromQuery(Name = "search")] string name, int id = 1)
+        public IActionResult AllByName([FromQuery(Name = "search")] string name, string sortOrder = "descending", int id = 1)
         {
             if (string.IsNullOrWhiteSpace(name) || id <= 0)
             {
@@ -135,13 +135,14 @@
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
                 ItemsCount = this.countsService.GetRecipesCountByName(name),
-                Recipes = this.recipesService.GetAllRecipesByName<RecipeInListViewModel>(name, id, itemsPerPage),
+                Recipes = this.recipesService.GetAllRecipesByName<RecipeInListViewModel>(name, sortOrder, id, itemsPerPage),
             };
 
             this.ViewData["SearchString"] = name.Trim();
             viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
             viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
             viewModel.Search = name.Trim();
+            viewModel.SortOrder = sortOrder;
 
             return this.View(viewModel);
         }
