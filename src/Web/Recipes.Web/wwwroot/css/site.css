@@ -382,6 +382,10 @@ a {
     color: #FFA400;
 }
 
+.category-container {
+    margin-bottom: 20px;
+}
+
 .recipe-container,
 .category-container {
     display: flex;
@@ -583,6 +587,28 @@ a {
 
 #is-recipe-favorite {
     display: none;
+}
+
+.sorting-menu article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.sorting-menu article p {
+    width: fit-content;
+    margin: 0;
+}
+
+.sorting-menu article ul {
+    margin: 0;
+    padding: 0;
+}
+
+.sorting-menu article ul li {
+    display: inline-block;
 }
 
 

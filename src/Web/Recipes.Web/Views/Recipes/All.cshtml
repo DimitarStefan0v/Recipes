@@ -12,14 +12,14 @@
         <article>
             <p>Подреди по:</p>
             <ul>
-                <li><a asp-route-sortOrder="descending" asp-route-id="1">Най-нови</a></li>
-                <li><a asp-route-sortOrder="ascending" asp-route-id="1">Най-стари</a></li>
-                <li><a asp-route-sortOrder="popularity" asp-route-id="1">Най-популярни</a></li>
-                <li><a asp-route-sortOrder="votes" asp-route-id="1">Най-оценявани</a></li>
+                <li><a class="descending-sort-link" asp-route-sortOrder="descending" asp-route-id="1">Нови</a></li>
+                <li><a class="ascending-sort-link" asp-route-sortOrder="ascending" asp-route-id="1">Стари</a></li>
+                <li><a class="popularity-sort-link" asp-route-sortOrder="popularity" asp-route-id="1">Популярни</a></li>
+                <li><a class="votes-sort-link" asp-route-sortOrder="votes" asp-route-id="1">Оценявани</a></li>
             </ul>
         </article>
     </section>
-
+    <input type="hidden" value="@Model.SortOrder" class="input-sort-order-value" />
     <partial name="_RecipesListPartial" model="@Model" />
 
     <partial name="_PagingPartial" model="@Model" />
@@ -28,4 +28,5 @@
 
 @section Scripts {
     <script src="~/js/paintBorder.js" asp-append-version="true"></script>
+    <script src="~/js/disableSortTagElement.js" asp-append-version="true"></script>
 }

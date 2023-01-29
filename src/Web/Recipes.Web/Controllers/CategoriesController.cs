@@ -40,7 +40,7 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> ById(int categoryId, string sortOrder, int id = 1)
+        public async Task<IActionResult> ById(int categoryId, string sortOrder = "descending", int id = 1)
         {
             await this.countsService.IncreaseViews(categoryId, true);
 
