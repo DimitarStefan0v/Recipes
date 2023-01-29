@@ -5,15 +5,35 @@
     this.ViewData["Title"] = "Всички рецепти съдържащи \"" + this.ViewData["SearchString"] + "\" в името си";
 }
 
-<h1 class="text-center">@this.ViewData["Title"]</h1>
-
-<partial name="_RecipesListPartial" model="@Model" />
-
-@if (Model.PagesCount > 0)
+@if (Model.Recipes.Any())
 {
-    <partial name="_PagingPartial" model="@Model" />
-}
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
 
+    <section class="sorting-menu">
+        <article>
+            <p>Подреди по:</p>
+            <ul>
+                <li><a asp-route-search="@Model.Search" asp-route-sortOrder="descending" asp-route-id="1">Най-нови</a></li>
+                <li><a asp-route-search="@Model.Search" asp-route-sortOrder="ascending" asp-route-id="1">Най-стари</a></li>
+                <li><a asp-route-search="@Model.Search" asp-route-sortOrder="popularity" asp-route-id="1">Най-популярни</a></li>
+                <li><a asp-route-search="@Model.Search" asp-route-sortOrder="votes" asp-route-id="1">Най-оценявани</a></li>
+            </ul>
+        </article>
+    </section>
+
+    <partial name="_RecipesListPartial" model="@Model" />
+
+    @if (Model.PagesCount > 0)
+    {
+        <partial name="_PagingPartial" model="@Model" />
+    }
+}
+else
+{
+    <h1 class="text-center">Не намерихме рецепти съдържащи "@this.ViewData["SearchString"]" в името си.
+        Може да разгледате рецептите по категории от <a asp-controller="Categories" asp-action="All">тук</a>.
+    </h1>
+}
 @section Scripts {
     <script src="~/js/paintBorder.js"></script>
 }

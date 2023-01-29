@@ -5,13 +5,27 @@
     this.ViewData["Title"] = "Всички рецепти";
 }
 
-<h1 class="text-center">Рецепти</h1>
-
-<partial name="_RecipesListPartial" model="@Model" />
-
-@if (Model.PagesCount > 0)
+@if (Model.Recipes.Any())
 {
-    <partial name="_PagingPartial" model="@Model" />
+    <h1 class="text-center">Рецепти</h1>
+    <section class="sorting-menu">
+        <article>
+            <p>Подреди по:</p>
+            <ul>
+                <li><a asp-route-sortOrder="descending" asp-route-id="1">Най-нови</a></li>
+                <li><a asp-route-sortOrder="ascending" asp-route-id="1">Най-стари</a></li>
+                <li><a asp-route-sortOrder="popularity" asp-route-id="1">Най-популярни</a></li>
+                <li><a asp-route-sortOrder="votes" asp-route-id="1">Най-оценявани</a></li>
+            </ul>
+        </article>
+    </section>
+
+    <partial name="_RecipesListPartial" model="@Model" />
+
+    @if (Model.PagesCount > 0)
+    {
+        <partial name="_PagingPartial" model="@Model" />
+    }
 }
 
 @section Scripts {
