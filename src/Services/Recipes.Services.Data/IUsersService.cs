@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
 
     using Recipes.Web.ViewModels.Home;
-    using Recipes.Web.ViewModels.Recipes;
 
     public interface IUsersService
     {

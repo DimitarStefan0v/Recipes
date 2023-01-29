@@ -10,13 +10,13 @@
     using Recipes.Web.ViewModels.Recipes;
 
     [Authorize]
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         private readonly IUsersService usersService;
         private readonly ICountsService countsService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public UserController(
+        public UsersController(
             IUsersService usersService,
             ICountsService countsService,
             UserManager<ApplicationUser> userManager)

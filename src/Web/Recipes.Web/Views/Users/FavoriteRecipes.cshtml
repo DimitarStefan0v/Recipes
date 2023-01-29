@@ -1,0 +1,44 @@
+﻿@using Recipes.Web.ViewModels.Recipes;
+@model RecipesListViewModel
+
+@{
+    this.ViewData["Title"] = "Любими рецепти";
+}
+
+@if (Model.Recipes.Any())
+{
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <section class="recipes-list-container">
+        @foreach (var recipe in Model.Recipes)
+        {
+            <article class="recipe-in-list-container">
+                <a asp-controller="Recipes" asp-action="ById" asp-route-id="@recipe.Id">
+                    <article class="recipe-in-list-container-img">
+                        <img src="@recipe.ImageUrl" class="img-fluid w-100">
+                    </article>
+                    <article class="recipe-in-list-container-name">
+                        <p>
+                            @(
+                                recipe.Name.Length > 50 ? recipe.Name.Substring(0, 50) + "..." : recipe.Name
+                                )
+                        </p>
+                    </article>
+                    <input class="recipe-in-list-color" value="@recipe.CategoryColor" type="hidden" />
+                </a>
+            </article>
+        }
+    </section>
+
+    <partial name="_PagingPartial" model="@Model" />
+
+}
+else
+{
+    <h1 class="text-center">
+        Нямате рецепти добавени към любими. Можете да разгледате всички рецепти от <a asp-controller="Recipes" asp-action="All">тук</a> и да си добавите към любими.
+    </h1>
+}
+
+@section Scripts {
+    <script src="~/js/paintBorder.js" asp-append-version="true"></script>
+}

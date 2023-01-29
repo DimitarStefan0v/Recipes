@@ -4,12 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Recipes.Common;
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
     using Recipes.Services.Mapping;
     using Recipes.Web.ViewModels.Home;
-    using Recipes.Web.ViewModels.Recipes;
 
     public class UsersService : IUsersService
     {

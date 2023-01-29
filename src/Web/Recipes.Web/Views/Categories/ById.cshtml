@@ -84,7 +84,7 @@
                     <article class="recipe-in-list-container-name">
                         <p>
                             @(
-                        recipe.Name.Length > 50 ? recipe.Name.Substring(0, 50) + "..." : recipe.Name
+                                recipe.Name.Length > 50 ? recipe.Name.Substring(0, 50) + "..." : recipe.Name
                                 )
                         </p>
                     </article>
@@ -94,12 +94,10 @@
         }
     </section>
 
-    @if (Model.PagesCount > 0)
-    {
-        <partial name="_PagingPartial" model="@Model" />
-    }
+    <partial name="_PagingPartial" model="@Model" />
+
 }
 @section Scripts {
     <script src="~/js/paint.js" asp-append-version="true"></script>
-    <script src="~/js/paintBorder.js"></script>
+    <script src="~/js/paintBorder.js" asp-append-version="true"></script>
 }
