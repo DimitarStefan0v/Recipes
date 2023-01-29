@@ -123,39 +123,121 @@
                 .FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
+        public IEnumerable<T> GetAll<T>(string sort, int page, int itemsPerPage)
         {
-            return this.recipesRepository
-                .AllAsNoTracking()
-                .OrderByDescending(x => x.CreatedOn)
-                .Skip((page - 1) * itemsPerPage)
+            if (sort == null)
+            {
+                sort = "descending";
+            }
+
+            sort = sort.Trim();
+
+            var query = this.recipesRepository.AllAsNoTracking().AsQueryable();
+
+            switch (sort)
+            {
+                case "ascending":
+                    query = query.OrderBy(x => x.CreatedOn);
+                    break;
+                case "descending":
+                    query = query.OrderByDescending(x => x.CreatedOn);
+                    break;
+                case "popularity":
+                    query = query.OrderByDescending(x => x.ViewsCount);
+                    break;
+                case "votes":
+                    query = query.OrderByDescending(x => x.Votes.Count());
+                    break;
+                default:
+                    sort = "descending";
+                    query = query.OrderByDescending(x => x.CreatedOn);
+                    break;
+            }
+
+            return query.Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
         }
 
-        public IEnumerable<T> GetAllRecipesByName<T>(string search, int page, int itemsPerPage)
+        public IEnumerable<T> GetAllRecipesByName<T>(string search, string sort, int page, int itemsPerPage)
         {
-            return this.recipesRepository
+            if (sort == null)
+            {
+                sort = "descending";
+            }
+
+            sort = sort.Trim();
+
+            var query = this.recipesRepository
                 .AllAsNoTracking()
                 .Where(x => x.Name.Contains(search.ToLower().Trim()))
-                .OrderByDescending(x => x.CreatedOn)
-                .Skip((page - 1) * itemsPerPage)
+                .AsQueryable();
+
+            switch (sort)
+            {
+                case "ascending":
+                    query = query.OrderBy(x => x.CreatedOn);
+                    break;
+                case "descending":
+                    query = query.OrderByDescending(x => x.CreatedOn);
+                    break;
+                case "popularity":
+                    query = query.OrderByDescending(x => x.ViewsCount);
+                    break;
+                case "votes":
+                    query = query.OrderByDescending(x => x.Votes.Count());
+                    break;
+                default:
+                    sort = "descending";
+                    query = query.OrderByDescending(x => x.CreatedOn);
+                    break;
+            }
+
+            return query.Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
         }
 
-        public IEnumerable<T> GetRecipesByCategoryId<T>(int categoryId, int page, int itemsPerPage)
+        public IEnumerable<T> GetRecipesByCategoryId<T>(int categoryId, string sort, int page, int itemsPerPage)
         {
-            return this.recipesRepository
-                        .AllAsNoTracking()
-                        .Where(x => x.CategoryId == categoryId)
-                        .OrderByDescending(x => x.CreatedOn)
-                        .Skip((page - 1) * itemsPerPage)
-                        .Take(itemsPerPage)
-                        .To<T>()
-                        .ToList();
+            if (sort == null)
+            {
+                sort = "descending";
+            }
+
+            sort = sort.Trim();
+
+            var query = this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.CategoryId == categoryId)
+                .AsQueryable();
+
+            switch (sort)
+            {
+                case "ascending":
+                    query = query.OrderBy(x => x.CreatedOn);
+                    break;
+                case "descending":
+                    query = query.OrderByDescending(x => x.CreatedOn);
+                    break;
+                case "popularity":
+                    query = query.OrderByDescending(x => x.ViewsCount);
+                    break;
+                case "votes":
+                    query = query.OrderByDescending(x => x.Votes.Count());
+                    break;
+                default:
+                    sort = "descending";
+                    query = query.OrderByDescending(x => x.CreatedOn);
+                    break;
+            }
+
+            return query.Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
         }
 
         public IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage)
