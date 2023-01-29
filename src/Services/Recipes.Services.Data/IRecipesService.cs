@@ -9,13 +9,13 @@
     {
         Task CreateAsync(CreateRecipeInputModel input, string userId);
 
-        IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
+        IEnumerable<T> GetAll<T>(string sort, int page, int itemsPerPage);
 
         IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage);
 
-        IEnumerable<T> GetAllRecipesByName<T>(string search, int page, int itemsPerPage);
+        IEnumerable<T> GetAllRecipesByName<T>(string search, string sort, int page, int itemsPerPage);
 
-        IEnumerable<T> GetRecipesByCategoryId<T>(int categoryId, int page, int itemsPerPage);
+        IEnumerable<T> GetRecipesByCategoryId<T>(int categoryId, string sort, int page, int itemsPerPage);
 
         T GetById<T>(int id);
 
