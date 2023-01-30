@@ -27,18 +27,21 @@
             <div class="content">
                 <div class="logo"><a asp-controller="Home" asp-action="Index">LOGO</a></div>
                 <ul class="links">
-                    <li>
-                        <a href="#" class="desktop-link">Администрация <i class="fa-solid fa-caret-down"></i></a>
-                        <input type="checkbox" id="show-features" />
-                        <label for="show-features">Администрация<i class="fa-solid fa-caret-down"></i></label>
-                        <ul>
-                            <li><a asp-controller="Recipes" asp-action="AllUnapproved">Рецепти за одобряване</a></li>
-                            <li><a asp-controller="Users" asp-action="FavoriteRecipes">Любими</a></li>
-                            <li><a href="#">Dropmenu 2</a></li>
-                            <li><a href="#">Dropmenu 3</a></li>
-                            <li><a href="#">Dropmenu 4</a></li>
-                        </ul>
-                    </li>
+                    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                    {
+                        <li>
+                            <a href="#" class="desktop-link">Администрация <i class="fa-solid fa-caret-down"></i></a>
+                            <input type="checkbox" id="show-features" />
+                            <label for="show-features">Администрация<i class="fa-solid fa-caret-down"></i></label>
+                            <ul>
+                                <li><a asp-controller="Recipes" asp-action="AllUnapproved">Рецепти за одобряване</a></li>
+                                <li><a asp-controller="Users" asp-action="FavoriteRecipes">Любими</a></li>
+                                <li><a href="#">Dropmenu 2</a></li>
+                                <li><a href="#">Dropmenu 3</a></li>
+                                <li><a href="#">Dropmenu 4</a></li>
+                            </ul>
+                        </li>
+                    }
                     <li>
                         <a href="#" class="desktop-link">Рецепти <i class="fa-solid fa-caret-down"></i></a>
                         <input type="checkbox" id="show-services" />
@@ -60,7 +63,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a asp-controller="Categories" asp-action="ById" asp-route-categoryId="@beveragesCategory.Id">@beveragesCategory.Name</a></li>
+                    <li><a asp-controller="Categories" asp-action="ById" asp-route-categoryId="@(beveragesCategory == null ? null : beveragesCategory.Id)">@(beveragesCategory == null ? null : beveragesCategory.Name)</a></li>
                     <partial name="_LoginPartial" />
                 </ul>
             </div>

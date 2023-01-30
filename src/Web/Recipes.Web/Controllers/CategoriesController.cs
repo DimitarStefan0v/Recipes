@@ -91,7 +91,7 @@
                 return this.View(input);
             }
 
-            return this.RedirectToAction(nameof(this.ById), new { id });
+            return this.RedirectToAction(nameof(this.All));
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]

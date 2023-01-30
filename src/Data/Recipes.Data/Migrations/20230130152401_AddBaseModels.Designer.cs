@@ -12,8 +12,8 @@ using Recipes.Data;
 namespace Recipes.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230125100353_AddTitlePropToMessages")]
-    partial class AddTitlePropToMessages
+    [Migration("20230130152401_AddBaseModels")]
+    partial class AddBaseModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -279,6 +279,9 @@ namespace Recipes.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ViewsCount")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
@@ -338,6 +341,43 @@ namespace Recipes.Data.Migrations
                     b.ToTable("CloudImages");
                 });
 
+            modelBuilder.Entity("Recipes.Data.Models.FavoriteRecipe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AddedByUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddedByUserId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("FavoriteRecipes");
+                });
+
             modelBuilder.Entity("Recipes.Data.Models.Ingredient", b =>
                 {
                     b.Property<int>("Id")
@@ -388,13 +428,16 @@ namespace Recipes.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Names")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -455,6 +498,9 @@ namespace Recipes.Data.Migrations
 
                     b.Property<TimeSpan?>("PreparationTime")
                         .HasColumnType("time");
+
+                    b.Property<int>("ViewsCount")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -655,6 +701,23 @@ namespace Recipes.Data.Migrations
                     b.Navigation("Recipe");
                 });
 
+            modelBuilder.Entity("Recipes.Data.Models.FavoriteRecipe", b =>
+                {
+                    b.HasOne("Recipes.Data.Models.ApplicationUser", "AddedByUser")
+                        .WithMany("FavoriteRecipes")
+                        .HasForeignKey("AddedByUserId");
+
+                    b.HasOne("Recipes.Data.Models.Recipe", "Recipe")
+                        .WithMany("FavoriteRecipes")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AddedByUser");
+
+                    b.Navigation("Recipe");
+                });
+
             modelBuilder.Entity("Recipes.Data.Models.Message", b =>
                 {
                     b.HasOne("Recipes.Data.Models.ApplicationUser", "AddedByUser")
@@ -719,6 +782,8 @@ namespace Recipes.Data.Migrations
                 {
                     b.Navigation("Claims");
 
+                    b.Navigation("FavoriteRecipes");
+
                     b.Navigation("Images");
 
                     b.Navigation("Logins");
@@ -746,6 +811,8 @@ namespace Recipes.Data.Migrations
 
             modelBuilder.Entity("Recipes.Data.Models.Recipe", b =>
                 {
+                    b.Navigation("FavoriteRecipes");
+
                     b.Navigation("Image");
 
                     b.Navigation("Ingredients");
