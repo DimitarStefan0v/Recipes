@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using CloudinaryDotNet.Actions;
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
     using Recipes.Services.Mapping;
@@ -40,10 +41,20 @@
                     .FirstOrDefault();
             }
 
-            var imgResult = await this.imagesService.UploadImageAsync(input.Image);
+            string imgUrl = null;
+            string imgPubId = null;
+            ImageUploadResult imgResult = null;
 
-            string imgUrl = imgResult.SecureUrl.AbsoluteUri;
-            string imgPubId = imgResult.PublicId;
+            try
+            {
+                imgResult = await this.imagesService.UploadImageAsync(input.Image);
+            }
+            catch (Exception)
+            {
+            }
+
+            imgUrl = imgResult == null ? null : imgResult.SecureUrl.AbsoluteUri;
+            imgPubId = imgResult == null ? null : imgResult.PublicId;
 
             var imageToWrite = new CloudImage
             {
@@ -64,10 +75,7 @@
                 Image = imageToWrite,
             };
 
-            foreach (var ingredientInput in input.Ingredients)
-            {
-                this.AddIngredientsToRecipe(recipe, ingredientInput);
-            }
+            this.AddIngredientsToRecipe(input, recipe);
 
             await this.recipesRepository.AddAsync(recipe);
             await this.recipesRepository.SaveChangesAsync();
@@ -269,25 +277,41 @@
             await this.recipesRepository.SaveChangesAsync();
         }
 
-        private void AddIngredientsToRecipe(Recipe recipe, IngredientInputModel ingredientInput)
+        private void AddIngredientsToRecipe(CreateRecipeInputModel input, Recipe recipe)
         {
-            var ingredient = this.ingredientsRepository
-                                    .AllAsNoTracking()
-                                    .FirstOrDefault(i => i.Name.ToLower() == ingredientInput.IngredientName.ToLower().Trim());
+            var ingredients = this.ingredientsRepository.AllAsNoTracking().ToList();
 
-            if (ingredient == null)
+            foreach (var ingredientInput in input.Ingredients)
             {
-                ingredient = new Ingredient
+                ingredientInput.IngredientName = ingredientInput.IngredientName
+                                                                    .ToLower().Trim();
+
+                var ingredient = ingredients
+                                    .Where(i => i.Name == ingredientInput.IngredientName)
+                                    .FirstOrDefault();
+
+                if (ingredient == null)
                 {
-                    Name = ingredientInput.IngredientName.ToLower().Trim(),
-                };
-            }
+                    ingredient = new Ingredient
+                    {
+                        Name = ingredientInput.IngredientName.ToLower().Trim(),
+                    };
 
-            recipe.Ingredients.Add(new RecipeIngredient
-            {
-                Ingredient = ingredient,
-                Quantity = ingredientInput.Quantity == null ? null : ingredientInput.Quantity.ToLower().Trim(),
-            });
+                    recipe.Ingredients.Add(new RecipeIngredient
+                    {
+                        Ingredient = ingredient,
+                        Quantity = ingredientInput.Quantity == null ? null : ingredientInput.Quantity.ToLower().Trim(),
+                    });
+
+                    continue;
+                }
+
+                recipe.Ingredients.Add(new RecipeIngredient
+                {
+                    IngredientId = ingredient.Id,
+                    Quantity = ingredientInput.Quantity == null ? null : ingredientInput.Quantity.ToLower().Trim(),
+                });
+            }
         }
     }
 }
