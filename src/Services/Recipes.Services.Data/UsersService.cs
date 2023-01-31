@@ -98,7 +98,7 @@
             {
                 var recipe = this.recipesRepository
                     .AllAsNoTracking()
-                    .Where(x => x.Id == favoriteRecipeId)
+                    .Where(x => x.Id == favoriteRecipeId && x.IsApproved == true)
                     .To<T>()
                     .FirstOrDefault();
 

@@ -30,7 +30,8 @@
         {
             var data = new IndexStatsViewModel
             {
-                RecipesCount = this.recipesRepository.AllAsNoTracking().Count(),
+                ApprovedRecipesCount = this.recipesRepository.AllAsNoTracking().Where(x => x.IsApproved).Count(),
+                WaitingForApprovalRecipesCount = this.recipesRepository.AllAsNoTracking().Where(x => x.IsApproved == false).Count(),
                 IngredientsCount = this.ingredientsRepository.AllAsNoTracking().Count(),
                 CategoriesCount = this.categoriesRepository.AllAsNoTracking().Count(),
             };
@@ -70,6 +71,7 @@
         {
             return this.recipesRepository
                 .AllAsNoTracking()
+                .Where(x => x.IsApproved == true)
                 .Count();
         }
 
@@ -77,7 +79,7 @@
         {
             return this.favoriteRecipesRepository
                 .AllAsNoTracking()
-                .Where(x => x.AddedByUserId == userId)
+                .Where(x => x.AddedByUserId == userId && x.Recipe.IsApproved == true)
                 .Count();
         }
 
@@ -85,7 +87,7 @@
         {
             return this.recipesRepository
                 .AllAsNoTracking()
-                .Where(x => x.Name.Contains(search.ToLower().Trim()))
+                .Where(x => x.Name.Contains(search.ToLower().Trim()) && x.IsApproved == true)
                 .Count();
         }
 
@@ -93,7 +95,7 @@
         {
             return this.recipesRepository
                 .AllAsNoTracking()
-                .Where(x => x.CategoryId == id)
+                .Where(x => x.CategoryId == id && x.IsApproved == true)
                 .Count();
         }
 

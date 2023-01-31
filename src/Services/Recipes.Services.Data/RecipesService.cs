@@ -140,27 +140,12 @@
 
             sort = sort.Trim();
 
-            var query = this.recipesRepository.AllAsNoTracking().AsQueryable();
+            var query = this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved == true)
+                .AsQueryable();
 
-            switch (sort)
-            {
-                case "ascending":
-                    query = query.OrderBy(x => x.CreatedOn);
-                    break;
-                case "descending":
-                    query = query.OrderByDescending(x => x.CreatedOn);
-                    break;
-                case "popularity":
-                    query = query.OrderByDescending(x => x.ViewsCount);
-                    break;
-                case "votes":
-                    query = query.OrderByDescending(x => x.Votes.Count());
-                    break;
-                default:
-                    sort = "descending";
-                    query = query.OrderByDescending(x => x.CreatedOn);
-                    break;
-            }
+            SortRecipes(ref sort, ref query);
 
             return query.Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -179,28 +164,10 @@
 
             var query = this.recipesRepository
                 .AllAsNoTracking()
-                .Where(x => x.Name.Contains(search.ToLower().Trim()))
+                .Where(x => x.Name.Contains(search.ToLower().Trim()) && x.IsApproved == true)
                 .AsQueryable();
 
-            switch (sort)
-            {
-                case "ascending":
-                    query = query.OrderBy(x => x.CreatedOn);
-                    break;
-                case "descending":
-                    query = query.OrderByDescending(x => x.CreatedOn);
-                    break;
-                case "popularity":
-                    query = query.OrderByDescending(x => x.ViewsCount);
-                    break;
-                case "votes":
-                    query = query.OrderByDescending(x => x.Votes.Count());
-                    break;
-                default:
-                    sort = "descending";
-                    query = query.OrderByDescending(x => x.CreatedOn);
-                    break;
-            }
+            SortRecipes(ref sort, ref query);
 
             return query.Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -219,28 +186,10 @@
 
             var query = this.recipesRepository
                 .AllAsNoTracking()
-                .Where(x => x.CategoryId == categoryId)
+                .Where(x => x.CategoryId == categoryId && x.IsApproved == true)
                 .AsQueryable();
 
-            switch (sort)
-            {
-                case "ascending":
-                    query = query.OrderBy(x => x.CreatedOn);
-                    break;
-                case "descending":
-                    query = query.OrderByDescending(x => x.CreatedOn);
-                    break;
-                case "popularity":
-                    query = query.OrderByDescending(x => x.ViewsCount);
-                    break;
-                case "votes":
-                    query = query.OrderByDescending(x => x.Votes.Count());
-                    break;
-                default:
-                    sort = "descending";
-                    query = query.OrderByDescending(x => x.CreatedOn);
-                    break;
-            }
+            SortRecipes(ref sort, ref query);
 
             return query.Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -277,12 +226,40 @@
             await this.recipesRepository.SaveChangesAsync();
         }
 
+        private static void SortRecipes(ref string sort, ref IQueryable<Recipe> query)
+        {
+            switch (sort)
+            {
+                case "ascending":
+                    query = query.OrderBy(x => x.CreatedOn);
+                    break;
+                case "descending":
+                    query = query.OrderByDescending(x => x.CreatedOn);
+                    break;
+                case "popularity":
+                    query = query.OrderByDescending(x => x.ViewsCount);
+                    break;
+                case "votes":
+                    query = query.OrderByDescending(x => x.Votes.Count());
+                    break;
+                default:
+                    sort = "descending";
+                    query = query.OrderByDescending(x => x.CreatedOn);
+                    break;
+            }
+        }
+
         private void AddIngredientsToRecipe(CreateRecipeInputModel input, Recipe recipe)
         {
             var ingredients = this.ingredientsRepository.AllAsNoTracking().ToList();
 
             foreach (var ingredientInput in input.Ingredients)
             {
+                if (string.IsNullOrWhiteSpace(ingredientInput.IngredientName))
+                {
+                    continue;
+                }
+
                 ingredientInput.IngredientName = ingredientInput.IngredientName
                                                                     .ToLower().Trim();
 
