@@ -2,7 +2,9 @@
 {
     public class IndexStatsViewModel
     {
-        public int RecipesCount { get; set; }
+        public int ApprovedRecipesCount { get; set; }
+
+        public int WaitingForApprovalRecipesCount { get; set; }
 
         public int CategoriesCount { get; set; }
 

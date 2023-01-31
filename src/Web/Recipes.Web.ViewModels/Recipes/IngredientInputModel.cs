@@ -6,7 +6,6 @@
 
     public class IngredientInputModel
     {
-        [Required(ErrorMessage = RecipeErrorMessages.IngredientNameRequired)]
         [MinLength(2, ErrorMessage = RecipeErrorMessages.IngredientNameLength)]
         [MaxLength(50, ErrorMessage = RecipeErrorMessages.IngredientNameLength)]
         public string IngredientName { get; set; }

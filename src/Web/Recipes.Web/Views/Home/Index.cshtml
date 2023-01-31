@@ -6,7 +6,9 @@
 }
 
 <ul class="stats">
-    <li>Рецепти: @Model.RecipesCount</li>
+    <li><a asp-controller="Recipes" asp-action="All">Одобрени рецепти: @Model.ApprovedRecipesCount</a></li>
+    <li>Рецепти чакащи одобрение: @Model.WaitingForApprovalRecipesCount</li>
     <li>Съставки: @Model.IngredientsCount</li>
-    <li>Категории: @Model.CategoriesCount</li>
+    <li><a asp-controller="Categories" asp-action="All">Категории: @Model.CategoriesCount</a></li>
+    <li>Общо рецепти на сайта: @(Model.ApprovedRecipesCount + Model.WaitingForApprovalRecipesCount)</li>
 </ul>
