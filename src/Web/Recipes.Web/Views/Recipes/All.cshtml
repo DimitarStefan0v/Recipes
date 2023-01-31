@@ -22,7 +22,10 @@
     <input type="hidden" value="@Model.SortOrder" class="input-sort-order-value" />
     <partial name="_RecipesListPartial" model="@Model" />
 
-    <partial name="_PagingPartial" model="@Model" />
+    if (Model.PagesCount > 1)
+    {
+        <partial name="_PagingPartial" model="@Model" />
+    }
 
 }
 

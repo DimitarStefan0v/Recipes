@@ -94,9 +94,10 @@
             </article>
         }
     </section>
-
-    <partial name="_PagingPartial" model="@Model" />
-
+    if (Model.PagesCount > 1)
+    {
+        <partial name="_PagingPartial" model="@Model" />
+    }
 }
 @section Scripts {
     <script src="~/js/paint.js" asp-append-version="true"></script>
