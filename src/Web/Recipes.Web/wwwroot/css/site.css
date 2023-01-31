@@ -404,6 +404,12 @@ a {
     display: none;
 }
 
+#inactive-current-page-link {
+    background-color: #A2A2A2;
+    pointer-events: none;
+    cursor: default;
+}
+
 .links-above-container {
     margin: 10px auto;
     font-size: 16px;
