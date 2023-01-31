@@ -71,7 +71,7 @@ namespace Recipes.Web.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Потребителското име е задължително")]
             [Display(Name = "Потребителско име")]
             [DataType(DataType.Text)]
             public string UserName { get; set; }
@@ -79,8 +79,8 @@ namespace Recipes.Web.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Имейла е задължителен")]
+            [EmailAddress(ErrorMessage = "Невалиден имейл")]
             [Display(Name = "Имейл")]
             public string Email { get; set; }
 
@@ -88,8 +88,8 @@ namespace Recipes.Web.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Паролата е задължителна")]
+            [StringLength(100, ErrorMessage = "Паролата трябва да е между {2} и {1} символа.", MinimumLength = 8)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
             public string Password { get; set; }
