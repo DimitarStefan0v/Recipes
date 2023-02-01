@@ -9,6 +9,41 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/js/recipesList.min.js", // for view All, AllByName, AllUnapproved
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/js/paintBorder.js",
+      "wwwroot/js/disableSortTagElement.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/recipeById.min.js", // for view ById in Recipes
+    // An array of relative input file paths. Globbing patterns supported 
+    "inputFiles": [
+      "wwwroot/js/ajaxVote.js",
+      "wwwroot/js/ajaxFavorites.js",
+      "wwwroot/js/paint.js",
+      "wwwroot/js/paintStars.js",
+      "wwwroot/js/fillHeart.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/ingredients.min.js", // for view Create
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/js/ingredients.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/categoryById.min.js", // for view ById in Categories
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/js/paint.js",
+      "wwwroot/js/paintBorder.js",
+      "wwwroot/js/disableSortTagElement.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
       "wwwroot/js/site.js"

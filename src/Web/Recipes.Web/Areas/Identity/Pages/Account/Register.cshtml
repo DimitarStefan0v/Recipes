@@ -31,6 +31,10 @@
                     <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
+                <p>
+                    Натискайки бутона "Регистрация", вие потвърждавате, че сте запознати и съгласни с нашата
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">политика за опазване на личните данни</a>
+                </p>
                 <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary mt-4">Регистрация</button>
             </form>
         </section>
