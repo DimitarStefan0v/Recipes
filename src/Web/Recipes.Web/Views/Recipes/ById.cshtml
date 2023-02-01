@@ -77,8 +77,8 @@
     </article>
 </section>
 <article class="additional-details">
-    <p>Добавена от: @Model.AddedByUserUserName <i class="fa-regular fa-user"></i></p>
-    <p>Добавена на: @Model.DateAsString <i class="fa-regular fa-calendar-days"></i></p>
+    <p>Добавена от: @Model.AddedByUserUserName</p>
+    <p>Добавена на: <time>@Model.DateAsString</time></p>
 </article>
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
