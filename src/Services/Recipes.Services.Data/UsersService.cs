@@ -67,6 +67,7 @@
                 Content = input.Content.Trim(),
                 Name = input.Name.Trim(),
                 Email = input.Email.Trim(),
+                Ip = input.Ip,
                 AddedByUserId = userId,
             };
 

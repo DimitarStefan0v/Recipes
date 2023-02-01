@@ -6,11 +6,13 @@
 
     public class ContactInputModel
     {
-        [Display(Name = "Вашето име")]
+        [Display(Name = "Вашите имена")]
+        [Required(ErrorMessage = ContactErrorMessages.NameRequired)]
         [MinLength(3, ErrorMessage = ContactErrorMessages.NameLength)]
         public string Name { get; set; }
 
-        [Display(Name = "Вашият email адрес")]
+        [Display(Name = "Вашият имейл адрес")]
+        [Required(ErrorMessage = ContactErrorMessages.EmailRequired)]
         [EmailAddress(ErrorMessage = ContactErrorMessages.EmailNotValid)]
         public string Email { get; set; }
 
@@ -23,5 +25,7 @@
         [Required(ErrorMessage = ContactErrorMessages.ContentRequired)]
         [MinLength(10, ErrorMessage = ContactErrorMessages.ContentLength)]
         public string Content { get; set; }
+
+        public string Ip { get; set; }
     }
 }

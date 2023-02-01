@@ -2,15 +2,15 @@
 {
     public static class ContactErrorMessages
     {
-        public const string NameRequired = "Името е задължително";
+        public const string NameRequired = "Имената са задължителни";
 
-        public const string NameLength = "Името трябва да е с дължина от поне 3 букви";
+        public const string NameLength = "Имената трябва да са с дължина от поне 3 букви";
 
-        public const string EmailRequired = "Вашият email адрес е задължителен";
+        public const string EmailRequired = "Вашият имейл адрес е задължителен";
 
-        public const string EmailNotValid = "Вашият email адрес е невалиден";
+        public const string EmailNotValid = "Вашият имейл адрес е невалиден";
 
-        public const string TitleRequired = "Заглавие на съобщението е задължително";
+        public const string TitleRequired = "Заглавие към съобщението е задължително";
 
         public const string TitleLength = "Заглавието трябва да е с дължина от поне 5 букви";
 

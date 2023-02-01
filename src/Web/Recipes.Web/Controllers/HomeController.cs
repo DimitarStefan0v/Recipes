@@ -6,7 +6,6 @@
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Recipes.Common.Constants;
     using Recipes.Data.Models;
     using Recipes.Services.Data;
     using Recipes.Web.ViewModels;
@@ -59,23 +58,7 @@
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            if (user == null && input.Name == null)
-            {
-                this.ModelState.AddModelError(string.Empty, ContactErrorMessages.NameRequired);
-                return this.View(input);
-            }
-
-            if (user == null && input.Email == null)
-            {
-                this.ModelState.AddModelError(string.Empty, ContactErrorMessages.EmailRequired);
-                return this.View(input);
-            }
-
-            if (input.Name == null || input.Email == null)
-            {
-                input.Name = user == null ? "Анонимно име" : user.UserName;
-                input.Email = user == null ? "Aнонимен имейл" : user.Email;
-            }
+            var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
 
             if (!this.ModelState.IsValid)
             {
