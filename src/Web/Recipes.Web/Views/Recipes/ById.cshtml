@@ -78,7 +78,7 @@
 </section>
 <article class="additional-details">
     <p>Добавена от: @Model.AddedByUserUserName</p>
-    <p>Добавена на: <time>@Model.DateAsString</time></p>
+    <p>Добавена: <time datetime="@Model.DateAsString"></time></p>
 </article>
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {

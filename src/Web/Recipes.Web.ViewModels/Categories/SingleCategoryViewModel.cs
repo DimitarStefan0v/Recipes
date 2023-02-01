@@ -26,7 +26,7 @@
 
         public DateTime RecentRecipeDate { get; set; }
 
-        public string RecentRecipeDateAsString => this.RecentRecipeDate.ToString("dd MMMM yyyy", new CultureInfo("bg-Bg"));
+        public string RecentRecipeDateAsString => this.RecentRecipeDate.ToString("ddd, MM dd, yyyy HH:mm", new CultureInfo("bg-Bg"));
 
         public IEnumerable<RecipeInListViewModel> RecipesByCategoryId { get; set; }
 
