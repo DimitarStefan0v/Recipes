@@ -8,8 +8,8 @@
 
 @if (showBanner)
 {
-    <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert">
-        Този сайт използва "бисквитки" за да подобри предлаганите услуги.  <a asp-area="" asp-controller="Home" asp-action="Privacy">Научи повече</a>.
+    <div id="cookieConsent" class="alert-dismissible fade show" role="alert">
+        Този сайт използва "бисквитки" за да подобри предлаганите услуги.  <a asp-controller="Home" asp-action="Privacy">Научи повече</a>.
         <button type="button" class="btn btn-primary accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
             <span aria-hidden="true">Разбрах</span>
         </button>
@@ -19,6 +19,7 @@
             var button = document.querySelector("#cookieConsent button[data-cookie-string]");
             button.addEventListener("click", function () {
                 document.cookie = button.dataset.cookieString;
+                document.querySelector("#cookieConsent").setAttribute("hidden", "true");
             }, false);
         })();
     </script>

@@ -6,7 +6,7 @@
 
 
 <div class="row justify-content-center mt-4">
-    <div class="col-lg-4 col-md-10 mx-auto">
+    <div class="col-lg-5 col-md-10 mx-auto">
         <section id="register-form">
             <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <h2 class="text-center">Регистрация</h2>
@@ -32,8 +32,8 @@
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
                 <p>
-                    Натискайки бутона "Регистрация", вие потвърждавате, че сте запознати и съгласни с нашата
-                    <a asp-area="" asp-controller="Home" asp-action="Privacy">политика за опазване на личните данни</a>
+                    Натискайки бутона "Регистрация", вие потвърждавате, че сте запознати и съгласни с нашите
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">правила и условия за ползване</a>
                 </p>
                 <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary mt-4">Регистрация</button>
             </form>
