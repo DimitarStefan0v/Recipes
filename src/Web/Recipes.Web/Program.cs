@@ -43,7 +43,7 @@ namespace Recipes.Web
             services.Configure<CookiePolicyOptions>(
                 options =>
                 {
-                    options.CheckConsentNeeded = context => true;
+                    options.CheckConsentNeeded = context => false;
                     options.MinimumSameSitePolicy = SameSiteMode.None;
                 });
 
