@@ -8,6 +8,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Recipes.Data.Models;
     using Recipes.Services.Data;
+    using Recipes.Services.Messaging;
     using Recipes.Web.ViewModels;
     using Recipes.Web.ViewModels.Home;
 
@@ -16,15 +17,18 @@
         private readonly ICountsService countsService;
         private readonly IUsersService usersService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IEmailSender emailSender;
 
         public HomeController(
             ICountsService countsService,
             IUsersService usersService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IEmailSender emailSender)
         {
             this.countsService = countsService;
             this.usersService = usersService;
             this.userManager = userManager;
+            this.emailSender = emailSender;
         }
 
         public IActionResult Index()
@@ -60,6 +64,8 @@
 
             var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
 
+            string email = "dstefanov737@gmail.com";
+
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);
@@ -75,6 +81,9 @@
                 return this.View(input);
             }
 
+            await this.emailSender.SendEmailAsync(input.Email, input.Name, email, input.Title, input.Content);
+
+            this.TempData["messageSended"] = "messageSended";
             return this.RedirectToAction(nameof(this.Index));
         }
     }

@@ -5,6 +5,13 @@
     this.ViewData["Title"] = "Home Page";
 }
 
+@if (this.TempData["messageSended"] != null)
+{
+    <h1>Благодарим Ви, че се свързахте с нас!</h1>
+    <h2>Очаквайте отговор на посочения от вас email адрес.</h2>
+
+}
+
 <ul class="stats">
     <li><a asp-controller="Recipes" asp-action="All">Одобрени рецепти: @Model.ApprovedRecipesCount</a></li>
     <li>Рецепти чакащи одобрение: @Model.WaitingForApprovalRecipesCount</li>

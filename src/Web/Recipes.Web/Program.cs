@@ -53,15 +53,6 @@ namespace Recipes.Web
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }).AddRazorRuntimeCompilation();
 
-            var cloudinaryAccount = new Account(
-                configuration.GetValue<string>("CloudinarySettings:CloudName"),
-                configuration.GetValue<string>("CloudinarySettings:ApiKey"),
-                configuration.GetValue<string>("CloudinarySettings:ApiSecret"));
-
-            var cloudUtility = new Cloudinary(cloudinaryAccount);
-
-            services.AddSingleton(cloudUtility);
-
             services.AddAntiforgery(options =>
             {
                 options.HeaderName = "X-CSRF-TOKEN";
@@ -78,7 +69,6 @@ namespace Recipes.Web
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICountsService, CountsService>();
             services.AddTransient<IRecipesService, RecipesService>();
@@ -87,6 +77,19 @@ namespace Recipes.Web
             services.AddTransient<IImageDbService, ImageDbService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<IUsersService, UsersService>();
+
+            // SendGrid Setup
+            services.AddTransient<IEmailSender, SendGridEmailSender>(x => new SendGridEmailSender(configuration["SendGrid:ApiKey"]));
+
+            // Cloudinary Setup
+            var cloudinaryAccount = new Account(
+                configuration.GetValue<string>("CloudinarySettings:CloudName"),
+                configuration.GetValue<string>("CloudinarySettings:ApiKey"),
+                configuration.GetValue<string>("CloudinarySettings:ApiSecret"));
+
+            var cloudUtility = new Cloudinary(cloudinaryAccount);
+
+            services.AddSingleton(cloudUtility);
         }
 
         private static void Configure(WebApplication app)
