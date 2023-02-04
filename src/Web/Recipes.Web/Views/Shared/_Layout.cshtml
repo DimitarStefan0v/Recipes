@@ -54,6 +54,7 @@
                     </li>
                     <li><a asp-controller="Categories" asp-action="ById" asp-route-categoryId="@(beveragesCategory == null ? null : beveragesCategory.Id)">@(beveragesCategory == null ? null : beveragesCategory.Name)</a></li>
                     <li><a asp-controller="Users" asp-action="FavoriteRecipes">Любими</a></li>
+                    <li><a>Форум</a></li>
                     <li><a asp-controller="Home" asp-action="Contacts">Контакти</a></li>
                     <partial name="_LoginPartial" />
                 </ul>

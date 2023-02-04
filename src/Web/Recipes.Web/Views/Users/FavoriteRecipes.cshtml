@@ -8,6 +8,11 @@
 @if (Model.Recipes.Any())
 {
     <h1 class="text-center">@this.ViewData["Title"]</h1>
+    if (Model.PagesCount > 1)
+    {
+        <partial name="_PagingPartial" model="@Model" />
+    }
+
     <section class="recipes-list-container">
         @foreach (var recipe in Model.Recipes)
         {
@@ -28,6 +33,7 @@
             </article>
         }
     </section>
+
     if (Model.PagesCount > 1)
     {
         <partial name="_PagingPartial" model="@Model" />

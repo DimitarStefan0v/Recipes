@@ -515,11 +515,6 @@ a {
     margin: 0 auto;
 }
 
-.sorting-menu article p {
-    width: fit-content;
-    margin: 0;
-}
-
 .sorting-menu article ul {
     margin: 0;
     padding: 0;
@@ -527,6 +522,10 @@ a {
 
 .sorting-menu article ul li {
     display: inline-block;
+}
+
+.sorting-menu article ul li a {
+    color: black;
 }
 
 #login-form,
@@ -582,9 +581,6 @@ a {
     .categories-list-container .category-in-list-container {
         margin: 10px auto;
     }
-}
-
-@media screen and (max-width: 1025px) {
     .wrapper .menu-icon {
         display: block;
         font-size: 30px;

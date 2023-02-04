@@ -63,7 +63,6 @@
 {
     <section class="sorting-menu">
         <article>
-            <p>Подреди по:</p>
             <ul>
                 <li><a class="descending-sort-link" asp-route-sortOrder="descending" asp-route-categoryId="@Model.CategoryId" asp-route-id="1">Нови</a></li>
                 <li><a class="ascending-sort-link" asp-route-sortOrder="ascending" asp-route-categoryId="@Model.CategoryId" asp-route-id="1">Стари</a></li>
@@ -73,6 +72,11 @@
         </article>
     </section>
     <input type="hidden" value="@Model.SortOrder" class="input-sort-order-value" />
+
+    if (Model.PagesCount > 1)
+    {
+        <partial name="_PagingPartial" model="@Model" />
+    }
 
     <section class="recipes-list-container">
         @foreach (var recipe in Model.RecipesByCategoryId)
@@ -94,11 +98,13 @@
             </article>
         }
     </section>
+
     if (Model.PagesCount > 1)
     {
         <partial name="_PagingPartial" model="@Model" />
     }
 }
+
 @section Scripts {
     <script src="~/js/paint.js" asp-append-version="true"></script>
     <script src="~/js/paintBorder.js" asp-append-version="true"></script>

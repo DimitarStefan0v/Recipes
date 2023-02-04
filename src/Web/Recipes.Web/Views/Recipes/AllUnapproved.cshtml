@@ -6,6 +6,10 @@
 }
 
 <h1 class="text-center">@this.ViewData["Title"]</h1>
+@if (Model.PagesCount > 1)
+{
+    <partial name="_PagingPartial" model="@Model" />
+}
 
 <partial name="_RecipesListPartial" model="@Model" />
 
