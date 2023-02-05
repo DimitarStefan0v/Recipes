@@ -11,6 +11,10 @@
             options.Password.RequireUppercase = false;
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequiredLength = 8;
+
+            options.User.RequireUniqueEmail = true;
+
+            //options.SignIn.RequireConfirmedEmail = true;
         }
     }
 }

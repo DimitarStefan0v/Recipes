@@ -56,10 +56,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\js\disableSortTagElement.js" />
   </ItemGroup>
 </Project>
