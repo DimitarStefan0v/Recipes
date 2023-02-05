@@ -660,7 +660,7 @@ a {
         }
 }
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 1000px) {
     .recipe-container,
     .category-container {
         height: fit-content;
@@ -711,9 +711,7 @@ a {
     .votes-container {
         flex-direction: column;
     }
-}
 
-@media screen and (max-width: 780px) {
     .recipe-container-details ul,
     .category-container-details ul {
         align-items: center;

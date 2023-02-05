@@ -5,6 +5,11 @@
     this.ViewData["Title"] = "Всички рецепти";
 }
 
+@if (this.TempData["recipeCreated"] != null)
+{
+    <h1>Благодарим Ви, че допринесохте към нашето съдържание.<br /> Рецептата ще бъде видима в сайта след като бъде проверена от администратор.</h1>
+}
+
 @if (Model.Recipes.Any())
 {
     <h1 class="text-center">@this.ViewData["Title"]</h1>
@@ -19,7 +24,7 @@
         </article>
     </section>
     <input type="hidden" value="@Model.SortOrder" class="input-sort-order-value" />
-
+    
     if (Model.PagesCount > 1)
     {
         <partial name="_PagingPartial" model="@Model" />

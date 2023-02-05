@@ -69,7 +69,9 @@
                 return this.View(input);
             }
 
-            return this.Redirect("/");
+            this.TempData["recipeCreated"] = "recipe created successfully";
+
+            return this.RedirectToAction(nameof(this.All));
         }
 
         public IActionResult All(string sortOrder = "descending", int id = 1)
