@@ -74,10 +74,11 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            <a asp-controller="Home" asp-action="Contacts">Контакти</a>
+    <footer class="footer">
+        <div class="footer-container">
+            <a asp-controller="Home" asp-action="Contacts" title="Контакти"><span>Контакти</span></a>
+            <a asp-area="" asp-controller="Home" asp-action="Privacy" title="Правила и лични данни"><span>Правила и лични данни</span></a>
+            <a href="https://github.com/DimitarStefan0v/Recipes" title="Open Source System"><span>&copy; @(DateTime.Now.Year + " - " + GlobalConstants.SystemName) Open Source System</span></a>
         </div>
     </footer>
 
