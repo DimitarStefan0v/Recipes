@@ -766,6 +766,7 @@ a {
     .page-desktop-link {
         display: none;
     }
+
 }
 
 @media screen and (max-width: 750px) {
@@ -790,11 +791,15 @@ a {
     .recipe-in-list-container {
         font-size: 18px;
     }
-}
 
-@media screen and (max-width: 750px) {
     .footer-container {
         flex-direction: column;
+    }
+
+    #btn-back-to-top {
+        right: 15px;
+        bottom: 30px;
+        font-size: 20px;
     }
 }
 

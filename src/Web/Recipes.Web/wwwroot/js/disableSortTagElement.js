@@ -26,6 +26,11 @@
         votes.style.borderBottom = borderBottomValue;
         votes.style.pointerEvents = 'none';
         votes.style.cursor = 'default';
+    } else {
+        desc.style.color = 'red';
+        desc.style.borderBottom = borderBottomValue;
+        desc.style.pointerEvents = 'none';
+        desc.style.cursor = 'default';
     }
 }
 

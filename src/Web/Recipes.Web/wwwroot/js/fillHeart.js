@@ -18,7 +18,7 @@
 const CheckIfUserCanAddRecipeToFavorites = function (childToRemove) {
     let p = document.querySelector('.paragraph-warning');
     if (p != null && p.textContent == 'unregistered') {
-        p.textContent = 'Само за регистрирани потребители!!!';
+        p.textContent = 'Само за регистрирани потребители!';
         p.style.display = 'block';
         let ul = document.querySelector('.votes ul');
         let article = document.querySelector('.votes-container .votes');

@@ -30,7 +30,7 @@
 const CheckIfUserShouldVote = function () {
     let p = document.querySelector('.paragraph-warning');
     if (p != null && p.textContent == 'unregistered') {
-        p.textContent = 'Само за регистрирани потребители!!!';
+        p.textContent = 'Само за регистрирани потребители!';
         p.style.display = 'block';
         let i = document.getElementById('first-star');
         let ul = i.parentElement.parentElement;
