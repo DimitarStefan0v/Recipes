@@ -225,6 +225,20 @@ button.accept-policy {
     font-size: 23px;
 }
 
+#stats-table {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.index-heading {
+    border-bottom: 2px solid black;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.recipes-list-container.index-recipes {
+    margin-top: 0;
+}
 
 
 

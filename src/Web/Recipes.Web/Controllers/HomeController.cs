@@ -6,35 +6,42 @@
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Recipes.Common;
     using Recipes.Data.Models;
     using Recipes.Services.Data;
     using Recipes.Services.Messaging;
     using Recipes.Web.ViewModels;
     using Recipes.Web.ViewModels.Home;
+    using Recipes.Web.ViewModels.Recipes;
 
     public class HomeController : BaseController
     {
         private readonly ICountsService countsService;
         private readonly IUsersService usersService;
+        private readonly IRecipesService recipesService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IEmailSender emailSender;
 
         public HomeController(
             ICountsService countsService,
             IUsersService usersService,
+            IRecipesService recipesService,
             UserManager<ApplicationUser> userManager,
             IEmailSender emailSender)
         {
             this.countsService = countsService;
             this.usersService = usersService;
+            this.recipesService = recipesService;
             this.userManager = userManager;
             this.emailSender = emailSender;
         }
 
         public IActionResult Index()
         {
-            var viewModel = new IndexStatsViewModel();
+            var viewModel = new IndexViewModel();
             viewModel = this.countsService.GetStats();
+            viewModel.RecentRecipes = this.recipesService.GetAll<RecipeInListViewModel>("descending", 1, 3);
+            viewModel.MostPopularRecipes = this.recipesService.GetAll<RecipeInListViewModel>("popularity", 1, 3);
 
             return this.View(viewModel);
         }
