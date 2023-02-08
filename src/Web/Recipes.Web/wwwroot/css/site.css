@@ -215,6 +215,20 @@ button.accept-policy {
     color: #FF6600;
 }
 
+#btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 140px;
+    display: none;
+    background-color: #e6580c;
+    color: white;
+    font-size: 23px;
+}
+
+
+
+
+
 /*----------------------------------------Dropdown menu----------------------------------------*/
 .content .links ul {
     position: absolute;
