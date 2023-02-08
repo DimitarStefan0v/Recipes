@@ -340,12 +340,8 @@ a {
     color: black;
 }
 
-.category-in-list-container a:hover img {
-    box-shadow: 0 0 5px 6px #FFA200;
-}
-
-.category-in-list-container a:hover p {
-    color: #FFA400;
+.category-in-list-container:hover p {
+    color: #FFA200;
 }
 
 .category-container {

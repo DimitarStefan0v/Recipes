@@ -19,6 +19,7 @@
         private readonly ICountsService countsService;
         private readonly IUsersService usersService;
         private readonly IRecipesService recipesService;
+        private readonly ICategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IEmailSender emailSender;
 
@@ -26,12 +27,14 @@
             ICountsService countsService,
             IUsersService usersService,
             IRecipesService recipesService,
+            ICategoriesService categoriesService,
             UserManager<ApplicationUser> userManager,
             IEmailSender emailSender)
         {
             this.countsService = countsService;
             this.usersService = usersService;
             this.recipesService = recipesService;
+            this.categoriesService = categoriesService;
             this.userManager = userManager;
             this.emailSender = emailSender;
         }
@@ -42,6 +45,7 @@
             viewModel = this.countsService.GetStats();
             viewModel.RecentRecipes = this.recipesService.GetAll<RecipeInListViewModel>("descending", 1, 3);
             viewModel.MostPopularRecipes = this.recipesService.GetAll<RecipeInListViewModel>("popularity", 1, 3);
+            viewModel.Categories = this.categoriesService.GetCategories();
 
             return this.View(viewModel);
         }
