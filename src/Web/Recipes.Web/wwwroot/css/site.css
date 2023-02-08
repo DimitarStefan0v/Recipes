@@ -194,26 +194,26 @@ button.accept-policy {
     margin-top: auto;
 }
 
-    .footer .footer-container {
-        padding: 10px;
-        color: white;
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1080px;
-        margin: 0 auto;
-        min-height: 90px;
-    }
+.footer-container {
+    padding: 10px;
+    color: white;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1080px;
+    margin: 0 auto;
+    min-height: 60px;
+}
 
 .footer-container a {
     color: white;
 }
 
-    .footer-container a:hover {
-        color: #FF6600;
-    }
+.footer-container a:hover {
+    color: #FF6600;
+}
 
 /*----------------------------------------Dropdown menu----------------------------------------*/
 .content .links ul {
