@@ -1,9 +1,12 @@
 ﻿namespace Recipes.Services.Data
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
+    using Recipes.Services.Mapping;
     using Recipes.Web.ViewModels.Home;
 
     public class MessagesService : IMessagesService
@@ -29,6 +32,17 @@
 
             await this.messagesRepository.AddAsync(message);
             await this.messagesRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
+        {
+            return this.messagesRepository
+                .AllAsNoTracking()
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
         }
     }
 }

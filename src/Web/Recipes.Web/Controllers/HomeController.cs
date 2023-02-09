@@ -17,7 +17,6 @@
     {
         private readonly ICountsService countsService;
         private readonly IMessagesService messagesService;
-        private readonly IUsersService usersService;
         private readonly IRecipesService recipesService;
         private readonly ICategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
