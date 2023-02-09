@@ -19,5 +19,7 @@
         int GetRecipesCountByCategoryId(int id);
 
         int GetUnapprovedRecipesCount();
+
+        int GetMessagesCount();
     }
 }

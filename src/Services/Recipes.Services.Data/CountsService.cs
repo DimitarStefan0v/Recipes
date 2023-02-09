@@ -14,19 +14,22 @@
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
         private readonly IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
+        private readonly IDeletableEntityRepository<Message> messagesRepository;
 
         public CountsService(
             IDeletableEntityRepository<Recipe> recipesRepository,
             IDeletableEntityRepository<Ingredient> ingredientsRepository,
             IDeletableEntityRepository<Category> categoriesRepository,
             IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository,
-            IDeletableEntityRepository<ApplicationUser> usersRepository)
+            IDeletableEntityRepository<ApplicationUser> usersRepository,
+            IDeletableEntityRepository<Message> messagesRepository)
         {
             this.recipesRepository = recipesRepository;
             this.ingredientsRepository = ingredientsRepository;
             this.categoriesRepository = categoriesRepository;
             this.favoriteRecipesRepository = favoriteRecipesRepository;
             this.usersRepository = usersRepository;
+            this.messagesRepository = messagesRepository;
         }
 
         public IndexViewModel GetStats()
@@ -108,6 +111,13 @@
             return this.recipesRepository
                 .AllAsNoTracking()
                 .Where(x => x.IsApproved == false)
+                .Count();
+        }
+
+        public int GetMessagesCount()
+        {
+            return this.messagesRepository
+                .AllAsNoTracking()
                 .Count();
         }
     }
