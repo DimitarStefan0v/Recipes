@@ -273,6 +273,33 @@
             await this.favoriteRecipesRepository.SaveChangesAsync();
         }
 
+        public IEnumerable<T> GetFavorites<T>(int page, int itemsPerPage, string userId)
+        {
+            var favoriteRecipes = this.favoriteRecipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.AddedByUserId == userId)
+                .Select(x => x.RecipeId)
+                .ToList();
+
+            var recipesToReturn = new HashSet<T>();
+
+            foreach (var favoriteRecipeId in favoriteRecipes)
+            {
+                var recipe = this.recipesRepository
+                    .AllAsNoTracking()
+                    .Where(x => x.Id == favoriteRecipeId && x.IsApproved == true)
+                    .To<T>()
+                    .FirstOrDefault();
+
+                recipesToReturn.Add(recipe);
+            }
+
+            return recipesToReturn
+                        .Skip((page - 1) * itemsPerPage)
+                        .Take(itemsPerPage)
+                        .ToList();
+        }
+
         private static void SortRecipes(ref string sort, ref IQueryable<Recipe> query)
         {
             switch (sort)
