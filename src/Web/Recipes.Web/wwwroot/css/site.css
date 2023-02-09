@@ -604,6 +604,29 @@ a {
     color: white;
 }
 
+.messages-container {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.message-container {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.message-container p {
+    word-break: break-all;
+}
+
+
+
+
+
+
 
 /*----------------------------------------Media queries----------------------------------------*/
 @media screen and (max-width: 1080px) {
