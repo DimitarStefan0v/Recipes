@@ -61,7 +61,7 @@
                 return this.NotFound();
             }
 
-            int itemsPerPage = 9;
+            int itemsPerPage = 2;
 
             var viewModel = new MessagesListViewModel
             {

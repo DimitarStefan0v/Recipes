@@ -1,0 +1,26 @@
+﻿@using Recipes.Web.ViewModels.Messages;
+@model MessagesListViewModel
+
+@{
+    this.ViewData["Title"] = "Съобщения";
+}
+
+<h1 class="text-center">@this.ViewData["Title"]</h1>
+
+<section class="messages-container">
+    @foreach (var message in Model.Messages)
+    {
+        <article class="message-container">
+            <article class="message-container-title"><p>@message.Title</p></article>
+            <article class="message-container-from"><p>@message.Name</p></article>
+            <article class="message-container-username"><p>@message.AddedByUserUserName</p></article>
+            <article class="message-container-email"><p>@message.Email</p></article>
+            <article class="message-container-content"><p>@message.Content</p></article>
+        </article>
+    }
+</section>
+
+@if (Model.PagesCount > 1)
+{
+    <partial name="_PagingPartial" model="@Model" />
+}
