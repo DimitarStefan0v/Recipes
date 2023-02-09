@@ -11,11 +11,13 @@
     @foreach (var message in Model.Messages)
     {
         <article class="message-container">
-            <article class="message-container-title"><p>@message.Title</p></article>
-            <article class="message-container-from"><p>@message.Name</p></article>
-            <article class="message-container-username"><p>@message.AddedByUserUserName</p></article>
-            <article class="message-container-email"><p>@message.Email</p></article>
-            <article class="message-container-content"><p>@message.Content</p></article>
+            <article class="message-container-username"><p>От потребител: @(message.AddedByUserUserName == null ? "Нерегистриран потребител" : message.AddedByUserUserName)</p></article>
+            <article class="message-container-from"><p>Имена: @message.Name</p></article>
+            <article class="message-container-email"><p>Имейл: @message.Email</p></article>
+            <article class="message-container-time"><p>Изпратено на: <time datetime="@message.DateAsString"></time></article>
+            <article class="message-container-title"><p>Заглавие: @message.Title</p></article>
+            <article class="message-container-content"><p>Съдържание: @message.Content</p></article>
+            <a asp-action="DeleteMessage" asp-route-id="@message.Id" class="btn btn-danger">Изтрии</a>
         </article>
     }
 </section>
