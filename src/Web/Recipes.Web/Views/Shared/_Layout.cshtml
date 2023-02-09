@@ -34,7 +34,7 @@
                         <ul>
                             @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                             {
-                                <li><a asp-controller="Recipes" asp-action="AllUnapproved">За одобряване</a></li>
+                                <li><a asp-controller="Admin" asp-action="AllUnapproved">За одобряване</a></li>
                             }
                             <li><a asp-controller="Recipes" asp-action="Create">Добави рецепта</a></li>
                             <li><a asp-controller="Recipes" asp-action="All" asp-route-id="1">Всички рецепти</a></li>

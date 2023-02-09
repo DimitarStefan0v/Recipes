@@ -90,7 +90,7 @@
         @if (!this.Model.IsApproved)
         {
             <li>
-                <a asp-controller="Recipes" asp-action="Approve" asp-route-id="@Model.Id" class="btn btn-success">Одобри</a>
+                <a asp-controller="Admin" asp-action="Approve" asp-route-id="@Model.Id" class="btn btn-success">Одобри</a>
             </li>
         }
         <li>

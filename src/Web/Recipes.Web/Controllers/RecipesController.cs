@@ -99,30 +99,6 @@
             return this.View(viewModel);
         }
 
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public IActionResult AllUnapproved(int id = 1)
-        {
-            if (id <= 0)
-            {
-                return this.NotFound();
-            }
-
-            int itemsPerPage = 9;
-
-            var viewModel = new RecipesListViewModel
-            {
-                ItemsPerPage = itemsPerPage,
-                PageNumber = id,
-                ItemsCount = this.countsService.GetUnapprovedRecipesCount(),
-                Recipes = this.recipesService.GetAllUnapproved<RecipeInListViewModel>(id, itemsPerPage),
-            };
-
-            viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
-            viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
-
-            return this.View(viewModel);
-        }
-
         public IActionResult AllByName([FromQuery(Name = "search")] string name, string sortOrder = "descending", int id = 1)
         {
             if (string.IsNullOrWhiteSpace(name) || id <= 0)
@@ -204,13 +180,6 @@
             }
 
             return this.RedirectToAction(nameof(this.ById), new { id });
-        }
-
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public async Task<IActionResult> Approve(int id)
-        {
-            await this.recipesService.ApproveRecipe(id);
-            return this.RedirectToAction(nameof(this.AllUnapproved), new { id = 1 });
         }
     }
 }

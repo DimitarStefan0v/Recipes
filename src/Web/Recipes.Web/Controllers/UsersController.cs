@@ -26,11 +26,6 @@
             this.userManager = userManager;
         }
 
-        public IActionResult PersonalRecipes()
-        {
-            return this.View();
-        }
-
         public async Task<IActionResult> FavoriteRecipes(int id = 1)
         {
             if (id <= 0)

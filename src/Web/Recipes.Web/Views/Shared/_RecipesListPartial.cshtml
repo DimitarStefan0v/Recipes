@@ -5,7 +5,7 @@
     @foreach (var recipe in Model.Recipes)
     {
             <article class="recipe-in-list-container">
-                <a asp-action="ById" asp-route-id="@recipe.Id">
+                <a asp-controller="Recipes" asp-action="ById" asp-route-id="@recipe.Id">
                     <article class="recipe-in-list-container-img">
                         <img src="@recipe.ImageUrl" class="img-fluid w-100">
                     </article>
