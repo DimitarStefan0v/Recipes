@@ -423,6 +423,10 @@ a {
     margin: 20px auto;
 }
 
+.recipes-list-container.index-recipes {
+    justify-content: center;
+}
+
 .recipe-in-list-container {
     flex-basis: 30%;
     margin: 10px 10px;
