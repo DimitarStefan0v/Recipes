@@ -5,6 +5,11 @@
 @{
     this.ViewData["Title"] = Model.Name;
 }
+
+@if (this.TempData["forbiddenAccessForThisUser"] != null)
+{
+    <h1 class="text-danger">Единствено Автора на рецептата и Администратора могат да променят или изтриват рецептата.<br> По-подробно може да се запознаете с правилата от <a asp-controller="Home" asp-action="Privacy">тук.</a></h1>
+}
 <section class="links-above-container">
     <a asp-controller="Home" asp-action="Index">Начало &gt; </a>
     <a asp-controller="Recipes" asp-action="All">Всички &gt; </a>
@@ -81,8 +86,7 @@
     <p>Добавена от: @Model.AddedByUserUserName</p>
     <p>Добавена: <time datetime="@Model.DateAsString"></time></p>
 </article>
-@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-{
+
     <ul class="buttons-list">
         <li>
             <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактирай</a>
@@ -116,7 +120,7 @@
             </form>
         </li>
     </ul>
-}
+
 <input type="hidden" value="@Model.Id" id="recipe-id" />
 <form method="post" id="antiForgeryForm"></form>
 
