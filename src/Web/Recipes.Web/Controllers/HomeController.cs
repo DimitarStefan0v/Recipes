@@ -6,7 +6,6 @@
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Recipes.Common;
     using Recipes.Data.Models;
     using Recipes.Services.Data;
     using Recipes.Services.Messaging;
@@ -17,6 +16,7 @@
     public class HomeController : BaseController
     {
         private readonly ICountsService countsService;
+        private readonly IMessagesService messagesService;
         private readonly IUsersService usersService;
         private readonly IRecipesService recipesService;
         private readonly ICategoriesService categoriesService;
@@ -25,14 +25,14 @@
 
         public HomeController(
             ICountsService countsService,
-            IUsersService usersService,
+            IMessagesService messagesService,
             IRecipesService recipesService,
             ICategoriesService categoriesService,
             UserManager<ApplicationUser> userManager,
             IEmailSender emailSender)
         {
             this.countsService = countsService;
-            this.usersService = usersService;
+            this.messagesService = messagesService;
             this.recipesService = recipesService;
             this.categoriesService = categoriesService;
             this.userManager = userManager;
@@ -84,7 +84,7 @@
 
             try
             {
-                await this.usersService.CreateMessageAsync(input, user == null ? null : user.Id);
+                await this.messagesService.CreateMessageAsync(input, user == null ? null : user.Id);
             }
             catch (Exception ex)
             {

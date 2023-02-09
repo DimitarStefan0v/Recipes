@@ -59,22 +59,6 @@
             await this.favoriteRecipesRepository.SaveChangesAsync();
         }
 
-        public async Task CreateMessageAsync(ContactInputModel input, string userId)
-        {
-            var message = new Message
-            {
-                Title = input.Title.Trim(),
-                Content = input.Content.Trim(),
-                Name = input.Name.Trim(),
-                Email = input.Email.Trim(),
-                Ip = input.Ip,
-                AddedByUserId = userId,
-            };
-
-            await this.messagesRepository.AddAsync(message);
-            await this.messagesRepository.SaveChangesAsync();
-        }
-
         public bool IsRecipeInUserFavorites(int recipeId, string userId)
         {
             var favoriteRecipe = this.favoriteRecipesRepository

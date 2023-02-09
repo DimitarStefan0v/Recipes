@@ -79,6 +79,7 @@ namespace Recipes.Web
             services.AddTransient<IImageDbService, ImageDbService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IMessagesService, MessagesService>();
 
             // SendGrid Setup
             services.AddTransient<IEmailSender, SendGridEmailSender>(x => new SendGridEmailSender(configuration["SendGrid:ApiKey"]));
