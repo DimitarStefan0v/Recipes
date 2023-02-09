@@ -111,13 +111,13 @@
                 PageNumber = id,
                 ItemsCount = this.countsService.GetRecipesCountByName(name),
                 Recipes = this.recipesService.GetAllRecipesByName<RecipeInListViewModel>(name, sortOrder, id, itemsPerPage),
+                ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
+                ActionName = this.ControllerContext.ActionDescriptor.ActionName,
+                Search = name.Trim(),
+                SortOrder = sortOrder,
             };
 
             this.ViewData["SearchString"] = name.Trim();
-            viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
-            viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
-            viewModel.Search = name.Trim();
-            viewModel.SortOrder = sortOrder;
 
             return this.View(viewModel);
         }

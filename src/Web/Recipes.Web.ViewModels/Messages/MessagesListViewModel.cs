@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class MessagesListViewModel
+    public class MessagesListViewModel : PagingViewModel
     {
         public IEnumerable<MessageInListViewModel> Messages { get; set; }
     }

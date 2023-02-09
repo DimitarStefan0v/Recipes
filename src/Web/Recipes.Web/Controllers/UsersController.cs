@@ -43,10 +43,9 @@
                 PageNumber = id,
                 ItemsCount = this.countsService.GetFavoriteRecipesCount(user.Id),
                 Recipes = this.recipesService.GetFavorites<RecipeInListViewModel>(id, itemsPerPage, user.Id),
+                ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
+                ActionName = this.ControllerContext.ActionDescriptor.ActionName,
             };
-
-            viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
-            viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
 
             return this.View(viewModel);
         }
