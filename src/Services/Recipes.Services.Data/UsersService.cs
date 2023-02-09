@@ -106,7 +106,10 @@
                 recipesToReturn.Add(recipe);
             }
 
-            return recipesToReturn;
+            return recipesToReturn
+                        .Skip((page - 1) * itemsPerPage)
+                        .Take(itemsPerPage)
+                        .ToList();
         }
     }
 }
