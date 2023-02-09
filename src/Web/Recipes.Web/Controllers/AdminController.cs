@@ -61,7 +61,7 @@
                 return this.NotFound();
             }
 
-            int itemsPerPage = 2;
+            int itemsPerPage = 5;
 
             var viewModel = new MessagesListViewModel
             {
@@ -74,6 +74,12 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> DeleteMessage(int id)
+        {
+            await this.messagesService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.Messages), new { id = 1 });
         }
     }
 }
