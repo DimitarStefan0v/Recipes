@@ -300,6 +300,17 @@
                         .ToList();
         }
 
+        public string GetAuhorId(int id)
+        {
+            var authorId = this.recipesRepository
+                            .AllAsNoTracking()
+                            .Where(x => x.Id == id)
+                            .Select(x => x.AddedByUserId)
+                            .FirstOrDefault();
+
+            return authorId;
+        }
+
         private static void SortRecipes(ref string sort, ref IQueryable<Recipe> query)
         {
             switch (sort)

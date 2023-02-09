@@ -31,6 +31,8 @@
 
         Task RemoveRecipeFromFavoritesAsync(int recipeId, string userId);
 
-        public IEnumerable<T> GetFavorites<T>(int page, int itemsPerPage, string userId);
+        IEnumerable<T> GetFavorites<T>(int page, int itemsPerPage, string userId);
+
+        string GetAuhorId(int id);
     }
 }
