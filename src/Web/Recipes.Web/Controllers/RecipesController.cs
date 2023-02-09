@@ -1,7 +1,6 @@
 ﻿namespace Recipes.Web.Controllers
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -143,21 +142,53 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Delete(int id)
         {
-            await this.recipesService.DeleteAsync(id);
-            return this.RedirectToAction(nameof(this.All));
+            var user = await this.userManager.GetUserAsync(this.User);
+            var authorId = this.recipesService.GetAuhorId(id);
+
+            if (user == null)
+            {
+                this.TempData["forbiddenAccessForThisUser"] = true;
+                return this.RedirectToAction(nameof(this.ById), new { id });
+            }
+
+            var isUserAdmin = await this.userManager.IsInRoleAsync(user, GlobalConstants.AdministratorRoleName);
+
+            if (user.Id == authorId || isUserAdmin == true)
+            {
+                await this.recipesService.DeleteAsync(id);
+                return this.RedirectToAction(nameof(this.All));
+            }
+
+            this.TempData["forbiddenAccessForThisUser"] = true;
+            return this.RedirectToAction(nameof(this.ById), new { id });
         }
 
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var inputModel = this.recipesService.GetById<EditRecipeInputModel>(id);
-            return this.View(inputModel);
+            var user = await this.userManager.GetUserAsync(this.User);
+            var authorId = this.recipesService.GetAuhorId(id);
+
+            if (user == null)
+            {
+                this.TempData["forbiddenAccessForThisUser"] = true;
+                return this.RedirectToAction(nameof(this.ById), new { id });
+            }
+
+            var isUserAdmin = await this.userManager.IsInRoleAsync(user, GlobalConstants.AdministratorRoleName);
+
+            if (user.Id == authorId || isUserAdmin == true)
+            {
+                var inputModel = this.recipesService.GetById<EditRecipeInputModel>(id);
+                return this.View(inputModel);
+            }
+
+            this.TempData["forbiddenAccessForThisUser"] = true;
+            return this.RedirectToAction(nameof(this.ById), new { id });
         }
 
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Edit(int id, EditRecipeInputModel inputModel)
         {
