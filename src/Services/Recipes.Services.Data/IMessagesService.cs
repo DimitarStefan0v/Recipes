@@ -10,5 +10,7 @@
         Task CreateMessageAsync(ContactInputModel input, string userId);
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
+
+        Task DeleteAsync(int id);
     }
 }

@@ -34,6 +34,21 @@
             await this.messagesRepository.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var message = this.messagesRepository
+                                .All()
+                                .Where(x => x.Id == id)
+                                .FirstOrDefault();
+            if (message == null)
+            {
+                return;
+            }
+
+            this.messagesRepository.Delete(message);
+            await this.messagesRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
         {
             return this.messagesRepository
