@@ -16,17 +16,20 @@
         private readonly IDeletableEntityRepository<Recipe> recipesRepository;
         private readonly IDeletableEntityRepository<Ingredient> ingredientsRepository;
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
+        private readonly IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository;
         private readonly ICloudImagesService imagesService;
 
         public RecipesService(
             IDeletableEntityRepository<Recipe> recipesRepository,
             IDeletableEntityRepository<Ingredient> ingredientsRepository,
             IDeletableEntityRepository<Category> categoriesRepository,
+            IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository,
             ICloudImagesService imagesService)
         {
             this.recipesRepository = recipesRepository;
             this.ingredientsRepository = ingredientsRepository;
             this.categoriesRepository = categoriesRepository;
+            this.favoriteRecipesRepository = favoriteRecipesRepository;
             this.imagesService = imagesService;
         }
 
@@ -224,6 +227,24 @@
             recipe.IsApproved = true;
 
             await this.recipesRepository.SaveChangesAsync();
+        }
+
+        public async Task AddRecipeToFavoritesAsync(int recipeId, string userId)
+        {
+            var recipe = this.recipesRepository.AllAsNoTracking().Where(x => x.Id == recipeId).FirstOrDefault();
+            if (userId == null || recipe == null)
+            {
+                return;
+            }
+
+            var favoriteRecipe = new FavoriteRecipe
+            {
+                RecipeId = recipeId,
+                AddedByUserId = userId,
+            };
+
+            await this.favoriteRecipesRepository.AddAsync(favoriteRecipe);
+            await this.favoriteRecipesRepository.SaveChangesAsync();
         }
 
         private static void SortRecipes(ref string sort, ref IQueryable<Recipe> query)

@@ -25,24 +25,6 @@
             this.recipesRepository = recipesRepository;
         }
 
-        public async Task AddRecipeToFavoritesAsync(int recipeId, string userId)
-        {
-            var recipe = this.recipesRepository.AllAsNoTracking().Where(x => x.Id == recipeId).FirstOrDefault();
-            if (userId == null || recipe == null)
-            {
-                return;
-            }
-
-            var favoriteRecipe = new FavoriteRecipe
-            {
-                RecipeId = recipeId,
-                AddedByUserId = userId,
-            };
-
-            await this.favoriteRecipesRepository.AddAsync(favoriteRecipe);
-            await this.favoriteRecipesRepository.SaveChangesAsync();
-        }
-
         public async Task RemoveRecipeFromFavoritesAsync(int recipeId, string userId)
         {
             var recipe = this.favoriteRecipesRepository

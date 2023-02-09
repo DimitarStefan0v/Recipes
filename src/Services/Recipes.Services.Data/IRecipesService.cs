@@ -24,5 +24,7 @@
         Task DeleteAsync(int id);
 
         Task ApproveRecipe(int id);
+
+        Task AddRecipeToFavoritesAsync(int recipeId, string userId);
     }
 }

@@ -15,13 +15,16 @@
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IUsersService usersService;
+        private readonly IRecipesService recipesService;
 
         public FavoritesController(
             UserManager<ApplicationUser> userManager,
-            IUsersService usersService)
+            IUsersService usersService,
+            IRecipesService recipesService)
         {
             this.userManager = userManager;
             this.usersService = usersService;
+            this.recipesService = recipesService;
         }
 
         [HttpPost]
@@ -37,7 +40,7 @@
             }
             else
             {
-                await this.usersService.AddRecipeToFavoritesAsync(input.RecipeId, user.Id);
+                await this.recipesService.AddRecipeToFavoritesAsync(input.RecipeId, user.Id);
                 return true;
             }
         }
