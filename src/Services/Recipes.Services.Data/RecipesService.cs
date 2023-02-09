@@ -247,6 +247,16 @@
             await this.favoriteRecipesRepository.SaveChangesAsync();
         }
 
+        public bool IsRecipeInUserFavorites(int recipeId, string userId)
+        {
+            var favoriteRecipe = this.favoriteRecipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.RecipeId == recipeId && x.AddedByUserId == userId)
+                .FirstOrDefault();
+
+            return favoriteRecipe == null ? false : true;
+        }
+
         private static void SortRecipes(ref string sort, ref IQueryable<Recipe> query)
         {
             switch (sort)

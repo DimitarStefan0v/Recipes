@@ -26,5 +26,7 @@
         Task ApproveRecipe(int id);
 
         Task AddRecipeToFavoritesAsync(int recipeId, string userId);
+
+        bool IsRecipeInUserFavorites(int recipeId, string userId);
     }
 }

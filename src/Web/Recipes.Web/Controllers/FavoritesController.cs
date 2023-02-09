@@ -33,7 +33,7 @@
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            if (this.usersService.IsRecipeInUserFavorites(input.RecipeId, user.Id))
+            if (this.recipesService.IsRecipeInUserFavorites(input.RecipeId, user.Id))
             {
                 await this.usersService.RemoveRecipeFromFavoritesAsync(input.RecipeId, user.Id);
                 return false;

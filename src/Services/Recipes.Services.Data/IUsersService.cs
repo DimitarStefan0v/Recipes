@@ -9,7 +9,7 @@
     {
         Task RemoveRecipeFromFavoritesAsync(int recipeId, string userId);
 
-        bool IsRecipeInUserFavorites(int recipeId, string userId);
+        
 
         public IEnumerable<T> GetFavorites<T>(int page, int itemsPerPage, string userId);
     }
