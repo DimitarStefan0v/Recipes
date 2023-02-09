@@ -76,6 +76,7 @@
                 CategoryId = input.CategoryId,
                 AddedByUserId = userId,
                 Image = imageToWrite,
+                IsApproved = false,
             };
 
             this.AddIngredientsToRecipe(input, recipe);
@@ -122,6 +123,7 @@
                 recipe.PortionsCount = input.PortionsCount;
             }
 
+            recipe.IsApproved = false;
             await this.recipesRepository.SaveChangesAsync();
         }
 

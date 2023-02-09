@@ -86,7 +86,8 @@
     <p>Добавена от: @Model.AddedByUserUserName</p>
     <p>Добавена: <time datetime="@Model.DateAsString"></time></p>
 </article>
-
+@if (this.User.Identity.IsAuthenticated)
+{
     <ul class="buttons-list">
         <li>
             <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактирай</a>
@@ -120,7 +121,7 @@
             </form>
         </li>
     </ul>
-
+}
 <input type="hidden" value="@Model.Id" id="recipe-id" />
 <form method="post" id="antiForgeryForm"></form>
 

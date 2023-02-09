@@ -142,22 +142,18 @@
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var user = await this.userManager.GetUserAsync(this.User);
             var authorId = this.recipesService.GetAuhorId(id);
-
-            if (user == null)
-            {
-                this.TempData["forbiddenAccessForThisUser"] = true;
-                return this.RedirectToAction(nameof(this.ById), new { id });
-            }
 
             var isUserAdmin = await this.userManager.IsInRoleAsync(user, GlobalConstants.AdministratorRoleName);
 
             if (user.Id == authorId || isUserAdmin == true)
             {
                 await this.recipesService.DeleteAsync(id);
+                this.TempData["recipeDeleted"] = true;
                 return this.RedirectToAction(nameof(this.All));
             }
 
@@ -165,16 +161,11 @@
             return this.RedirectToAction(nameof(this.ById), new { id });
         }
 
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             var user = await this.userManager.GetUserAsync(this.User);
             var authorId = this.recipesService.GetAuhorId(id);
-
-            if (user == null)
-            {
-                this.TempData["forbiddenAccessForThisUser"] = true;
-                return this.RedirectToAction(nameof(this.ById), new { id });
-            }
 
             var isUserAdmin = await this.userManager.IsInRoleAsync(user, GlobalConstants.AdministratorRoleName);
 
@@ -207,7 +198,8 @@
                 return this.View(inputModel);
             }
 
-            return this.RedirectToAction(nameof(this.ById), new { id });
+            this.TempData["recipeEdited"] = true;
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }
