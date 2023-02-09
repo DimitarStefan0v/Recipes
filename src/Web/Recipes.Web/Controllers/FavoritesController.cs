@@ -13,18 +13,15 @@
     [Route("api/[controller]")]
     public class FavoritesController : Controller
     {
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly IUsersService usersService;
         private readonly IRecipesService recipesService;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public FavoritesController(
-            UserManager<ApplicationUser> userManager,
-            IUsersService usersService,
-            IRecipesService recipesService)
+            IRecipesService recipesService,
+            UserManager<ApplicationUser> userManager)
         {
-            this.userManager = userManager;
-            this.usersService = usersService;
             this.recipesService = recipesService;
+            this.userManager = userManager;
         }
 
         [HttpPost]
@@ -35,7 +32,7 @@
 
             if (this.recipesService.IsRecipeInUserFavorites(input.RecipeId, user.Id))
             {
-                await this.usersService.RemoveRecipeFromFavoritesAsync(input.RecipeId, user.Id);
+                await this.recipesService.RemoveRecipeFromFavoritesAsync(input.RecipeId, user.Id);
                 return false;
             }
             else

@@ -25,21 +25,7 @@
             this.recipesRepository = recipesRepository;
         }
 
-        public async Task RemoveRecipeFromFavoritesAsync(int recipeId, string userId)
-        {
-            var recipe = this.favoriteRecipesRepository
-                .All()
-                .Where(x => x.RecipeId == recipeId && x.AddedByUserId == userId)
-                .FirstOrDefault();
-
-            if (recipe == null)
-            {
-                return;
-            }
-
-            this.favoriteRecipesRepository.HardDelete(recipe);
-            await this.favoriteRecipesRepository.SaveChangesAsync();
-        }
+        
 
         public IEnumerable<T> GetFavorites<T>(int page, int itemsPerPage, string userId)
         {

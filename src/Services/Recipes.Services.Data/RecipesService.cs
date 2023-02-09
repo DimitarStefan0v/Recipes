@@ -257,6 +257,22 @@
             return favoriteRecipe == null ? false : true;
         }
 
+        public async Task RemoveRecipeFromFavoritesAsync(int recipeId, string userId)
+        {
+            var recipe = this.favoriteRecipesRepository
+                .All()
+                .Where(x => x.RecipeId == recipeId && x.AddedByUserId == userId)
+                .FirstOrDefault();
+
+            if (recipe == null)
+            {
+                return;
+            }
+
+            this.favoriteRecipesRepository.HardDelete(recipe);
+            await this.favoriteRecipesRepository.SaveChangesAsync();
+        }
+
         private static void SortRecipes(ref string sort, ref IQueryable<Recipe> query)
         {
             switch (sort)
