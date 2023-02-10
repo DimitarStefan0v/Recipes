@@ -19,6 +19,7 @@ namespace Recipes.Web
     using Recipes.Services.Data;
     using Recipes.Services.Mapping;
     using Recipes.Services.Messaging;
+    using Recipes.Web.Infrastructure;
     using Recipes.Web.ViewModels;
 
     public class Program
@@ -79,6 +80,7 @@ namespace Recipes.Web
             services.AddTransient<IImageDbService, ImageDbService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<IMessagesService, MessagesService>();
+            services.AddTransient(typeof(GoogleCaptchaService));
 
             // SendGrid Setup
             services.AddTransient<IEmailSender, SendGridEmailSender>(x => new SendGridEmailSender(configuration["SendGrid:ApiKey"]));
@@ -92,6 +94,9 @@ namespace Recipes.Web
             var cloudUtility = new Cloudinary(cloudinaryAccount);
 
             services.AddSingleton(cloudUtility);
+
+            // GoogleReCaptcha Setup
+            services.Configure<GoogleCaptchaConfig>(configuration.GetSection("GoogleReCaptcha"));
         }
 
         private static void Configure(WebApplication app)
