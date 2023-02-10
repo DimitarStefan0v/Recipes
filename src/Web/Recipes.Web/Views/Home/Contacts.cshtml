@@ -1,4 +1,9 @@
-﻿@using Recipes.Web.ViewModels.Home;
+﻿@using Microsoft.Extensions.Options;
+@using Microsoft.Extensions.Configuration;
+@using Recipes.Web.Infrastructure;
+@using Recipes.Web.ViewModels.Home;
+@inject IOptions<GoogleCaptchaConfig> GoogleCaptchaConfig
+
 @model ContactInputModel
 
 @{
@@ -6,8 +11,9 @@
 }
 
 <h1 class="text-center">@this.ViewData["Title"]</h1>
-<form method="post" class="col-md-6 col-10 mx-auto" enctype="multipart/form-data">
+<form method="post" class="col-md-6 col-10 mx-auto" id="contact-form" enctype="multipart/form-data">
     <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" id="contactInputModelToken" asp-for="Token" />
     <div class="mb-3">
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" class="form-control" />
@@ -28,8 +34,26 @@
         <textarea asp-for="Content" class="form-control" rows="4"></textarea>
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
-
     <div class="mb-3">
         <input type="submit" value="Изпрати" class="btn btn-primary" />
     </div>
 </form>
+
+<script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=@GoogleCaptchaConfig.Value.SiteKey"></script>
+<script>
+    function getToken() {
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleCaptchaConfig.Value.SiteKey', { action: 'submit' }).then(function (token) {
+                //console.log(token);
+                document.getElementById("contactInputModelToken").value = token;
+            });
+        });
+    }
+
+    setInterval(getToken, 86400);
+
+    $(function () {
+        getToken();
+    });
+</script>

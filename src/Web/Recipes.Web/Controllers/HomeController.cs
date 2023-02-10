@@ -9,6 +9,7 @@
     using Recipes.Data.Models;
     using Recipes.Services.Data;
     using Recipes.Services.Messaging;
+    using Recipes.Web.Infrastructure;
     using Recipes.Web.ViewModels;
     using Recipes.Web.ViewModels.Home;
     using Recipes.Web.ViewModels.Recipes;
@@ -21,6 +22,7 @@
         private readonly ICategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IEmailSender emailSender;
+        private readonly GoogleCaptchaService captchaService;
 
         public HomeController(
             ICountsService countsService,
@@ -28,7 +30,8 @@
             IRecipesService recipesService,
             ICategoriesService categoriesService,
             UserManager<ApplicationUser> userManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            GoogleCaptchaService captchaService)
         {
             this.countsService = countsService;
             this.messagesService = messagesService;
@@ -36,6 +39,7 @@
             this.categoriesService = categoriesService;
             this.userManager = userManager;
             this.emailSender = emailSender;
+            this.captchaService = captchaService;
         }
 
         public IActionResult Index()
@@ -70,6 +74,12 @@
         [HttpPost]
         public async Task<IActionResult> Contacts(ContactInputModel input)
         {
+            var captchaResult = await this.captchaService.VerifyToken(input.Token);
+            if (!captchaResult)
+            {
+                return this.View(input);
+            }
+
             var user = await this.userManager.GetUserAsync(this.User);
 
             var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
