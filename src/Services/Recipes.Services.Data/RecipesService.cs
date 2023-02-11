@@ -141,13 +141,6 @@
 
         public IEnumerable<T> GetAll<T>(string sort, int page, int itemsPerPage)
         {
-            if (sort == null)
-            {
-                sort = "descending";
-            }
-
-            sort = sort.Trim();
-
             var query = this.recipesRepository
                 .AllAsNoTracking()
                 .Where(x => x.IsApproved == true)
@@ -163,13 +156,6 @@
 
         public IEnumerable<T> GetAllRecipesByName<T>(string search, string sort, int page, int itemsPerPage)
         {
-            if (sort == null)
-            {
-                sort = "descending";
-            }
-
-            sort = sort.Trim();
-
             var query = this.recipesRepository
                 .AllAsNoTracking()
                 .Where(x => x.Name.Contains(search.ToLower().Trim()) && x.IsApproved == true)
@@ -185,13 +171,6 @@
 
         public IEnumerable<T> GetRecipesByCategoryId<T>(int categoryId, string sort, int page, int itemsPerPage)
         {
-            if (sort == null)
-            {
-                sort = "descending";
-            }
-
-            sort = sort.Trim();
-
             var query = this.recipesRepository
                 .AllAsNoTracking()
                 .Where(x => x.CategoryId == categoryId && x.IsApproved == true)
@@ -212,6 +191,21 @@
                 .Where(x => x.IsApproved == false)
                 .OrderByDescending(x => x.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+        }
+
+        public IEnumerable<T> GetPersonalRecipes<T>(string userId, string sort, int page, int itemsPerPage)
+        {
+            var query = this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved == true && x.AddedByUserId == userId)
+                .AsQueryable();
+
+            SortRecipes(ref sort, ref query);
+
+            return query.Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
@@ -323,6 +317,13 @@
 
         private static void SortRecipes(ref string sort, ref IQueryable<Recipe> query)
         {
+            if (sort == null)
+            {
+                sort = "descending";
+            }
+
+            sort = sort.ToLower().Trim();
+
             switch (sort)
             {
                 case "ascending":

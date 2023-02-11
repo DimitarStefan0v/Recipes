@@ -17,6 +17,8 @@
 
         IEnumerable<T> GetRecipesByCategoryId<T>(int categoryId, string sort, int page, int itemsPerPage);
 
+        IEnumerable<T> GetPersonalRecipes<T>(string userId, string sort, int page, int itemsPerPage);
+
         T GetById<T>(int id);
 
         Task UpdateAsync(int id, EditRecipeInputModel input);
