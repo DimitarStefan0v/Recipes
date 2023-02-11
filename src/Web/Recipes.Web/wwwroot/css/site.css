@@ -801,6 +801,15 @@ a {
         flex-direction: column;
     }
 
+    .pagination-links a {
+        padding: 10px 8px;
+        width: fit-content;
+    }
+
+    .pagination-links {
+        gap: 3px;
+    }
+
     .page-mobile-link {
         display: block;
     }
