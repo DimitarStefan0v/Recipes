@@ -891,8 +891,16 @@ a {
             width: 50%;
         }
 
-            .buttons-list li a,
-            .buttons-list li button {
-                width: 100%;
-            }
+       .buttons-list li a,
+       .buttons-list li button {
+           width: 100%;
+       }
+
+    .wrapper {
+        z-index: 1;
+    }
+
+    #btn-back-to-top {
+        z-index: 0;
+    }
 }
