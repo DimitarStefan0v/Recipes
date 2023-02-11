@@ -69,6 +69,7 @@
                 Recipes = this.recipesService.GetPersonalRecipes<RecipeInListViewModel>(sortOrder, id, itemsPerPage, user.Id),
                 ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = this.ControllerContext.ActionDescriptor.ActionName,
+                SortOrder = sortOrder,
             };
 
             return this.View(viewModel);

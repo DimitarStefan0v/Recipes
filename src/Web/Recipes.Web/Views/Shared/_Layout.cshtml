@@ -54,8 +54,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a asp-controller="Users" asp-action="PersonalRecipes">Моите рецепти</a></li>
-                    <li><a asp-controller="Users" asp-action="FavoriteRecipes">Любими</a></li>
+                    <li><a asp-controller="Users" asp-action="PersonalRecipes" asp-route-id="1">Моите рецепти</a></li>
+                    <li><a asp-controller="Users" asp-action="FavoriteRecipes" asp-route-id="1">Любими</a></li>
                     <li><a>Форум</a></li>
                     <li><a asp-controller="Home" asp-action="Contacts">Контакти</a></li>
                     <partial name="_LoginPartial" />
@@ -76,7 +76,7 @@
         </main>
     </div>
     
-    <button type="button" class="btn btn-floating btn-lg" id="btn-back-to-top">
+    <button type="button" class="btn btn-lg" id="btn-back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
