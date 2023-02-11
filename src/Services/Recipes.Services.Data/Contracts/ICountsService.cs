@@ -20,6 +20,8 @@
 
         int GetUnapprovedRecipesCount();
 
+        int GetPersonalRecipesCount(string userId);
+
         int GetMessagesCount();
     }
 }

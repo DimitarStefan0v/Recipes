@@ -109,6 +109,14 @@
                 .Count();
         }
 
+        public int GetPersonalRecipesCount(string userId)
+        {
+            return this.recipesRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved && x.AddedByUserId == userId)
+                .Count();
+        }
+
         public int GetUnapprovedRecipesCount()
         {
             return this.recipesRepository
