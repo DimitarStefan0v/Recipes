@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Recipes.Common;
-    using Recipes.Services.Data;
+    using Recipes.Services.Data.Contracts;
     using Recipes.Web.ViewModels.Messages;
     using Recipes.Web.ViewModels.Recipes;
 

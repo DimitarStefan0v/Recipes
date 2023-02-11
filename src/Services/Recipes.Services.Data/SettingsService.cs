@@ -5,6 +5,7 @@
 
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
+    using Recipes.Services.Data.Contracts;
     using Recipes.Services.Mapping;
 
     public class SettingsService : ISettingsService

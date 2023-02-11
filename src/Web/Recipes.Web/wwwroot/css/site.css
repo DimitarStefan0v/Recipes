@@ -379,6 +379,7 @@ a {
     .recipe-container-img img,
     .category-container-img img {
         border-bottom-left-radius: 5px;
+        max-height: 400px;
     }
 
 .recipe-container-details ul li,
@@ -631,7 +632,6 @@ a {
 
 
 
-
 /*----------------------------------------Media queries----------------------------------------*/
 @media screen and (max-width: 1080px) {
     .wrapper nav {
@@ -748,6 +748,11 @@ a {
         flex-direction: column;
         font-size: 18px;
         justify-content: center;
+    }
+
+    .recipe-container-img img,
+    .category-container-img img {
+        border-radius: 5px;
     }
 
     .recipe-container-details ul,

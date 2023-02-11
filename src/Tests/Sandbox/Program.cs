@@ -17,6 +17,7 @@
     using Recipes.Data.Repositories;
     using Recipes.Data.Seeding;
     using Recipes.Services.Data;
+    using Recipes.Services.Data.Contracts;
     using Recipes.Services.Messaging;
 
     public static class Program

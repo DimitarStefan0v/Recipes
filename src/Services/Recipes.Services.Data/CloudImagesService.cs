@@ -7,6 +7,7 @@
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
     using Microsoft.AspNetCore.Http;
+    using Recipes.Services.Data.Contracts;
 
     public class CloudImagesService : ICloudImagesService
     {

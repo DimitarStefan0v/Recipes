@@ -6,6 +6,7 @@
 
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
+    using Recipes.Services.Data.Contracts;
     using Recipes.Services.Mapping;
     using Recipes.Web.ViewModels.Home;
 

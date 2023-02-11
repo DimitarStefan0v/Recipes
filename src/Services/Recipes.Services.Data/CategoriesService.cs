@@ -6,6 +6,7 @@
 
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
+    using Recipes.Services.Data.Contracts;
     using Recipes.Services.Mapping;
     using Recipes.Web.ViewModels.Categories;
 
@@ -61,7 +62,7 @@
 
         public async Task DeleteAsync(int id)
         {
-            var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == id);
+            var category = this.categoriesRepository.All().Where(x => x.Id == id).FirstOrDefault();
             this.categoriesRepository.Delete(category);
             await this.categoriesRepository.SaveChangesAsync();
         }

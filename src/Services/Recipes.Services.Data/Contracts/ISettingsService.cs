@@ -1,4 +1,4 @@
-﻿namespace Recipes.Services.Data
+﻿namespace Recipes.Services.Data.Contracts
 {
     using System.Collections.Generic;
 

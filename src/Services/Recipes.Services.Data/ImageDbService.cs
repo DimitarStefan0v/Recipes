@@ -5,6 +5,7 @@
 
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
+    using Recipes.Services.Data.Contracts;
 
     public class ImageDbService : IImageDbService
     {
@@ -31,7 +32,7 @@
 
         public string GetPublicId(int id)
         {
-            var image = this.cloudImagesRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == id);
+            var image = this.cloudImagesRepository.AllAsNoTracking().Where(x => x.Id == id).FirstOrDefault();
             var pubId = image.PicturePublicId;
 
             return pubId;

@@ -5,6 +5,7 @@
 
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
+    using Recipes.Services.Data.Contracts;
     using Recipes.Web.ViewModels.Home;
 
     public class CountsService : ICountsService
@@ -92,9 +93,11 @@
 
         public int GetRecipesCountByName(string search)
         {
+            search = search.ToLower().Trim();
+
             return this.recipesRepository
                 .AllAsNoTracking()
-                .Where(x => x.Name.Contains(search.ToLower().Trim()) && x.IsApproved == true)
+                .Where(x => x.Name.Contains(search) && x.IsApproved == true)
                 .Count();
         }
 

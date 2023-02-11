@@ -92,7 +92,7 @@
         <li>
             <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактирай</a>
         </li>
-        @if (!this.Model.IsApproved)
+        @if (!this.Model.IsApproved && this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
             <li>
                 <a asp-controller="Admin" asp-action="Approve" asp-route-id="@Model.Id" class="btn btn-success">Одобри</a>

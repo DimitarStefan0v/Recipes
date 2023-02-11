@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
-    using Recipes.Services.Data;
+    using Recipes.Services.Data.Contracts;
     using Recipes.Web.ViewModels.Settings;
 
     public class SettingsController : BaseController

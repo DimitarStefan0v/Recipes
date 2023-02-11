@@ -17,6 +17,7 @@ namespace Recipes.Web
     using Recipes.Data.Repositories;
     using Recipes.Data.Seeding;
     using Recipes.Services.Data;
+    using Recipes.Services.Data.Contracts;
     using Recipes.Services.Mapping;
     using Recipes.Services.Messaging;
     using Recipes.Web.Infrastructure;

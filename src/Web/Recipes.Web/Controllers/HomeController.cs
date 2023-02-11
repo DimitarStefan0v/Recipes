@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Recipes.Data.Models;
-    using Recipes.Services.Data;
+    using Recipes.Services.Data.Contracts;
     using Recipes.Services.Messaging;
     using Recipes.Web.Infrastructure;
     using Recipes.Web.ViewModels;

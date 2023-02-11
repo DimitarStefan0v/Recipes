@@ -5,6 +5,7 @@
 
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
+    using Recipes.Services.Data.Contracts;
 
     public class VotesService : IVotesService
     {
