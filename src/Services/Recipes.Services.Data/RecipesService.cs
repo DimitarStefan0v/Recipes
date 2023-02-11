@@ -196,7 +196,7 @@
                 .ToList();
         }
 
-        public IEnumerable<T> GetPersonalRecipes<T>(string userId, string sort, int page, int itemsPerPage)
+        public IEnumerable<T> GetPersonalRecipes<T>(string sort, int page, int itemsPerPage, string userId)
         {
             var query = this.recipesRepository
                 .AllAsNoTracking()

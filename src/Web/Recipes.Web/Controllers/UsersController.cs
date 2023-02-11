@@ -49,5 +49,29 @@
 
             return this.View(viewModel);
         }
+
+        public async Task<IActionResult> PersonalRecipes(string sortOrder = "descending", int id = 1)
+        {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            int itemsPerPage = 9;
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            var viewModel = new RecipesListViewModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                ItemsCount = this.countsService.GetPersonalRecipesCount(user.Id),
+                Recipes = this.recipesService.GetPersonalRecipes<RecipeInListViewModel>(sortOrder, id, itemsPerPage, user.Id),
+                ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
+                ActionName = this.ControllerContext.ActionDescriptor.ActionName,
+            };
+
+            return this.View(viewModel);
+        }
     }
 }

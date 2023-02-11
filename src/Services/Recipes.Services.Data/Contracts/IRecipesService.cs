@@ -17,7 +17,7 @@
 
         IEnumerable<T> GetRecipesByCategoryId<T>(int categoryId, string sort, int page, int itemsPerPage);
 
-        IEnumerable<T> GetPersonalRecipes<T>(string userId, string sort, int page, int itemsPerPage);
+        IEnumerable<T> GetPersonalRecipes<T>(string sort, int page, int itemsPerPage, string userId);
 
         T GetById<T>(int id);
 
