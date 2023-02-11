@@ -7,7 +7,7 @@
 @if (this.SignInManager.IsSignedIn(this.User))
 {
     <li>
-        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@this.User.Identity.Name</a>
+        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Профил</a>
     </li>
     <li>
         <form id="logout-form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@this.Url.Action("Index", "Home", new { area = string.Empty })">
