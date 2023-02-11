@@ -8,6 +8,7 @@
     using CloudinaryDotNet.Actions;
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
+    using Recipes.Services.Data.Contracts;
     using Recipes.Services.Mapping;
     using Recipes.Web.ViewModels.Recipes;
 
@@ -87,7 +88,8 @@
 
         public async Task DeleteAsync(int id)
         {
-            var recipe = this.recipesRepository.All().FirstOrDefault(x => x.Id == id);
+            var recipe = this.recipesRepository.All().Where(x => x.Id == id).FirstOrDefault();
+
             this.recipesRepository.Delete(recipe);
             await this.recipesRepository.SaveChangesAsync();
         }
@@ -96,7 +98,8 @@
         {
             var recipe = this.recipesRepository
                 .All()
-                .FirstOrDefault(x => x.Id == id);
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
 
             if (recipe.Name != input.Name.Trim())
             {
@@ -292,6 +295,11 @@
                     .Where(x => x.Id == favoriteRecipeId && x.IsApproved == true)
                     .To<T>()
                     .FirstOrDefault();
+
+                if (recipe == null)
+                {
+                    continue;
+                }
 
                 recipesToReturn.Add(recipe);
             }
