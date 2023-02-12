@@ -19,7 +19,7 @@
         public double GetAverageVotes(int recipeId)
         {
             var votes = this.votesRepository
-                .AllAsNoTracking()
+                .All()
                 .Where(x => x.RecipeId == recipeId)
                 .ToList();
 

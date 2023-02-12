@@ -28,18 +28,21 @@
             await service.SetVoteAsync(1, "someUserId", 4);
 
             // Assert
+            mockRepo.Verify(x => x.AddAsync(It.IsAny<Vote>()), Times.Once());
             Assert.Equal(4, list.First().Value);
         }
 
         [Fact]
         public async Task NoMatterHowManyTimesAUserVotesOnlyTheLastVoteIsSavedToDb()
         {
+            // Arrange
             var list = new List<Vote>();
             var mockRepo = new Mock<IDeletableEntityRepository<Vote>>();
             mockRepo.Setup(x => x.All()).Returns(list.AsQueryable());
             mockRepo.Setup(x => x.AddAsync(It.IsAny<Vote>())).Callback((Vote vote) => list.Add(vote));
             var service = new VotesService(mockRepo.Object);
 
+            // Act
             await service.SetVoteAsync(1, "someUserId", 2);
             await service.SetVoteAsync(1, "someUserId", 1);
             await service.SetVoteAsync(1, "someUserId", 5);
@@ -51,7 +54,29 @@
             await service.SetVoteAsync(1, "someUserId", 5);
             await service.SetVoteAsync(1, "someUserId", 2);
 
+            // Assert
+            mockRepo.Verify(x => x.AddAsync(It.IsAny<Vote>()), Times.Once());
             Assert.Single(list);
+        }
+
+        [Fact]
+        public async Task WhenTwoUsersVoteForTheSameRecipeItShouldReturnAverageScore()
+        {
+            // Arrange
+            var list = new List<Vote>();
+            var mockRepo = new Mock<IDeletableEntityRepository<Vote>>();
+            mockRepo.Setup(x => x.All()).Returns(list.AsQueryable());
+            mockRepo.Setup(x => x.AddAsync(It.IsAny<Vote>())).Callback((Vote vote) => list.Add(vote));
+            var service = new VotesService(mockRepo.Object);
+
+            // Act
+            await service.SetVoteAsync(2, "peshoId", 2);
+            await service.SetVoteAsync(2, "mitkoId", 5);
+            await service.SetVoteAsync(2, "peshoId", 4);
+
+            // Assert
+            mockRepo.Verify(x => x.AddAsync(It.IsAny<Vote>()), Times.Exactly(2));
+            Assert.Equal(4.5, service.GetAverageVotes(2));
         }
     }
 }
