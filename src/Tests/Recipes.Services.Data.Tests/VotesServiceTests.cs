@@ -2,15 +2,32 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.Threading.Tasks;
 
     using Moq;
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
+    using Recipes.Data.Repositories;
+    using Recipes.Services.Data.Contracts;
+    using Recipes.Services.Mapping;
+    using Recipes.Web.ViewModels;
     using Xunit;
 
     public class VotesServiceTests
     {
+        private readonly EfDeletableEntityRepository<Vote> votesRepository;
+        private readonly IVotesService votesService;
+
+        public VotesServiceTests()
+        {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
+            var context = InMemoryDbContext.InitializeContext();
+            this.votesRepository = new EfDeletableEntityRepository<Vote>(context);
+            this.votesService = new VotesService(this.votesRepository);
+        }
+
         [Fact]
         public async Task WhenUserVotesMoreThanOnceOnlyLastVoteShouldCount()
         {
@@ -62,21 +79,11 @@
         [Fact]
         public async Task WhenTwoUsersVoteForTheSameRecipeItShouldReturnAverageScore()
         {
-            // Arrange
-            var list = new List<Vote>();
-            var mockRepo = new Mock<IDeletableEntityRepository<Vote>>();
-            mockRepo.Setup(x => x.All()).Returns(list.AsQueryable());
-            mockRepo.Setup(x => x.AddAsync(It.IsAny<Vote>())).Callback((Vote vote) => list.Add(vote));
-            var service = new VotesService(mockRepo.Object);
+            await this.votesService.SetVoteAsync(2, "mitkoId", 3);
+            await this.votesService.SetVoteAsync(2, "peshoId", 5);
+            await this.votesService.SetVoteAsync(2, "mitkoId", 4);
 
-            // Act
-            await service.SetVoteAsync(2, "peshoId", 2);
-            await service.SetVoteAsync(2, "mitkoId", 5);
-            await service.SetVoteAsync(2, "peshoId", 4);
-
-            // Assert
-            mockRepo.Verify(x => x.AddAsync(It.IsAny<Vote>()), Times.Exactly(2));
-            Assert.Equal(4.5, service.GetAverageVotes(2));
+            Assert.Equal(4.5, this.votesService.GetAverageVotes(2));
         }
     }
 }
