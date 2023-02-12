@@ -81,6 +81,7 @@ namespace Recipes.Web
             services.AddTransient<IImageDbService, ImageDbService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<IMessagesService, MessagesService>();
+            services.AddTransient<IPostsService, PostsService>();
             services.AddTransient(typeof(GoogleCaptchaService));
 
             // SendGrid Setup

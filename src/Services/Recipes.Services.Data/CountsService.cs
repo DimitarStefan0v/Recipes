@@ -16,6 +16,7 @@
         private readonly IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly IDeletableEntityRepository<Message> messagesRepository;
+        private readonly IDeletableEntityRepository<Post> postsRepository;
 
         public CountsService(
             IDeletableEntityRepository<Recipe> recipesRepository,
@@ -23,7 +24,8 @@
             IDeletableEntityRepository<Category> categoriesRepository,
             IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository,
             IDeletableEntityRepository<ApplicationUser> usersRepository,
-            IDeletableEntityRepository<Message> messagesRepository)
+            IDeletableEntityRepository<Message> messagesRepository,
+            IDeletableEntityRepository<Post> postsRepository)
         {
             this.recipesRepository = recipesRepository;
             this.ingredientsRepository = ingredientsRepository;
@@ -31,6 +33,7 @@
             this.favoriteRecipesRepository = favoriteRecipesRepository;
             this.usersRepository = usersRepository;
             this.messagesRepository = messagesRepository;
+            this.postsRepository = postsRepository;
         }
 
         public IndexViewModel GetStats()
@@ -128,6 +131,13 @@
         public int GetMessagesCount()
         {
             return this.messagesRepository
+                .AllAsNoTracking()
+                .Count();
+        }
+
+        public int GetPostsCount()
+        {
+            return this.postsRepository
                 .AllAsNoTracking()
                 .Count();
         }

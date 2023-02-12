@@ -23,5 +23,7 @@
         int GetPersonalRecipesCount(string userId);
 
         int GetMessagesCount();
+
+        int GetPostsCount();
     }
 }
