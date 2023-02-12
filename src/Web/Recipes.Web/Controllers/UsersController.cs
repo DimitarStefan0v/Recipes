@@ -10,7 +10,7 @@
     using Recipes.Web.ViewModels.Recipes;
 
     [Authorize]
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         private readonly IRecipesService recipesService;
         private readonly ICountsService countsService;
