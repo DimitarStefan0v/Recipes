@@ -4,6 +4,7 @@
     let desc = document.querySelector('.descending-sort-link');
     let popularity = document.querySelector('.popularity-sort-link');
     let votes = document.querySelector('.votes-sort-link');
+    let comments = document.querySelector('.comments-sort-link');
     let borderBottomValue = '5px solid red';
 
     if (sortValue == 'ascending') {
@@ -26,6 +27,11 @@
         votes.style.borderBottom = borderBottomValue;
         votes.style.pointerEvents = 'none';
         votes.style.cursor = 'default';
+    } else if (sortValue == 'comments') {
+        comments.style.color = 'red';
+        comments.style.borderBottom = borderBottomValue;
+        comments.style.pointerEvents = 'none';
+        comments.style.cursor = 'default';
     } else {
         desc.style.color = 'red';
         desc.style.borderBottom = borderBottomValue;

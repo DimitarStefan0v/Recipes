@@ -22,7 +22,7 @@
                 return this.NotFound();
             }
 
-            int itemsPerPage = 9;
+            int itemsPerPage = 10;
 
             var viewModel = new PostsListViewModel
             {
