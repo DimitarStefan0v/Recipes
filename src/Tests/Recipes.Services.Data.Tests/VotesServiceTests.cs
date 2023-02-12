@@ -31,6 +31,27 @@
             Assert.Equal(4, list.First().Value);
         }
 
-        
+        [Fact]
+        public async Task NoMatterHowManyTimesAUserVotesOnlyTheLastVoteIsSavedToDb()
+        {
+            var list = new List<Vote>();
+            var mockRepo = new Mock<IDeletableEntityRepository<Vote>>();
+            mockRepo.Setup(x => x.All()).Returns(list.AsQueryable());
+            mockRepo.Setup(x => x.AddAsync(It.IsAny<Vote>())).Callback((Vote vote) => list.Add(vote));
+            var service = new VotesService(mockRepo.Object);
+
+            await service.SetVoteAsync(1, "someUserId", 2);
+            await service.SetVoteAsync(1, "someUserId", 1);
+            await service.SetVoteAsync(1, "someUserId", 5);
+            await service.SetVoteAsync(1, "someUserId", 2);
+            await service.SetVoteAsync(1, "someUserId", 1);
+            await service.SetVoteAsync(1, "someUserId", 3);
+            await service.SetVoteAsync(1, "someUserId", 3);
+            await service.SetVoteAsync(1, "someUserId", 4);
+            await service.SetVoteAsync(1, "someUserId", 5);
+            await service.SetVoteAsync(1, "someUserId", 2);
+
+            Assert.Single(list);
+        }
     }
 }
