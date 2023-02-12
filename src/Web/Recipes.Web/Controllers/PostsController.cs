@@ -13,11 +13,16 @@
     public class PostsController : BaseController
     {
         private readonly IPostsService postsService;
+        private readonly ICountsService countsService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public PostsController(IPostsService postsService, UserManager<ApplicationUser> userManager)
+        public PostsController(
+            IPostsService postsService,
+            ICountsService countsService,
+            UserManager<ApplicationUser> userManager)
         {
             this.postsService = postsService;
+            this.countsService = countsService;
             this.userManager = userManager;
         }
 
@@ -51,6 +56,12 @@
             }
 
             return this.RedirectToAction("Index", "Forum", new { area = string.Empty });
+        }
+
+        public async Task<IActionResult> ById(int id)
+        {
+            await this.countsService.IncreasePostViews(id);
+            return this.View();
         }
     }
 }
