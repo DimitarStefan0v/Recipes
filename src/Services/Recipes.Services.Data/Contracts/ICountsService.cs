@@ -10,6 +10,8 @@
 
         Task IncreaseViews(int id, bool forCategory);
 
+        Task IncreasePostViews(int id);
+
         int GetRecipesCount();
 
         int GetFavoriteRecipesCount(string userId);

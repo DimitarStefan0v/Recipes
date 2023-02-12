@@ -141,5 +141,19 @@
                 .AllAsNoTracking()
                 .Count();
         }
+
+        public async Task IncreasePostViews(int id)
+        {
+            var post = this.postsRepository.All().Where(x => x.Id == id).FirstOrDefault();
+
+            if (post == null)
+            {
+                return;
+            }
+
+            post.ViewsCount += 1;
+
+            await this.postsRepository.SaveChangesAsync();
+        }
     }
 }
