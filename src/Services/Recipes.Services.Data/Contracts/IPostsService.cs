@@ -10,5 +10,7 @@
         IEnumerable<T> GetAll<T>(string sort, int page, int itemsPerPage);
 
         Task CreateAsync(CreatePostInputModel input, string userId);
+
+        T GetById<T>(int id);
     }
 }

@@ -46,6 +46,15 @@
             await this.postsRepository.SaveChangesAsync();
         }
 
+        public T GetById<T>(int id)
+        {
+            return this.postsRepository
+                .AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+        }
+
         private static void SortPosts(ref string sort, ref IQueryable<Post> query)
         {
             if (sort == null)
