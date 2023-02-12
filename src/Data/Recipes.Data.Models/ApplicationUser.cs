@@ -20,6 +20,8 @@ namespace Recipes.Data.Models
             this.Votes = new HashSet<Vote>();
             this.Messages = new HashSet<Message>();
             this.FavoriteRecipes = new HashSet<FavoriteRecipe>();
+            this.Posts = new HashSet<Post>();
+            this.Comments = new HashSet<Comment>();
         }
 
         // Audit info
@@ -47,5 +49,9 @@ namespace Recipes.Data.Models
         public ICollection<Message> Messages { get; set; }
 
         public ICollection<FavoriteRecipe> FavoriteRecipes { get; set; }
+
+        public ICollection<Post> Posts { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
     }
 }

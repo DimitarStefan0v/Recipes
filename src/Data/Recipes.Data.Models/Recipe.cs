@@ -13,6 +13,7 @@
             this.Ingredients = new HashSet<RecipeIngredient>();
             this.Votes = new HashSet<Vote>();
             this.FavoriteRecipes = new HashSet<FavoriteRecipe>();
+            this.Comments = new HashSet<Comment>();
         }
 
         public string Name { get; set; }
@@ -47,5 +48,7 @@
         public ICollection<Vote> Votes { get; set; }
 
         public ICollection<FavoriteRecipe> FavoriteRecipes { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
     }
 }
