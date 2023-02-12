@@ -2,11 +2,13 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
     using Recipes.Services.Data.Contracts;
     using Recipes.Services.Mapping;
+    using Recipes.Web.ViewModels.Posts;
 
     public class PostsService : IPostsService
     {
@@ -29,6 +31,19 @@
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
+        }
+
+        public async Task CreateAsync(CreatePostInputModel input, string userId)
+        {
+            var post = new Post
+            {
+                AddedByUserId = userId,
+                Content = input.Content,
+                Name = input.Name,
+            };
+
+            await this.postsRepository.AddAsync(post);
+            await this.postsRepository.SaveChangesAsync();
         }
 
         private static void SortPosts(ref string sort, ref IQueryable<Post> query)
