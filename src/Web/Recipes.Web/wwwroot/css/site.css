@@ -226,8 +226,8 @@ button.accept-policy {
 }
 
 #stats-table {
-    max-width: 350px;
     margin: 0 auto;
+    max-width: 500px;
 }
 
 .index-heading {
@@ -626,7 +626,6 @@ a {
 .message-container p {
     word-break: break-all;
 }
-
 
 
 
