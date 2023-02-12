@@ -14,7 +14,7 @@
                 <li><a class="descending-sort-link" asp-route-sortOrder="descending" asp-route-id="1">Нови</a></li>
                 <li><a class="ascending-sort-link" asp-route-sortOrder="ascending" asp-route-id="1">Стари</a></li>
                 <li><a class="popularity-sort-link" asp-route-sortOrder="popularity" asp-route-id="1">Популярни</a></li>
-                <li><a class="comments-sort-link" asp-route-sortOrder="comments" asp-route-id="1">Коментирани</a></li>
+                <li><a class="comments-sort-link" asp-route-sortOrder="comments" asp-route-id="1">Отговори</a></li>
             </ul>
         </article>
     </section>
@@ -29,8 +29,8 @@
         <thead>
             <tr>
                 <th>Заглавие/Aвтор на тема</th>
-                <th class="cell-to-hide-for-medium-screens">Отговори/Посещения</th>
-                <th class="cell-to-hide-for-small-screens">Последен отговор</th>
+                <th class="cell-to-hide-for-small-screens">Отговори/Посещения</th>
+                <th class="cell-to-hide-for-medium-screens">Последен отговор</th>
             </tr>
         </thead>
         <tbody>
@@ -44,11 +44,11 @@
                         <p class="post-info">Създадане от: @post.AddedByUserUserName</p>
                         <p class="post-info">Дата: <time datetime="@post.DateAsString"></time></p>
                     </td>
-                    <td class="cell-to-hide-for-medium-screens">
+                    <td class="cell-to-hide-for-small-screens">
                         <p>Отговори: @post.CommentsCount</p>
                         <p>Посещения: @post.ViewsCount</p>
                     </td>
-                    <td class="cell-to-hide-for-small-screens">
+                    <td class="cell-to-hide-for-medium-screens">
                         @if (post.UserNameOfLastComment == null)
                         {
                             <p>Все още няма отговори към поста</p>
