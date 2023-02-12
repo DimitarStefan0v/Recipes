@@ -61,7 +61,10 @@
         public async Task<IActionResult> ById(int id)
         {
             await this.countsService.IncreasePostViews(id);
-            return this.View();
+
+            var viewModel = this.postsService.GetById<SinglePostViewModel>(id);
+
+            return this.View(viewModel);
         }
     }
 }
