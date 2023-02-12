@@ -627,8 +627,63 @@ a {
     word-break: break-all;
 }
 
+#forum-table {
+    margin: 20px auto;
+    min-width: 100%;
+}
+
+#forum-table th {
+    background-color: #292637;
+    color: white;
+}
+
+#forum-table tbody {
+    background-color: #F2F2F2;
+}
 
 
+
+#forum-table tr {
+    border-bottom: 1px solid #e9e9e9;
+    word-break: break-all;
+}
+
+#forum-table p {
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+}
+
+#forum-table th,
+#forum-table td {
+    padding: 5px;
+}
+
+#forum-table th:not(:first-child),
+#forum-table td:not(:first-child) {
+    padding-left: 30px;
+}
+
+#forum-table .post-name {
+    font-weight: 600;
+}
+
+#forum-table hr {
+    margin: 0;
+}
+
+#forum-table a {
+    color: #282538;
+    text-decoration: none;
+}
+
+#forum-table .post-link:hover {
+    color: #E8580C;
+}
+
+#forum-table tbody {
+    color: #424242;
+}
 
 
 /*----------------------------------------Media queries----------------------------------------*/
@@ -819,6 +874,22 @@ a {
 
 }
 
+@media screen and (max-width: 800px) {
+    #forum-table th,
+    #forum-table td {
+        padding: 3px;
+    }
+
+    #forum-table th:not(:first-child),
+    #forum-table td:not(:first-child) {
+        padding-left: 5px;
+    }
+
+    #forum-table .cell-to-hide-for-small-screens {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 750px) {
     .description-and-ingredients-container {
         flex-direction: column;
@@ -850,6 +921,12 @@ a {
         right: 15px;
         bottom: 30px;
         font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .cell-to-hide-for-medium-screens {
+        display: none;
     }
 }
 
