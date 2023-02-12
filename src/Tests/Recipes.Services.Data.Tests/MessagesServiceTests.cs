@@ -49,5 +49,35 @@
             Assert.Equal(0, totalMessagesCountBeforeAdding);
             Assert.Equal(3, totalMessagesCountAfterAdding);
         }
+
+        [Fact]
+
+        public async Task DeleteAsyncShouldWorkAsExpected()
+        {
+            var input = new ContactInputModel
+            {
+                Name = "Test",
+                Email = "test@gmail.com",
+                Title = "Test",
+                Content = "Test content",
+                Token = "Test",
+            };
+
+            var totalMessagesCountBeforeAdding = this.messagesRepository.AllAsNoTracking().Count();
+
+            await this.messagesService.CreateMessageAsync(input, "userId");
+
+            var totalMessagesCountAfterAdding = this.messagesRepository.AllAsNoTracking().Count();
+
+            var messageId = this.messagesRepository.AllAsNoTracking().Select(x => x.Id).FirstOrDefault();
+
+            await this.messagesService.DeleteAsync(messageId);
+
+            var totalMessagesCountAfterDeleting = this.messagesRepository.AllAsNoTracking().Count();
+
+            Assert.Equal(0, totalMessagesCountBeforeAdding);
+            Assert.Equal(1, totalMessagesCountAfterAdding);
+            Assert.Equal(0, totalMessagesCountAfterDeleting);
+        }
     }
 }
