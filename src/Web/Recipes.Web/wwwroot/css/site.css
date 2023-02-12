@@ -719,6 +719,41 @@ a {
     word-break: break-all;
 }
 
+.forum-btn {
+    background-color: #e6580c;
+    padding: 7px 20px;
+    margin: 0 0 20px 0;
+    border: none;
+    color: white;
+}
+
+.send-comment-btn {
+    background-color: #e6580c;
+    padding: 7px 20px;
+    border: none;
+    color: white;
+}
+
+.comment-form {
+    margin: 100px 0 0 0;
+}
+
+.post-input-comment-content {
+    max-width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 20px;
+}
+
+.post-input-comment-header {
+    height: 60px;
+    background-color: #292637;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
 
 
 /*----------------------------------------Media queries----------------------------------------*/

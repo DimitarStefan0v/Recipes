@@ -7,8 +7,31 @@
 
 <section class="post-byId-wrapper">
     <h2>@this.ViewData["Title"]</h2>
+    <button class="forum-btn">Отговор</button>
     <article class="post-comment">
         <article class="post-comment-header"><article>@Model.AddedByUserUserName</article> <article><time datetime="@Model.DateAsString"></time></article></article>
         <article class="post-comment-content"><p>@Model.Name</p><hr /><p>@Model.Content</p></article>
     </article>
+    <form class="comment-form" method="post" asp-controller="Comments" asp-action="CreatePostComment" enctype="application/x-www-form-urlencoded">
+        <div class="mb-3">
+            <label asp-for="CommentContent" class="post-input-comment-header"></label>
+            <textarea asp-for="CommentContent" class="post-input-comment-content" cols="800" rows="10"></textarea>
+            <span asp-validation-for="CommentContent" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <input type="submit" value="Изпрати" class="send-comment-btn" />
+        </div>
+    </form>
 </section>
+
+@section Scripts {
+    <script>
+        let btn = document.querySelector(".forum-btn");
+        btn.addEventListener("click", (ev) => {
+            ev.preventDefault();
+            document.querySelector('.comment-form').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+}
