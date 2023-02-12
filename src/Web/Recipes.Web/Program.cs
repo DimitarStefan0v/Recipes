@@ -82,6 +82,7 @@ namespace Recipes.Web
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<IMessagesService, MessagesService>();
             services.AddTransient<IPostsService, PostsService>();
+            services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient(typeof(GoogleCaptchaService));
 
             // SendGrid Setup
