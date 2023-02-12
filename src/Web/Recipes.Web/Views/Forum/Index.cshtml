@@ -1,0 +1,55 @@
+﻿@using Recipes.Web.ViewModels.Posts;
+@model PostsListViewModel
+
+@{
+    this.ViewData["Title"] = "Всички постове";
+}
+
+@if (Model.Posts.Any())
+{
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <section class="sorting-menu">
+        <article>
+            <ul>
+                <li><a class="descending-sort-link" asp-route-sortOrder="descending" asp-route-id="1">Нови</a></li>
+                <li><a class="ascending-sort-link" asp-route-sortOrder="ascending" asp-route-id="1">Стари</a></li>
+                <li><a class="popularity-sort-link" asp-route-sortOrder="popularity" asp-route-id="1">Популярни</a></li>
+                <li><a class="comments-sort-link" asp-route-sortOrder="comments" asp-route-id="1">Коментирани</a></li>
+            </ul>
+        </article>
+    </section>
+    <input type="hidden" value="@Model.SortOrder" class="input-sort-order-value" />
+
+    if (Model.PagesCount > 1)
+    {
+        <partial name="_PagingPartial" model="@Model" />
+    }
+
+    <table>
+        <thead>
+            <tr>
+                <th>Заглавие / Aвтор на тема</th>
+                <th>Отговори / Посещения</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model.Posts)
+            {
+                <tr>
+                    <td><p>@post.Name</p><p>@post.AddedByUserUserName</p><p><time datetime="@post.DateAsString"></time></p></td>
+                    <td><p>@post.CommentsCount</p><p>@post.ViewsCount</p></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    if (Model.PagesCount > 1)
+    {
+        <partial name="_PagingPartial" model="@Model" />
+    }
+
+}
+
+@section Scripts {
+    <script src="~/js/disableSortTagElement.js" asp-append-version="true"></script>
+}
