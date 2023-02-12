@@ -12,19 +12,18 @@
         <article class="post-comment-header"><article>@Model.AddedByUserUserName</article> <article><time datetime="@Model.DateAsString"></time></article></article>
         <article class="post-comment-content"><p>@Model.Name</p><hr /><p>@Model.Content</p></article>
     </article>
-    <form class="comment-form" method="post" asp-controller="Comments" asp-action="CreatePostComment" enctype="application/x-www-form-urlencoded">
-        <div class="mb-3">
-            <label asp-for="CommentContent" class="post-input-comment-header"></label>
-            <textarea asp-for="CommentContent" class="post-input-comment-content" cols="800" rows="10"></textarea>
-            <span asp-validation-for="CommentContent" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <input type="submit" value="Изпрати" class="send-comment-btn" />
-        </div>
+    <form class="comment-form" method="post" asp-action="CreateComment" asp-controller="Comments">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" value="@Model.Id"  name="id"/>
+        <input type="hidden" value="true" name="forPost" />
+        <label asp-for="CommentContent" class="post-input-comment-header">Добави Отговор</label>
+        <textarea asp-for="CommentContent" class="post-input-comment-content" name="input" rows="10" cols="150"></textarea>
+        <span asp-validation-for="CommentContent"></span>
+        <button type="submit" class="send-comment-btn">Изпрати</button>
     </form>
 </section>
 
-@section Scripts {
+@section Scripts{
     <script>
         let btn = document.querySelector(".forum-btn");
         btn.addEventListener("click", (ev) => {

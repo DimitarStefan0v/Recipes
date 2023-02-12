@@ -22,7 +22,6 @@
 
         public string DateAsString => this.CreatedOn.ToString("ddd, MM dd, yyyy HH:mm", new CultureInfo("bg-Bg"));
 
-        [Display(Name = "Добави Отговор")]
         [Required(ErrorMessage = CommentErrorMessages.ContentRequired)]
         [MinLength(10, ErrorMessage = CommentErrorMessages.ContentLength)]
         [MaxLength(300, ErrorMessage = CommentErrorMessages.ContentLength)]
