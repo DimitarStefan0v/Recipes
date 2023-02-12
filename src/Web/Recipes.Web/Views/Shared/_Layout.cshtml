@@ -33,12 +33,7 @@
                         <input type="checkbox" id="show-services" />
                         <label for="show-services">Рецепти <i class="fa-solid fa-caret-down"></i></label>
                         <ul>
-                            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                            {
-                                <li><a asp-controller="Admin" asp-action="AllUnapproved">За одобряване</a></li>
-                                <li><a asp-controller="Admin" asp-action="Messages">Съобщения</a></li>
-                            }
-                            <li><a asp-controller="Recipes" asp-action="Create">Добави рецепта</a></li>
+                            <li><a asp-controller="Users" asp-action="PersonalRecipes" asp-route-id="1">Моите рецепти</a></li>
                             <li><a asp-controller="Recipes" asp-action="All" asp-route-id="1">Всички рецепти</a></li>
                             <li>
                                 <a href="#" class="desktop-link">По категории <i class="fa-solid fa-caret-right"></i></a>
@@ -54,7 +49,16 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a asp-controller="Users" asp-action="PersonalRecipes" asp-route-id="1">Моите рецепти</a></li>
+                    <li>
+                        <a href="#" class="desktop-link">Добави <i class="fa-solid fa-caret-down"></i></a>
+                        <input type="checkbox" id="show-features" />
+                        <label for="show-features">Добави <i class="fa-solid fa-caret-down"></i></label>
+                        <ul>
+                            <li><a asp-controller="Recipes" asp-action="Create">Добави рецепта</a></li>
+                            <li><a asp-controller="Recipes" asp-action="Create">Форумна тема</a></li>
+                        </ul>
+                    </li>
+                    
                     <li><a asp-controller="Users" asp-action="FavoriteRecipes" asp-route-id="1">Любими</a></li>
                     <li><a>Форум</a></li>
                     <li><a asp-controller="Home" asp-action="Contacts">Контакти</a></li>

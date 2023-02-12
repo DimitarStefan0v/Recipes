@@ -79,11 +79,11 @@
         [Fact]
         public async Task WhenTwoUsersVoteForTheSameRecipeItShouldReturnAverageScore()
         {
-            await this.votesService.SetVoteAsync(2, "mitkoId", 3);
-            await this.votesService.SetVoteAsync(2, "peshoId", 5);
-            await this.votesService.SetVoteAsync(2, "mitkoId", 4);
+            await this.votesService.SetVoteAsync(3, "mitkoId", 3);
+            await this.votesService.SetVoteAsync(3, "peshoId", 5);
+            await this.votesService.SetVoteAsync(3, "mitkoId", 4);
 
-            Assert.Equal(4.5, this.votesService.GetAverageVotes(2));
+            Assert.Equal(4.5, this.votesService.GetAverageVotes(3));
         }
     }
 }

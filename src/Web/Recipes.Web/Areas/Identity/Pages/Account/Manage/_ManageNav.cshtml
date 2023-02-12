@@ -1,9 +1,15 @@
-﻿@using Recipes.Data.Models;
+﻿@using Recipes.Common;
+@using Recipes.Data.Models;
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
 <ul class="nav nav-pills flex-column">
+    @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+    {
+        <li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="AllUnapproved">За одобряване</a></li>
+        <li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="Messages">Съобщения</a></li>
+    }
     <li class="nav-item"><a class="nav-link" asp-controller="Users" asp-action="PersonalRecipes">Моите рецепти</a></li>
     <li class="nav-item"><a class="nav-link" asp-controller="Users" asp-action="FavoriteRecipes">Любими рецепти</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Профил</a></li>
