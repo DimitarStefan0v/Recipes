@@ -62,6 +62,11 @@
         {
             await this.countsService.IncreasePostViews(id);
 
+            if (id <= 0)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
             var viewModel = this.postsService.GetById<SinglePostViewModel>(id);
 
             return this.View(viewModel);

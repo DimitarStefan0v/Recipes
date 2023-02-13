@@ -12,6 +12,13 @@
         <article class="post-comment-header"><article>@Model.AddedByUserUserName</article> <article><time datetime="@Model.DateAsString"></time></article></article>
         <article class="post-comment-content"><p>@Model.Name</p><hr /><p>@Model.Content</p></article>
     </article>
+    @foreach (var comment in Model.Comments)
+    {
+        <article class="post-comment">
+            <article class="post-comment-header"><article>@comment.AddedByUserUserName</article> <article><time datetime="@comment.DateAsString"></time></article></article>
+            <article class="post-comment-content"><p>Тема: @Model.Name</p><hr /><p>@comment.Content</p></article>
+        </article>
+    }
     <form class="comment-form" method="post" asp-action="CreateComment" asp-controller="Comments">
         <div asp-validation-summary="All" class="text-danger"></div>
         <input type="hidden" value="@Model.Id"  name="id"/>

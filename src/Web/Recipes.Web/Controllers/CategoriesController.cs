@@ -46,7 +46,7 @@
 
             if (id <= 0)
             {
-                return this.NotFound();
+                return this.RedirectToAction("Error", "Home");
             }
 
             int itemsPerPage = 9;

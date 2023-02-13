@@ -27,5 +27,7 @@
         int GetMessagesCount();
 
         int GetPostsCount();
+
+        int GetCommentsCountByPostId(int id);
     }
 }

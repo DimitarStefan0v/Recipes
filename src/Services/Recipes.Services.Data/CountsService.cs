@@ -17,6 +17,7 @@
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly IDeletableEntityRepository<Message> messagesRepository;
         private readonly IDeletableEntityRepository<Post> postsRepository;
+        private readonly IDeletableEntityRepository<Comment> commentsRepository;
 
         public CountsService(
             IDeletableEntityRepository<Recipe> recipesRepository,
@@ -25,7 +26,8 @@
             IDeletableEntityRepository<FavoriteRecipe> favoriteRecipesRepository,
             IDeletableEntityRepository<ApplicationUser> usersRepository,
             IDeletableEntityRepository<Message> messagesRepository,
-            IDeletableEntityRepository<Post> postsRepository)
+            IDeletableEntityRepository<Post> postsRepository,
+            IDeletableEntityRepository<Comment> commentsRepository)
         {
             this.recipesRepository = recipesRepository;
             this.ingredientsRepository = ingredientsRepository;
@@ -34,6 +36,7 @@
             this.usersRepository = usersRepository;
             this.messagesRepository = messagesRepository;
             this.postsRepository = postsRepository;
+            this.commentsRepository = commentsRepository;
         }
 
         public IndexViewModel GetStats()
@@ -154,6 +157,14 @@
             post.ViewsCount += 1;
 
             await this.postsRepository.SaveChangesAsync();
+        }
+
+        public int GetCommentsCountByPostId(int id)
+        {
+            return this.commentsRepository
+                .AllAsNoTracking()
+                .Where(x => x.PostId == id)
+                .Count();
         }
     }
 }

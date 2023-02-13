@@ -74,7 +74,7 @@
         {
             if (id <= 0)
             {
-                return this.NotFound();
+                return this.RedirectToAction("Error", "Home");
             }
 
             int itemsPerPage = 9;
@@ -99,7 +99,7 @@
         {
             if (string.IsNullOrWhiteSpace(name) || id <= 0)
             {
-                return this.NotFound();
+                return this.RedirectToAction("Error", "Home");
             }
 
             int itemsPerPage = 9;
@@ -129,7 +129,7 @@
 
             if (viewModel == null)
             {
-                return this.NotFound();
+                return this.RedirectToAction("Error", "Home");
             }
 
             viewModel.AverageVotesValue = this.votesService.GetAverageVotes(id);
