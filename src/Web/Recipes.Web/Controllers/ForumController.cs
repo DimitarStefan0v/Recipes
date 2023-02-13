@@ -22,7 +22,7 @@
                 return this.RedirectToAction("Error", "Home");
             }
 
-            int itemsPerPage = 10;
+            int itemsPerPage = 5;
 
             var viewModel = new PostsListViewModel
             {

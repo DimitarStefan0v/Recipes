@@ -19,7 +19,7 @@
         </article>
     </section>
     <input type="hidden" value="@Model.SortOrder" class="input-sort-order-value" />
-
+    <a asp-controller="Posts" asp-action="Create" id="forum-btn-new-post">Нова тема</a>
     if (Model.PagesCount > 1)
     {
         <partial name="_PagingPartial" model="@Model" />

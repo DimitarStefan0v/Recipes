@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Recipes.Common;
     using Recipes.Data.Models;
     using Recipes.Services.Data.Contracts;
     using Recipes.Web.ViewModels.Posts;
@@ -70,6 +71,13 @@
             var viewModel = this.postsService.GetById<SinglePostViewModel>(id);
 
             return this.View(viewModel);
+        }
+
+        [Authorize(GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.postsService.DeleteAsync(id);
+            return this.RedirectToAction("Index", "Forum", new { area = string.Empty });
         }
     }
 }
