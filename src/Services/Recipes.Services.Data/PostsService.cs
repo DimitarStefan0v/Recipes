@@ -55,6 +55,18 @@
                 .FirstOrDefault();
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var post = this.postsRepository.All().Where(x => x.Id == id).FirstOrDefault();
+            if (post == null)
+            {
+                return;
+            }
+
+            this.postsRepository.Delete(post);
+            await this.postsRepository.SaveChangesAsync();
+        }
+
         private static void SortPosts(ref string sort, ref IQueryable<Post> query)
         {
             if (sort == null)

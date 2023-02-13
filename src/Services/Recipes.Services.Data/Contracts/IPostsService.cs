@@ -12,5 +12,7 @@
         Task CreateAsync(CreatePostInputModel input, string userId);
 
         T GetById<T>(int id);
+
+        Task DeleteAsync(int id);
     }
 }
