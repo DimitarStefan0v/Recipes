@@ -754,6 +754,17 @@ a {
     padding: 0 20px;
 }
 
+.error-img-wrapper {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-img-wrapper img {
+    height: 80vh;
+    width: 90%;
+}
 
 
 /*----------------------------------------Media queries----------------------------------------*/
@@ -762,7 +773,6 @@ a {
         display: none;
     }
 }
-
 
 @media screen and (max-width: 1080px) {
     .wrapper nav {
@@ -994,6 +1004,7 @@ a {
         bottom: 30px;
         font-size: 20px;
     }
+
 }
 
 @media screen and (max-width: 480px) {
