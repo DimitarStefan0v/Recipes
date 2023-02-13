@@ -26,8 +26,6 @@
         [MinLength(10, ErrorMessage = ContactErrorMessages.ContentLength)]
         public string Content { get; set; }
 
-        public string Ip { get; set; }
-
         [Required]
         public string Token { get; set; }
     }

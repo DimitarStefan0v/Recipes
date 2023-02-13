@@ -82,8 +82,6 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
-
             string email = "dstefanov737@gmail.com";
 
             if (!this.ModelState.IsValid)
