@@ -1,5 +1,6 @@
 ﻿namespace Recipes.Services.Data
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Recipes.Data.Common.Repositories;
@@ -34,6 +35,19 @@
 
             await this.commentsRepository.AddAsync(comment);
             await this.commentsRepository.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+             var comment = this.commentsRepository.All().Where(x => x.Id == id).FirstOrDefault();
+
+             if (comment == null)
+            {
+                return;
+            }
+
+             this.commentsRepository.Delete(comment);
+             await this.commentsRepository.SaveChangesAsync();
         }
     }
 }

@@ -51,8 +51,6 @@
             }
             catch (Exception ex)
             {
-                this.ModelState.AddModelError(string.Empty, ex.Message);
-                return this.View(input);
             }
 
             if (forPost)

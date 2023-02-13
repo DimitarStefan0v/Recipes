@@ -1,4 +1,5 @@
-﻿@using Recipes.Web.ViewModels.Posts;
+﻿@using Recipes.Common;
+@using Recipes.Web.ViewModels.Posts;
 @model SinglePostViewModel
 
 @{
@@ -11,6 +12,10 @@
     <article class="post-comment">
         <article class="post-comment-header"><article>@Model.AddedByUserUserName</article> <article><time datetime="@Model.DateAsString"></time></article></article>
         <article class="post-comment-content"><p>@Model.Name</p><hr /><p>@Model.Content</p></article>
+        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <a asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Изтрии</a>
+        }
     </article>
     @foreach (var comment in Model.Comments)
     {
@@ -21,7 +26,7 @@
     }
     <form class="comment-form" method="post" asp-action="CreateComment" asp-controller="Comments">
         <div asp-validation-summary="All" class="text-danger"></div>
-        <input type="hidden" value="@Model.Id"  name="id"/>
+        <input type="hidden" value="@Model.Id" name="id" />
         <input type="hidden" value="true" name="forPost" />
         <label asp-for="CommentContent" class="post-input-comment-header">Добави Отговор</label>
         <textarea asp-for="CommentContent" class="post-input-comment-content" name="input" rows="10" cols="150"></textarea>

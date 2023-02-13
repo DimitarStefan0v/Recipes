@@ -5,5 +5,7 @@
     public interface ICommentsService
     {
         Task AddCommentAsync(int id, string content, string userId, bool postComment);
+
+        Task DeleteAsync(int id);
     }
 }

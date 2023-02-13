@@ -73,7 +73,7 @@
             return this.View(viewModel);
         }
 
-        [Authorize(GlobalConstants.AdministratorRoleName)]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Delete(int id)
         {
             await this.postsService.DeleteAsync(id);
