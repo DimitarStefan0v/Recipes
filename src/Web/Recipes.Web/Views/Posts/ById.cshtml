@@ -22,6 +22,10 @@
         <article class="post-comment">
             <article class="post-comment-header"><article>@comment.AddedByUserUserName</article> <article><time datetime="@comment.DateAsString"></time></article></article>
             <article class="post-comment-content"><p>Тема: @Model.Name</p><hr /><p>@comment.Content</p></article>
+            @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                <a asp-controller="Comments" asp-action="DeleteComment" asp-route-id="@comment.Id">Изтрии</a>
+            }
         </article>
     }
     <form class="comment-form" method="post" asp-action="CreateComment" asp-controller="Comments">

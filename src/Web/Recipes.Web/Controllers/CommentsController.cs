@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Recipes.Common;
     using Recipes.Data.Models;
     using Recipes.Services.Data.Contracts;
 
@@ -61,6 +62,13 @@
             {
                 return this.RedirectToAction("ById", "Recipes", new { id });
             }
+        }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> DeleteComment(int id)
+        {
+            await this.commentsService.DeleteAsync(id);
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }
