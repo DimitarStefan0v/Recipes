@@ -7,6 +7,7 @@
     using Microsoft.Data.SqlClient;
     using Recipes.Common;
     using Recipes.Services.Data.Contracts;
+    using Recipes.Web.ViewModels.Comments;
     using Recipes.Web.ViewModels.Messages;
     using Recipes.Web.ViewModels.Posts;
     using Recipes.Web.ViewModels.Recipes;
@@ -18,17 +19,20 @@
         private readonly IRecipesService recipesService;
         private readonly IMessagesService messagesService;
         private readonly IPostsService postsService;
+        private readonly ICommentsService commentsService;
 
         public AdminController(
             ICountsService countsService,
             IRecipesService recipesService,
             IMessagesService messagesService,
-            IPostsService postsService)
+            IPostsService postsService,
+            ICommentsService commentsService)
         {
             this.countsService = countsService;
             this.recipesService = recipesService;
             this.messagesService = messagesService;
             this.postsService = postsService;
+            this.commentsService = commentsService;
         }
 
         public IActionResult AllUnapprovedRecipes(int id = 1)
@@ -77,6 +81,28 @@
                 ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = this.ControllerContext.ActionDescriptor.ActionName,
                 SortOrder = sortOrder,
+            };
+
+            return this.View(viewModel);
+        }
+
+        public IActionResult AllUnapprovedComments(int id = 1)
+        {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            int itemsPerPage = 10;
+
+            var viewModel = new CommentsListViewModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                ItemsCount = this.countsService.GetUnapprovedCommentsCount(),
+                Comments = this.commentsService.GetAllUnapproved<CommentInListViewModel>(id, itemsPerPage),
+                ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
+                ActionName = this.ControllerContext.ActionDescriptor.ActionName,
             };
 
             return this.View(viewModel);
