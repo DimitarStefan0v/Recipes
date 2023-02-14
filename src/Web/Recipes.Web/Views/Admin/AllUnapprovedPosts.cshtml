@@ -1,0 +1,75 @@
+﻿@using Recipes.Web.ViewModels.Posts;
+@model PostsListViewModel
+
+@{
+    this.ViewData["Title"] = "Нови постове";
+}
+
+@if (Model.Posts.Any())
+{
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <section class="sorting-menu">
+        <article>
+            <ul>
+                <li><a class="descending-sort-link" asp-route-sortOrder="descending" asp-route-id="1">Нови</a></li>
+                <li><a class="ascending-sort-link" asp-route-sortOrder="ascending" asp-route-id="1">Стари</a></li>
+                <li><a class="popularity-sort-link" asp-route-sortOrder="popularity" asp-route-id="1">Популярни</a></li>
+                <li><a class="comments-sort-link" asp-route-sortOrder="comments" asp-route-id="1">Отговори</a></li>
+            </ul>
+        </article>
+    </section>
+    <input type="hidden" value="@Model.SortOrder" class="input-sort-order-value" />
+    if (Model.PagesCount > 1)
+    {
+        <partial name="_PagingPartial" model="@Model" />
+    }
+
+    <table id="forum-table">
+        <thead>
+            <tr>
+                <th>Заглавие/Aвтор на тема</th>
+                <th class="cell-to-hide-for-small-screens">Отговори/Посещения</th>
+                <th class="cell-to-hide-for-medium-screens">Последен отговор</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model.Posts)
+            {
+                <tr>
+                    <td>
+                        <a class="post-link" asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">
+                            <p class="post-name">@(post.Name.Length > 40 ? post.Name.Substring(0, 40) + "..." : post.Name)</p>
+                        </a>
+                        <p class="post-info">Създадане от: @post.AddedByUserUserName</p>
+                        <p class="post-info">Дата: <time datetime="@post.DateAsString"></time></p>
+                    </td>
+                    <td class="cell-to-hide-for-small-screens">
+                        <p>Отговори: @post.CommentsCount</p>
+                        <p>Посещения: @post.ViewsCount</p>
+                    </td>
+                    <td class="cell-to-hide-for-medium-screens">
+                        @if (post.UserNameOfLastComment == null)
+                        {
+                            <p>Все още няма отговори към поста</p>
+                        }
+                        else
+                        {
+                            <p>@post.UserNameOfLastComment</p>
+                            <p><time datetime="@post.LastCommentDateAsString"></time></p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    if (Model.PagesCount > 1)
+    {
+        <partial name="_PagingPartial" model="@Model" />
+    }
+
+}
+
+@section Scripts {
+    <script src="~/js/disableSortTagElement.js" asp-append-version="true"></script>
+}

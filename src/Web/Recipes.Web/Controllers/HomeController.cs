@@ -45,7 +45,7 @@
         public IActionResult Index()
         {
             var viewModel = new IndexViewModel();
-            viewModel = this.countsService.GetStats();
+            viewModel = this.countsService.GetStatsForIndex();
             viewModel.RecentRecipes = this.recipesService.GetAll<RecipeInListViewModel>("descending", 1, 3);
             viewModel.MostPopularRecipes = this.recipesService.GetAll<RecipeInListViewModel>("popularity", 1, 3);
             viewModel.Categories = this.categoriesService.GetCategories();

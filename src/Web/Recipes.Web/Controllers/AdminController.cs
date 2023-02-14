@@ -57,10 +57,22 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> Approve(int id, bool recipe, bool post)
+        public async Task<IActionResult> Approve(int id, bool recipe, bool post, bool comment)
         {
-            await this.recipesService.ApproveRecipe(id);
-            return this.RedirectToAction(nameof(this.AllUnapprovedRecipes), new { id = 1 });
+            if (recipe)
+            {
+                await this.recipesService.ApproveRecipe(id);
+            }
+            else if (post)
+            {
+                await this.postsService.Approve(id);
+            }
+            else if (comment)
+            {
+                await this.commentsService.Approve(id);
+            }
+
+            return this.RedirectToAction("Index", "Home");
         }
 
         public IActionResult AllUnapprovedPosts(string sortOrder = "descending", int id = 1)

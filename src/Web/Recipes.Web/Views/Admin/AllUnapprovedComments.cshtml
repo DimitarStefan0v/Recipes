@@ -1,0 +1,28 @@
+﻿@using Recipes.Common;
+@using Recipes.Web.ViewModels.Comments;
+@model CommentsListViewModel
+
+@if (Model.PagesCount > 1)
+{
+    <partial name="_PagingPartial" model="@Model" />
+}
+
+@foreach (var comment in Model.Comments)
+{
+    <article class="post-comment">
+        <article class="post-comment-header"><article>@comment.AddedByUserUserName</article> <article><time datetime="@comment.DateAsString"></time></article></article>
+        <article class="post-comment-content"><p>@comment.Content</p></article>
+        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <a asp-controller="Comments" asp-action="DeleteComment" asp-route-id="@comment.Id">Изтрии</a>
+            if (!comment.IsApproved)
+            {
+                <a asp-controller="Admin" asp-action="Approve" asp-route-id="@comment.Id" asp-route-comment="true">Одобри</a>
+            }
+        }
+    </article>
+}
+@if (Model.PagesCount > 1)
+{
+    <partial name="_PagingPartial" model="@Model" />
+}
