@@ -10,5 +10,7 @@
         Task DeleteAsync(int id);
 
         IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage);
+
+        Task Approve(int id);
     }
 }

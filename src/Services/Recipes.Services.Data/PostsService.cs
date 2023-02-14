@@ -83,6 +83,18 @@
                 .ToList();
         }
 
+        public async Task Approve(int id)
+        {
+            var post = this.postsRepository.All().Where(x => x.Id == id).FirstOrDefault();
+            if (post == null)
+            {
+                return;
+            }
+
+            post.IsApproved = true;
+            await this.postsRepository.SaveChangesAsync();
+        }
+
         private static void SortPosts(ref string sort, ref IQueryable<Post> query)
         {
             if (sort == null)

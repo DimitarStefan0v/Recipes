@@ -39,7 +39,7 @@
             this.commentsRepository = commentsRepository;
         }
 
-        public IndexViewModel GetStats()
+        public IndexViewModel GetStatsForIndex()
         {
             var data = new IndexViewModel
             {
@@ -48,6 +48,9 @@
                 WaitingForApprovalRecipesCount = this.recipesRepository.AllAsNoTracking().Where(x => x.IsApproved == false).Count(),
                 IngredientsCount = this.ingredientsRepository.AllAsNoTracking().Count(),
                 CategoriesCount = this.categoriesRepository.AllAsNoTracking().Count(),
+                PostsCount = this.postsRepository.AllAsNoTracking().Count(),
+                CommentsForPostsCount = this.commentsRepository.AllAsNoTracking().Where(x => x.Post != null).Count(),
+                CommentsForRecipesCount = this.commentsRepository.AllAsNoTracking().Where(x => x.Recipe != null).Count(),
             };
 
             return data;

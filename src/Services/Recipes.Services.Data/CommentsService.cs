@@ -40,6 +40,18 @@
             await this.commentsRepository.SaveChangesAsync();
         }
 
+        public async Task Approve(int id)
+        {
+            var comment = this.commentsRepository.All().Where(x => x.Id == id).FirstOrDefault();
+            if (comment == null)
+            {
+                return;
+            }
+
+            comment.IsApproved = true;
+            await this.commentsRepository.SaveChangesAsync();
+        }
+
         public async Task DeleteAsync(int id)
         {
              var comment = this.commentsRepository.All().Where(x => x.Id == id).FirstOrDefault();
