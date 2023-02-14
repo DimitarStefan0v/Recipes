@@ -22,6 +22,7 @@
             {
                 Content = content,
                 AddedByUserId = userId,
+                IsApproved = false,
             };
 
             if (postComment)

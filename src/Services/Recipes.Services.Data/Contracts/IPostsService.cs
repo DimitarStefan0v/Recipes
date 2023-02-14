@@ -14,5 +14,7 @@
         T GetById<T>(int id);
 
         Task DeleteAsync(int id);
+
+        IEnumerable<T> GetAllUnapproved<T>(string sort, int page, int itemsPerPage);
     }
 }

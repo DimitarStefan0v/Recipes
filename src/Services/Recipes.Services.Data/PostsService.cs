@@ -40,6 +40,7 @@
                 AddedByUserId = userId,
                 Content = input.Content,
                 Name = input.Name,
+                IsApproved = false,
             };
 
             await this.postsRepository.AddAsync(post);
@@ -65,6 +66,21 @@
 
             this.postsRepository.Delete(post);
             await this.postsRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAllUnapproved<T>(string sort, int page, int itemsPerPage)
+        {
+            var query = this.postsRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved == false)
+                .AsQueryable();
+
+            SortPosts(ref sort, ref query);
+
+            return query.Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
         }
 
         private static void SortPosts(ref string sort, ref IQueryable<Post> query)

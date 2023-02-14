@@ -166,5 +166,13 @@
                 .Where(x => x.PostId == id)
                 .Count();
         }
+
+        public int GetUnapprovedPostsCount()
+        {
+            return this.postsRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved == false)
+                .Count();
+        }
     }
 }

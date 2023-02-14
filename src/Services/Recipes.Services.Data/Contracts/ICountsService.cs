@@ -29,5 +29,7 @@
         int GetPostsCount();
 
         int GetCommentsCountByPostId(int id);
+
+        int GetUnapprovedPostsCount();
     }
 }

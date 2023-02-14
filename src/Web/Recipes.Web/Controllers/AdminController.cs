@@ -4,9 +4,11 @@
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Data.SqlClient;
     using Recipes.Common;
     using Recipes.Services.Data.Contracts;
     using Recipes.Web.ViewModels.Messages;
+    using Recipes.Web.ViewModels.Posts;
     using Recipes.Web.ViewModels.Recipes;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
@@ -15,25 +17,28 @@
         private readonly ICountsService countsService;
         private readonly IRecipesService recipesService;
         private readonly IMessagesService messagesService;
+        private readonly IPostsService postsService;
 
         public AdminController(
             ICountsService countsService,
             IRecipesService recipesService,
-            IMessagesService messagesService)
+            IMessagesService messagesService,
+            IPostsService postsService)
         {
             this.countsService = countsService;
             this.recipesService = recipesService;
             this.messagesService = messagesService;
+            this.postsService = postsService;
         }
 
-        public IActionResult AllUnapproved(int id = 1)
+        public IActionResult AllUnapprovedRecipes(int id = 1)
         {
             if (id <= 0)
             {
                 return this.NotFound();
             }
 
-            int itemsPerPage = 1;
+            int itemsPerPage = 9;
 
             var viewModel = new RecipesListViewModel
             {
@@ -48,10 +53,33 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> Approve(int id)
+        public async Task<IActionResult> Approve(int id, bool recipe, bool post)
         {
             await this.recipesService.ApproveRecipe(id);
-            return this.RedirectToAction(nameof(this.AllUnapproved), new { id = 1 });
+            return this.RedirectToAction(nameof(this.AllUnapprovedRecipes), new { id = 1 });
+        }
+
+        public IActionResult AllUnapprovedPosts(string sortOrder = "descending", int id = 1)
+        {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            int itemsPerPage = 10;
+
+            var viewModel = new PostsListViewModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                ItemsCount = this.countsService.GetUnapprovedPostsCount(),
+                Posts = this.postsService.GetAllUnapproved<PostInListViewModel>(sortOrder, id, itemsPerPage),
+                ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
+                ActionName = this.ControllerContext.ActionDescriptor.ActionName,
+                SortOrder = sortOrder,
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Messages(int id = 1)

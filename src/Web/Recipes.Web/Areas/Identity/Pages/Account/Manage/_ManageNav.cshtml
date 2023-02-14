@@ -7,7 +7,7 @@
 <ul class="nav nav-pills flex-column">
     @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
     {
-        <li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="AllUnapproved">За одобряване</a></li>
+        <li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="AllUnapprovedRecipes">За одобряване</a></li>
         <li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="Messages">Съобщения</a></li>
     }
     <li class="nav-item"><a class="nav-link" asp-controller="Users" asp-action="PersonalRecipes">Моите рецепти</a></li>
