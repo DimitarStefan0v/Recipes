@@ -1,11 +1,13 @@
 ﻿namespace Recipes.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Recipes.Data.Common.Repositories;
     using Recipes.Data.Models;
     using Recipes.Services.Data.Contracts;
+    using Recipes.Services.Mapping;
 
     public class CommentsService : ICommentsService
     {
@@ -49,6 +51,18 @@
 
              this.commentsRepository.Delete(comment);
              await this.commentsRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage)
+        {
+            return this.commentsRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved == false)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
         }
     }
 }

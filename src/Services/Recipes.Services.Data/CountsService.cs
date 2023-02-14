@@ -174,5 +174,13 @@
                 .Where(x => x.IsApproved == false)
                 .Count();
         }
+
+        public int GetUnapprovedCommentsCount()
+        {
+            return this.commentsRepository
+                .AllAsNoTracking()
+                .Where(x => x.IsApproved == false)
+                .Count();
+        }
     }
 }
