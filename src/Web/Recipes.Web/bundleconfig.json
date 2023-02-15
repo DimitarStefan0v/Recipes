@@ -3,65 +3,68 @@
 [
   {
     "outputFileName": "wwwroot/css/site.min.css",
-    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/css/site.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/js/ajaxFavorites.min.js",
-    // An array of relative input file paths. Globbing patterns supported 
+    "outputFileName": "wwwroot/js/fetchPostComments.min.js",
     "inputFiles": [
-      "wwwroot/js/ajaxFavorites.js"
+      "wwwroot/js/fetchPostComments.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/js/ajaxVote.min.js",
-    // An array of relative input file paths. Globbing patterns supported 
+    "outputFileName": "wwwroot/js/favorites.min.js",
     "inputFiles": [
-      "wwwroot/js/ajaxVote.js"
+      "wwwroot/js/favorites.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/userRating.min.js",
+    "inputFiles": [
+      "wwwroot/js/userRating.js"
     ]
   },
   {
     "outputFileName": "wwwroot/js/disableSortTagElement.min.js",
-    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/js/disableSortTagElement.js"
     ]
   },
   {
     "outputFileName": "wwwroot/js/fillHeart.min.js",
-    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/js/fillHeart.js"
     ]
   },
   {
     "outputFileName": "wwwroot/js/ingredients.min.js",
-    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/js/ingredients.js"
     ]
   },
   {
     "outputFileName": "wwwroot/js/paint.min.js",
-    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/js/paint.js"
     ]
   },
   {
     "outputFileName": "wwwroot/js/paintBorder.min.js",
-    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/js/paintBorder.js"
     ]
   },
   {
     "outputFileName": "wwwroot/js/paintStars.min.js",
-    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/js/paintStars.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/scrollToCommentForm.min.js",
+    "inputFiles": [
+      "wwwroot/js/scrollToCommentForm.js"
     ]
   },
   {

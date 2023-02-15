@@ -15,29 +15,25 @@
         <article class="post-comment-content"><p>@Model.Name</p><hr /><p>@Model.Content</p></article>
         @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
-            <a asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Изтрии</a>
+            <a class="btn btn-danger" asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Изтрии</a>
             @if (!this.Model.IsApproved)
             {
-                <a asp-controller="Admin" asp-action="Approve" asp-route-id="@Model.Id" asp-route-post="true">Одобри</a>
+                <a class="btn btn-success" asp-controller="Admin" asp-action="Approve" asp-route-id="@Model.Id" asp-route-post="true">Одобри</a>
             }
         }
     </article>
+    <input id="post-content-value" type="hidden" value="@Model.Name" />
     @foreach (var comment in Model.Comments)
     {
         <article class="post-comment">
             <article class="post-comment-header"><article>@comment.AddedByUserUserName</article> <article><time datetime="@comment.DateAsString"></time></article></article>
             <article class="post-comment-content"><p>Тема: @Model.Name</p><hr /><p>@comment.Content</p></article>
-            @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-            {
-                <a asp-controller="Comments" asp-action="DeleteComment" asp-route-id="@comment.Id">Изтрии</a>
-                if (!comment.IsApproved)
-                {
-                    <a asp-controller="Admin" asp-action="Approve" asp-route-id="@comment.Id" asp-route-comment="true">Одобри</a>
-                }
-            }
         </article>
     }
 
+    <button class="forum-btn comments">Зареди още отговори</button>
+
+    <input type="hidden" id="post-id" value="@Model.Id" />
     <input type="hidden" id="check-if-authenticated" value="@User.Identity.IsAuthenticated" />
     @if (User.Identity.IsAuthenticated)
     {
@@ -54,19 +50,6 @@
 </section>
 
 @section Scripts{
-    <script>
-        let btn = document.querySelector(".forum-btn");
-        const authenticated = document.getElementById("check-if-authenticated").value;
-
-        btn.addEventListener("click", (ev) => {
-            ev.preventDefault();
-            if (authenticated) {
-                document.querySelector(".comment-form").scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.getElementById("post-anster-warning").style.display = "block";
-            }
-        });
-    </script>
+    <script src="~/js/scrollToCommentForm.js" asp-append-version="true"></script>
+    <script src="~/js/fetchPostComments.js" asp-append-version="true"></script>
 }

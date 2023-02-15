@@ -14,10 +14,10 @@
         <article class="post-comment-content"><p>@comment.Content</p></article>
         @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
-            <a asp-controller="Comments" asp-action="DeleteComment" asp-route-id="@comment.Id">Изтрии</a>
+            <a class="btn btn-danger" asp-controller="Comments" asp-action="DeleteComment" asp-route-id="@comment.Id">Изтрии</a>
             if (!comment.IsApproved)
             {
-                <a asp-controller="Admin" asp-action="Approve" asp-route-id="@comment.Id" asp-route-comment="true">Одобри</a>
+                <a class="btn btn-success" asp-controller="Admin" asp-action="Approve" asp-route-id="@comment.Id" asp-route-comment="true">Одобри</a>
             }
         }
     </article>
