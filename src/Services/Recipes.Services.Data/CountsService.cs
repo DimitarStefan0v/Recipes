@@ -182,7 +182,7 @@
         {
             return this.commentsRepository
                 .AllAsNoTracking()
-                .Where(x => x.IsApproved == false)
+                .Where(x => x.IsApproved == false && (x.Post != null || x.Recipe != null))
                 .Count();
         }
     }

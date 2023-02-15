@@ -1,6 +1,7 @@
 ﻿namespace Recipes.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -9,6 +10,7 @@
     using Recipes.Common;
     using Recipes.Data.Models;
     using Recipes.Services.Data.Contracts;
+    using Recipes.Web.ViewModels.Comments;
 
     public class CommentsController : BaseController
     {
@@ -69,6 +71,12 @@
         {
             await this.commentsService.DeleteAsync(id);
             return this.RedirectToAction("Index", "Home");
+        }
+
+        public IEnumerable<CommentInListViewModel> LoadComments(int id)
+        {
+            var comments = this.commentsService.GetAllPostComments<CommentInListViewModel>(id);
+            return comments;
         }
     }
 }
