@@ -65,11 +65,20 @@
              await this.commentsRepository.SaveChangesAsync();
         }
 
+        public IEnumerable<T> GetAllPostComments<T>(int id)
+        {
+            return this.commentsRepository
+                .AllAsNoTracking()
+                .Where(x => x.PostId == id)
+                .To<T>()
+                .ToList();
+        }
+
         public IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage)
         {
             return this.commentsRepository
                 .AllAsNoTracking()
-                .Where(x => x.IsApproved == false)
+                .Where(x => x.IsApproved == false && (x.Post != null || x.Recipe != null))
                 .OrderByDescending(x => x.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
