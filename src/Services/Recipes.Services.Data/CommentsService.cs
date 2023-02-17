@@ -54,15 +54,15 @@
 
         public async Task DeleteAsync(int id)
         {
-             var comment = this.commentsRepository.All().Where(x => x.Id == id).FirstOrDefault();
+            var comment = this.commentsRepository.All().Where(x => x.Id == id).FirstOrDefault();
 
-             if (comment == null)
+            if (comment == null)
             {
                 return;
             }
 
-             this.commentsRepository.Delete(comment);
-             await this.commentsRepository.SaveChangesAsync();
+            this.commentsRepository.Delete(comment);
+            await this.commentsRepository.SaveChangesAsync();
         }
 
         public IEnumerable<T> GetPostComments<T>(int id, int page, int itemsPerPage)
@@ -97,6 +97,23 @@
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
+        }
+
+        public async Task SeedRecipeComments(int id, int count, string recipeName, string userId)
+        {
+            for (int i = 1; i <= count; i++)
+            {
+                var comment = new Comment
+                {
+                    Content = $"Seed comment {i} for recipe {recipeName}",
+                    RecipeId = id,
+                    AddedByUserId = userId,
+                };
+
+                await this.commentsRepository.AddAsync(comment);
+            }
+
+            await this.commentsRepository.SaveChangesAsync();
         }
     }
 }

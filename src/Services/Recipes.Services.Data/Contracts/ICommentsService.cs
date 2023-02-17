@@ -16,5 +16,7 @@
         IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage);
 
         Task Approve(int id);
+
+        Task SeedRecipeComments(int id, int count, string recipeName, string userId);
     }
 }
