@@ -800,7 +800,7 @@ a {
     margin-bottom: 10px;
     color: white;
     background-color: #292637;
-    height: 45px;
+    min-height: 45px;
     padding: 5px 10px;
 }
 
