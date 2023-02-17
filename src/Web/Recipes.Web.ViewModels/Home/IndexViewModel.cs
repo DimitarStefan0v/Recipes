@@ -23,8 +23,6 @@
 
         public int CategoriesCount { get; set; }
 
-        public int IngredientsCount { get; set; }
-
         public int PostsCount { get; set; }
 
         public int CommentsForPostsCount { get; set; }

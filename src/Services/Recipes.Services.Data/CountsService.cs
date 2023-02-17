@@ -46,7 +46,6 @@
                 UsersCount = this.usersRepository.AllAsNoTracking().Count(),
                 ApprovedRecipesCount = this.recipesRepository.AllAsNoTracking().Where(x => x.IsApproved).Count(),
                 WaitingForApprovalRecipesCount = this.recipesRepository.AllAsNoTracking().Where(x => x.IsApproved == false).Count(),
-                IngredientsCount = this.ingredientsRepository.AllAsNoTracking().Count(),
                 CategoriesCount = this.categoriesRepository.AllAsNoTracking().Count(),
                 PostsCount = this.postsRepository.AllAsNoTracking().Count(),
                 CommentsForPostsCount = this.commentsRepository.AllAsNoTracking().Where(x => x.Post != null).Count(),
