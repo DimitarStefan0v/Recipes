@@ -727,7 +727,8 @@ a {
     word-break: break-all;
 }
 
-.forum-btn {
+.forum-btn,
+#toggle-comments {
     background-color: #e6580c;
     padding: 7px 20px;
     margin: 0 0 20px 0;
@@ -773,6 +774,76 @@ a {
     height: 80vh;
     width: 90%;
 }
+
+.comments-wrapper {
+    display: none;
+}
+
+.recipe-comment-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 500px;
+    margin: 20px auto;
+    border: 1px solid #e9e9e9;
+}
+
+.recipe-comment-wrapper p {
+    margin: 0;
+}
+
+.recipe-comment-wrapper-content {
+    padding: 0px 15px;
+}
+
+.recipe-comment-wrapper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    color: white;
+    background-color: #292637;
+    height: 45px;
+    padding: 5px 10px;
+}
+
+#show-more-comments,
+#add-recipe-comment {
+    background-color: #e6580c;
+    padding: 7px 20px;
+    border: none;
+    color: white;
+}
+
+#toggle-comments,
+#add-recipe-comment {
+    margin: 10px auto;
+    width: 250px;
+}
+
+.wrapper-for-comments-elements {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#recipe-comment-form {
+    max-width: 500px;
+    margin: 20px auto 0 auto;
+}
+
+p {
+    word-break: break-all;
+}
+
+
+
+
+
+
+
 
 
 /*----------------------------------------Media queries----------------------------------------*/
