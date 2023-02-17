@@ -71,7 +71,7 @@
         public async Task<IActionResult> DeleteComment(int id)
         {
             await this.commentsService.DeleteAsync(id);
-            return this.RedirectToAction("Admin", "AllUnapprovedComments");
+            return this.RedirectToAction("AllUnapprovedComments", "Admin");
         }
 
         public IEnumerable<CommentInListViewModel> LoadRecipeComments(int id, int page, int itemsPerFetch)

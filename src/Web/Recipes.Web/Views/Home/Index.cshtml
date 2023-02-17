@@ -48,6 +48,24 @@
     }
 </section>
 
+<h1 class="text-center index-heading">Най-коментирани</h1>
+<section class="recipes-list-container index-recipes">
+    @foreach (var recipe in Model.MostCommentedRecipes)
+    {
+        <article class="recipe-in-list-container">
+            <a asp-controller="Recipes" asp-action="ById" asp-route-id="@recipe.Id">
+                <article class="recipe-in-list-container-img">
+                    <img src="@recipe.ImageUrl" class="img-fluid w-100">
+                </article>
+                <article class="recipe-in-list-container-name">
+                    <p>@(recipe.Name.Length > 50 ? recipe.Name.Substring(0, 50) + "..." : recipe.Name)</p>
+                </article>
+                <input class="recipe-in-list-color" value="@recipe.CategoryColor" type="hidden" />
+            </a>
+        </article>
+    }
+</section>
+
 <h1 class="text-center index-heading">Категории</h1>
 <section class="categories-list-container">
     @foreach (var category in Model.Categories)

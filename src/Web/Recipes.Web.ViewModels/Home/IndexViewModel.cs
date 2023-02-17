@@ -11,6 +11,8 @@
 
         public IEnumerable<RecipeInListViewModel> MostPopularRecipes { get; set; }
 
+        public IEnumerable<RecipeInListViewModel> MostCommentedRecipes { get; set; }
+
         public IEnumerable<CategoryInListViewModel> Categories { get; set; }
 
         public int UsersCount { get; set; }

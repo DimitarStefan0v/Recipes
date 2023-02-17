@@ -6,6 +6,7 @@
 }
 
 <h1 class="text-center">Добавяне на пост</h1>
+
 <form method="post" class="col-md-6 col-10 mx-auto" enctype="application/x-www-form-urlencoded">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="mb-3">
@@ -15,7 +16,7 @@
     </div>
     <div class="mb-3">
         <label asp-for="Content" class="form-label"></label>
-        <textarea asp-for="Content" class="form-control" rows="6"></textarea>
+        <textarea asp-for="Content" class="form-control" rows="20"></textarea>
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
     <div class="mb-3">

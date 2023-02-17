@@ -826,6 +826,7 @@ a {
 }
 
 #recipe-comment-form {
+    display: none;
     max-width: 500px;
     margin: 20px auto 0 auto;
 }
@@ -833,13 +834,6 @@ a {
 p {
     word-break: break-all;
 }
-
-
-
-
-
-
-
 
 
 /*----------------------------------------Media queries----------------------------------------*/

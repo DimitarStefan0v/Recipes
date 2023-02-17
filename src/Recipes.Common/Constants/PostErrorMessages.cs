@@ -8,6 +8,6 @@
 
         public const string ContentRequired = "Съдържанието към поста е задължително";
 
-        public const string ContentLength = "Съдържанието към поста трябва да е с дължина минимум 10 символа";
+        public const string ContentLength = "Съдържанието към поста трябва да е с дължина между 10 и 2000 символа";
     }
 }

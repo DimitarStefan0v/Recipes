@@ -2,6 +2,7 @@
     let addCommentBtn = document.getElementById('add-recipe-comment');
     const authenticated = document.querySelector('.paragraph-warning');
     let wrapper = document.querySelector('.wrapper-for-comments-elements');
+    let commentForm = document.getElementById('recipe-comment-form');
 
     addCommentBtn.addEventListener('click', (ev) => {
         ev.preventDefault();
@@ -12,7 +13,8 @@
             wrapper.prepend(warning);
             addCommentBtn.style.display = 'none';
         } else {
-            document.getElementById('recipe-comment-form').scrollIntoView({
+            commentForm.style.display = 'block';
+            commentForm.scrollIntoView({
                 behavior: 'smooth'
             });
         }

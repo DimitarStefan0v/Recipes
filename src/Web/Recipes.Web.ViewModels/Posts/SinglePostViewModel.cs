@@ -30,7 +30,7 @@
 
         [Required(ErrorMessage = CommentErrorMessages.ContentRequired)]
         [MinLength(10, ErrorMessage = CommentErrorMessages.ContentLength)]
-        [MaxLength(300, ErrorMessage = CommentErrorMessages.ContentLength)]
+        [MaxLength(500, ErrorMessage = CommentErrorMessages.ContentLength)]
         public string CommentContent { get; set; }
     }
 }

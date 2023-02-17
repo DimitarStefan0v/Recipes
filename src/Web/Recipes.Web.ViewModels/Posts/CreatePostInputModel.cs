@@ -15,6 +15,7 @@
         [Display(Name = "Съдържание към поста")]
         [Required(ErrorMessage = PostErrorMessages.ContentRequired)]
         [MinLength(10, ErrorMessage = PostErrorMessages.ContentLength)]
+        [MaxLength(2000, ErrorMessage = PostErrorMessages.ContentLength)]
         public string Content { get; set; }
     }
 }
