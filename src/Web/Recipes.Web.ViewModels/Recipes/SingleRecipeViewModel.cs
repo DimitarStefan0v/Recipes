@@ -62,8 +62,8 @@
 
         [Display(Name = "Добави коментар")]
         [Required(ErrorMessage = CommentErrorMessages.ContentRequired)]
-        [MinLength(10, ErrorMessage = CommentErrorMessages.ContentLength)]
-        [MaxLength(500, ErrorMessage = CommentErrorMessages.ContentLength)]
+        [MinLength(3, ErrorMessage = "Съдържанието на коментара трябва да е поне 3 символа")]
+        [MaxLength(500, ErrorMessage = "Съдържанието на коментара не трябва да е повече от 500 символа")]
         public string CommentContent { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)

@@ -62,14 +62,17 @@
             if (recipe)
             {
                 await this.recipesService.ApproveRecipe(id);
+                return this.RedirectToAction("AllUnapprovedRecipes", "Admin");
             }
             else if (post)
             {
                 await this.postsService.Approve(id);
+                return this.RedirectToAction("AllUnapprovedPosts", "Admin");
             }
             else if (comment)
             {
                 await this.commentsService.Approve(id);
+                return this.RedirectToAction("AllUnapprovedComments", "Admin");
             }
 
             return this.RedirectToAction("Index", "Home");

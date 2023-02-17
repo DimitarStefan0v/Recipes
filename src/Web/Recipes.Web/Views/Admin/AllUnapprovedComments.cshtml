@@ -2,6 +2,10 @@
 @using Recipes.Web.ViewModels.Comments;
 @model CommentsListViewModel
 
+@{
+    this.ViewData["Title"] = "Нови коментари";
+}
+
 @if (Model.PagesCount > 1)
 {
     <partial name="_PagingPartial" model="@Model" />

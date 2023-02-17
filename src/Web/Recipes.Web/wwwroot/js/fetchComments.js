@@ -78,7 +78,7 @@
 
             // create comment header date
             let commentHeaderDateWrapper = createTagWithAttribute('p', 'class', 'recipe-comment-wrapper-header-date');
-            commentHeaderDateWrapper.textContent = comment.dateAsString;
+            commentHeaderDateWrapper.textContent = comment.dateAsForRecipeCommentString;
 
             // append comment header date to comment header
             commentHeader.appendChild(commentHeaderDateWrapper);
@@ -103,12 +103,12 @@
             commentsWrapper.insertBefore(commentWrapper, showMoreCommentsBtn);
         }
     }
+
+    function createTagWithAttribute(tagName, attributeName, attributeValue) {
+        let tag = document.createElement(tagName);
+        tag.setAttribute(attributeName, attributeValue);
+        return tag;
+    }
 }
 
 window.onload = LoadComments();
-
-function createTagWithAttribute(tagName, attributeName, attributeValue) {
-    let tag = document.createElement(tagName);
-    tag.setAttribute(attributeName, attributeValue);
-    return tag;
-}

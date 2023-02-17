@@ -19,6 +19,8 @@
 
         public string CategoryColor { get; set; }
 
+        public string Url => $"/r-{this.Id}/{this.Name.Replace(" ", "-").Replace(",", "-")}";
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Recipe, RecipeInListViewModel>()

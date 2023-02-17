@@ -2,7 +2,7 @@
 @using Recipes.Web.ViewModels.Home;
 @model IndexViewModel
 @{
-    this.ViewData["Title"] = "Home Page";
+    this.ViewData["Title"] = "Рецепти";
 }
 
 @if (this.TempData["messageSended"] != null)
@@ -17,7 +17,7 @@
     @foreach (var recipe in Model.RecentRecipes)
     {
         <article class="recipe-in-list-container">
-            <a asp-controller="Recipes" asp-action="ById" asp-route-id="@recipe.Id">
+            <a href="@recipe.Url">
                 <article class="recipe-in-list-container-img">
                     <img src="@recipe.ImageUrl" class="img-fluid w-100">
                 </article>
@@ -35,7 +35,7 @@
     @foreach (var recipe in Model.MostPopularRecipes)
     {
         <article class="recipe-in-list-container">
-            <a asp-controller="Recipes" asp-action="ById" asp-route-id="@recipe.Id">
+            <a href="@recipe.Url">
                 <article class="recipe-in-list-container-img">
                     <img src="@recipe.ImageUrl" class="img-fluid w-100">
                 </article>
@@ -53,7 +53,7 @@
     @foreach (var recipe in Model.MostCommentedRecipes)
     {
         <article class="recipe-in-list-container">
-            <a asp-controller="Recipes" asp-action="ById" asp-route-id="@recipe.Id">
+            <a href="@recipe.Url">
                 <article class="recipe-in-list-container-img">
                     <img src="@recipe.ImageUrl" class="img-fluid w-100">
                 </article>
@@ -126,5 +126,5 @@
 </table>
 
 @section Scripts {
-    <script src="~/js/paintBorder.js" asp-append-version="true"></script>
+    <script src="~/js/paintBorder.min.js" asp-append-version="true"></script>
 }

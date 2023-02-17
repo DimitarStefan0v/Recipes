@@ -134,6 +134,7 @@ namespace Recipes.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.MapControllerRoute("recipe", "r-{id}/{name:minlength(2)}", new { controller = "Recipes", action = "ById" });
             app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             app.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();

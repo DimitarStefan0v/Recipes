@@ -83,7 +83,7 @@
         @foreach (var recipe in Model.RecipesByCategoryId)
         {
             <article class="recipe-in-list-container">
-                <a asp-controller="Recipes" asp-action="ById" asp-route-id="@recipe.Id">
+                <a href="@recipe.Url">
                     <article class="recipe-in-list-container-img">
                         <img src="@recipe.ImageUrl" class="img-fluid w-100">
                     </article>
@@ -107,7 +107,7 @@
 }
 
 @section Scripts {
-    <script src="~/js/paint.js" asp-append-version="true"></script>
-    <script src="~/js/paintBorder.js" asp-append-version="true"></script>
-    <script src="~/js/disableSortTagElement.js" asp-append-version="true"></script>
+    <script src="~/js/paint.min.js" asp-append-version="true"></script>
+    <script src="~/js/paintBorder.min.js" asp-append-version="true"></script>
+    <script src="~/js/disableSortTagElement.min.js" asp-append-version="true"></script>
 }
