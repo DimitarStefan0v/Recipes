@@ -18,6 +18,6 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public string DateAsString => this.CreatedOn.ToString("ddd, MM dd, yyyy HH:mm", new CultureInfo("bg-Bg"));
+        public string DateAsString => this.CreatedOn.ToString("dd MMMM yyyy", new CultureInfo("bg-Bg"));
     }
 }

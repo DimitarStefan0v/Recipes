@@ -8,9 +8,9 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/fetchPostComments.min.js",
+    "outputFileName": "wwwroot/js/fetchComments.min.js",
     "inputFiles": [
-      "wwwroot/js/fetchPostComments.js"
+      "wwwroot/js/fetchComments.js"
     ]
   },
   {

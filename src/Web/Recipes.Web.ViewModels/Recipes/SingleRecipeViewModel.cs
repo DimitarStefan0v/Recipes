@@ -2,10 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using System.Globalization;
 
     using AutoMapper;
     using global::Recipes.Common;
+    using global::Recipes.Common.Constants;
     using global::Recipes.Data.Models;
     using global::Recipes.Services.Mapping;
 
@@ -52,6 +55,16 @@
         public string DateAsString => this.CreatedOn.ToString("ddd, MM dd, yyyy HH:mm", new CultureInfo("bg-Bg"));
 
         public int CommentsCount { get; set; }
+
+        public int CommentsPerPageCount => 5;
+
+        public int CommentsPagesCount => (int)Math.Ceiling((double)this.CommentsCount / this.CommentsPerPageCount);
+
+        [Display(Name = "Добави коментар")]
+        [Required(ErrorMessage = CommentErrorMessages.ContentRequired)]
+        [MinLength(10, ErrorMessage = CommentErrorMessages.ContentLength)]
+        [MaxLength(500, ErrorMessage = CommentErrorMessages.ContentLength)]
+        public string CommentContent { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
