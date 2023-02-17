@@ -34,8 +34,6 @@
         </article>
     }
 
-    @*<button class="forum-btn comments">Зареди още отговори</button>*@
-
     <input type="hidden" id="post-id" value="@Model.Id" />
     <input type="hidden" id="check-if-authenticated" value="@User.Identity.IsAuthenticated" />
     @if (User.Identity.IsAuthenticated)
@@ -59,5 +57,4 @@
 
 @section Scripts{
     <script src="~/js/scrollToCommentForm.js" asp-append-version="true"></script>
-    @*<script src="~/js/fetchPostComments.js" asp-append-version="true"></script>*@
 }

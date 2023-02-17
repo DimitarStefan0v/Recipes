@@ -122,8 +122,37 @@
         </li>
     </ul>
 }
+
+@*@if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+{
+    <a asp-controller="Comments" asp-action="SeedRecipeComments" asp-route-id="@Model.Id" asp-route-recipeName="@Model.Name" class="btn btn-primary">Seed Comments</a>
+}*@
+
+<section class="wrapper-for-comments-elements">
+    <button id="add-recipe-comment">Добави коментар</button>
+    <button id="toggle-comments">Покажи коментари(@Model.CommentsCount)</button>
+    <input id="comments-count" type="hidden" value="@Model.CommentsCount" />
+    <input id="comments-per-page-count" type="hidden" value="@Model.CommentsPerPageCount" />
+    <input id="comments-pages-count" type="hidden" value="@Model.CommentsPagesCount" />
+    <section class="comments-wrapper">
+        <button id="show-more-comments">Покажи още</button>
+    </section>
+</section>
 <input type="hidden" value="@Model.Id" id="recipe-id" />
 <form method="post" id="antiForgeryForm"></form>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <form id="recipe-comment-form" method="post" asp-controller="Comments" asp-action="CreateComment">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" value="@Model.Id" name="id" />
+        <input type="hidden" value="false" name="forPost" />
+        <label asp-for="CommentContent" class="form-label"></label>
+        <textarea asp-for="CommentContent" class="form-control" rows="10" name="input"></textarea>
+        <span asp-validation-for="CommentContent" class="text-danger"></span>
+        <button type="submit" class="btn btn-primary mt-3">Изпрати</button>
+    </form>
+}
 
 @section Scripts {
     <script src="~/js/userRating.js" asp-append-version="true"></script>
@@ -131,4 +160,6 @@
     <script src="~/js/paint.js" asp-append-version="true"></script>
     <script src="~/js/paintStars.js" asp-append-version="true"></script>
     <script src="~/js/fillHeart.js" asp-append-version="true"></script>
+    <script src="~/js/fetchComments.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 }

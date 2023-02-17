@@ -74,13 +74,22 @@
             return this.RedirectToAction("Admin", "AllUnapprovedComments");
         }
 
-        //public IEnumerable<CommentInListViewModel> LoadRecipeComments(int id, int page)
-        //{
-        //    var itemsPerFetch = 5;
+        public IEnumerable<CommentInListViewModel> LoadRecipeComments(int id, int page, int itemsPerFetch)
+        {
+            var comments = this.commentsService.GetRecipeComments<CommentInListViewModel>(id, page, itemsPerFetch);
 
-        //    var comments = this.commentsService.GetComments<CommentInListViewModel>(id, page, itemsPerFetch);
+            return comments;
+        }
 
-        //    return comments;
-        //}
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> SeedRecipeComments(int id, string recipeName)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            var count = 10;
+
+            await this.commentsService.SeedRecipeComments(id, count, recipeName, user.Id);
+
+            return this.RedirectToAction("ById", "Recipes", new { id });
+        }
     }
 }
