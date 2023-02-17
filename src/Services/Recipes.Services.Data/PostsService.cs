@@ -107,20 +107,20 @@
             switch (sort)
             {
                 case "ascending":
-                    query = query.OrderBy(x => x.CreatedOn);
+                    query = query.OrderBy(x => x.CreatedOn).ThenBy(x => x.Name);
                     break;
                 case "descending":
-                    query = query.OrderByDescending(x => x.CreatedOn);
+                    query = query.OrderByDescending(x => x.CreatedOn).ThenBy(x => x.Name);
                     break;
                 case "popularity":
-                    query = query.OrderByDescending(x => x.ViewsCount);
+                    query = query.OrderByDescending(x => x.ViewsCount).ThenBy(x => x.Name);
                     break;
                 case "comments":
-                    query = query.OrderByDescending(x => x.Comments.Count());
+                    query = query.OrderByDescending(x => x.Comments.Count()).ThenBy(x => x.Name);
                     break;
                 default:
                     sort = "descending";
-                    query = query.OrderByDescending(x => x.CreatedOn);
+                    query = query.OrderByDescending(x => x.CreatedOn).ThenBy(x => x.Name);
                     break;
             }
         }

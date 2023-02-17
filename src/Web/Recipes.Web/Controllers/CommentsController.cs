@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -70,13 +71,16 @@
         public async Task<IActionResult> DeleteComment(int id)
         {
             await this.commentsService.DeleteAsync(id);
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Admin", "AllUnapprovedComments");
         }
 
-        public IEnumerable<CommentInListViewModel> LoadComments(int id)
-        {
-            var comments = this.commentsService.GetAllPostComments<CommentInListViewModel>(id);
-            return comments;
-        }
+        //public IEnumerable<CommentInListViewModel> LoadRecipeComments(int id, int page)
+        //{
+        //    var itemsPerFetch = 5;
+
+        //    var comments = this.commentsService.GetComments<CommentInListViewModel>(id, page, itemsPerFetch);
+
+        //    return comments;
+        //}
     }
 }

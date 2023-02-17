@@ -51,6 +51,8 @@
 
         public string DateAsString => this.CreatedOn.ToString("ddd, MM dd, yyyy HH:mm", new CultureInfo("bg-Bg"));
 
+        public int CommentsCount { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Recipe, SingleRecipeViewModel>()

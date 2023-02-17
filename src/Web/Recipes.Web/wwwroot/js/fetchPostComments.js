@@ -2,12 +2,19 @@
     const btn = document.querySelector('.forum-btn.comments');
     let commentsWrapper = document.querySelector('.post-byId-wrapper');
     let postName = document.getElementById('post-content-value').value;
+    let page = 2;
 
     btn.addEventListener('click', async (ev) => {
         const id = document.getElementById('post-id').value;
-        const url = '/Comments/LoadComments/' + id;
+        const url = `/Comments/LoadPostComments/${id}?page=${page}`;
+        page += 1;
         const response = await fetch(url);
         const data = await response.json();
+
+        if (data.length == 0) {
+            btn.style.display = 'none';
+            return;
+        }
 
         for (const comment of data) {
             // create comment article wrapper

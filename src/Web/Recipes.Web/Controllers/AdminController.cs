@@ -35,9 +35,9 @@
             this.commentsService = commentsService;
         }
 
-        public IActionResult AllUnapprovedRecipes(int id = 1)
+        public IActionResult AllUnapprovedRecipes(int page = 1)
         {
-            if (id <= 0)
+            if (page <= 0)
             {
                 return this.NotFound();
             }
@@ -47,9 +47,9 @@
             var viewModel = new RecipesListViewModel
             {
                 ItemsPerPage = itemsPerPage,
-                PageNumber = id,
+                PageNumber = page,
                 ItemsCount = this.countsService.GetUnapprovedRecipesCount(),
-                Recipes = this.recipesService.GetAllUnapproved<RecipeInListViewModel>(id, itemsPerPage),
+                Recipes = this.recipesService.GetAllUnapproved<RecipeInListViewModel>(page, itemsPerPage),
                 ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = this.ControllerContext.ActionDescriptor.ActionName,
             };
@@ -75,9 +75,9 @@
             return this.RedirectToAction("Index", "Home");
         }
 
-        public IActionResult AllUnapprovedPosts(string sortOrder = "descending", int id = 1)
+        public IActionResult AllUnapprovedPosts(string sortOrder = "descending", int page = 1)
         {
-            if (id <= 0)
+            if (page <= 0)
             {
                 return this.NotFound();
             }
@@ -87,9 +87,9 @@
             var viewModel = new PostsListViewModel
             {
                 ItemsPerPage = itemsPerPage,
-                PageNumber = id,
+                PageNumber = page,
                 ItemsCount = this.countsService.GetUnapprovedPostsCount(),
-                Posts = this.postsService.GetAllUnapproved<PostInListViewModel>(sortOrder, id, itemsPerPage),
+                Posts = this.postsService.GetAllUnapproved<PostInListViewModel>(sortOrder, page, itemsPerPage),
                 ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = this.ControllerContext.ActionDescriptor.ActionName,
                 SortOrder = sortOrder,
@@ -98,9 +98,9 @@
             return this.View(viewModel);
         }
 
-        public IActionResult AllUnapprovedComments(int id = 1)
+        public IActionResult AllUnapprovedComments(int page = 1)
         {
-            if (id <= 0)
+            if (page <= 0)
             {
                 return this.NotFound();
             }
@@ -110,9 +110,9 @@
             var viewModel = new CommentsListViewModel
             {
                 ItemsPerPage = itemsPerPage,
-                PageNumber = id,
+                PageNumber = page,
                 ItemsCount = this.countsService.GetUnapprovedCommentsCount(),
-                Comments = this.commentsService.GetAllUnapproved<CommentInListViewModel>(id, itemsPerPage),
+                Comments = this.commentsService.GetAllUnapproved<CommentInListViewModel>(page, itemsPerPage),
                 ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = this.ControllerContext.ActionDescriptor.ActionName,
             };
@@ -120,9 +120,9 @@
             return this.View(viewModel);
         }
 
-        public IActionResult Messages(int id = 1)
+        public IActionResult Messages(int page = 1)
         {
-            if (id <= 0)
+            if (page <= 0)
             {
                 return this.NotFound();
             }
@@ -132,9 +132,9 @@
             var viewModel = new MessagesListViewModel
             {
                 ItemsPerPage = itemsPerPage,
-                PageNumber = id,
+                PageNumber = page,
                 ItemsCount = this.countsService.GetMessagesCount(),
-                Messages = this.messagesService.GetAll<MessageInListViewModel>(id, itemsPerPage),
+                Messages = this.messagesService.GetAll<MessageInListViewModel>(page, itemsPerPage),
                 ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = this.ControllerContext.ActionDescriptor.ActionName,
             };

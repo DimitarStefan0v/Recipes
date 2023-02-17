@@ -40,11 +40,11 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> ById(int categoryId, string sortOrder = "descending", int id = 1)
+        public async Task<IActionResult> ById(int categoryId, string sortOrder = "descending", int page = 1)
         {
             await this.countsService.IncreaseViews(categoryId, true);
 
-            if (id <= 0)
+            if (page <= 0)
             {
                 return this.RedirectToAction("Error", "Home");
             }
@@ -53,13 +53,19 @@
 
             var viewModel = this.categoriesService.GetById<SingleCategoryViewModel>(categoryId);
             viewModel.ItemsPerPage = itemsPerPage;
-            viewModel.PageNumber = id;
+            viewModel.PageNumber = page;
             viewModel.ItemsCount = this.countsService.GetRecipesCountByCategoryId(categoryId);
-            viewModel.RecipesByCategoryId = this.recipesService.GetRecipesByCategoryId<RecipeInListViewModel>(categoryId, sortOrder, id, itemsPerPage);
+            viewModel.RecipesByCategoryId = this.recipesService.GetRecipesByCategoryId<RecipeInListViewModel>(categoryId, sortOrder, page, itemsPerPage);
             viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
             viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
             viewModel.CategoryId = categoryId;
             viewModel.SortOrder = sortOrder;
+
+            if (page > viewModel.PagesCount && viewModel.PagesCount > 0)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
             return this.View(viewModel);
         }
 

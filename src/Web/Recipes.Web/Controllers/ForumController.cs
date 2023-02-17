@@ -15,9 +15,9 @@
             this.countsService = countsService;
         }
 
-        public IActionResult Index(string sortOrder = "descending", int id = 1)
+        public IActionResult Index(string sortOrder = "descending", int page = 1)
         {
-            if (id <= 0)
+            if (page <= 0)
             {
                 return this.RedirectToAction("Error", "Home");
             }
@@ -27,13 +27,18 @@
             var viewModel = new PostsListViewModel
             {
                 ItemsPerPage = itemsPerPage,
-                PageNumber = id,
+                PageNumber = page,
                 ItemsCount = this.countsService.GetPostsCount(),
-                Posts = this.postsService.GetAll<PostInListViewModel>(sortOrder, id, itemsPerPage),
+                Posts = this.postsService.GetAll<PostInListViewModel>(sortOrder, page, itemsPerPage),
                 ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = this.ControllerContext.ActionDescriptor.ActionName,
                 SortOrder = sortOrder,
             };
+
+            if (page > viewModel.PagesCount && viewModel.PagesCount > 0)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
 
             return this.View(viewModel);
         }

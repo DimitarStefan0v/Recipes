@@ -70,9 +70,9 @@
             return this.RedirectToAction(nameof(this.All));
         }
 
-        public IActionResult All(string sortOrder = "descending", int id = 1)
+        public IActionResult All(string sortOrder = "descending", int page = 1)
         {
-            if (id <= 0)
+            if (page <= 0)
             {
                 return this.RedirectToAction("Error", "Home");
             }
@@ -82,9 +82,9 @@
             var viewModel = new RecipesListViewModel
             {
                 ItemsPerPage = itemsPerPage,
-                PageNumber = id,
+                PageNumber = page,
                 ItemsCount = this.countsService.GetRecipesCount(),
-                Recipes = this.recipesService.GetAll<RecipeInListViewModel>(sortOrder, id, itemsPerPage),
+                Recipes = this.recipesService.GetAll<RecipeInListViewModel>(sortOrder, page, itemsPerPage),
             };
 
             // Add ControllerName and ActionName so Paging can be extracted in PartialView
@@ -92,12 +92,18 @@
             viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
             viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
             viewModel.SortOrder = sortOrder;
+
+            if (page > viewModel.PagesCount && viewModel.PagesCount > 0)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
             return this.View(viewModel);
         }
 
-        public IActionResult AllByName([FromQuery(Name = "search")] string name, string sortOrder = "descending", int id = 1)
+        public IActionResult AllByName([FromQuery(Name = "search")] string name, string sortOrder = "descending", int page = 1)
         {
-            if (string.IsNullOrWhiteSpace(name) || id <= 0)
+            if (string.IsNullOrWhiteSpace(name) || page <= 0)
             {
                 return this.RedirectToAction("Error", "Home");
             }
@@ -107,9 +113,9 @@
             var viewModel = new RecipesListViewModel
             {
                 ItemsPerPage = itemsPerPage,
-                PageNumber = id,
+                PageNumber = page,
                 ItemsCount = this.countsService.GetRecipesCountByName(name),
-                Recipes = this.recipesService.GetAllRecipesByName<RecipeInListViewModel>(name, sortOrder, id, itemsPerPage),
+                Recipes = this.recipesService.GetAllRecipesByName<RecipeInListViewModel>(name, sortOrder, page, itemsPerPage),
                 ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = this.ControllerContext.ActionDescriptor.ActionName,
                 Search = name.Trim(),
@@ -117,6 +123,11 @@
             };
 
             this.ViewData["SearchString"] = name.Trim();
+
+            if (page > viewModel.PagesCount && viewModel.PagesCount > 0)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
 
             return this.View(viewModel);
         }

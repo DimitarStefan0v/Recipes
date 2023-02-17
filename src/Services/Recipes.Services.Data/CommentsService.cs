@@ -65,11 +65,13 @@
              await this.commentsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAllPostComments<T>(int id)
+        public IEnumerable<T> GetPostComments<T>(int id, int page, int itemsPerPage)
         {
             return this.commentsRepository
                 .AllAsNoTracking()
                 .Where(x => x.PostId == id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
         }

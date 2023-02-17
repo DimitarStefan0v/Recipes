@@ -8,16 +8,19 @@
 @if (Model.Recipes.Any())
 {
     <h1 class="text-center">@this.ViewData["Title"]</h1>
-    <section class="sorting-menu">
-        <article>
-            <ul>
-                <li><a class="descending-sort-link" asp-route-sortOrder="descending" asp-route-id="1">Нови</a></li>
-                <li><a class="ascending-sort-link" asp-route-sortOrder="ascending" asp-route-id="1">Стари</a></li>
-                <li><a class="popularity-sort-link" asp-route-sortOrder="popularity" asp-route-id="1">Популярни</a></li>
-                <li><a class="votes-sort-link" asp-route-sortOrder="votes" asp-route-id="1">Оценявани</a></li>
-            </ul>
-        </article>
-    </section>
+    if (Model.Recipes.Count() > 1)
+    {
+        <section class="sorting-menu">
+            <article>
+                <ul>
+                    <li><a class="descending-sort-link" asp-route-sortOrder="descending" asp-route-id="1">Нови</a></li>
+                    <li><a class="ascending-sort-link" asp-route-sortOrder="ascending" asp-route-id="1">Стари</a></li>
+                    <li><a class="popularity-sort-link" asp-route-sortOrder="popularity" asp-route-id="1">Популярни</a></li>
+                    <li><a class="comments-sort-link" asp-route-sortOrder="comments" asp-route-id="1">Коментари</a></li>
+                </ul>
+            </article>
+        </section>
+    }
     <input type="hidden" value="@Model.SortOrder" class="input-sort-order-value" />
 
     if (Model.PagesCount > 1)
@@ -35,7 +38,8 @@
 }
 else
 {
-    <h1 class="text-center">Все още не сте добавили нито една рецепта към сайта ни или изчаква проверяване от администратора.
+    <h1 class="text-center">
+        Все още не сте добавили нито една рецепта към сайта ни или изчаква проверяване от администратора.
         Може да добавите нова рецепта от <a asp-controller="Recipes" asp-action="Create">тук</a> или от падащото меню добави.
     </h1>
 }

@@ -10,7 +10,7 @@
     using global::Recipes.Services.Mapping;
     using global::Recipes.Web.ViewModels.Comments;
 
-    public class SinglePostViewModel : IMapFrom<Post>
+    public class SinglePostViewModel : PagingViewModel, IMapFrom<Post>
     {
         public int Id { get; set; }
 

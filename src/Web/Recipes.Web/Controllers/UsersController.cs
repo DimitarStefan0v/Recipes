@@ -26,9 +26,9 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> FavoriteRecipes(int id = 1)
+        public async Task<IActionResult> FavoriteRecipes(int page = 1)
         {
-            if (id <= 0)
+            if (page <= 0)
             {
                 return this.RedirectToAction("Error", "Home");
             }
@@ -40,19 +40,24 @@
             var viewModel = new RecipesListViewModel
             {
                 ItemsPerPage = itemsPerPage,
-                PageNumber = id,
+                PageNumber = page,
                 ItemsCount = this.countsService.GetFavoriteRecipesCount(user.Id),
-                Recipes = this.recipesService.GetFavorites<RecipeInListViewModel>(id, itemsPerPage, user.Id),
+                Recipes = this.recipesService.GetFavorites<RecipeInListViewModel>(page, itemsPerPage, user.Id),
                 ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = this.ControllerContext.ActionDescriptor.ActionName,
             };
+
+            if (page > viewModel.PagesCount && viewModel.PagesCount > 0)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
 
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> PersonalRecipes(string sortOrder = "descending", int id = 1)
+        public async Task<IActionResult> PersonalRecipes(string sortOrder = "descending", int page = 1)
         {
-            if (id <= 0)
+            if (page <= 0)
             {
                 return this.RedirectToAction("Error", "Home");
             }
@@ -64,13 +69,18 @@
             var viewModel = new RecipesListViewModel
             {
                 ItemsPerPage = itemsPerPage,
-                PageNumber = id,
+                PageNumber = page,
                 ItemsCount = this.countsService.GetPersonalRecipesCount(user.Id),
-                Recipes = this.recipesService.GetPersonalRecipes<RecipeInListViewModel>(sortOrder, id, itemsPerPage, user.Id),
+                Recipes = this.recipesService.GetPersonalRecipes<RecipeInListViewModel>(sortOrder, page, itemsPerPage, user.Id),
                 ControllerName = this.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = this.ControllerContext.ActionDescriptor.ActionName,
                 SortOrder = sortOrder,
             };
+
+            if (page > viewModel.PagesCount && viewModel.PagesCount > 0)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
 
             return this.View(viewModel);
         }

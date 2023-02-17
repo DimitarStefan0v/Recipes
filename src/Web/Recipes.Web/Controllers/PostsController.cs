@@ -1,6 +1,7 @@
 ﻿namespace Recipes.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -9,21 +10,25 @@
     using Recipes.Common;
     using Recipes.Data.Models;
     using Recipes.Services.Data.Contracts;
+    using Recipes.Web.ViewModels.Comments;
     using Recipes.Web.ViewModels.Posts;
 
     public class PostsController : BaseController
     {
         private readonly IPostsService postsService;
         private readonly ICountsService countsService;
+        private readonly ICommentsService commentsService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public PostsController(
             IPostsService postsService,
             ICountsService countsService,
+            ICommentsService commentsService,
             UserManager<ApplicationUser> userManager)
         {
             this.postsService = postsService;
             this.countsService = countsService;
+            this.commentsService = commentsService;
             this.userManager = userManager;
         }
 
@@ -59,16 +64,30 @@
             return this.RedirectToAction("Index", "Forum", new { area = string.Empty });
         }
 
-        public async Task<IActionResult> ById(int id)
+        public async Task<IActionResult> ById(int id, int page = 1)
         {
             await this.countsService.IncreasePostViews(id);
 
-            if (id <= 0)
+            if (id <= 0 || page <= 0)
             {
                 return this.RedirectToAction("Error", "Home");
             }
 
+            var itemsPerPage = 5;
+
             var viewModel = this.postsService.GetById<SinglePostViewModel>(id);
+            viewModel.Comments = this.commentsService.GetPostComments<CommentInListViewModel>(id, page, itemsPerPage);
+            viewModel.ItemsPerPage = itemsPerPage;
+            viewModel.PageNumber = page;
+            viewModel.ItemsCount = this.countsService.GetCommentsCountByPostId(id);
+            viewModel.ControllerName = this.ControllerContext.ActionDescriptor.ControllerName;
+            viewModel.ActionName = this.ControllerContext.ActionDescriptor.ActionName;
+            viewModel.SourceId = id;
+
+            if (page > viewModel.PagesCount && viewModel.PagesCount > 0)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
 
             return this.View(viewModel);
         }

@@ -10,18 +10,21 @@
     <h2>@this.ViewData["Title"]</h2>
     <button class="forum-btn">Отговор</button>
     <h1 id="post-anster-warning" style="display: none" class="text-danger">Добавянето на отгори към поста е само за регистрирани потребители!</h1>
-    <article class="post-comment">
-        <article class="post-comment-header"><article>@Model.AddedByUserUserName</article> <article><time datetime="@Model.DateAsString"></time></article></article>
-        <article class="post-comment-content"><p>@Model.Name</p><hr /><p>@Model.Content</p></article>
-        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-        {
-            <a class="btn btn-danger" asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Изтрии</a>
-            @if (!this.Model.IsApproved)
+    @if (Model.PageNumber == 1)
+    {
+        <article class="post-comment">
+            <article class="post-comment-header"><article>@Model.AddedByUserUserName</article> <article><time datetime="@Model.DateAsString"></time></article></article>
+            <article class="post-comment-content"><p>@Model.Name</p><hr /><p>@Model.Content</p></article>
+            @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
-                <a class="btn btn-success" asp-controller="Admin" asp-action="Approve" asp-route-id="@Model.Id" asp-route-post="true">Одобри</a>
+                <a class="btn btn-danger" asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Изтрии</a>
+                @if (!this.Model.IsApproved)
+                {
+                    <a class="btn btn-success" asp-controller="Admin" asp-action="Approve" asp-route-id="@Model.Id" asp-route-post="true">Одобри</a>
+                }
             }
-        }
-    </article>
+        </article>
+    }
     <input id="post-content-value" type="hidden" value="@Model.Name" />
     @foreach (var comment in Model.Comments)
     {
@@ -31,7 +34,7 @@
         </article>
     }
 
-    <button class="forum-btn comments">Зареди още отговори</button>
+    @*<button class="forum-btn comments">Зареди още отговори</button>*@
 
     <input type="hidden" id="post-id" value="@Model.Id" />
     <input type="hidden" id="check-if-authenticated" value="@User.Identity.IsAuthenticated" />
@@ -49,7 +52,12 @@
     }
 </section>
 
+@if (Model.PagesCount > 1)
+{
+    <partial name="_PagingPartial" model="@Model" />
+}
+
 @section Scripts{
     <script src="~/js/scrollToCommentForm.js" asp-append-version="true"></script>
-    <script src="~/js/fetchPostComments.js" asp-append-version="true"></script>
+    @*<script src="~/js/fetchPostComments.js" asp-append-version="true"></script>*@
 }

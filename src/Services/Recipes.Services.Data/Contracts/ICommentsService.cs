@@ -9,7 +9,7 @@
 
         Task DeleteAsync(int id);
 
-        IEnumerable<T> GetAllPostComments<T>(int id);
+        IEnumerable<T> GetPostComments<T>(int id, int page, int itemsPerPage);
 
         IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage);
 
