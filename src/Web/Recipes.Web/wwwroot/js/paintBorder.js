@@ -3,7 +3,7 @@
     for (let i = 0; i < recipes.length; i++) {
         let color = recipes[i].querySelector('.recipe-in-list-color').value;
         let elementToPaint = recipes[i].querySelector('.recipe-in-list-container-name');
-        elementToPaint.style.borderLeft = "10px solid " + color;
+        elementToPaint.style.borderLeft = '10px solid ' + color;
     }
 }
 

@@ -66,7 +66,7 @@
     </article>
     @if (!User.Identity.IsAuthenticated)
     {
-        <p class="paragraph-warning text-danger">unregistered</p>
+        <h3 class="paragraph-warning text-danger text-center">unregistered</h3>
     }
     <article class="favorites">
         @if (Model.IsRecipeInFavorites)
@@ -162,4 +162,5 @@
     <script src="~/js/fillHeart.js" asp-append-version="true"></script>
     <script src="~/js/fetchComments.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/scrollToRecipeCommentForm.js" asp-append-version="true"></script>
 }

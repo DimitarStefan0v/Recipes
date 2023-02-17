@@ -16,17 +16,14 @@
 }
 
 const CheckIfUserCanAddRecipeToFavorites = function (childToRemove) {
-    let p = document.querySelector('.paragraph-warning');
-    if (p != null && p.textContent == 'unregistered') {
-        p.textContent = 'Само за регистрирани потребители!';
-        p.style.display = 'block';
-        let ul = document.querySelector('.votes ul');
-        let article = document.querySelector('.votes-container .votes');
-        let articleFavorites = document.querySelector('.votes-container .favorites');
-        let paragrapthToRemove = document.getElementById('favorites-p');
-        article.removeChild(ul);
-        articleFavorites.removeChild(childToRemove);
-        articleFavorites.removeChild(paragrapthToRemove);
+    let authenticated = document.querySelector('.paragraph-warning');
+    if (authenticated != null && authenticated.textContent == 'unregistered') {
+        authenticated.textContent = 'Само за регистрирани потребители!';
+        authenticated.style.display = 'block';
+        let voteContainer = document.querySelector('.votes');
+        voteContainer.style.display = 'none';
+        let favoritesContainer = document.querySelector('.favorites');
+        favoritesContainer.style.display = 'none';
     }
 }
 

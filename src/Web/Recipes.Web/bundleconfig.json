@@ -62,9 +62,15 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/scrollToCommentForm.min.js",
+    "outputFileName": "wwwroot/js/scrollToPostCommentForm.min.js",
     "inputFiles": [
-      "wwwroot/js/scrollToCommentForm.js"
+      "wwwroot/js/scrollToPostCommentForm.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/scrollToRecipeCommentForm.min.js",
+    "inputFiles": [
+      "wwwroot/js/scrollToRecipeCommentForm.js"
     ]
   },
   {

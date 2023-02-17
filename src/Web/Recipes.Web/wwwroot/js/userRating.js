@@ -28,18 +28,14 @@
 }
 
 const CheckIfUserShouldVote = function () {
-    let p = document.querySelector('.paragraph-warning');
-    if (p != null && p.textContent == 'unregistered') {
-        p.textContent = 'Само за регистрирани потребители!';
-        p.style.display = 'block';
-        let i = document.getElementById('first-star');
-        let ul = i.parentElement.parentElement;
-        let sectionFavorites = document.querySelector('.votes-container .favorites');
-        let heartToRemove = sectionFavorites.querySelector('i');
-        let paragrapthToRemove = document.getElementById('favorites-p');
-        ul.style.display = 'none';
-        sectionFavorites.removeChild(heartToRemove);
-        sectionFavorites.removeChild(paragrapthToRemove);
+    let authenticated = document.querySelector('.paragraph-warning');
+    if (authenticated != null && authenticated.textContent == 'unregistered') {
+        authenticated.textContent = 'Само за регистрирани потребители!';
+        authenticated.style.display = 'block';
+        let voteContainer = document.querySelector('.votes');
+        voteContainer.style.display = 'none';
+        let favoritesContainer = document.querySelector('.favorites');
+        favoritesContainer.style.display = 'none';
     }
 }
 
