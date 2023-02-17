@@ -76,6 +76,17 @@
                 .ToList();
         }
 
+        public IEnumerable<T> GetRecipeComments<T>(int id, int page, int itemsPerPage)
+        {
+            return this.commentsRepository
+                .AllAsNoTracking()
+                .Where(x => x.RecipeId == id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+        }
+
         public IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage)
         {
             return this.commentsRepository

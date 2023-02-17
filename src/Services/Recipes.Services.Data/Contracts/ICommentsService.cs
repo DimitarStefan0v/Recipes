@@ -11,6 +11,8 @@
 
         IEnumerable<T> GetPostComments<T>(int id, int page, int itemsPerPage);
 
+        IEnumerable<T> GetRecipeComments<T>(int id, int page, int itemsPerPage);
+
         IEnumerable<T> GetAllUnapproved<T>(int page, int itemsPerPage);
 
         Task Approve(int id);
