@@ -277,6 +277,7 @@
             var favoriteRecipes = this.favoriteRecipesRepository
                 .AllAsNoTracking()
                 .Where(x => x.AddedByUserId == userId)
+                .OrderByDescending(x => x.CreatedOn)
                 .Select(x => x.RecipeId)
                 .ToList();
 
