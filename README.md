@@ -3,48 +3,42 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+**Access to the website:**
+## https://recipes.bsite.net/
 
 
 ## :pencil: Project Description 
-Web application for recipes. 
-**_Guest users_** are able to view all recipes, recipes by category, search recipes by name, single recipe with all its details and comments. Guests are also able to view forum posts and comments. Guest users are able to send a message through the contact form. Guest users can not add new recipes, write posts, comments or voting for recipes.
 
-**_Registered users_** are able to add recipe with: title, image, instructions, ingredients, preparation time, cooking time and category. After recipe is addded to the system it must be checked by the Administrator first before its visible in the website. Registered users can view all personal uploaded recipes to the system and edit or delete its own recipes. Registered users are also able to vote for recipes, add/remove recipe to/from favorites. Registered users can also write comments to recipes, write forum posts or respond to posts.
+**_Guest users_** are able to view all recipes, recipes by category, search recipe by name, single recipe with all its details and comments. Guests users are also able to view forum posts and comments, send a message through the contact form, but can not add new recipes, write posts, comments, vote for recipes or add recipes to favorites.
 
-**_Administators_** are able to delete all recipes, comments, posts. All new recipes must be approved by administrator before being visible in the website.
+**_Registered users_** are able to add new recipes with: title, image, instructions, ingredients, preparation time, cooking time, portions count and category. After recipe is added to the system it must be approved by the Administrator first before its visible in the website. Registered users can view all personal uploaded recipes to the system and edit or delete their own recipes. Registered users are also able to vote for recipes, add/remove recipe to/from favorites, write comments to recipes, write forum posts or respond to posts.
+
+**_Administators_** are able to delete and edit all recipes, comments, posts. All new recipes must be approved by administrator before being visible in the website.
 
 
 # :hammer: Built With:
-* ASP.NET Core MVC
-* MSSQL Server
-* Entity Framwork Core 
-* HTML
-* CSS
+* ASP.NET Core 6.0
+* MS SQL Server
+* Entity Framework Core 
 * JS
+* Automapper
+* Repository Pattern 
+* Service Layer
 * SendGrid
 * Cloudinary
-* Bootstrap
 * Ajax
 * Web Api
-* Moq
-* xUnit
+* ReCaptcha
 * Paging and Sorting with EF Core
 * PartialViews
 * MomentJs
-* Fontawesome
+* FontAwesome
+* HTML
+* CSS
+* Responsive design with Media Queries
+* Bootstrap
+* Moq
+* xUnit
 
 ## Author
 
@@ -53,6 +47,11 @@ Web application for recipes.
 
 ## Template authors
 
-- [Nikolay Kostov](https://github.com/NikolayIT)
-- [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
-- [Stoyan Shopov](https://github.com/StoyanShopov)
+[Nikolay Kostov](https://github.com/NikolayIT)
+[Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
+[Stoyan Shopov](https://github.com/StoyanShopov)
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
