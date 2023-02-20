@@ -3,7 +3,7 @@
 
 
 
-**Access to the website:**  ## https://recipes.bsite.net/
+**Access to the website:** [Recipes](https://recipes.bsite.net/)
 
 
 ## :pencil: Project Description 
@@ -41,14 +41,14 @@
 
 ## Author
 
-[Dimitar Stefanov](https://github.com/DimitarStefan0v)
+- [Dimitar Stefanov](https://github.com/DimitarStefan0v)
 
 
 ## Template authors
 
-[Nikolay Kostov](https://github.com/NikolayIT)
-[Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
-[Stoyan Shopov](https://github.com/StoyanShopov)
+- [Nikolay Kostov](https://github.com/NikolayIT)
+- [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
+- [Stoyan Shopov](https://github.com/StoyanShopov)
 
 
 ## License
