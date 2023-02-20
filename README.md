@@ -3,8 +3,7 @@
 
 
 
-**Access to the website:**
-## https://recipes.bsite.net/
+**Access to the website:**## https://recipes.bsite.net/
 
 
 ## :pencil: Project Description 
@@ -48,7 +47,9 @@
 ## Template authors
 
 [Nikolay Kostov](https://github.com/NikolayIT)
+
 [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
+
 [Stoyan Shopov](https://github.com/StoyanShopov)
 
 
