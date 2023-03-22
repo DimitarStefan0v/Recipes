@@ -6,7 +6,7 @@
 
     public interface ICountsService
     {
-        IndexViewModel GetStatsForIndex();
+        StatsViewModel GetStats();
 
         Task IncreaseViews(int id, bool forCategory);
 

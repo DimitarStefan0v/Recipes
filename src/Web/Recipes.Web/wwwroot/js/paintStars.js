@@ -1,4 +1,6 @@
-﻿const AddClassesToStars = function () {
+﻿window.onload = addClassesToStars();
+
+function addClassesToStars() {
     const voteValue = document.getElementById('avg-votes-hidden').textContent;
     let firstStar = document.getElementById('first-star');
     let secondStar = document.getElementById('second-star');
@@ -61,5 +63,3 @@
             break;
     }
 }
-
-window.onload = AddClassesToStars();

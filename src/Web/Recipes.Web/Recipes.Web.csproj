@@ -15,10 +15,12 @@
 </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Admin\Stats.cshtml" />
     <Content Remove="wwwroot\js\disableSortTagElement.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Admin\Stats.cshtml" />
     <_ContentIncludedByDefault Remove="wwwroot\js\disableSortTagElement.js" />
   </ItemGroup>
 	<ItemGroup>
@@ -60,6 +62,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Admin\Stats.cshtml" />
     <None Include="wwwroot\js\disableSortTagElement.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Admin\Stats.cshtml" />
   </ItemGroup>
 </Project>

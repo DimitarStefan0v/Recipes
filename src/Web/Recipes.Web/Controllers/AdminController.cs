@@ -8,6 +8,7 @@
     using Recipes.Common;
     using Recipes.Services.Data.Contracts;
     using Recipes.Web.ViewModels.Comments;
+    using Recipes.Web.ViewModels.Home;
     using Recipes.Web.ViewModels.Messages;
     using Recipes.Web.ViewModels.Posts;
     using Recipes.Web.ViewModels.Recipes;
@@ -149,6 +150,12 @@
         {
             await this.messagesService.DeleteAsync(id);
             return this.RedirectToAction(nameof(this.Messages), new { id = 1 });
+        }
+
+        public IActionResult Stats()
+        {
+            var viewModel = this.countsService.GetStats();
+            return this.View(viewModel);
         }
     }
 }

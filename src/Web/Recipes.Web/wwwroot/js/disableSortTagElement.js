@@ -1,4 +1,6 @@
-﻿const DisableCurrentAnchorSortElement = function () {
+﻿window.onload = disableCurrentAnchorSortElement();
+
+function disableCurrentAnchorSortElement() {
     let sortValue = document.querySelector('.input-sort-order-value').value;
     let asc = document.querySelector('.ascending-sort-link');
     let desc = document.querySelector('.descending-sort-link');
@@ -33,5 +35,3 @@
         desc.style.cursor = 'default';
     }
 }
-
-window.onload = DisableCurrentAnchorSortElement();

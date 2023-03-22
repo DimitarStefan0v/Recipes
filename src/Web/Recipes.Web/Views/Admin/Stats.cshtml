@@ -1,0 +1,43 @@
+﻿@using Recipes.Web.ViewModels.Home;
+@model StatsViewModel
+
+@{
+    this.ViewData["Title"] = "Статистика";
+}
+
+<table id="stats-table" class="table table-striped table-hover">
+    <tbody>
+        <tr>
+            <td>Регистрирани потребители</td>
+            <td>@Model.UsersCount</td>
+        </tr>
+        <tr>
+            <td>Одобрени рецепти</td>
+            <td>@Model.ApprovedRecipesCount</td>
+        </tr>
+        <tr>
+            <td>Рецепти чакащи одобрение</td>
+            <td>@Model.WaitingForApprovalRecipesCount</td>
+        </tr>
+        <tr>
+            <td>Общо рецепти на сайта</td>
+            <td>@(Model.ApprovedRecipesCount + Model.WaitingForApprovalRecipesCount)</td>
+        </tr>
+        <tr>
+            <td>Общо коментари към рецепти</td>
+            <td>@Model.CommentsForRecipesCount</td>
+        </tr>
+        <tr>
+            <td>Категории</td>
+            <td>@Model.CategoriesCount</td>
+        </tr>
+        <tr>
+            <td>Форум постове</td>
+            <td>@Model.PostsCount</td>
+        </tr>
+        <tr>
+            <td>Общо отговори към постове</td>
+            <td>@Model.CommentsForPostsCount</td>
+        </tr>
+    </tbody>
+</table>

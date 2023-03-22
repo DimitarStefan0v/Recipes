@@ -1,4 +1,6 @@
-﻿const AddRecipeToUserFavorites = function () {
+﻿window.onload = addRecipeToUserFavorites();
+
+function addRecipeToUserFavorites() {
     const article = document.querySelector('.favorites');
     const i = article.querySelector('i');
     i.addEventListener('click', async () => {
@@ -22,5 +24,3 @@
             value.textContent = result;
     });
 }
-
-window.onload = AddRecipeToUserFavorites();

@@ -1,9 +1,11 @@
-﻿const AddClassToHeart = function () {
+﻿window.onload = addClassToHeart();
+
+function addClassToHeart() {
     let heart = document.querySelector('.favorites i');
     heart.addEventListener('click', fillHeart);
     let paragrapth = document.getElementById('favorites-p');
     function fillHeart() {
-        CheckIfUserCanAddRecipeToFavorites(heart);
+        checkIfUserCanAddRecipeToFavorites(heart);
         let isRecipeInFavorites = document.getElementById('is-recipe-favorite');
         if (isRecipeInFavorites.textContent == 'true') {
             heart.setAttribute('class', 'fa-regular fa-heart');
@@ -15,7 +17,7 @@
     }
 }
 
-const CheckIfUserCanAddRecipeToFavorites = function (childToRemove) {
+function checkIfUserCanAddRecipeToFavorites(childToRemove) {
     let authenticated = document.querySelector('.paragraph-warning');
     if (authenticated != null && authenticated.textContent == 'unregistered') {
         authenticated.textContent = 'Само за регистрирани потребители!';
@@ -26,5 +28,3 @@ const CheckIfUserCanAddRecipeToFavorites = function (childToRemove) {
         favoritesContainer.style.display = 'none';
     }
 }
-
-window.onload = AddClassToHeart();

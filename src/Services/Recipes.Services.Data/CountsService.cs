@@ -39,9 +39,9 @@
             this.commentsRepository = commentsRepository;
         }
 
-        public IndexViewModel GetStatsForIndex()
+        public StatsViewModel GetStats()
         {
-            var data = new IndexViewModel
+            var data = new StatsViewModel
             {
                 UsersCount = this.usersRepository.AllAsNoTracking().Count(),
                 ApprovedRecipesCount = this.recipesRepository.AllAsNoTracking().Where(x => x.IsApproved).Count(),

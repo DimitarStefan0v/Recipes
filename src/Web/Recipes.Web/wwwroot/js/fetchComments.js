@@ -1,4 +1,6 @@
-﻿const LoadComments = function () {
+﻿window.onload = loadComments();
+
+function loadComments() {
     const toggleCommentsBtn = document.getElementById('toggle-comments');
     let commentsWrapper = document.querySelector('.comments-wrapper');
     let commentsCount = document.getElementById('comments-count').value;
@@ -110,5 +112,3 @@
         return tag;
     }
 }
-
-window.onload = LoadComments();

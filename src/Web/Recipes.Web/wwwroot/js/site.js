@@ -13,7 +13,8 @@
 });
 
 
-let mybutton = document.getElementById('btn-back-to-top');
+let backToTopButton = document.getElementById('btn-back-to-top');
+backToTopButton.addEventListener('click', backToTop);
 
 window.onscroll = function () {
     scrollFunction();
@@ -24,13 +25,11 @@ function scrollFunction() {
         document.body.scrollTop > 20 ||
         document.documentElement.scrollTop > 20
     ) {
-        mybutton.style.display = 'block';
+        backToTopButton.style.display = 'block';
     } else {
-        mybutton.style.display = 'none';
+        backToTopButton.style.display = 'none';
     }
 }
-
-mybutton.addEventListener('click', backToTop);
 
 function backToTop() {
     document.body.scrollTop = 0;

@@ -1,4 +1,6 @@
-﻿const ScrollToCommentForm = function () {
+﻿window.onload = scrollToCommentForm();
+
+function scrollToCommentForm() {
     let addCommentBtn = document.getElementById('add-recipe-comment');
     const authenticated = document.querySelector('.paragraph-warning');
     let wrapper = document.querySelector('.wrapper-for-comments-elements');
@@ -21,5 +23,3 @@
     });
 
 }
-
-window.onload = ScrollToCommentForm();

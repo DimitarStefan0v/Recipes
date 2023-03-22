@@ -1,9 +1,11 @@
-﻿const SendVote = function () {
+﻿window.onload = sendVote();
+
+function sendVote() {
     let elements = document.querySelectorAll('.votes-container .votes i');
 
     for (let el of elements) {
         el.addEventListener('click', async () => {
-            CheckIfUserShouldVote();
+            checkIfUserShouldVote();
             const value = el.getAttribute('data-vote');
             const recipeId = document.getElementById('recipe-id').value;
             const antiForgeryToken = document.querySelector('#antiForgeryForm input[name=__RequestVerificationToken]').value;
@@ -27,7 +29,7 @@
     }
 }
 
-const CheckIfUserShouldVote = function () {
+function checkIfUserShouldVote() {
     let authenticated = document.querySelector('.paragraph-warning');
     if (authenticated != null && authenticated.textContent == 'unregistered') {
         authenticated.textContent = 'Само за регистрирани потребители!';
@@ -38,5 +40,3 @@ const CheckIfUserShouldVote = function () {
         favoritesContainer.style.display = 'none';
     }
 }
-
-window.onload = SendVote();

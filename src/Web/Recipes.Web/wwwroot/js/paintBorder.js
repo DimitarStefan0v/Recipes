@@ -1,4 +1,6 @@
-﻿const PaintRecipeInListBorderLeft = function () {
+﻿window.onload = paintRecipeInListBorderLeft();
+
+function paintRecipeInListBorderLeft() {
     const recipes = document.querySelectorAll('.recipe-in-list-container');
     for (let i = 0; i < recipes.length; i++) {
         let color = recipes[i].querySelector('.recipe-in-list-color').value;
@@ -6,5 +8,3 @@
         elementToPaint.style.borderLeft = '10px solid ' + color;
     }
 }
-
-window.onload = PaintRecipeInListBorderLeft();

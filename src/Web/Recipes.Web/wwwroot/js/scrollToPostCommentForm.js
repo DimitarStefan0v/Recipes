@@ -1,4 +1,6 @@
-﻿const ScrollToCommentForm = function () {
+﻿window.onload = scrollToCommentForm();
+
+function scrollToCommentForm() {
     let btn = document.querySelector('.forum-btn');
     const authenticated = document.getElementById('check-if-authenticated').value;
 
@@ -13,5 +15,3 @@
         }
     });
 }
-
-window.onload = ScrollToCommentForm();
